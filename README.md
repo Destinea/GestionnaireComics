@@ -5,3 +5,4 @@ Contributors:
 - Cyril BIER
 - Alexi DESVIGNES NOUVEL
 - Nathan Prud'homme
+Sarah-Marie JULES
