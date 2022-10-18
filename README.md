@@ -1,6 +1,6 @@
 Contributors:
-Valentine GILLES
-Justine BARRANGER-CANDAS
-Cyril BIER
-Alexi DESVIGNES NOUVEL
-Nathan Prud'homme
+- Valentine GILLES
+- Justine BARRANGER-CANDAS
+- Cyril BIER
+- Alexi DESVIGNES NOUVEL
+- Nathan Prud'homme
