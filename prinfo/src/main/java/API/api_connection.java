@@ -51,7 +51,7 @@ public class api_connection {
      */
     public JSONArray GetResults(String recherche) throws IOException {
         String jsonString = getJsonResults(recherche);
-        JSONObject obj = new JSONObject(jsonString);
+        JSONObject objetJSON = new JSONObject(jsonString);
         return obj.getJSONArray("results");
     }
 
