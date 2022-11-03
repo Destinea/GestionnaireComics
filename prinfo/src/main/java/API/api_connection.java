@@ -24,7 +24,7 @@ public class api_connection {
         String requeteURL = "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&format=json&api_key=" + API_KEY;
         String reponse;
 
-        URL obj = new URL(requeteURL);
+        URL objetRequeteURL = new URL(requeteURL);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
