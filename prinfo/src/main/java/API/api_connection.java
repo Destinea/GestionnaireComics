@@ -25,7 +25,7 @@ public class api_connection {
         String reponse;
 
         URL objetRequeteURL = new URL(requeteURL);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        HttpURLConnection connexionURL = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
         int responseCode = con.getResponseCode();
