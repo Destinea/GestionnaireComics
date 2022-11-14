@@ -3,6 +3,22 @@
   <groupId>fr.tse.fise2</groupId>
   <artifactId>prinfo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>PRINFO</name>
+    <properties>
+        <maven.compiler.source>18</maven.compiler.source>
+        <maven.compiler.target>18</maven.compiler.target>
+    </properties>
+    <name>PRINFO</name>
   <description>projet info</description>
+    <dependencies>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20220924</version>
+        </dependency>
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>8.0.31</version>
+		</dependency>
+    </dependencies>
 </project>
