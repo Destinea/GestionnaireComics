@@ -22,9 +22,9 @@ public class CreationCompteFrame extends javax.swing.JFrame {
      */
     public CreationCompteFrame() {
         initComponents();
-        ImageIcon fermerFenetreImageIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("IconFermerFenetre.png")));
-        Image fermerFenetreImage = fermerFenetreImageIcon.getImage().getScaledInstance(fermeFenetreBouton.getWidth(), fermeFenetreBouton.getHeight(), WIDTH);
-        fermeFenetreBouton.setIcon(new ImageIcon(fermerFenetreImage));
+        //ImageIcon fermerFenetreImageIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("IconFermerFenetre.png")));
+        //Image fermerFenetreImage = fermerFenetreImageIcon.getImage().getScaledInstance(fermeFenetreBouton.getWidth(), fermeFenetreBouton.getHeight(), WIDTH);
+        //fermeFenetreBouton.setIcon(new ImageIcon(fermerFenetreImage));
     }
 
     /**
