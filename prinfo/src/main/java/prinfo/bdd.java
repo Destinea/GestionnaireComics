@@ -10,7 +10,7 @@ import de.mkammerer.argon2.Argon2Factory.Argon2Types;
 public class bdd {
 
 	// Lancer my sql workbench et taper "use prinfo7";
-
+/*
 	public static void main(String[] args) {
 		try {
 			// Connexion
@@ -40,7 +40,7 @@ public class bdd {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-	}
+	}*/
 
 	public static boolean insertion(Statement stmt, String login, String psw, Argon2 argon2) throws SQLException {
 		// Insertion du login et du mdp
