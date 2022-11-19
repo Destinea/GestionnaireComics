@@ -57,7 +57,7 @@ public class api_connection {
      * @author Cyril
      */
     public List<Results> GetResults(String recherche, int numPage) throws IOException {
-        List<Results> results = new ArrayList<>();
+        List<Results> results = new ArrayList<Results>();
 
         String jsonString = getJsonResults(recherche,numPage);
         JSONObject obj = new JSONObject(jsonString);
