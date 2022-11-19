@@ -16,15 +16,13 @@ public class bdd {
 			// Connexion
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "root", "root");
 			Statement stmt = con.createStatement();
-			System.out.println("Connected");
 			Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
 			
-
 			boolean etat1_insert = insertion(stmt, "toto", "test2", argon2); // true = insertion réussie, false = existe déjà
 			boolean etat2_insert = insertion(stmt, "toto", "test2", argon2);
 			String password = lecture(stmt, "toto");
-			boolean etat_comp = compare( password, "test2", argon2);
-			boolean etat2_comp = compare(password, "dggf", argon2);
+			boolean etat_comp = comparaison( password, "test2", argon2);
+			boolean etat2_comp = comparaison(password, "dggf", argon2);
 			boolean etat_del = deletion(stmt, "toto");
 			
 			System.out.println(etat1_insert);
@@ -38,6 +36,7 @@ public class bdd {
 
 			// Fermeture de la connexion
 			con.close();
+			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -96,7 +95,7 @@ public class bdd {
 		}
 	}
 	
-	public static boolean compare(String pwd, String attempt, Argon2 argon2)
+	public static boolean comparaison(String pwd, String attempt, Argon2 argon2)
 	{
 		try {
 			boolean success = argon2.verify(pwd, attempt);
