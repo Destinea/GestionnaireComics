@@ -4,8 +4,8 @@
   <artifactId>prinfo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
     <properties>
-        <maven.compiler.source>18</maven.compiler.source>
-        <maven.compiler.target>18</maven.compiler.target>
+        <maven.compiler.source>13</maven.compiler.source>
+        <maven.compiler.target>13</maven.compiler.target>
     </properties>
     <name>PRINFO</name>
   <description>projet info</description>
