@@ -20,9 +20,9 @@ public class ConnectionFrame extends javax.swing.JFrame {
      */
     public ConnectionFrame() {
         initComponents();
-        ImageIcon fermerFenetreImageIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("IconFermerFenetre.png")));
-        Image fermerFenetreImage = fermerFenetreImageIcon.getImage().getScaledInstance(fermeFenetreBouton.getWidth(), fermeFenetreBouton.getHeight(), WIDTH);
-        fermeFenetreBouton.setIcon(new ImageIcon(fermerFenetreImage));
+        //ImageIcon fermerFenetreImageIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("IconFermerFenetre.png")));
+        //Image fermerFenetreImage = fermerFenetreImageIcon.getImage().getScaledInstance(fermeFenetreBouton.getWidth(), fermeFenetreBouton.getHeight(), WIDTH);
+        //fermeFenetreBouton.setIcon(new ImageIcon(fermerFenetreImage));
     }
 
     /**
@@ -100,7 +100,6 @@ public class ConnectionFrame extends javax.swing.JFrame {
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Mot de passe ");
-        jLabel5.setPreferredSize(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,7 +115,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField1)
@@ -152,7 +151,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                            .addComponent(jPasswordField1))
                         .addGap(15, 15, 15))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(fermeFenetreBouton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
