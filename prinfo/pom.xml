@@ -15,8 +15,6 @@
             <artifactId>json</artifactId>
             <version>20220924</version>
         </dependency>
-<<<<<<< Updated upstream
-=======
 		<dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
@@ -31,9 +29,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
-            <scope>test</scope>
             <type>jar</type>
         </dependency>
->>>>>>> Stashed changes
     </dependencies>
 </project>
