@@ -9,8 +9,9 @@ public class Serie extends Results{
     private String LastComicName;
     private String FirstComicName;
 
-    public Serie(String name, String shortDescription, String type, String publisher, int id, String iconLink, int numberOfComics, int startYear, String HTMLDescription, int lastComicID, int firstComicID, String lastComicName, String firstComicName) {
-        super(name, shortDescription, type, publisher, id, iconLink);
+
+    public Serie(String name, String shortDescription, String type, int id, String iconLink, int numberOfComics, int startYear, String HTMLDescription, int lastComicID, int firstComicID, String lastComicName, String firstComicName) {
+        super(name, shortDescription, type, id, iconLink);
         NumberOfComics = numberOfComics;
         StartYear = startYear;
         this.HTMLDescription = HTMLDescription;

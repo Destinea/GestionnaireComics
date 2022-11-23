@@ -6,8 +6,8 @@ public class Comic extends Results{
     private int number;
     private String HTMLDescription;
 
-    public Comic(String name, String shortDescription, String type, String publisher, int id, String iconLink, String serieName, int serieId, int number, String HTMLDescription) {
-        super(name, shortDescription, type, publisher, id, iconLink);
+    public Comic(String name, String shortDescription, String type, int id, String iconLink, String serieName, int serieId, int number, String HTMLDescription) {
+        super(name, shortDescription, type, id, iconLink);
         SerieName = serieName;
         SerieId = serieId;
         this.number = number;
