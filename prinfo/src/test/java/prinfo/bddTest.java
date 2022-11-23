@@ -18,7 +18,7 @@ public class bddTest {
 
 	@Test
 	public void testDeletion() throws SQLException {
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "root", "root");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
 		Statement stmt = con.createStatement();
 		assertTrue(bdd.deletion(stmt, "toto"));
 		con.close();
@@ -26,7 +26,7 @@ public class bddTest {
 	
 	@Test
 	public void testInsertion() throws SQLException {
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "root", "root");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
 		Statement stmt = con.createStatement();
 		Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
 		bdd.deletion(stmt, "toto");
@@ -37,7 +37,7 @@ public class bddTest {
 	
 	@Test
 	public void testLecture() throws SQLException {
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "root", "root");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
 		Statement stmt = con.createStatement();
 		Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
 		bdd.insertion(stmt, "toto", "test", argon2);
@@ -47,7 +47,7 @@ public class bddTest {
 	
 	@Test
 	public void testComparaison() throws SQLException {
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "root", "root");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
 		Statement stmt = con.createStatement();
 		Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
 		bdd.insertion(stmt, "toto", "test", argon2);
