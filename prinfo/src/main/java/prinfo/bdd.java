@@ -3,8 +3,6 @@ package prinfo;
 import java.sql.*;
 
 import de.mkammerer.argon2.Argon2;
-import de.mkammerer.argon2.Argon2Factory;
-import de.mkammerer.argon2.Argon2Factory.Argon2Types;
 
 
 public class bdd {
@@ -56,7 +54,7 @@ public class bdd {
 			{ 
 				return false;
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println(e);
 			return false;
 		}
@@ -68,12 +66,11 @@ public class bdd {
 		String str = "";
 		try {
 			String sql = "SELECT * FROM user WHERE login = '" + login + "';";
-			ResultSet rs = stmt.executeQuery(sql);
-			rs = stmt.getResultSet(); 
+			ResultSet rs = stmt.getResultSet(); 
 			while (rs.next()) {
 				str = rs.getString("password");
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println(e);
 		}
 		return str;
@@ -89,7 +86,7 @@ public class bdd {
 			return true;
 			}
 			else { return false;}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println(e);
 			return false;
 		}
