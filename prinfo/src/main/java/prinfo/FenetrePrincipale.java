@@ -307,7 +307,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         for (Results results : ResultatsRecherche) {
             System.out.println(results.getName() + "\n");
-            System.out.println(results.getPublisher() + "\n");
             System.out.println(results.getShortDescription() + "\n");
             System.out.println(results.getType() + "\n");
             System.out.println("\n");
