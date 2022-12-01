@@ -35,4 +35,8 @@ public class Results {
     public int getId() {
         return id;
     }
+
+    public String getIconLink() {
+        return iconLink;
+    }
 }
