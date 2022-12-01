@@ -7,20 +7,14 @@ package prinfo;
 import API.Results;
 import API.api_connection;
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
+import java.awt.Choice;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.ListModel;
 
 /**
  *
@@ -37,6 +31,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     public FenetrePrincipale() {
         initComponents();
         test = new api_connection();
+        Choice droplistFiltre=new Choice();
+        droplistFiltre.add("Tout");
+        droplistFiltre.add("Character");
+        droplistFiltre.add("Comics");
+        droplistFiltre.setVisible(true);
     }
 
     /**
@@ -60,6 +59,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         rechercheBtn = new javax.swing.JButton();
+        dropListFiltre = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
         panel1 = new java.awt.Panel();
         titre1 = new javax.swing.JLabel();
@@ -240,6 +240,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
+        dropListFiltre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tout", "Charactère", "Comics" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -259,8 +261,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         .addGap(77, 77, 77)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dropListFiltre, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rechercheBtn)
-                        .addGap(27, 27, 27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
@@ -282,9 +286,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(rechercheBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(rechercheBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(dropListFiltre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(17, 17, 17))))))
         );
 
@@ -313,7 +319,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink1)
                     .addComponent(description1)
                     .addComponent(type1))
-                .addContainerGap(428, Short.MAX_VALUE))
+                .addContainerGap(422, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,7 +334,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type1)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         panel2.setPreferredSize(new java.awt.Dimension(500, 150));
@@ -353,7 +359,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink2)
                     .addComponent(description2)
                     .addComponent(type2))
-                .addContainerGap(428, Short.MAX_VALUE))
+                .addContainerGap(422, Short.MAX_VALUE))
         );
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,7 +374,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type2)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         panel3.setPreferredSize(new java.awt.Dimension(500, 150));
@@ -393,7 +399,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink3)
                     .addComponent(description3)
                     .addComponent(type3))
-                .addContainerGap(428, Short.MAX_VALUE))
+                .addContainerGap(422, Short.MAX_VALUE))
         );
         panel3Layout.setVerticalGroup(
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -408,7 +414,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type3)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         panel4.setPreferredSize(new java.awt.Dimension(500, 150));
@@ -433,7 +439,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink4)
                     .addComponent(description4)
                     .addComponent(type4))
-                .addContainerGap(428, Short.MAX_VALUE))
+                .addContainerGap(422, Short.MAX_VALUE))
         );
         panel4Layout.setVerticalGroup(
             panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -448,7 +454,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type4)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         panel5.setPreferredSize(new java.awt.Dimension(500, 150));
@@ -473,7 +479,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink5)
                     .addComponent(description5)
                     .addComponent(type5))
-                .addContainerGap(428, Short.MAX_VALUE))
+                .addContainerGap(422, Short.MAX_VALUE))
         );
         panel5Layout.setVerticalGroup(
             panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -488,7 +494,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type5)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         panel6.setPreferredSize(new java.awt.Dimension(500, 150));
@@ -513,7 +519,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(description6)
                     .addComponent(type6)
                     .addComponent(titre6))
-                .addContainerGap(428, Short.MAX_VALUE))
+                .addContainerGap(422, Short.MAX_VALUE))
         );
         panel6Layout.setVerticalGroup(
             panel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -528,7 +534,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type6)
-                .addGap(0, 56, Short.MAX_VALUE))
+                .addGap(0, 52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -810,6 +816,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JLabel description4;
     private javax.swing.JLabel description5;
     private javax.swing.JLabel description6;
+    private javax.swing.JComboBox<String> dropListFiltre;
     private javax.swing.JLabel iconLink1;
     private javax.swing.JLabel iconLink2;
     private javax.swing.JLabel iconLink3;
