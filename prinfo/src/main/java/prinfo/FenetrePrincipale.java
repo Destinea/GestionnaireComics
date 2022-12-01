@@ -27,8 +27,10 @@ import javax.swing.ListModel;
  * @author nathb
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
+
     private api_connection test;
     private List<Results> ResultatsRecherche;
+
     /**
      * Creates new form FenetrePrincipale
      */
@@ -227,6 +229,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
 
         rechercheBtn.setText("Rechercher");
+        rechercheBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rechercheBtnMouseClicked(evt);
+            }
+        });
         rechercheBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rechercheBtnActionPerformed(evt);
@@ -290,8 +297,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         id1.setText("id1");
 
-        iconLink1.setText("iconLink1");
-
         description1.setText("description1");
 
         type1.setText("type1");
@@ -308,7 +313,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink1)
                     .addComponent(description1)
                     .addComponent(type1))
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,7 +328,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type1)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         panel2.setPreferredSize(new java.awt.Dimension(500, 150));
@@ -331,8 +336,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         titre2.setText("titre2");
 
         type2.setText("type1");
-
-        iconLink2.setText("iconLink1");
 
         description2.setText("description1");
 
@@ -350,7 +353,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink2)
                     .addComponent(description2)
                     .addComponent(type2))
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,7 +368,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type2)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         panel3.setPreferredSize(new java.awt.Dimension(500, 150));
@@ -373,8 +376,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         titre3.setText("titre3");
 
         description3.setText("description1");
-
-        iconLink3.setText("iconLink1");
 
         type3.setText("type1");
 
@@ -392,7 +393,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink3)
                     .addComponent(description3)
                     .addComponent(type3))
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         panel3Layout.setVerticalGroup(
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,7 +408,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type3)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         panel4.setPreferredSize(new java.awt.Dimension(500, 150));
@@ -419,8 +420,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         id4.setText("id1");
 
         type4.setText("type1");
-
-        iconLink4.setText("iconLink1");
 
         javax.swing.GroupLayout panel4Layout = new javax.swing.GroupLayout(panel4);
         panel4.setLayout(panel4Layout);
@@ -434,7 +433,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink4)
                     .addComponent(description4)
                     .addComponent(type4))
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         panel4Layout.setVerticalGroup(
             panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,7 +448,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type4)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         panel5.setPreferredSize(new java.awt.Dimension(500, 150));
@@ -457,8 +456,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         titre5.setText("titre5");
 
         id5.setText("id1");
-
-        iconLink5.setText("iconLink1");
 
         type5.setText("type1");
 
@@ -476,7 +473,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink5)
                     .addComponent(description5)
                     .addComponent(type5))
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         panel5Layout.setVerticalGroup(
             panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -491,14 +488,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type5)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         panel6.setPreferredSize(new java.awt.Dimension(500, 150));
 
         titre6.setText("titre6");
-
-        iconLink6.setText("iconLink1");
 
         id6.setText("id1");
 
@@ -518,7 +513,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(description6)
                     .addComponent(type6)
                     .addComponent(titre6))
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         panel6Layout.setVerticalGroup(
             panel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,7 +528,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type6)
-                .addGap(0, 35, Short.MAX_VALUE))
+                .addGap(0, 56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -612,32 +607,32 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void jPanel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseEntered
         // TODO add your handling code here:
-        jLabel2.setForeground(new Color(112,128,144));
+        jLabel2.setForeground(new Color(112, 128, 144));
     }//GEN-LAST:event_jPanel3MouseEntered
 
     private void jPanel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseEntered
         // TODO add your handling code here:
-       jLabel3.setForeground(new Color(112,128,144));
+        jLabel3.setForeground(new Color(112, 128, 144));
     }//GEN-LAST:event_jPanel4MouseEntered
 
     private void jPanel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseEntered
         // TODO add your handling code here:
-        jLabel4.setForeground(new Color(112,128,144));
+        jLabel4.setForeground(new Color(112, 128, 144));
     }//GEN-LAST:event_jPanel5MouseEntered
 
     private void jPanel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseExited
         // TODO add your handling code here:
-        jLabel2.setForeground(new Color(255,255,255));
+        jLabel2.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_jPanel3MouseExited
 
     private void jPanel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseExited
         // TODO add your handling code here:
-        jLabel3.setForeground(new Color(255,255,255));
+        jLabel3.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_jPanel4MouseExited
 
     private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseExited
         // TODO add your handling code here:
-        jLabel4.setForeground(new Color(255,255,255));
+        jLabel4.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_jPanel5MouseExited
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
@@ -657,6 +652,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             System.out.println(results.getName() + "\n");
             System.out.println(results.getShortDescription() + "\n");
             System.out.println(results.getType() + "\n");
+            System.out.println(results.getIconLink() + "\n");
             System.out.println("\n");
         }
         AfficheResultats();
@@ -666,64 +662,112 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
 
-    private void AfficheResultats(){
-        if (ResultatsRecherche.size()>=6){
+    private void rechercheBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechercheBtnMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_rechercheBtnMouseClicked
+
+    private void AfficheResultats() {
+        if (ResultatsRecherche.size() >= 6) {
             for (int i = 1; i < 7; i++) {
-                AffichageSurBonPanel(i, ResultatsRecherche.get(i-1));
+                AffichageSurBonPanel(i, ResultatsRecherche.get(i - 1));
             }
-        }
-        else
-        {
+        } else {
             for (int i = 1; i < ResultatsRecherche.size(); i++) {
                 AffichageSurBonPanel(i, ResultatsRecherche.get(i));
             }
         }
     }
-    
+
     // nbPanel est compris entre 1 et 6 pour différentier sur quel panel on affiche les resultats
-    private void AffichageSurBonPanel (int nbPanel, Results ResultatRecherche){
+    private void AffichageSurBonPanel(int nbPanel, Results ResultatRecherche) {
         switch (nbPanel) {
             case 1:
                 titre1.setText(ResultatRecherche.getName());
                 id1.setText(String.valueOf(ResultatRecherche.getId()));
                 description1.setText(ResultatRecherche.getShortDescription());
                 type1.setText(ResultatRecherche.getType());
+                //iconLink1.setText(ResultatRecherche.getIconLink());     
+                ImageIcon img1 = null;
+            try {
+                img1 = new ImageIcon(new URL(ResultatRecherche.getIconLink()));
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                iconLink1.setIcon(img1);
                 break;
             case 2:
                 titre2.setText(ResultatRecherche.getName());
                 id2.setText(String.valueOf(ResultatRecherche.getId()));
                 description2.setText(ResultatRecherche.getShortDescription());
                 type2.setText(ResultatRecherche.getType());
+                ImageIcon img2 = null;
+            try {
+                img2 = new ImageIcon(new URL(ResultatRecherche.getIconLink()));
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                iconLink2.setIcon(img2);
                 break;
             case 3:
                 titre3.setText(ResultatRecherche.getName());
                 id3.setText(String.valueOf(ResultatRecherche.getId()));
                 description3.setText(ResultatRecherche.getShortDescription());
                 type3.setText(ResultatRecherche.getType());
+                ImageIcon img3 = null;
+            try {
+                img3 = new ImageIcon(new URL(ResultatRecherche.getIconLink()));
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                iconLink3.setIcon(img3);
                 break;
             case 4:
                 titre4.setText(ResultatRecherche.getName());
                 id4.setText(String.valueOf(ResultatRecherche.getId()));
                 description4.setText(ResultatRecherche.getShortDescription());
                 type4.setText(ResultatRecherche.getType());
+                ImageIcon img4 = null;
+            try {
+                img4 = new ImageIcon(new URL(ResultatRecherche.getIconLink()));
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                iconLink4.setIcon(img4);
+
                 break;
             case 5:
                 titre5.setText(ResultatRecherche.getName());
                 id5.setText(String.valueOf(ResultatRecherche.getId()));
                 description5.setText(ResultatRecherche.getShortDescription());
                 type5.setText(ResultatRecherche.getType());
+                ImageIcon img5 = null;
+            try {
+                img5 = new ImageIcon(new URL(ResultatRecherche.getIconLink()));
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                iconLink5.setIcon(img5);
+
                 break;
             case 6:
                 titre6.setText(ResultatRecherche.getName());
                 id6.setText(String.valueOf(ResultatRecherche.getId()));
                 description6.setText(ResultatRecherche.getShortDescription());
                 type6.setText(ResultatRecherche.getType());
+                ImageIcon img6 = null;
+            try {
+                img6 = new ImageIcon(new URL(ResultatRecherche.getIconLink()));
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                iconLink6.setIcon(img6);
                 break;
             default:
                 throw new AssertionError();
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */

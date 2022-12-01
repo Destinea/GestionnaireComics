@@ -321,6 +321,7 @@
                 <Property name="text" type="java.lang.String" value="Rechercher"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rechercheBtnMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rechercheBtnActionPerformed"/>
               </Events>
             </Component>
@@ -406,7 +407,7 @@
                               <Component id="description1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="type1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="422" max="32767" attributes="0"/>
+                          <EmptySpace pref="428" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -423,7 +424,7 @@
                           <Component id="description1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="type1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="35" max="32767" attributes="0"/>
+                          <EmptySpace pref="56" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -440,9 +441,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="iconLink1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="iconLink1"/>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="description1">
                   <Properties>
@@ -475,7 +473,7 @@
                               <Component id="description2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="type2" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="422" max="32767" attributes="0"/>
+                          <EmptySpace pref="428" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -492,7 +490,7 @@
                           <Component id="description2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="type2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="35" max="32767" attributes="0"/>
+                          <EmptySpace pref="56" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -509,9 +507,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="iconLink2">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="iconLink1"/>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="description2">
                   <Properties>
@@ -544,7 +539,7 @@
                               <Component id="description3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="type3" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="422" max="32767" attributes="0"/>
+                          <EmptySpace pref="428" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -561,7 +556,7 @@
                           <Component id="description3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="type3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="35" max="32767" attributes="0"/>
+                          <EmptySpace pref="56" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -578,9 +573,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="iconLink3">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="iconLink1"/>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="type3">
                   <Properties>
@@ -613,7 +605,7 @@
                               <Component id="description4" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="type4" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="422" max="32767" attributes="0"/>
+                          <EmptySpace pref="428" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -630,7 +622,7 @@
                           <Component id="description4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="type4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="35" max="32767" attributes="0"/>
+                          <EmptySpace pref="56" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -657,9 +649,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="iconLink4">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="iconLink1"/>
-                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -682,7 +671,7 @@
                               <Component id="description5" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="type5" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="422" max="32767" attributes="0"/>
+                          <EmptySpace pref="428" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -699,7 +688,7 @@
                           <Component id="description5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="type5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="35" max="32767" attributes="0"/>
+                          <EmptySpace pref="56" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -716,9 +705,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="iconLink5">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="iconLink1"/>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="type5">
                   <Properties>
@@ -751,7 +737,7 @@
                               <Component id="type6" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="titre6" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="422" max="32767" attributes="0"/>
+                          <EmptySpace pref="428" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -768,7 +754,7 @@
                           <Component id="description6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="type6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="35" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -780,9 +766,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="iconLink6">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="iconLink1"/>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="id6">
                   <Properties>
