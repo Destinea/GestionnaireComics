@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,18 +20,8 @@ public class api_connection {
     private static final String USER_AGENT = "Mozilla/5.0";
     private static final String API_KEY = "53b33e3da09b63c64d3a69667f455e9076055dcc";
 
-    /**
-     * Renvoie le JSON lié à l'entrée passée en paramètre.
-     * @param recherche : Information que l'on recherche.
-     * @param numPage : numéro de la page que l'on recherche (10 recherche affichées par page.
-     * @return Resultat de la requête sous format json.
-     * @author Cyril
-     */
-    private String getJsonResults(String recherche, int numPage) throws IOException {
-        String requeteURL = "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page="+numPage+"&format=json&api_key=" + API_KEY;
-        String reponse;
-
-        URL obj = new URL(requeteURL);
+    private String sendRequest(String url) throws IOException {
+        URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
@@ -44,78 +35,8 @@ public class api_connection {
             response.append(inputLine);
         }
         in.close();
-        reponse = response.toString();
 
-        return reponse;
-    }
-
-    private String getJsonComic(int id) throws IOException {
-        String requeteURL = "https://comicvine.gamespot.com/api/issues/?filter=id:" + id +"&format=json&api_key=" + API_KEY;
-        String reponse;
-
-        URL obj = new URL(requeteURL);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        int responseCode = con.getResponseCode();
-        System.out.println("GET Response Code :: " + responseCode);
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-        reponse = response.toString();
-
-        return reponse;
-    }
-
-    private String getJsonCharacter(int id) throws IOException {
-        String requeteURL = "https://comicvine.gamespot.com/api/characters/?filter=id:" + id +"&format=json&api_key=" + API_KEY;
-        String reponse;
-
-        URL obj = new URL(requeteURL);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        int responseCode = con.getResponseCode();
-        System.out.println("GET Response Code :: " + responseCode);
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-        reponse = response.toString();
-
-        return reponse;
-    }
-
-    private String getJsonSerie(int id) throws IOException {
-        String requeteURL = "https://comicvine.gamespot.com/api/volumes/?filter=id:" + id +"&format=json&api_key=" + API_KEY;
-        String reponse;
-
-        URL obj = new URL(requeteURL);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        int responseCode = con.getResponseCode();
-        System.out.println("GET Response Code :: " + responseCode);
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-        reponse = response.toString();
-
-        return reponse;
+        return response.toString();
     }
 
     /**
@@ -128,7 +49,9 @@ public class api_connection {
     public List<Results> GetResults(String recherche, int numPage) throws IOException {
         List<Results> results = new ArrayList<Results>();
 
-        String jsonString = getJsonResults(recherche,numPage);
+        String requeteURL = "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page="+numPage+"&format=json&api_key=" + API_KEY;
+        String jsonString = sendRequest(requeteURL);
+
         JSONObject obj = new JSONObject(jsonString);
         JSONArray JSONresults = obj.getJSONArray("results");
         for(int i=0;i<JSONresults.length();i++){
@@ -143,7 +66,8 @@ public class api_connection {
     }
 
     public Comic getComic(int id) throws IOException {
-        String jsonString = getJsonComic(id);
+        String requeteURL = "https://comicvine.gamespot.com/api/issues/?filter=id:" + id +"&format=json&api_key=" + API_KEY;
+        String jsonString = sendRequest(requeteURL);
         JSONObject obj = new JSONObject(jsonString).getJSONArray("results").getJSONObject(0);
 
         String name = obj.get("name").toString();
@@ -158,7 +82,8 @@ public class api_connection {
     }
 
     public Character getCharacter(int id) throws IOException {
-        String jsonString = getJsonCharacter(id);
+        String requeteURL = "https://comicvine.gamespot.com/api/characters/?filter=id:" + id +"&format=json&api_key=" + API_KEY;
+        String jsonString = sendRequest(requeteURL);
         JSONObject obj = new JSONObject(jsonString).getJSONArray("results").getJSONObject(0);
 
         String name = obj.get("name").toString();
@@ -175,7 +100,8 @@ public class api_connection {
     }
 
     public Serie getSerie(int id) throws IOException{
-        String jsonString = getJsonSerie(id);
+        String requeteURL = "https://comicvine.gamespot.com/api/volumes/?filter=id:" + id +"&format=json&api_key=" + API_KEY;
+        String jsonString = sendRequest(requeteURL);
         JSONObject obj = new JSONObject(jsonString).getJSONArray("results").getJSONObject(0);
 
         String name = obj.get("name").toString();
