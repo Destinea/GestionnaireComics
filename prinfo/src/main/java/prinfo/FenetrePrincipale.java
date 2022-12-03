@@ -240,7 +240,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        dropListFiltre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tout", "Charactère", "Comics" }));
+        dropListFiltre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tout", "Personnages", "Séries", "Comic" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -319,7 +319,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink1)
                     .addComponent(description1)
                     .addComponent(type1))
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(429, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,7 +334,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type1)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         panel2.setPreferredSize(new java.awt.Dimension(500, 150));
@@ -359,7 +359,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink2)
                     .addComponent(description2)
                     .addComponent(type2))
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(429, Short.MAX_VALUE))
         );
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,7 +374,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type2)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         panel3.setPreferredSize(new java.awt.Dimension(500, 150));
@@ -399,7 +399,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink3)
                     .addComponent(description3)
                     .addComponent(type3))
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(429, Short.MAX_VALUE))
         );
         panel3Layout.setVerticalGroup(
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,7 +414,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type3)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         panel4.setPreferredSize(new java.awt.Dimension(500, 150));
@@ -439,7 +439,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink4)
                     .addComponent(description4)
                     .addComponent(type4))
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(429, Short.MAX_VALUE))
         );
         panel4Layout.setVerticalGroup(
             panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,7 +454,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type4)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         panel5.setPreferredSize(new java.awt.Dimension(500, 150));
@@ -479,7 +479,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink5)
                     .addComponent(description5)
                     .addComponent(type5))
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(429, Short.MAX_VALUE))
         );
         panel5Layout.setVerticalGroup(
             panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -494,7 +494,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type5)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         panel6.setPreferredSize(new java.awt.Dimension(500, 150));
@@ -519,7 +519,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(description6)
                     .addComponent(type6)
                     .addComponent(titre6))
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(429, Short.MAX_VALUE))
         );
         panel6Layout.setVerticalGroup(
             panel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -534,7 +534,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(description6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type6)
-                .addGap(0, 52, Short.MAX_VALUE))
+                .addGap(0, 56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -649,18 +649,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void rechercheBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheBtnActionPerformed
         try {
-            ResultatsRecherche = test.GetResults(jTextField1.getText(), 1);
+            ResultatsRecherche = test.GetResults(jTextField1.getText(), 1,dropListFiltre.getSelectedItem().toString());
         } catch (IOException ex) {
             Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for (Results results : ResultatsRecherche) {
-            System.out.println(results.getName() + "\n");
-            System.out.println(results.getShortDescription() + "\n");
-            System.out.println(results.getType() + "\n");
-            System.out.println(results.getIconLink() + "\n");
-            System.out.println("\n");
-        }
         AfficheResultats();
     }//GEN-LAST:event_rechercheBtnActionPerformed
 

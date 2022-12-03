@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,10 +45,19 @@ public class api_connection {
      * @return Liste des résultats obtenus.
      * @author Cyril
      */
-    public List<Results> GetResults(String recherche, int numPage) throws IOException {
+    public List<Results> GetResults(String recherche, int numPage, String filtre) throws IOException {
         List<Results> results = new ArrayList<Results>();
+        String requeteURL = switch (filtre) {
+            case "Personnages" ->
+                    "https://comicvine.gamespot.com/api/characters/?filter=name:" + recherche + "&page=" + numPage + "&format=json&api_key=" + API_KEY;
+            case "Séries" ->
+                    "https://comicvine.gamespot.com/api/volumes/?filter=name:" + recherche + "&page=" + numPage + "&format=json&api_key=" + API_KEY;
+            case "Comic" ->
+                    "https://comicvine.gamespot.com/api/issues/?filter=name:" + recherche + "&page=" + numPage + "&format=json&api_key=" + API_KEY;
+            default ->
+                    "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page=" + numPage + "&format=json&api_key=" + API_KEY;
+        };
 
-        String requeteURL = "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page="+numPage+"&format=json&api_key=" + API_KEY;
         String jsonString = sendRequest(requeteURL);
 
         JSONObject obj = new JSONObject(jsonString);
@@ -57,7 +65,18 @@ public class api_connection {
         for(int i=0;i<JSONresults.length();i++){
             String name = JSONresults.getJSONObject(i).getString("name");
             String shortDescription = JSONresults.getJSONObject(i).get("deck").toString();
-            String type =JSONresults.getJSONObject(i).getString("resource_type");
+
+            String type = switch (filtre){
+                case "Personnages"->
+                    "character";
+                case "Séries"->
+                    "volume";
+                case "Comic"->
+                    "issue";
+                default ->
+                        JSONresults.getJSONObject(i).getString("resource_type");
+            };
+
             int id = JSONresults.getJSONObject(i).getInt("id");
             String iconLink = JSONresults.getJSONObject(i).getJSONObject("image").getString("icon_url");
             results.add(new Results(name,shortDescription,type,id, iconLink));
