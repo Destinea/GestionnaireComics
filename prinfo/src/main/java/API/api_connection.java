@@ -47,6 +47,7 @@ public class api_connection {
      */
     public List<Results> GetResults(String recherche, int numPage, String filtre) throws IOException {
         List<Results> results = new ArrayList<Results>();
+        recherche =recherche.replace(" ","+");
         String requeteURL = switch (filtre) {
             case "Personnages" ->
                     "https://comicvine.gamespot.com/api/characters/?filter=name:" + recherche + "&page=" + numPage + "&format=json&api_key=" + API_KEY;
@@ -63,7 +64,7 @@ public class api_connection {
         JSONObject obj = new JSONObject(jsonString);
         JSONArray JSONresults = obj.getJSONArray("results");
         for(int i=0;i<JSONresults.length();i++){
-            String name = JSONresults.getJSONObject(i).getString("name");
+            String name = JSONresults.getJSONObject(i).get("name").toString();
             String shortDescription = JSONresults.getJSONObject(i).get("deck").toString();
 
             String type = switch (filtre){
