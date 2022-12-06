@@ -100,8 +100,10 @@
                               <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                               <Component id="jTextField1" min="-2" pref="146" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="dropListFiltre" min="-2" pref="117" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="rechercheBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel6" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -129,9 +131,12 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="jLabel6" min="-2" pref="32" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="rechercheBtn" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Component id="rechercheBtn" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="dropListFiltre" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -325,6 +330,21 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rechercheBtnActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JComboBox" name="dropListFiltre">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Tout"/>
+                    <StringItem index="1" value="Personnages"/>
+                    <StringItem index="2" value="S&#xe9;ries"/>
+                    <StringItem index="3" value="Comic"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel6">
@@ -410,7 +430,7 @@
                               <Component id="description1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="type1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="428" max="32767" attributes="0"/>
+                          <EmptySpace pref="429" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -479,7 +499,7 @@
                               <Component id="description2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="type2" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="428" max="32767" attributes="0"/>
+                          <EmptySpace pref="429" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -548,7 +568,7 @@
                               <Component id="description3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="type3" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="428" max="32767" attributes="0"/>
+                          <EmptySpace pref="429" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -617,7 +637,7 @@
                               <Component id="description4" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="type4" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="428" max="32767" attributes="0"/>
+                          <EmptySpace pref="429" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -686,7 +706,7 @@
                               <Component id="description5" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="type5" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="428" max="32767" attributes="0"/>
+                          <EmptySpace pref="429" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -755,7 +775,7 @@
                               <Component id="type6" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="titre6" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="428" max="32767" attributes="0"/>
+                          <EmptySpace pref="429" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
