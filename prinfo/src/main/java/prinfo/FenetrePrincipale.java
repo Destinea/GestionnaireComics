@@ -298,6 +298,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanel6.setPreferredSize(new java.awt.Dimension(1030, 700));
 
         panel1.setPreferredSize(new java.awt.Dimension(500, 150));
+        panel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel1MouseClicked(evt);
+            }
+        });
 
         titre1.setText("titre1");
 
@@ -338,6 +343,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
 
         panel2.setPreferredSize(new java.awt.Dimension(500, 150));
+        panel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel2MouseClicked(evt);
+            }
+        });
 
         titre2.setText("titre2");
 
@@ -378,6 +388,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
 
         panel3.setPreferredSize(new java.awt.Dimension(500, 150));
+        panel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel3MouseClicked(evt);
+            }
+        });
 
         titre3.setText("titre3");
 
@@ -418,6 +433,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
 
         panel4.setPreferredSize(new java.awt.Dimension(500, 150));
+        panel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel4MouseClicked(evt);
+            }
+        });
 
         titre4.setText("titre4");
 
@@ -458,6 +478,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
 
         panel5.setPreferredSize(new java.awt.Dimension(500, 150));
+        panel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel5MouseClicked(evt);
+            }
+        });
 
         titre5.setText("titre5");
 
@@ -498,6 +523,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
 
         panel6.setPreferredSize(new java.awt.Dimension(500, 150));
+        panel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel6MouseClicked(evt);
+            }
+        });
 
         titre6.setText("titre6");
 
@@ -666,6 +696,44 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         
     }//GEN-LAST:event_rechercheBtnMouseClicked
 
+    private void panel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel1MouseClicked
+        // TODO add your handling code here:
+        AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(0));
+        afficheComics.setVisible(true);
+    }//GEN-LAST:event_panel1MouseClicked
+
+    private void panel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel2MouseClicked
+        // TODO add your handling code here:
+         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(1));
+        afficheComics.setVisible(true);
+    }//GEN-LAST:event_panel2MouseClicked
+
+    private void panel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel3MouseClicked
+        // TODO add your handling code here:
+         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(2));
+        afficheComics.setVisible(true);
+    }//GEN-LAST:event_panel3MouseClicked
+
+    private void panel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel4MouseClicked
+        // TODO add your handling code here:
+         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(3));
+        afficheComics.setVisible(true);
+    }//GEN-LAST:event_panel4MouseClicked
+
+    private void panel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel5MouseClicked
+        // TODO add your handling code here:
+         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(4));
+        afficheComics.setVisible(true);
+    }//GEN-LAST:event_panel5MouseClicked
+
+    private void panel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel6MouseClicked
+        // TODO add your handling code here:
+         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(5));
+        afficheComics.setVisible(true);
+    }//GEN-LAST:event_panel6MouseClicked
+
+    
+    
     private void AfficheResultats() {
         if (ResultatsRecherche.size() >= 6) {
             for (int i = 1; i < 7; i++) {
@@ -766,6 +834,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 throw new AssertionError();
         }
     }
+    
+    
 
     /**
      * @param args the command line arguments
