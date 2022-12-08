@@ -48,16 +48,25 @@ public class api_connection {
     public List<Results> GetResults(String recherche, int numPage, String filtre) throws IOException {
         List<Results> results = new ArrayList<Results>();
         recherche =recherche.replace(" ","+");
-        String requeteURL = switch (filtre) {
-            case "Personnages" ->
-                    "https://comicvine.gamespot.com/api/characters/?filter=name:" + recherche + "&page=" + numPage + "&format=json&api_key=" + API_KEY;
-            case "Séries" ->
-                    "https://comicvine.gamespot.com/api/volumes/?filter=name:" + recherche + "&page=" + numPage + "&format=json&api_key=" + API_KEY;
-            case "Comic" ->
-                    "https://comicvine.gamespot.com/api/issues/?filter=name:" + recherche + "&page=" + numPage + "&format=json&api_key=" + API_KEY;
-            default ->
-                    "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page=" + numPage + "&format=json&api_key=" + API_KEY;
-        };
+        String requeteURL;
+        switch (filtre) {
+            case "Personnages":
+                requeteURL = "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page=" + numPage +
+                        "&format=json&api_key=" + API_KEY +"&resources=character";
+                break;
+            case "Séries":
+                requeteURL = "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page=" + numPage +
+                        "&format=json&api_key=" + API_KEY +"&resources=volume";
+                break;
+            case "Comic":
+                requeteURL = "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page=" + numPage +
+                        "&format=json&api_key=" + API_KEY +"&resources=issue";
+                break;
+            default:
+                requeteURL = "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page=" + numPage +
+                        "&format=json&api_key=" + API_KEY;
+                break;
+        }
 
         String jsonString = sendRequest(requeteURL);
 
@@ -67,16 +76,21 @@ public class api_connection {
             String name = JSONresults.getJSONObject(i).get("name").toString();
             String shortDescription = JSONresults.getJSONObject(i).get("deck").toString();
 
-            String type = switch (filtre){
-                case "Personnages"->
-                    "character";
-                case "Séries"->
-                    "volume";
-                case "Comic"->
-                    "issue";
-                default ->
-                        JSONresults.getJSONObject(i).getString("resource_type");
-            };
+            String type;
+            switch (filtre) {
+                case "Personnages":
+                    type = "character";
+                    break;
+                case "Séries":
+                    type = "volume";
+                    break;
+                case "Comic":
+                    type = "issue";
+                    break;
+                default:
+                    type = JSONresults.getJSONObject(i).getString("resource_type");
+                    break;
+            }
 
             int id = JSONresults.getJSONObject(i).getInt("id");
             String iconLink = JSONresults.getJSONObject(i).getJSONObject("image").getString("icon_url");
