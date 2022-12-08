@@ -24,8 +24,8 @@ public class api_connection {
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
-        int responseCode = con.getResponseCode();
-        System.out.println("GET Response Code :: " + responseCode);
+        /*int responseCode = con.getResponseCode();
+        System.out.println("GET Response Code :: " + responseCode);*/
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuilder response = new StringBuilder();
