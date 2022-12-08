@@ -9,8 +9,8 @@ public class Character extends Results{
     private int gender;
     private String RealName;
 
-    public Character(String name, String shortDescription, String type, int id, String iconLink, int comicAppearances, int firstComicAppearanceIssueID, String firstComicAppearanceIssueName, int gender, String realName) {
-        super(name, shortDescription, type, id, iconLink);
+    public Character(String name, String shortDescription, String type, int id, String iconLink, int comicAppearances, int firstComicAppearanceIssueID, String firstComicAppearanceIssueName, int gender, String realName,String HTMLDescription) {
+        super(name, shortDescription, type, id, iconLink, HTMLDescription);
         ComicAppearances = comicAppearances;
         FirstComicAppearanceIssueID = firstComicAppearanceIssueID;
         FirstComicAppearanceIssueName = firstComicAppearanceIssueName;

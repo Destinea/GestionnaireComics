@@ -94,7 +94,8 @@ public class api_connection {
 
             int id = JSONresults.getJSONObject(i).getInt("id");
             String iconLink = JSONresults.getJSONObject(i).getJSONObject("image").getString("icon_url");
-            results.add(new Results(name,shortDescription,type,id, iconLink));
+            String HTMLDescription = JSONresults.getJSONObject(i).get("description").toString();
+            results.add(new Results(name,shortDescription,type,id, iconLink, HTMLDescription));
         }
         return results;
     }
@@ -110,7 +111,7 @@ public class api_connection {
         String SerieName = obj.getJSONObject("volume").getString("name");
         int SerieId = obj.getJSONObject("volume").getInt("id");
         int number = obj.getInt("issue_number");
-        String HTMLDescription = obj.getString("description");
+        String HTMLDescription = obj.get("description").toString();
 
         return new Comic(name,shortDescription,"issue",id,iconLink,SerieName,SerieId,number,HTMLDescription);
     }
@@ -128,9 +129,10 @@ public class api_connection {
         String firstComicName = obj.getJSONObject("first_appeared_in_issue").get("name").toString();
         int gender = obj.getInt("gender");
         String realName = obj.getString("real_name");
+        String HTMLDescription = obj.get("description").toString();
 
 
-        return new Character(name,shortDescription,"character",id,iconLink,appearances,firstComicID,firstComicName,gender, realName);
+        return new Character(name,shortDescription,"character",id,iconLink,appearances,firstComicID,firstComicName,gender, realName,HTMLDescription);
     }
 
     public Serie getSerie(int id) throws IOException{
@@ -143,7 +145,7 @@ public class api_connection {
         String iconLink = obj.getJSONObject("image").getString("icon_url");
         int numberOfComics = obj.getInt("count_of_issues");
         int startYear = obj.getInt("start_year");
-        String HTMLDescription = obj.getString("description");
+        String HTMLDescription = obj.get("description").toString();
         int lastComicID = obj.getJSONObject("last_issue").getInt("id");
         String lastComicName = obj.getJSONObject("last_issue").get("name").toString();
         int firstComicID = obj.getJSONObject("first_issue").getInt("id");

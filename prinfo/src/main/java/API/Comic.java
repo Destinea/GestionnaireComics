@@ -4,14 +4,13 @@ public class Comic extends Results{
     private String SerieName;
     private int SerieId;
     private int number;
-    private String HTMLDescription;
+
 
     public Comic(String name, String shortDescription, String type, int id, String iconLink, String serieName, int serieId, int number, String HTMLDescription) {
-        super(name, shortDescription, type, id, iconLink);
+        super(name, shortDescription, type, id, iconLink, HTMLDescription);
         SerieName = serieName;
         SerieId = serieId;
         this.number = number;
-        this.HTMLDescription = HTMLDescription;
     }
 
     public String getSerieName() {
@@ -26,7 +25,5 @@ public class Comic extends Results{
         return number;
     }
 
-    public String getHTMLDescription() {
-        return HTMLDescription;
-    }
+
 }
