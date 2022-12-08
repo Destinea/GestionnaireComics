@@ -698,37 +698,37 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void panel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel1MouseClicked
         // TODO add your handling code here:
-        AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(0));
+        AffichageResultsDetail afficheComics = new AffichageResultsDetail(ResultatsRecherche.get(0));
         afficheComics.setVisible(true);
     }//GEN-LAST:event_panel1MouseClicked
 
     private void panel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel2MouseClicked
         // TODO add your handling code here:
-         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(1));
+         AffichageResultsDetail afficheComics = new AffichageResultsDetail(ResultatsRecherche.get(1));
         afficheComics.setVisible(true);
     }//GEN-LAST:event_panel2MouseClicked
 
     private void panel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel3MouseClicked
         // TODO add your handling code here:
-         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(2));
+        AffichageResultsDetail afficheComics = new AffichageResultsDetail(ResultatsRecherche.get(2));
         afficheComics.setVisible(true);
     }//GEN-LAST:event_panel3MouseClicked
 
     private void panel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel4MouseClicked
         // TODO add your handling code here:
-         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(3));
+        AffichageResultsDetail afficheComics = new AffichageResultsDetail(ResultatsRecherche.get(3));
         afficheComics.setVisible(true);
     }//GEN-LAST:event_panel4MouseClicked
 
     private void panel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel5MouseClicked
         // TODO add your handling code here:
-         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(4));
+        AffichageResultsDetail afficheComics = new AffichageResultsDetail(ResultatsRecherche.get(4));
         afficheComics.setVisible(true);
     }//GEN-LAST:event_panel5MouseClicked
 
     private void panel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel6MouseClicked
         // TODO add your handling code here:
-         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(5));
+         AffichageResultsDetail afficheComics = new  AffichageResultsDetail(ResultatsRecherche.get(5));
         afficheComics.setVisible(true);
     }//GEN-LAST:event_panel6MouseClicked
 

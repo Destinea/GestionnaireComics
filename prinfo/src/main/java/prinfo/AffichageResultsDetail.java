@@ -15,12 +15,12 @@ import javax.swing.ImageIcon;
  *
  * @author Sarah-Marie JULES
  */
-public class AffichageComics extends javax.swing.JFrame {
+public class AffichageResultsDetail extends javax.swing.JFrame {
     /**
      * Creates new form AffichageComics
      * @param resultatComic
      */
-    public AffichageComics(Results resultatComic) {
+    public AffichageResultsDetail(Results resultatComic) {
         initComponents();
         AffichageResultatPanel( resultatComic);
         
