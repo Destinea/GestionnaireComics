@@ -66,7 +66,8 @@ public class bdd {
 		String str = "";
 		try {
 			String sql = "SELECT * FROM user WHERE login = '" + login + "';";
-			ResultSet rs = stmt.getResultSet(); 
+			ResultSet rs = stmt.executeQuery(sql);
+                        rs = stmt.getResultSet();
 			while (rs.next()) {
 				str = rs.getString("password");
 			}

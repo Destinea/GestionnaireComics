@@ -4,8 +4,13 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import static java.awt.image.ImageObserver.WIDTH;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import javax.swing.ImageIcon;
-
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
+import de.mkammerer.argon2.Argon2Factory.Argon2Types;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -187,10 +192,20 @@ public class CreationCompteFrame extends javax.swing.JFrame {
         System.out.println(jPasswordField2.getPassword());
         String mdp1 = String.valueOf(jPasswordField1.getPassword());
         String mdp2 = String.valueOf(jPasswordField2.getPassword());
-        
+        Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
         if (mdp1.equals(mdp2))
         {
-            this.dispose();
+            
+            try{
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
+            Statement stmt = con.createStatement();
+            bdd.insertion(stmt, jTextField1.getText(), mdp2, argon2);
+            infoMotDePasse.setText("Utilisateur Crée");
+            }
+            catch(Exception e){
+                System.out.println("Marche pas");
+            }
+            
         }
         else
         {
@@ -200,7 +215,7 @@ public class CreationCompteFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        this.dispose();
+
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

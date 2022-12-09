@@ -7,13 +7,19 @@ package prinfo;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import javax.swing.ImageIcon;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 
 /**
  *
  * @author Jujubaca
  */
 public class ConnectionFrame extends javax.swing.JFrame {
+    FenetrePrincipale frame;
 
     /**
      * Creates new form ConnectionFrame
@@ -23,6 +29,13 @@ public class ConnectionFrame extends javax.swing.JFrame {
         //ImageIcon fermerFenetreImageIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("IconFermerFenetre.png")));
         //Image fermerFenetreImage = fermerFenetreImageIcon.getImage().getScaledInstance(fermeFenetreBouton.getWidth(), fermeFenetreBouton.getHeight(), WIDTH);
         //fermeFenetreBouton.setIcon(new ImageIcon(fermerFenetreImage));
+    }
+    public ConnectionFrame(FenetrePrincipale f) {
+        initComponents();
+        //ImageIcon fermerFenetreImageIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("IconFermerFenetre.png")));
+        //Image fermerFenetreImage = fermerFenetreImageIcon.getImage().getScaledInstance(fermeFenetreBouton.getWidth(), fermeFenetreBouton.getHeight(), WIDTH);
+        //fermeFenetreBouton.setIcon(new ImageIcon(fermerFenetreImage));
+        frame = f;
     }
 
     /**
@@ -61,6 +74,11 @@ public class ConnectionFrame extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 ConnexionBoutonMouseExited(evt);
+            }
+        });
+        ConnexionBouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConnexionBoutonActionPerformed(evt);
             }
         });
 
@@ -204,6 +222,28 @@ public class ConnectionFrame extends javax.swing.JFrame {
     private void fermeFenetreBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fermeFenetreBoutonActionPerformed
         this.dispose();
     }//GEN-LAST:event_fermeFenetreBoutonActionPerformed
+
+    private void ConnexionBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnexionBoutonActionPerformed
+        String login = jTextField1.getText();
+        String mdp = jPasswordField1.getText();
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+        try{
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
+        Statement stmt = con.createStatement();
+        if(argon2.verify(bdd.lecture(stmt, login), mdp)){
+            frame.switchestCo();
+            this.dispose();
+        }
+        else
+        {
+            System.out.println("Mauvais MDP Ou Login inexistant");
+        }
+        }
+        catch(Exception e){
+            System.out.println("Problème de connection a la bdd");
+        }
+        
+    }//GEN-LAST:event_ConnexionBoutonActionPerformed
 
     /**
      * @param args the command line arguments
