@@ -15,12 +15,12 @@ import javax.swing.ImageIcon;
  *
  * @author Sarah-Marie JULES
  */
-public class AffichageComics extends javax.swing.JFrame {
+public class AffichageResultsDetail extends javax.swing.JFrame {
     /**
      * Creates new form AffichageComics
      * @param resultatComic
      */
-    public AffichageComics(Results resultatComic) {
+    public AffichageResultsDetail(Results resultatComic) {
         initComponents();
         AffichageResultatPanel( resultatComic);
         
@@ -113,7 +113,7 @@ public class AffichageComics extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AffichageComics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AffichageResultsDetail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         
