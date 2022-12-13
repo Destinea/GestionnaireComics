@@ -47,7 +47,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
          estCo = !estCo;
          PanelCollection.setVisible(estCo);
          if (estCo)
-            jLabel4.setText("UserName");
+            jLabel4.setText(connectionFrame.getlogin());
          else
             jLabel4.setText("Se Connecter"); 
          

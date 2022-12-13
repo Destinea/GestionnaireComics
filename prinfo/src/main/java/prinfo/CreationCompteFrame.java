@@ -54,10 +54,11 @@ public class CreationCompteFrame extends javax.swing.JFrame {
         infoMotDePasse = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 249, 176));
         setPreferredSize(new java.awt.Dimension(700, 350));
         setSize(new java.awt.Dimension(700, 350));
 
-        jPanel1.setBackground(new java.awt.Color(166, 172, 175));
+        jPanel1.setBackground(new java.awt.Color(255, 249, 176));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setText("Création d'un nouveau compte");
