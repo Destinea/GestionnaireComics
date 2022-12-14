@@ -23,6 +23,7 @@ import de.mkammerer.argon2.Argon2Factory.Argon2Types;
 public class CreationCompteFrame extends javax.swing.JFrame {
 
     /**
+     * 
      * Creates new form CreationCompteFrame1
      */
     public CreationCompteFrame() {
