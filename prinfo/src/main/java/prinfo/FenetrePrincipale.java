@@ -274,6 +274,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         scrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
+        panel1.setBackground(new java.awt.Color(255, 249, 176));
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -298,7 +300,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
         contentPageLayout.setVerticalGroup(
             contentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -313,8 +318,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(entete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contentPage, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(contentPage, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -325,9 +329,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
         pack();
@@ -374,6 +376,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void rechercheBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheBtnActionPerformed
+        // On supprime la liste précédemmant cherchée pour la set à nouveau
+        if (ResultatsRecherche!=null) {
+            ResultatsRecherche.clear();
+            resultatsMultipleAffichage.clear();
+            panel1.removeAll();
+        }
+        
         try {
             ResultatsRecherche = test.GetResults(jTextField1.getText(), 1,dropListFiltre.getSelectedItem().toString());
         } catch (IOException ex) {
