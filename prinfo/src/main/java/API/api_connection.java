@@ -152,7 +152,7 @@ public class api_connection {
         String firstComicName = obj.getJSONObject("first_issue").get("name").toString();
 
 
-        return new Serie(name,shortDescription,"character",id,iconLink, numberOfComics, startYear,HTMLDescription,
+        return new Serie(name,shortDescription,"volume",id,iconLink, numberOfComics, startYear,HTMLDescription,
                 lastComicID,firstComicID,lastComicName,firstComicName);
     }
 
