@@ -143,7 +143,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -174,9 +174,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
 
         jTextField1.setText("Rechercher");
@@ -603,7 +603,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(panel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 223, Short.MAX_VALUE))
+                .addGap(0, 215, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -618,7 +618,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -698,38 +698,135 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void panel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel1MouseClicked
         // TODO add your handling code here:
-        AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(0));
-        afficheComics.setVisible(true);
+        api_connection apiConnection = new api_connection();
+        try {
+            switch (ResultatsRecherche.get(0).getType()){
+                case "character":
+                        AffichageDetailPersonnage affichageDetailPersonnage=
+                                new AffichageDetailPersonnage(apiConnection.getCharacter(ResultatsRecherche.get(0).getId()));
+                        affichageDetailPersonnage.setVisible(true);
+                        break;
+                case "issue":
+                    // TODO : Affichage details comics
+                    break;
+                case "volume":
+                    // TODO : Affichage détails série
+                    break;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }//GEN-LAST:event_panel1MouseClicked
 
     private void panel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel2MouseClicked
         // TODO add your handling code here:
-         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(1));
-        afficheComics.setVisible(true);
+        api_connection apiConnection = new api_connection();
+        try {
+            switch (ResultatsRecherche.get(1).getType()){
+                case "character":
+                    AffichageDetailPersonnage affichageDetailPersonnage=
+                            new AffichageDetailPersonnage(apiConnection.getCharacter(ResultatsRecherche.get(1).getId()));
+                    affichageDetailPersonnage.setVisible(true);
+                    break;
+                case "issue":
+                    // TODO : Affichage details comics
+                    break;
+                case "volume":
+                    // TODO : Affichage détails série
+                    break;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }//GEN-LAST:event_panel2MouseClicked
 
     private void panel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel3MouseClicked
         // TODO add your handling code here:
-         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(2));
-        afficheComics.setVisible(true);
+        api_connection apiConnection = new api_connection();
+        try {
+            switch (ResultatsRecherche.get(2).getType()){
+                case "character":
+                    AffichageDetailPersonnage affichageDetailPersonnage=
+                            new AffichageDetailPersonnage(apiConnection.getCharacter(ResultatsRecherche.get(2).getId()));
+                    affichageDetailPersonnage.setVisible(true);
+                    break;
+                case "issue":
+                    // TODO : Affichage details comics
+                    break;
+                case "volume":
+                    // TODO : Affichage détails série
+                    break;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }//GEN-LAST:event_panel3MouseClicked
 
     private void panel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel4MouseClicked
         // TODO add your handling code here:
-         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(3));
-        afficheComics.setVisible(true);
+        api_connection apiConnection = new api_connection();
+        try {
+            switch (ResultatsRecherche.get(3).getType()){
+                case "character":
+                    AffichageDetailPersonnage affichageDetailPersonnage=
+                            new AffichageDetailPersonnage(apiConnection.getCharacter(ResultatsRecherche.get(3).getId()));
+                    affichageDetailPersonnage.setVisible(true);
+                    break;
+                case "issue":
+                    // TODO : Affichage details comics
+                    break;
+                case "volume":
+                    // TODO : Affichage détails série
+                    break;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }//GEN-LAST:event_panel4MouseClicked
 
     private void panel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel5MouseClicked
         // TODO add your handling code here:
-         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(4));
-        afficheComics.setVisible(true);
+        api_connection apiConnection = new api_connection();
+        try {
+            switch (ResultatsRecherche.get(4).getType()){
+                case "character":
+                    AffichageDetailPersonnage affichageDetailPersonnage=
+                            new AffichageDetailPersonnage(apiConnection.getCharacter(ResultatsRecherche.get(4).getId()));
+                    affichageDetailPersonnage.setVisible(true);
+                    break;
+                case "issue":
+                    // TODO : Affichage details comics
+                    break;
+                case "volume":
+                    // TODO : Affichage détails série
+                    break;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }//GEN-LAST:event_panel5MouseClicked
 
     private void panel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel6MouseClicked
         // TODO add your handling code here:
-         AffichageComics afficheComics = new AffichageComics(ResultatsRecherche.get(5));
-        afficheComics.setVisible(true);
+        api_connection apiConnection = new api_connection();
+        try {
+            switch (ResultatsRecherche.get(5).getType()){
+                case "character":
+                    AffichageDetailPersonnage affichageDetailPersonnage=
+                            new AffichageDetailPersonnage(apiConnection.getCharacter(ResultatsRecherche.get(5).getId()));
+                    affichageDetailPersonnage.setVisible(true);
+                    break;
+                case "issue":
+                    // TODO : Affichage details comics
+                    break;
+                case "volume":
+                    // TODO : Affichage détails série
+                    break;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }//GEN-LAST:event_panel6MouseClicked
 
     
