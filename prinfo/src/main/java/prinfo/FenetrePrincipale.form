@@ -359,7 +359,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollPane1" max="32767" attributes="0"/>
+                      <Component id="scrollPaneAffichageMultiple" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -368,14 +368,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollPane1" pref="473" max="32767" attributes="0"/>
+                      <Component id="scrollPaneAffichageMultiple" pref="473" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="java.awt.ScrollPane" name="scrollPane1">
+            <Container class="java.awt.ScrollPane" name="scrollPaneAffichageMultiple">
               <Properties>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Text Cursor"/>
@@ -384,7 +384,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.ScrollPaneSupportLayout"/>
               <SubComponents>
-                <Container class="java.awt.Panel" name="panel1">
+                <Container class="java.awt.Panel" name="panelAffichageMultiple">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="b0" green="f9" red="ff" type="rgb"/>

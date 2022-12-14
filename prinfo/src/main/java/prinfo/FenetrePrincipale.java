@@ -44,7 +44,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         droplistFiltre.add("Character");
         droplistFiltre.add("Comics");
         droplistFiltre.setVisible(true);
-        scrollPane1.setVisible(false);
+        scrollPaneAffichageMultiple.setVisible(false);
     }
 
     /**
@@ -70,8 +70,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         rechercheBtn = new javax.swing.JButton();
         dropListFiltre = new javax.swing.JComboBox<>();
         contentPage = new javax.swing.JPanel();
-        scrollPane1 = new java.awt.ScrollPane();
-        panel1 = new java.awt.Panel();
+        scrollPaneAffichageMultiple = new java.awt.ScrollPane();
+        panelAffichageMultiple = new java.awt.Panel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1032, 600));
@@ -272,22 +272,22 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         contentPage.setBackground(new java.awt.Color(255, 249, 176));
         contentPage.setPreferredSize(new java.awt.Dimension(1030, 700));
 
-        scrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        scrollPaneAffichageMultiple.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        panel1.setBackground(new java.awt.Color(255, 249, 176));
+        panelAffichageMultiple.setBackground(new java.awt.Color(255, 249, 176));
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelAffichageMultipleLayout = new javax.swing.GroupLayout(panelAffichageMultiple);
+        panelAffichageMultiple.setLayout(panelAffichageMultipleLayout);
+        panelAffichageMultipleLayout.setHorizontalGroup(
+            panelAffichageMultipleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1010, Short.MAX_VALUE)
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelAffichageMultipleLayout.setVerticalGroup(
+            panelAffichageMultipleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 483, Short.MAX_VALUE)
         );
 
-        scrollPane1.add(panel1);
+        scrollPaneAffichageMultiple.add(panelAffichageMultiple);
 
         javax.swing.GroupLayout contentPageLayout = new javax.swing.GroupLayout(contentPage);
         contentPage.setLayout(contentPageLayout);
@@ -295,14 +295,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             contentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentPageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(scrollPaneAffichageMultiple, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         contentPageLayout.setVerticalGroup(
             contentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
+                .addComponent(scrollPaneAffichageMultiple, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -380,7 +380,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         if (ResultatsRecherche!=null) {
             ResultatsRecherche.clear();
             resultatsMultipleAffichage.clear();
-            panel1.removeAll();
+            panelAffichageMultiple.removeAll();
         }
         
         try {
@@ -389,15 +389,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        panel1.setLayout(new GridLayout((int) ResultatsRecherche.size()/3+1, 3, 5, 5));
-        scrollPane1.setVisible(true);
+        panelAffichageMultiple.setLayout(new GridLayout((int) ResultatsRecherche.size()/2, 2, 5, 5));
+        scrollPaneAffichageMultiple.setVisible(true);
         
         for (Results results : ResultatsRecherche) {
             resultatsMultipleAffichage.add(new AffichageResultsMultiple(results));
         }
         
         for (AffichageResultsMultiple affichageResultsMultiple : resultatsMultipleAffichage) {
-            panel1.add(affichageResultsMultiple);
+            panelAffichageMultiple.add(affichageResultsMultiple);
         }
         contentPage.updateUI();
         
@@ -574,8 +574,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField jTextField1;
-    private java.awt.Panel panel1;
+    private java.awt.Panel panelAffichageMultiple;
     private javax.swing.JButton rechercheBtn;
-    private java.awt.ScrollPane scrollPane1;
+    private java.awt.ScrollPane scrollPaneAffichageMultiple;
     // End of variables declaration//GEN-END:variables
 }
