@@ -37,6 +37,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         droplistFiltre.add("Comics");
         droplistFiltre.setVisible(true);
     }
+    
+    int pageNumber = 0;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -97,6 +99,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         id6 = new javax.swing.JLabel();
         type6 = new javax.swing.JLabel();
         description6 = new javax.swing.JLabel();
+        jPanelButtonPage = new javax.swing.JPanel();
+        jButtonPage1 = new javax.swing.JButton();
+        jButtonPage2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1032, 600));
@@ -324,7 +329,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink1)
                     .addComponent(description1)
                     .addComponent(type1))
-                .addContainerGap(429, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,7 +374,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink2)
                     .addComponent(description2)
                     .addComponent(type2))
-                .addContainerGap(429, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,7 +419,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink3)
                     .addComponent(description3)
                     .addComponent(type3))
-                .addContainerGap(429, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         panel3Layout.setVerticalGroup(
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -459,7 +464,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink4)
                     .addComponent(description4)
                     .addComponent(type4))
-                .addContainerGap(429, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         panel4Layout.setVerticalGroup(
             panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -504,7 +509,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(iconLink5)
                     .addComponent(description5)
                     .addComponent(type5))
-                .addContainerGap(429, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         panel5Layout.setVerticalGroup(
             panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -549,7 +554,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(description6)
                     .addComponent(type6)
                     .addComponent(titre6))
-                .addContainerGap(429, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         panel6Layout.setVerticalGroup(
             panel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -567,26 +572,66 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addGap(0, 56, Short.MAX_VALUE))
         );
 
+        jButtonPage1.setText("1");
+        jButtonPage1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonPage1MouseClicked(evt);
+            }
+        });
+
+        jButtonPage2.setText("2");
+        jButtonPage2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonPage2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelButtonPageLayout = new javax.swing.GroupLayout(jPanelButtonPage);
+        jPanelButtonPage.setLayout(jPanelButtonPageLayout);
+        jPanelButtonPageLayout.setHorizontalGroup(
+            jPanelButtonPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelButtonPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonPage1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonPage2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelButtonPageLayout.setVerticalGroup(
+            jPanelButtonPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelButtonPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelButtonPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonPage1)
+                    .addComponent(jButtonPage2))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(panel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(panel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(panel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(panel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(panel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(480, 480, 480)
+                        .addComponent(jPanelButtonPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -603,7 +648,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(panel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 215, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+                .addComponent(jPanelButtonPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -829,7 +876,76 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_panel6MouseClicked
 
+    private void jButtonPage2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonPage2MouseClicked
+        // TODO add your handling code here:
+        pageNumber = 1;
+        AfficheResultatsPage2();
+    }//GEN-LAST:event_jButtonPage2MouseClicked
+
+    private void jButtonPage1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonPage1MouseClicked
+        // TODO add your handling code here:
+        AfficheResultats();
+        pageNumber = 0 ;
+    }//GEN-LAST:event_jButtonPage1MouseClicked
+
+    String nul = null;
     
+    private void clearPanel(int nbPanel){
+        switch (nbPanel) {
+            case 1:
+                titre1.setText(nul);
+                id1.setText(nul);
+                description1.setText(nul);
+                type1.setText(nul);  
+                ImageIcon img1 = null;
+                iconLink1.setIcon(img1);
+                break;
+            case 2:
+                titre2.setText(nul);
+                id2.setText(nul);
+                description2.setText(nul);
+                type2.setText(nul);  
+                ImageIcon img2 = null;
+                iconLink2.setIcon(img2);
+                break;
+            case 3:
+                titre3.setText(nul);
+                id3.setText(nul);
+                description3.setText(nul);
+                type3.setText(nul);
+                ImageIcon img3 = null;
+                iconLink3.setIcon(img3);
+                break;
+            case 4:
+                titre4.setText(nul);
+                id4.setText(nul);
+                description4.setText(nul);
+                type4.setText(nul);
+                ImageIcon img4 = null;
+                iconLink4.setIcon(img4);
+
+                break;
+            case 5:
+                titre5.setText(nul);
+                id5.setText(nul);
+                description5.setText(nul);
+                type5.setText(nul);
+                ImageIcon img5 = null;
+                iconLink5.setIcon(img5);
+
+                break;
+            case 6:
+                titre6.setText(nul);
+                id6.setText(nul);
+                description6.setText(nul);
+                type6.setText(nul);
+                ImageIcon img6 = null;
+                iconLink6.setIcon(img6);
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
     
     private void AfficheResultats() {
         if (ResultatsRecherche.size() >= 6) {
@@ -840,9 +956,28 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             for (int i = 1; i < ResultatsRecherche.size(); i++) {
                 AffichageSurBonPanel(i, ResultatsRecherche.get(i));
             }
+            for (int i = ResultatsRecherche.size(); i < 7; i++) {
+                clearPanel(i);
+            }
+        }
+    }
+    
+    private void AfficheResultatsPage2() {
+        if (ResultatsRecherche.size() >= 12) {
+            for (int i = 1; i < 7; i++) {
+                AffichageSurBonPanel(i, ResultatsRecherche.get(i - 1+6));
+            }
+        } else {
+            for (int i = 1; i < ResultatsRecherche.size()- 5; i++) {
+                AffichageSurBonPanel(i, ResultatsRecherche.get(i+5));
+            }
+            for (int i = ResultatsRecherche.size()- 5; i < 13 ; i++) {
+                clearPanel(i);
+            }
         }
     }
 
+    
     // nbPanel est compris entre 1 et 6 pour différentier sur quel panel on affiche les resultats
     private void AffichageSurBonPanel(int nbPanel, Results ResultatRecherche) {
         switch (nbPanel) {
@@ -989,6 +1124,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JLabel id4;
     private javax.swing.JLabel id5;
     private javax.swing.JLabel id6;
+    private javax.swing.JButton jButtonPage1;
+    private javax.swing.JButton jButtonPage2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1000,6 +1137,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanelButtonPage;
     private javax.swing.JTextField jTextField1;
     private java.awt.Panel panel1;
     private java.awt.Panel panel2;
