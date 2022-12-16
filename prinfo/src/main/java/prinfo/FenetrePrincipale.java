@@ -688,7 +688,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1128,6 +1128,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelAccueil;
+    private javax.swing.JPanel PanelCollection;
+    private javax.swing.JPanel PanelConnection;
     private javax.swing.JLabel description1;
     private javax.swing.JLabel description2;
     private javax.swing.JLabel description3;
@@ -1149,9 +1152,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JLabel id6;
     private javax.swing.JButton jButtonPage1;
     private javax.swing.JButton jButtonPage2;
-  private javax.swing.JPanel PanelAccueil;
-    private javax.swing.JPanel PanelCollection;
-    private javax.swing.JPanel PanelConnection;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1159,9 +1159,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelButtonPage;
     private javax.swing.JTextField jTextField1;
@@ -1172,5 +1169,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private java.awt.Panel panel5;
     private java.awt.Panel panel6;
     private javax.swing.JButton rechercheBtn;
+    private javax.swing.JLabel titre1;
+    private javax.swing.JLabel titre2;
+    private javax.swing.JLabel titre3;
+    private javax.swing.JLabel titre4;
+    private javax.swing.JLabel titre5;
+    private javax.swing.JLabel titre6;
+    private javax.swing.JLabel type1;
+    private javax.swing.JLabel type2;
+    private javax.swing.JLabel type3;
+    private javax.swing.JLabel type4;
+    private javax.swing.JLabel type5;
+    private javax.swing.JLabel type6;
     // End of variables declaration//GEN-END:variables
 }
