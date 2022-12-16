@@ -21,23 +21,24 @@ import javax.swing.ImageIcon;
  * @author nathb
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
+
     private api_connection test;
     private List<Results> ResultatsRecherche;
+<<<<<<< HEAD
     ConnectionFrame connectionFrame;
     
    
+=======
+
+>>>>>>> 6ab7adac43aadc1e566cb95f384004e3a9ccebec
     /**
      * Creates new form FenetrePrincipale
      */
     public FenetrePrincipale() {
         initComponents();
         test = new api_connection();
+<<<<<<< HEAD
         PanelCollection.setVisible(estCo);
-	Choice droplistFiltre=new Choice();
-        droplistFiltre.add("Tout");
-        droplistFiltre.add("Character");
-        droplistFiltre.add("Comics");
-        droplistFiltre.setVisible(true);
         
         
     }
@@ -62,7 +63,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
          
      }
      
-	int pageNumber = 0;
+=======
+        Choice droplistFiltre=new Choice();
+        droplistFiltre.add("Tout");
+        droplistFiltre.add("Character");
+        droplistFiltre.add("Comics");
+        droplistFiltre.setVisible(true);
+    }
+    
+    int pageNumber = 0;
+>>>>>>> 6ab7adac43aadc1e566cb95f384004e3a9ccebec
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -171,7 +182,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             PanelAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelAccueilLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -199,12 +210,19 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                 .addContainerGap())
         );
+<<<<<<< HEAD
         PanelCollectionLayout.setVerticalGroup(
             PanelCollectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelCollectionLayout.createSequentialGroup()
                 .addContainerGap()
+=======
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+>>>>>>> 6ab7adac43aadc1e566cb95f384004e3a9ccebec
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
 
         jTextField1.setText("Rechercher");
@@ -284,8 +302,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
                         .addComponent(PanelConnection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+=======
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+>>>>>>> 6ab7adac43aadc1e566cb95f384004e3a9ccebec
                         .addGap(77, 77, 77)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -707,39 +730,70 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void PanelAccueilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelAccueilMouseEntered
         // TODO add your handling code here:
-        jLabel2.setForeground(new Color(112, 128, 144));
+<<<<<<< HEAD
+        jLabel2.setForeground(new Color(112,128,144));
     }//GEN-LAST:event_PanelAccueilMouseEntered
+=======
+        jLabel2.setForeground(new Color(112, 128, 144));
+    }//GEN-LAST:event_jPanel3MouseEntered
+>>>>>>> 6ab7adac43aadc1e566cb95f384004e3a9ccebec
 
     private void PanelCollectionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelCollectionMouseEntered
         // TODO add your handling code here:
+<<<<<<< HEAD
        jLabel3.setForeground(new Color(112,128,144));
     }//GEN-LAST:event_PanelCollectionMouseEntered
+=======
+        jLabel3.setForeground(new Color(112, 128, 144));
+    }//GEN-LAST:event_jPanel4MouseEntered
+>>>>>>> 6ab7adac43aadc1e566cb95f384004e3a9ccebec
 
     private void PanelConnectionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelConnectionMouseEntered
         // TODO add your handling code here:
+<<<<<<< HEAD
         jLabel4.setForeground(new Color(112,128,144));
     }//GEN-LAST:event_PanelConnectionMouseEntered
+=======
+        jLabel4.setForeground(new Color(112, 128, 144));
+    }//GEN-LAST:event_jPanel5MouseEntered
+>>>>>>> 6ab7adac43aadc1e566cb95f384004e3a9ccebec
 
     private void PanelAccueilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelAccueilMouseExited
         // TODO add your handling code here:
+<<<<<<< HEAD
         jLabel2.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_PanelAccueilMouseExited
+=======
+        jLabel2.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_jPanel3MouseExited
+>>>>>>> 6ab7adac43aadc1e566cb95f384004e3a9ccebec
 
     private void PanelCollectionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelCollectionMouseExited
         // TODO add your handling code here:
+<<<<<<< HEAD
         jLabel3.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_PanelCollectionMouseExited
+=======
+        jLabel3.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_jPanel4MouseExited
+>>>>>>> 6ab7adac43aadc1e566cb95f384004e3a9ccebec
 
     private void PanelConnectionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelConnectionMouseExited
         // TODO add your handling code here:
+<<<<<<< HEAD
         jLabel4.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_PanelConnectionMouseExited
+=======
+        jLabel4.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_jPanel5MouseExited
+>>>>>>> 6ab7adac43aadc1e566cb95f384004e3a9ccebec
 
     private void PanelConnectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelConnectionMouseClicked
         // TODO add your handling code here:
@@ -1123,11 +1177,18 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FenetrePrincipale().setVisible(true);
+                
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< HEAD
+    private javax.swing.JPanel PanelAccueil;
+    private javax.swing.JPanel PanelCollection;
+    private javax.swing.JPanel PanelConnection;
+=======
     private javax.swing.JLabel description1;
     private javax.swing.JLabel description2;
     private javax.swing.JLabel description3;
@@ -1149,9 +1210,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JLabel id6;
     private javax.swing.JButton jButtonPage1;
     private javax.swing.JButton jButtonPage2;
-  private javax.swing.JPanel PanelAccueil;
-    private javax.swing.JPanel PanelCollection;
-    private javax.swing.JPanel PanelConnection;
+>>>>>>> 6ab7adac43aadc1e566cb95f384004e3a9ccebec
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1159,11 +1218,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+<<<<<<< HEAD
+=======
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelButtonPage;
+>>>>>>> 6ab7adac43aadc1e566cb95f384004e3a9ccebec
     private javax.swing.JTextField jTextField1;
     private java.awt.Panel panel1;
     private java.awt.Panel panel2;
@@ -1172,5 +1234,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private java.awt.Panel panel5;
     private java.awt.Panel panel6;
     private javax.swing.JButton rechercheBtn;
+    private javax.swing.JLabel titre1;
+    private javax.swing.JLabel titre2;
+    private javax.swing.JLabel titre3;
+    private javax.swing.JLabel titre4;
+    private javax.swing.JLabel titre5;
+    private javax.swing.JLabel titre6;
+    private javax.swing.JLabel type1;
+    private javax.swing.JLabel type2;
+    private javax.swing.JLabel type3;
+    private javax.swing.JLabel type4;
+    private javax.swing.JLabel type5;
+    private javax.swing.JLabel type6;
     // End of variables declaration//GEN-END:variables
 }

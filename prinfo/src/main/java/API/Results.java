@@ -11,13 +11,16 @@ public class Results {
     private int id;
     private String iconLink;
 
+    private String HTMLDescription;
 
-    public Results(String name, String shortDescription, String type, int id, String iconLink) {
+
+    public Results(String name, String shortDescription, String type, int id, String iconLink, String htmlDescription) {
         this.name = name;
         this.shortDescription = shortDescription;
         this.type = type;
         this.id = id;
         this.iconLink = iconLink;
+        HTMLDescription = htmlDescription;
     }
 
     public String getName() {
@@ -34,5 +37,13 @@ public class Results {
 
     public int getId() {
         return id;
+    }
+
+    public String getIconLink() {
+        return iconLink;
+    }
+
+    public String getHTMLDescription() {
+        return HTMLDescription;
     }
 }

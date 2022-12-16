@@ -19,23 +19,13 @@ public class api_connection {
     private static final String USER_AGENT = "Mozilla/5.0";
     private static final String API_KEY = "53b33e3da09b63c64d3a69667f455e9076055dcc";
 
-    /**
-     * Renvoie le JSON lié à l'entrée passée en paramètre.
-     * @param recherche : Information que l'on recherche.
-     * @param numPage : numéro de la page que l'on recherche (10 recherche affichées par page.
-     * @return Resultat de la requête sous format json.
-     * @author Cyril
-     */
-    private String getJsonResults(String recherche, int numPage) throws IOException {
-        String requeteURL = "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page="+numPage+"&format=json&api_key=" + API_KEY;
-        String reponse;
-
-        URL obj = new URL(requeteURL);
+    private String sendRequest(String url) throws IOException {
+        URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
-        int responseCode = con.getResponseCode();
-        System.out.println("GET Response Code :: " + responseCode);
+        /*int responseCode = con.getResponseCode();
+        System.out.println("GET Response Code :: " + responseCode);*/
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuilder response = new StringBuilder();
@@ -44,78 +34,8 @@ public class api_connection {
             response.append(inputLine);
         }
         in.close();
-        reponse = response.toString();
 
-        return reponse;
-    }
-
-    private String getJsonComic(int id) throws IOException {
-        String requeteURL = "https://comicvine.gamespot.com/api/issues/?filter=id:" + id +"&format=json&api_key=" + API_KEY;
-        String reponse;
-
-        URL obj = new URL(requeteURL);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        int responseCode = con.getResponseCode();
-        System.out.println("GET Response Code :: " + responseCode);
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-        reponse = response.toString();
-
-        return reponse;
-    }
-
-    private String getJsonCharacter(int id) throws IOException {
-        String requeteURL = "https://comicvine.gamespot.com/api/characters/?filter=id:" + id +"&format=json&api_key=" + API_KEY;
-        String reponse;
-
-        URL obj = new URL(requeteURL);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        int responseCode = con.getResponseCode();
-        System.out.println("GET Response Code :: " + responseCode);
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-        reponse = response.toString();
-
-        return reponse;
-    }
-
-    private String getJsonSerie(int id) throws IOException {
-        String requeteURL = "https://comicvine.gamespot.com/api/volumes/?filter=id:" + id +"&format=json&api_key=" + API_KEY;
-        String reponse;
-
-        URL obj = new URL(requeteURL);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        int responseCode = con.getResponseCode();
-        System.out.println("GET Response Code :: " + responseCode);
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-        reponse = response.toString();
-
-        return reponse;
+        return response.toString();
     }
 
     /**
@@ -125,25 +45,64 @@ public class api_connection {
      * @return Liste des résultats obtenus.
      * @author Cyril
      */
-    public List<Results> GetResults(String recherche, int numPage) throws IOException {
+    public List<Results> GetResults(String recherche, int numPage, String filtre) throws IOException {
         List<Results> results = new ArrayList<Results>();
+        recherche =recherche.replace(" ","+");
+        String requeteURL;
+        switch (filtre) {
+            case "Personnages":
+                requeteURL = "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page=" + numPage +
+                        "&format=json&api_key=" + API_KEY +"&resources=character";
+                break;
+            case "Séries":
+                requeteURL = "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page=" + numPage +
+                        "&format=json&api_key=" + API_KEY +"&resources=volume";
+                break;
+            case "Comic":
+                requeteURL = "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page=" + numPage +
+                        "&format=json&api_key=" + API_KEY +"&resources=issue";
+                break;
+            default:
+                requeteURL = "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page=" + numPage +
+                        "&format=json&api_key=" + API_KEY;
+                break;
+        }
 
-        String jsonString = getJsonResults(recherche,numPage);
+        String jsonString = sendRequest(requeteURL);
+
         JSONObject obj = new JSONObject(jsonString);
         JSONArray JSONresults = obj.getJSONArray("results");
         for(int i=0;i<JSONresults.length();i++){
-            String name = JSONresults.getJSONObject(i).getString("name");
+            String name = JSONresults.getJSONObject(i).get("name").toString();
             String shortDescription = JSONresults.getJSONObject(i).get("deck").toString();
-            String type =JSONresults.getJSONObject(i).getString("resource_type");
+
+            String type;
+            switch (filtre) {
+                case "Personnages":
+                    type = "character";
+                    break;
+                case "Séries":
+                    type = "volume";
+                    break;
+                case "Comic":
+                    type = "issue";
+                    break;
+                default:
+                    type = JSONresults.getJSONObject(i).getString("resource_type");
+                    break;
+            }
+
             int id = JSONresults.getJSONObject(i).getInt("id");
             String iconLink = JSONresults.getJSONObject(i).getJSONObject("image").getString("icon_url");
-            results.add(new Results(name,shortDescription,type,id, iconLink));
+            String HTMLDescription = JSONresults.getJSONObject(i).get("description").toString();
+            results.add(new Results(name,shortDescription,type,id, iconLink, HTMLDescription));
         }
         return results;
     }
 
     public Comic getComic(int id) throws IOException {
-        String jsonString = getJsonComic(id);
+        String requeteURL = "https://comicvine.gamespot.com/api/issues/?filter=id:" + id +"&format=json&api_key=" + API_KEY;
+        String jsonString = sendRequest(requeteURL);
         JSONObject obj = new JSONObject(jsonString).getJSONArray("results").getJSONObject(0);
 
         String name = obj.get("name").toString();
@@ -152,13 +111,14 @@ public class api_connection {
         String SerieName = obj.getJSONObject("volume").getString("name");
         int SerieId = obj.getJSONObject("volume").getInt("id");
         int number = obj.getInt("issue_number");
-        String HTMLDescription = obj.getString("description");
+        String HTMLDescription = obj.get("description").toString();
 
         return new Comic(name,shortDescription,"issue",id,iconLink,SerieName,SerieId,number,HTMLDescription);
     }
 
     public Character getCharacter(int id) throws IOException {
-        String jsonString = getJsonCharacter(id);
+        String requeteURL = "https://comicvine.gamespot.com/api/characters/?filter=id:" + id +"&format=json&api_key=" + API_KEY;
+        String jsonString = sendRequest(requeteURL);
         JSONObject obj = new JSONObject(jsonString).getJSONArray("results").getJSONObject(0);
 
         String name = obj.get("name").toString();
@@ -169,13 +129,15 @@ public class api_connection {
         String firstComicName = obj.getJSONObject("first_appeared_in_issue").get("name").toString();
         int gender = obj.getInt("gender");
         String realName = obj.getString("real_name");
+        String HTMLDescription = obj.get("description").toString();
 
 
-        return new Character(name,shortDescription,"character",id,iconLink,appearances,firstComicID,firstComicName,gender, realName);
+        return new Character(name,shortDescription,"character",id,iconLink,appearances,firstComicID,firstComicName,gender, realName,HTMLDescription);
     }
 
     public Serie getSerie(int id) throws IOException{
-        String jsonString = getJsonSerie(id);
+        String requeteURL = "https://comicvine.gamespot.com/api/volumes/?filter=id:" + id +"&format=json&api_key=" + API_KEY;
+        String jsonString = sendRequest(requeteURL);
         JSONObject obj = new JSONObject(jsonString).getJSONArray("results").getJSONObject(0);
 
         String name = obj.get("name").toString();
@@ -183,14 +145,14 @@ public class api_connection {
         String iconLink = obj.getJSONObject("image").getString("icon_url");
         int numberOfComics = obj.getInt("count_of_issues");
         int startYear = obj.getInt("start_year");
-        String HTMLDescription = obj.getString("description");
+        String HTMLDescription = obj.get("description").toString();
         int lastComicID = obj.getJSONObject("last_issue").getInt("id");
         String lastComicName = obj.getJSONObject("last_issue").get("name").toString();
         int firstComicID = obj.getJSONObject("first_issue").getInt("id");
         String firstComicName = obj.getJSONObject("first_issue").get("name").toString();
 
 
-        return new Serie(name,shortDescription,"character",id,iconLink, numberOfComics, startYear,HTMLDescription,
+        return new Serie(name,shortDescription,"volume",id,iconLink, numberOfComics, startYear,HTMLDescription,
                 lastComicID,firstComicID,lastComicName,firstComicName);
     }
 
