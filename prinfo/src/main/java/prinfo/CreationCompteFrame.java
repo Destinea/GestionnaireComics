@@ -4,8 +4,13 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import static java.awt.image.ImageObserver.WIDTH;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import javax.swing.ImageIcon;
-
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
+import de.mkammerer.argon2.Argon2Factory.Argon2Types;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -18,6 +23,7 @@ import javax.swing.ImageIcon;
 public class CreationCompteFrame extends javax.swing.JFrame {
 
     /**
+     * 
      * Creates new form CreationCompteFrame1
      */
     public CreationCompteFrame() {
@@ -49,10 +55,11 @@ public class CreationCompteFrame extends javax.swing.JFrame {
         infoMotDePasse = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 249, 176));
         setPreferredSize(new java.awt.Dimension(700, 350));
         setSize(new java.awt.Dimension(700, 350));
 
-        jPanel1.setBackground(new java.awt.Color(166, 172, 175));
+        jPanel1.setBackground(new java.awt.Color(255, 249, 176));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setText("Création d'un nouveau compte");
@@ -187,10 +194,20 @@ public class CreationCompteFrame extends javax.swing.JFrame {
         System.out.println(jPasswordField2.getPassword());
         String mdp1 = String.valueOf(jPasswordField1.getPassword());
         String mdp2 = String.valueOf(jPasswordField2.getPassword());
-        
+        Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
         if (mdp1.equals(mdp2))
         {
-            this.dispose();
+            
+            try{
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
+            Statement stmt = con.createStatement();
+            bdd.insertion(stmt, jTextField1.getText(), mdp2, argon2);
+            infoMotDePasse.setText("Utilisateur Crée");
+            }
+            catch(Exception e){
+                System.out.println("Marche pas");
+            }
+            
         }
         else
         {
@@ -200,7 +217,7 @@ public class CreationCompteFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        this.dispose();
+
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
