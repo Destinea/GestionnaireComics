@@ -5,7 +5,10 @@
 package prinfo;
 
 import API.Results;
+import API.api_connection;
 import com.mysql.cj.xdevapi.Result;
+
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -59,6 +62,12 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
         titre = new javax.swing.JLabel();
         type = new javax.swing.JLabel();
 
+        iconLink.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconLinkMouseClicked(evt);
+            }
+        });
+
         titre.setText("titre1");
 
         type.setText("type1");
@@ -105,6 +114,29 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void iconLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconLinkMouseClicked
+        if (evt.getClickCount() == 2 && evt.getButton() == java.awt.event.MouseEvent.BUTTON1) {
+            api_connection apiConnection = new api_connection();
+            try {
+                switch (resultat.getType()){
+                    case "character":
+                        AffichageDetailPersonnage affichageDetailPersonnage=
+                                new AffichageDetailPersonnage(apiConnection.getCharacter(resultat.getId()));
+                        affichageDetailPersonnage.setVisible(true);
+                        break;
+                    case "issue":
+                        // TODO : Affichage details comics
+                        break;
+                    case "volume":
+                        // TODO : Affichage détails série
+                        break;
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+  }
+    }//GEN-LAST:event_iconLinkMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

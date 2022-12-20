@@ -57,7 +57,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        entete = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -80,7 +80,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 204, 102), 1, true));
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 800));
 
-        jPanel2.setBackground(new java.awt.Color(255, 211, 132));
+        entete.setBackground(new java.awt.Color(255, 211, 132));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
