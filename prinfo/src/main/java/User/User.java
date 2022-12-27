@@ -1,32 +1,30 @@
 package User;
 
-import Collection.Collection;
+import Collec.Collec;
 
 public class User {
 	private String username;
 	private String nametag;
-	private String password;
-	private Collection collection;
-	private Collection suggestions;
+	private Collec collection;
+	private Collec suggestions;
 	
 	public User(String username,String nametag, String password) {
 		this.username= username;
 		this.nametag= nametag;
-		this.password= password;
-		this.collection= new Collection();
-		this.suggestions= new Collection();
+		this.collection= new Collec();
+		this.suggestions= new Collec();
 	}
 	
-	public Collection getCollection() {
+	public Collec getCollection() {
 		return collection;
 	}
-	public void setCollection(Collection collection) {
+	public void setCollection(Collec collection) {
 		this.collection = collection;
 	}
-	public Collection getSuggestions() {
+	public Collec getSuggestions() {
 		return suggestions;
 	}
-	public void setSuggestions(Collection suggestions) {
+	public void setSuggestions(Collec suggestions) {
 		this.suggestions = suggestions;
 	}
 	public String getUsername() {
@@ -38,11 +36,9 @@ public class User {
 	public void changeNametag(String nametag) {
 		this.nametag = nametag;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void changePassword(String password) {
-		this.password = password;
+
+	public void changePassword(String new_password) {
+		//Appelle a la BDD pour modifier le password 
 	}
 	
 }
