@@ -7,20 +7,21 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import BDD.BDDGestionCompte;
 import org.junit.Test;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import de.mkammerer.argon2.Argon2Factory.Argon2Types;
 
-public class bddTest {
+public class BDDGestionCompteTest {
 
 
     @Test
     public void testDeletion() throws SQLException {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo")) {
             Statement stmt = con.createStatement();
-            assertTrue(bdd.deletion(stmt, "toto"));
+            assertTrue(BDDGestionCompte.suppression(stmt, "toto"));
         }
     }
 
@@ -30,9 +31,9 @@ public class bddTest {
             Statement stmt;
             stmt = con.createStatement();
             Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
-            bdd.deletion(stmt, "toto");
-            assertTrue(bdd.insertion(stmt, "toto", "test2", argon2)); // true = insertion réussie, false = existe déjà
-            assertFalse(bdd.insertion(stmt, "toto", "test2", argon2));
+            BDDGestionCompte.suppression(stmt, "toto");
+            assertTrue(BDDGestionCompte.insertion(stmt, "toto", "test2", argon2)); // true = insertion réussie, false = existe déjà
+            assertFalse(BDDGestionCompte.insertion(stmt, "toto", "test2", argon2));
         }
     }
 
@@ -41,8 +42,8 @@ public class bddTest {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo")) {
             Statement stmt = con.createStatement();
             Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
-            bdd.insertion(stmt, "toto", "test", argon2);
-            assertTrue(argon2.verify(bdd.lecture(stmt, "toto"), "test"));
+            BDDGestionCompte.insertion(stmt, "toto", "test", argon2);
+            assertTrue(argon2.verify(BDDGestionCompte.lecture(stmt, "toto"), "test"));
         }
     }
 
@@ -51,10 +52,10 @@ public class bddTest {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo")) {
             Statement stmt = con.createStatement();
             Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
-            bdd.insertion(stmt, "toto", "test", argon2);
-            String password = bdd.lecture(stmt, "toto");
-            assertFalse(bdd.comparaison(password, "dggf", argon2));
-            assertTrue(bdd.comparaison(password, "test", argon2));
+            BDDGestionCompte.insertion(stmt, "toto", "test", argon2);
+            String password = BDDGestionCompte.lecture(stmt, "toto");
+            assertFalse(BDDGestionCompte.comparaison(password, "dggf", argon2));
+            assertTrue(BDDGestionCompte.comparaison(password, "test", argon2));
         }
     }
 
@@ -65,9 +66,9 @@ public class bddTest {
                 Statement stmt;
                 stmt = con.createStatement();
                 Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
-                bdd.insertion(stmt, "tota", "test2", argon2);
-                assertTrue(bdd.ajouterNametag(stmt, "toto", "tata"));
-                bdd.deletion(stmt,"tota");
+                BDDGestionCompte.insertion(stmt, "tota", "test2", argon2);
+                assertTrue(BDDGestionCompte.ajouterNametag(stmt, "toto", "tata"));
+                BDDGestionCompte.suppression(stmt,"tota");
             }
 
         }
