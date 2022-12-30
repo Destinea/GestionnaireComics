@@ -80,7 +80,7 @@ public class bdd {
 		return str;
 	}
 
-	public static boolean deletion(Statement stmt, String login) throws SQLException {
+	public static boolean suppression(Statement stmt, String login) throws SQLException {
 		//Deletion à partir du nom d'utilisateur
 		try {
 			String sql = "DELETE FROM user WHERE login = '" + login + "';";
