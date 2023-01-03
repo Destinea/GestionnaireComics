@@ -6,15 +6,21 @@ package prinfo;
 
 import API.Results;
 import API.api_connection;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Choice;
+import java.awt.Component;
+import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -24,28 +30,30 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private api_connection test;
     private List<Results> ResultatsRecherche;
     ConnectionFrame connectionFrame;
-    
-   
+
+
+    private List<AffichageResultsMultiple> resultatsMultipleAffichage;
+
     /**
      * Creates new form FenetrePrincipale
      */
     public FenetrePrincipale() {
         initComponents();
         test = new api_connection();
+        resultatsMultipleAffichage = new LinkedList<AffichageResultsMultiple>();
         PanelCollection.setVisible(estCo);
-	Choice droplistFiltre=new Choice();
+	    Choice droplistFiltre=new Choice();
         droplistFiltre.add("Tout");
         droplistFiltre.add("Character");
         droplistFiltre.add("Comics");
         droplistFiltre.setVisible(true);
-        
-        
+        scrollPaneAffichageMultiple.setVisible(false);
     }
     /**
      * Boolean true si on est connecté, false sinon
      */
      private boolean estCo = false;
-     
+
      public boolean getestCo(){
          return estCo;
      }
@@ -58,10 +66,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
          if (estCo)
             jLabel4.setText(connectionFrame.getlogin());
          else
-            jLabel4.setText("Se Connecter"); 
-         
+            jLabel4.setText("Se Connecter");
+
      }
-     
+
 	int pageNumber = 0;
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,6 +94,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         rechercheBtn = new javax.swing.JButton();
         dropListFiltre = new javax.swing.JComboBox<>();
         contentPage = new javax.swing.JPanel();
+        scrollPaneAffichageMultiple = new java.awt.ScrollPane();
+        panelAffichageMultiple = new java.awt.Panel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1032, 600));
@@ -255,7 +265,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         .addComponent(rechercheBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap(131, Short.MAX_VALUE))))
         );
         enteteLayout.setVerticalGroup(
             enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,15 +296,38 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         contentPage.setBackground(new java.awt.Color(255, 249, 176));
         contentPage.setPreferredSize(new java.awt.Dimension(1030, 700));
 
+        scrollPaneAffichageMultiple.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        panelAffichageMultiple.setBackground(new java.awt.Color(255, 249, 176));
+
+        javax.swing.GroupLayout panelAffichageMultipleLayout = new javax.swing.GroupLayout(panelAffichageMultiple);
+        panelAffichageMultiple.setLayout(panelAffichageMultipleLayout);
+        panelAffichageMultipleLayout.setHorizontalGroup(
+            panelAffichageMultipleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1010, Short.MAX_VALUE)
+        );
+        panelAffichageMultipleLayout.setVerticalGroup(
+            panelAffichageMultipleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 483, Short.MAX_VALUE)
+        );
+
+        scrollPaneAffichageMultiple.add(panelAffichageMultiple);
+
         javax.swing.GroupLayout contentPageLayout = new javax.swing.GroupLayout(contentPage);
         contentPage.setLayout(contentPageLayout);
         contentPageLayout.setHorizontalGroup(
             contentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1030, Short.MAX_VALUE)
+            .addGroup(contentPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollPaneAffichageMultiple, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         contentPageLayout.setVerticalGroup(
             contentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 693, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollPaneAffichageMultiple, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -309,7 +342,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(entete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contentPage, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE))
+                .addComponent(contentPage, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -320,9 +353,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
         pack();
@@ -369,13 +400,39 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }//GEN-LAST:event_PanelConnectionMouseClicked
 
     private void rechercheBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheBtnActionPerformed
+        // On supprime la liste précédemmant cherchée pour la set à nouveau
+        if (ResultatsRecherche!=null) {
+            ResultatsRecherche.clear();
+            resultatsMultipleAffichage.clear();
+            panelAffichageMultiple.removeAll();
+        }
+
         try {
             ResultatsRecherche = test.GetResults(jTextField1.getText(), 1,dropListFiltre.getSelectedItem().toString());
         } catch (IOException ex) {
             Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        AfficheResultats();
+        panelAffichageMultiple.setLayout(new GridLayout((int) ResultatsRecherche.size()/2, 2, 5, 5));
+        scrollPaneAffichageMultiple.setVisible(true);
+
+        for (Results results : ResultatsRecherche) {
+            resultatsMultipleAffichage.add(new AffichageResultsMultiple(results));
+        }
+
+        for (AffichageResultsMultiple affichageResultsMultiple : resultatsMultipleAffichage) {
+            panelAffichageMultiple.add(affichageResultsMultiple);
+        }
+        contentPage.updateUI();
+
+        /*for (Results results : ResultatsRecherche) {
+            System.out.println(results.getName() + "\n");
+            System.out.println(results.getShortDescription() + "\n");
+            System.out.println(results.getType() + "\n");
+            System.out.println("\n");
+        }
+        System.out.println(this);
+        System.out.println("prinfo.FenetrePrincipale.rechercheBtnActionPerformed()");*/
     }//GEN-LAST:event_rechercheBtnActionPerformed
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
@@ -387,66 +444,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         
     }//GEN-LAST:event_rechercheBtnMouseClicked
 
-    String nul = null;
-    
-    private void clearPanel(int nbPanel){
-        switch (nbPanel) {
-            case 1:
-                titre1.setText(nul);
-                id1.setText(nul);
-                description1.setText(nul);
-                type1.setText(nul);  
-                ImageIcon img1 = null;
-                iconLink1.setIcon(img1);
-                break;
-            case 2:
-                titre2.setText(nul);
-                id2.setText(nul);
-                description2.setText(nul);
-                type2.setText(nul);  
-                ImageIcon img2 = null;
-                iconLink2.setIcon(img2);
-                break;
-            case 3:
-                titre3.setText(nul);
-                id3.setText(nul);
-                description3.setText(nul);
-                type3.setText(nul);
-                ImageIcon img3 = null;
-                iconLink3.setIcon(img3);
-                break;
-            case 4:
-                titre4.setText(nul);
-                id4.setText(nul);
-                description4.setText(nul);
-                type4.setText(nul);
-                ImageIcon img4 = null;
-                iconLink4.setIcon(img4);
 
-                break;
-            case 5:
-                titre5.setText(nul);
-                id5.setText(nul);
-                description5.setText(nul);
-                type5.setText(nul);
-                ImageIcon img5 = null;
-                iconLink5.setIcon(img5);
 
-                break;
-            case 6:
-                titre6.setText(nul);
-                id6.setText(nul);
-                description6.setText(nul);
-                type6.setText(nul);
-                ImageIcon img6 = null;
-                iconLink6.setIcon(img6);
-                break;
-            default:
-                throw new AssertionError();
-        }
-    }
     
-    private void AfficheResultats() {
+    /*private void AfficheResultats() {
         if (ResultatsRecherche.size() >= 6) {
             for (int i = 1; i < 7; i++) {
                 AffichageSurBonPanel(i, ResultatsRecherche.get(i - 1));
@@ -455,30 +456,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             for (int i = 1; i < ResultatsRecherche.size(); i++) {
                 AffichageSurBonPanel(i, ResultatsRecherche.get(i));
             }
-            for (int i = ResultatsRecherche.size(); i < 7; i++) {
-                clearPanel(i);
-            }
-        }
-    }
-    
-    private void AfficheResultatsPage2() {
-        if (ResultatsRecherche.size() >= 12) {
-            for (int i = 1; i < 7; i++) {
-                AffichageSurBonPanel(i, ResultatsRecherche.get(i - 1+6));
-            }
-        } else {
-            for (int i = 1; i < ResultatsRecherche.size()- 5; i++) {
-                AffichageSurBonPanel(i, ResultatsRecherche.get(i+5));
-            }
-            for (int i = ResultatsRecherche.size()- 5; i < 13 ; i++) {
-                clearPanel(i);
-            }
         }
     }
 
-    
     // nbPanel est compris entre 1 et 6 pour différentier sur quel panel on affiche les resultats
-    private void AffichageSurBonPanel(int nbPanel, Results ResultatRecherche) {
+    /*private void AffichageSurBonPanel(int nbPanel, Results ResultatRecherche) {
         switch (nbPanel) {
             case 1:
                 titre1.setText(ResultatRecherche.getName());
@@ -487,11 +469,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 type1.setText(ResultatRecherche.getType());
                 //iconLink1.setText(ResultatRecherche.getIconLink());     
                 ImageIcon img1 = null;
-            try {
-                img1 = new ImageIcon(new URL(ResultatRecherche.getIconLink()));
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                try {
+                    img1 = new ImageIcon(new URL(ResultatRecherche.getIconLink()));
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 iconLink1.setIcon(img1);
                 break;
             case 2:
@@ -617,6 +599,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
+    private java.awt.Panel panelAffichageMultiple;
     private javax.swing.JButton rechercheBtn;
+    private java.awt.ScrollPane scrollPaneAffichageMultiple;
     // End of variables declaration//GEN-END:variables
 }
