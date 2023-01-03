@@ -401,14 +401,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         contentPage.updateUI();
 
-        for (Results results : ResultatsRecherche) {
+        /*for (Results results : ResultatsRecherche) {
             System.out.println(results.getName() + "\n");
             System.out.println(results.getShortDescription() + "\n");
             System.out.println(results.getType() + "\n");
             System.out.println("\n");
         }
         System.out.println(this);
-        System.out.println("prinfo.FenetrePrincipale.rechercheBtnActionPerformed()");
+        System.out.println("prinfo.FenetrePrincipale.rechercheBtnActionPerformed()");*/
     }//GEN-LAST:event_rechercheBtnActionPerformed
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
