@@ -85,7 +85,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         rechercheBtn = new javax.swing.JButton();
         dropListFiltre = new javax.swing.JComboBox<>();
-        jPanel6 = new javax.swing.JPanel();
+        contentPage = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1032, 600));
@@ -283,17 +283,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                                 .addGap(17, 17, 17))))))
         );
 
-        jPanel6.setBackground(new java.awt.Color(255, 249, 176));
-        jPanel6.setPreferredSize(new java.awt.Dimension(1030, 700));
+        contentPage.setBackground(new java.awt.Color(255, 249, 176));
+        contentPage.setPreferredSize(new java.awt.Dimension(1030, 700));
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout contentPageLayout = new javax.swing.GroupLayout(contentPage);
+        contentPage.setLayout(contentPageLayout);
+        contentPageLayout.setHorizontalGroup(
+            contentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1030, Short.MAX_VALUE)
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        contentPageLayout.setVerticalGroup(
+            contentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 693, Short.MAX_VALUE)
         );
 
@@ -302,14 +302,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(entete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(contentPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(entete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE))
+                .addComponent(contentPage, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -607,6 +607,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPanel PanelAccueil;
     private javax.swing.JPanel PanelCollection;
     private javax.swing.JPanel PanelConnection;
+    private javax.swing.JPanel contentPage;
     private javax.swing.JComboBox<String> dropListFiltre;
     private javax.swing.JPanel entete;
     private javax.swing.JLabel jLabel1;
@@ -615,7 +616,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton rechercheBtn;
     // End of variables declaration//GEN-END:variables

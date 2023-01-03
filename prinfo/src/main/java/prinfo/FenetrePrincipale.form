@@ -60,7 +60,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="entete" max="32767" attributes="0"/>
-              <Component id="jPanel6" alignment="0" max="32767" attributes="0"/>
+              <Component id="contentPage" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -68,7 +68,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="entete" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel6" pref="693" max="32767" attributes="0"/>
+                  <Component id="contentPage" pref="693" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -347,7 +347,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel6">
+        <Container class="javax.swing.JPanel" name="contentPage">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="b0" green="f9" red="ff" type="rgb"/>
