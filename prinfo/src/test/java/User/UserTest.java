@@ -6,6 +6,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({})
-public class TestUser {
-	
+public class UserTest {
+	public void testUser(){
+        
+    }
 }
