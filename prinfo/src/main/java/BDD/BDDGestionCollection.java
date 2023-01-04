@@ -2,20 +2,11 @@ package BDD;
 
 import java.sql.*;
 import API.Comic;
-import Collec.*;
+
 
 import java.sql.SQLException;
 public class BDDGestionCollection {
 
-    public static void lecture_bdd(Statement stmt, Comic c) throws SQLException {
-        Collec collection=new Collec();
-        String sql = "SELECT * FROM comic INNER JOIN serie WHERE comic.id_serie = serie.id_serie;";
-        stmt.executeQuery(sql);
-        ResultSet rs = stmt.getResultSet();
-        while (rs.next()) {
-            collection.addComic(new Comic(rs.getString("nom"), rs.getString("description"), "comic", rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), "null"));
-        }
-    }
     public static void insertionComic(Statement stmt, Comic c){
         try {
             if (VerificationComic(stmt, c)) {
