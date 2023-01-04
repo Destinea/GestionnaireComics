@@ -126,7 +126,9 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
                         affichageDetailPersonnage.setVisible(true);
                         break;
                     case "issue":
-                        // TODO : Affichage details comics
+                        AffichageDetailsComic affichageDetailsComic =
+                                new AffichageDetailsComic(apiConnection.getComic(resultat.getId()));
+                        affichageDetailsComic.setVisible(true);
                         break;
                     case "volume":
                         // TODO : Affichage détails série
