@@ -5,12 +5,11 @@
 package prinfo;
 
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-import javax.swing.ImageIcon;
+
+import BDD.BDDGestionCompte;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 
@@ -256,7 +255,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
         try{
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
         Statement stmt = con.createStatement();
-        if(argon2.verify(bdd.lecture(stmt, logintemp), mdp)){
+        if(argon2.verify(BDDGestionCompte.lecture(stmt, logintemp), mdp)){
             login = logintemp;
             frame.switchestCo();
             this.dispose();

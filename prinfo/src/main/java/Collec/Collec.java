@@ -14,7 +14,6 @@ public class Collec {
 	public Collec() {
 		this.comics= new HashSet<Comic>();
 		this.series= new HashSet<User_serie>();
-		
 	}
 	
 	public Set<Comic> getComics() {

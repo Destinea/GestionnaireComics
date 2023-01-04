@@ -1,4 +1,4 @@
-package prinfo;
+package bdd;
 
 import static org.junit.Assert.*;
 
@@ -18,7 +18,7 @@ public class BDDGestionCompteTest {
 
 
     @Test
-    public void testDeletion() throws SQLException {
+    public void testSuppression() throws SQLException {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo")) {
             Statement stmt = con.createStatement();
             assertTrue(BDDGestionCompte.suppression(stmt, "toto"));
@@ -31,9 +31,9 @@ public class BDDGestionCompteTest {
             Statement stmt;
             stmt = con.createStatement();
             Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
-            BDDGestionCompte.suppression(stmt, "toto");
-            assertTrue(BDDGestionCompte.insertion(stmt, "toto", "test2", argon2)); // true = insertion réussie, false = existe déjà
-            assertFalse(BDDGestionCompte.insertion(stmt, "toto", "test2", argon2));
+            BDDGestionCompte.suppression(stmt, "tata");
+            assertTrue(BDDGestionCompte.insertion(stmt, "tata", "test2", argon2)); // true = insertion réussie, false = existe déjà
+            assertFalse(BDDGestionCompte.insertion(stmt, "tata", "test2", argon2));
         }
     }
 
@@ -42,8 +42,8 @@ public class BDDGestionCompteTest {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo")) {
             Statement stmt = con.createStatement();
             Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
-            BDDGestionCompte.insertion(stmt, "toto", "test", argon2);
-            assertTrue(argon2.verify(BDDGestionCompte.lecture(stmt, "toto"), "test"));
+            BDDGestionCompte.insertion(stmt, "tata", "test", argon2);
+            assertTrue(argon2.verify(BDDGestionCompte.lecture(stmt, "tata"), "test"));
         }
     }
 
@@ -67,7 +67,7 @@ public class BDDGestionCompteTest {
                 stmt = con.createStatement();
                 Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
                 BDDGestionCompte.insertion(stmt, "tota", "test2", argon2);
-                assertTrue(BDDGestionCompte.ajouterNametag(stmt, "toto", "tata"));
+                assertTrue(BDDGestionCompte.ajouterNametag(stmt, "tota", "tata"));
                 BDDGestionCompte.suppression(stmt,"tota");
             }
 

@@ -1,4 +1,4 @@
-package prinfo;
+package BDD;
 
 import java.sql.*;
 
@@ -7,40 +7,7 @@ import java.sql.*;
 import de.mkammerer.argon2.Argon2;
 
 
-public class bdd {
-
-	// Lancer my sql workbench et taper "use prinfo7";
-/*
-	public static void main(String[] args) {
-		try {
-			// Connexion
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "root", "root");
-			Statement stmt = con.createStatement();
-			Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
-			
-			boolean etat1_insert = insertion(stmt, "toto", "test2", argon2); // true = insertion réussie, false = existe déjà
-			boolean etat2_insert = insertion(stmt, "toto", "test2", argon2);
-			String password = lecture(stmt, "toto");
-			boolean etat_comp = comparaison( password, "test2", argon2);
-			boolean etat2_comp = comparaison(password, "dggf", argon2);
-			boolean etat_del = deletion(stmt, "toto");
-			
-			System.out.println(etat1_insert);
-			System.out.println(etat2_insert);
-			System.out.println(password);
-			System.out.println(etat_comp);
-			System.out.println(etat2_comp);
-			System.out.println(etat_del);
-			//true, false, idjnch, true, true, false
-			
-
-			// Fermeture de la connexion
-			con.close();
-			
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}*/
+public class BDDGestionCompte {
 
 	public static boolean insertion(Statement stmt, String login, String psw, Argon2 argon2) {
 		// Insertion du login et du mdp
