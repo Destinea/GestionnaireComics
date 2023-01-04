@@ -48,6 +48,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         droplistFiltre.add("Comics");
         droplistFiltre.setVisible(true);
         scrollPaneAffichageMultiple.setVisible(false);
+        Navbar.setVisible(false);
     }
     /**
      * Boolean true si on est connecté, false sinon
@@ -96,6 +97,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         contentPage = new javax.swing.JPanel();
         scrollPaneAffichageMultiple = new java.awt.ScrollPane();
         panelAffichageMultiple = new java.awt.Panel();
+        Navbar = new javax.swing.JPanel();
+        btnPrecedent = new javax.swing.JButton();
+        numPage = new javax.swing.JLabel();
+        btnSuivant = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -256,7 +261,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addGroup(enteteLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(PanelConnection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(enteteLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, enteteLayout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dropListFiltre, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,7 +269,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         .addComponent(rechercheBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(131, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         enteteLayout.setVerticalGroup(
             enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,10 +312,32 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
         panelAffichageMultipleLayout.setVerticalGroup(
             panelAffichageMultipleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 483, Short.MAX_VALUE)
+            .addGap(0, 568, Short.MAX_VALUE)
         );
 
         scrollPaneAffichageMultiple.add(panelAffichageMultiple);
+
+        Navbar.setLayout(new java.awt.GridLayout(1, 3));
+
+        btnPrecedent.setText("Précédent");
+        btnPrecedent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrecedentActionPerformed(evt);
+            }
+        });
+        Navbar.add(btnPrecedent);
+
+        numPage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numPage.setText("0");
+        Navbar.add(numPage);
+
+        btnSuivant.setText("Suivant");
+        btnSuivant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuivantActionPerformed(evt);
+            }
+        });
+        Navbar.add(btnSuivant);
 
         javax.swing.GroupLayout contentPageLayout = new javax.swing.GroupLayout(contentPage);
         contentPage.setLayout(contentPageLayout);
@@ -318,15 +345,21 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             contentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentPageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPaneAffichageMultiple, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(scrollPaneAffichageMultiple, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Navbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(333, 333, 333))
         );
         contentPageLayout.setVerticalGroup(
             contentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPageLayout.createSequentialGroup()
+            .addGroup(contentPageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPaneAffichageMultiple, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(scrollPaneAffichageMultiple, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Navbar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -424,14 +457,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         contentPage.updateUI();
 
-        /*for (Results results : ResultatsRecherche) {
-            System.out.println(results.getName() + "\n");
-            System.out.println(results.getShortDescription() + "\n");
-            System.out.println(results.getType() + "\n");
-            System.out.println("\n");
-        }
-        System.out.println(this);
-        System.out.println("prinfo.FenetrePrincipale.rechercheBtnActionPerformed()");*/
+        numPage.setText("1");
+        Navbar.setVisible(true);
+        btnPrecedent.setVisible(false);
     }//GEN-LAST:event_rechercheBtnActionPerformed
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
@@ -443,111 +471,65 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         
     }//GEN-LAST:event_rechercheBtnMouseClicked
 
-
-
-    
-    /*private void AfficheResultats() {
-        if (ResultatsRecherche.size() >= 6) {
-            for (int i = 1; i < 7; i++) {
-                AffichageSurBonPanel(i, ResultatsRecherche.get(i - 1));
-            }
-        } else {
-            for (int i = 1; i < ResultatsRecherche.size(); i++) {
-                AffichageSurBonPanel(i, ResultatsRecherche.get(i));
-            }
+    private void btnPrecedentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrecedentActionPerformed
+        int numPagePrecedente = Integer.parseInt(numPage.getText())-1;
+        if (ResultatsRecherche!=null) {
+            ResultatsRecherche.clear();
+            resultatsMultipleAffichage.clear();
+            panelAffichageMultiple.removeAll();
         }
-    }
 
-    // nbPanel est compris entre 1 et 6 pour différentier sur quel panel on affiche les resultats
-    /*private void AffichageSurBonPanel(int nbPanel, Results ResultatRecherche) {
-        switch (nbPanel) {
-            case 1:
-                titre1.setText(ResultatRecherche.getName());
-                id1.setText(String.valueOf(ResultatRecherche.getId()));
-                description1.setText(ResultatRecherche.getShortDescription());
-                type1.setText(ResultatRecherche.getType());
-                //iconLink1.setText(ResultatRecherche.getIconLink());     
-                ImageIcon img1 = null;
-                try {
-                    img1 = new ImageIcon(new URL(ResultatRecherche.getIconLink()));
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                iconLink1.setIcon(img1);
-                break;
-            case 2:
-                titre2.setText(ResultatRecherche.getName());
-                id2.setText(String.valueOf(ResultatRecherche.getId()));
-                description2.setText(ResultatRecherche.getShortDescription());
-                type2.setText(ResultatRecherche.getType());
-                ImageIcon img2 = null;
-            try {
-                img2 = new ImageIcon(new URL(ResultatRecherche.getIconLink()));
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                iconLink2.setIcon(img2);
-                break;
-            case 3:
-                titre3.setText(ResultatRecherche.getName());
-                id3.setText(String.valueOf(ResultatRecherche.getId()));
-                description3.setText(ResultatRecherche.getShortDescription());
-                type3.setText(ResultatRecherche.getType());
-                ImageIcon img3 = null;
-            try {
-                img3 = new ImageIcon(new URL(ResultatRecherche.getIconLink()));
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                iconLink3.setIcon(img3);
-                break;
-            case 4:
-                titre4.setText(ResultatRecherche.getName());
-                id4.setText(String.valueOf(ResultatRecherche.getId()));
-                description4.setText(ResultatRecherche.getShortDescription());
-                type4.setText(ResultatRecherche.getType());
-                ImageIcon img4 = null;
-            try {
-                img4 = new ImageIcon(new URL(ResultatRecherche.getIconLink()));
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                iconLink4.setIcon(img4);
-
-                break;
-            case 5:
-                titre5.setText(ResultatRecherche.getName());
-                id5.setText(String.valueOf(ResultatRecherche.getId()));
-                description5.setText(ResultatRecherche.getShortDescription());
-                type5.setText(ResultatRecherche.getType());
-                ImageIcon img5 = null;
-            try {
-                img5 = new ImageIcon(new URL(ResultatRecherche.getIconLink()));
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                iconLink5.setIcon(img5);
-
-                break;
-            case 6:
-                titre6.setText(ResultatRecherche.getName());
-                id6.setText(String.valueOf(ResultatRecherche.getId()));
-                description6.setText(ResultatRecherche.getShortDescription());
-                type6.setText(ResultatRecherche.getType());
-                ImageIcon img6 = null;
-            try {
-                img6 = new ImageIcon(new URL(ResultatRecherche.getIconLink()));
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                iconLink6.setIcon(img6);
-                break;
-            default:
-                throw new AssertionError();
+        try {
+            ResultatsRecherche = test.GetResults(jTextField1.getText(), numPagePrecedente,dropListFiltre.getSelectedItem().toString());
+        } catch (IOException ex) {
+            Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    
+
+        panelAffichageMultiple.setLayout(new GridLayout((int) ResultatsRecherche.size()/2, 2, 5, 5));
+        scrollPaneAffichageMultiple.setVisible(true);
+
+        for (Results results : ResultatsRecherche) {
+            resultatsMultipleAffichage.add(new AffichageResultsMultiple(results));
+        }
+
+        for (AffichageResultsMultiple affichageResultsMultiple : resultatsMultipleAffichage) {
+            panelAffichageMultiple.add(affichageResultsMultiple);
+        }
+        contentPage.updateUI();
+        numPage.setText(String.valueOf(numPagePrecedente));
+        if(numPagePrecedente<=1){
+            btnPrecedent.setVisible(false);
+        }
+    }//GEN-LAST:event_btnPrecedentActionPerformed
+
+    private void btnSuivantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuivantActionPerformed
+        int numPageSuivante = Integer.parseInt(numPage.getText())+1;
+        if (ResultatsRecherche!=null) {
+            ResultatsRecherche.clear();
+            resultatsMultipleAffichage.clear();
+            panelAffichageMultiple.removeAll();
+        }
+
+        try {
+            ResultatsRecherche = test.GetResults(jTextField1.getText(), numPageSuivante,dropListFiltre.getSelectedItem().toString());
+        } catch (IOException ex) {
+            Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        panelAffichageMultiple.setLayout(new GridLayout((int) ResultatsRecherche.size()/2, 2, 5, 5));
+        scrollPaneAffichageMultiple.setVisible(true);
+
+        for (Results results : ResultatsRecherche) {
+            resultatsMultipleAffichage.add(new AffichageResultsMultiple(results));
+        }
+
+        for (AffichageResultsMultiple affichageResultsMultiple : resultatsMultipleAffichage) {
+            panelAffichageMultiple.add(affichageResultsMultiple);
+        }
+        contentPage.updateUI();
+        numPage.setText(String.valueOf(numPageSuivante));
+        btnPrecedent.setVisible(true);
+    }//GEN-LAST:event_btnSuivantActionPerformed
 
     /**
      * @param args the command line arguments
@@ -585,9 +567,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Navbar;
     private javax.swing.JPanel PanelAccueil;
     private javax.swing.JPanel PanelCollection;
     private javax.swing.JPanel PanelConnection;
+    private javax.swing.JButton btnPrecedent;
+    private javax.swing.JButton btnSuivant;
     private javax.swing.JPanel contentPage;
     private javax.swing.JComboBox<String> dropListFiltre;
     private javax.swing.JPanel entete;
@@ -598,6 +583,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel numPage;
     private java.awt.Panel panelAffichageMultiple;
     private javax.swing.JButton rechercheBtn;
     private java.awt.ScrollPane scrollPaneAffichageMultiple;
