@@ -1,13 +1,11 @@
 package prinfo;
 
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.Toolkit;
-import static java.awt.image.ImageObserver.WIDTH;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-import javax.swing.ImageIcon;
+
+import BDD.BDDGestionCompte;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import de.mkammerer.argon2.Argon2Factory.Argon2Types;
@@ -201,7 +199,7 @@ public class CreationCompteFrame extends javax.swing.JFrame {
             try{
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
             Statement stmt = con.createStatement();
-            bdd.insertion(stmt, jTextField1.getText(), mdp2, argon2);
+            BDDGestionCompte.insertion(stmt, jTextField1.getText(), mdp2, argon2);
             infoMotDePasse.setText("Utilisateur Crée");
             }
             catch(Exception e){
