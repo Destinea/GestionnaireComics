@@ -499,7 +499,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         for (Results results : ResultatsRecherche) {
             resultatsMultipleAffichage.add(new AffichageResultsMultiple(results));
         }
-    }
 
         for (AffichageResultsMultiple affichageResultsMultiple : resultatsMultipleAffichage) {
             panelAffichageMultiple.add(affichageResultsMultiple);
