@@ -70,7 +70,8 @@ public class BDDGestionCollectionTest {
 
                 assertEquals(id_user, 34);
                 assertEquals(id_comic, "Wolverine");
-                assertEquals(link, "link");
+                assertEquals(etat_lecture, "link");
+            }
         }
     }
 
@@ -97,8 +98,4 @@ public class BDDGestionCollectionTest {
             assertTrue(BDDGestionCollection.suppressionSerie(stmt, c));
         }
     }
-
-
-
-
 }
