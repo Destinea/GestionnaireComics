@@ -54,9 +54,12 @@ public class CreationCompteFrame extends javax.swing.JFrame {
         fermeFenetreBouton = new javax.swing.JButton();
         infoMotDePasse = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Creation de Compte");
         setBackground(new java.awt.Color(255, 249, 176));
+        setMinimumSize(new java.awt.Dimension(700, 350));
         setPreferredSize(new java.awt.Dimension(700, 350));
+        setResizable(false);
         setSize(new java.awt.Dimension(700, 350));
 
         jPanel1.setBackground(new java.awt.Color(255, 249, 176));

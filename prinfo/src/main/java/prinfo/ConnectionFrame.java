@@ -65,10 +65,13 @@ public class ConnectionFrame extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         EtatConnection = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Connection");
         setBackground(new java.awt.Color(255, 249, 176));
-        setPreferredSize(new java.awt.Dimension(700, 350));
-        setSize(new java.awt.Dimension(700, 350));
+        setMinimumSize(new java.awt.Dimension(750, 380));
+        setPreferredSize(new java.awt.Dimension(750, 380));
+        setResizable(false);
+        setSize(new java.awt.Dimension(750, 380));
 
         jPanel1.setBackground(new java.awt.Color(255, 249, 176));
         jPanel1.setPreferredSize(new java.awt.Dimension(700, 350));
@@ -153,7 +156,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(31, 31, 31)
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 45, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(122, 122, 122)
                         .addComponent(EtatConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -209,11 +212,11 @@ public class ConnectionFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -237,6 +240,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
 
     private void CreationCompteBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreationCompteBoutonActionPerformed
         CreationCompteFrame creationCompte = new CreationCompteFrame();
+        creationCompte.setLocationRelativeTo(null);
         creationCompte.setVisible(true);
     }//GEN-LAST:event_CreationCompteBoutonActionPerformed
 

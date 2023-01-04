@@ -25,6 +25,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private List<Results> ResultatsRecherche;
     ConnectionFrame connectionFrame;
     
+    
    
     /**
      * Creates new form FenetrePrincipale
@@ -60,6 +61,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
          else
             jLabel4.setText("Se Connecter"); 
          
+     }
+     public String getlogin(){
+         return connectionFrame.getlogin();
      }
      
 	int pageNumber = 0;
@@ -688,7 +692,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -743,8 +747,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void PanelConnectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelConnectionMouseClicked
         // TODO add your handling code here:
+        if(estCo){
+            DeconnectionFrame deco = new DeconnectionFrame(this);
+            deco.setLocationRelativeTo(null);
+            deco.setVisible(true);
+   
+        }
+        else {
         connectionFrame = new ConnectionFrame(this);
+        connectionFrame.setLocationRelativeTo(null);
         connectionFrame.setVisible(true);
+        }
     }//GEN-LAST:event_PanelConnectionMouseClicked
 
     private void rechercheBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheBtnActionPerformed
@@ -1122,7 +1135,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FenetrePrincipale().setVisible(true);
+                FenetrePrincipale main = new FenetrePrincipale();
+                main.setLocationRelativeTo(null);
+                main.setVisible(true);
             }
         });
     }
