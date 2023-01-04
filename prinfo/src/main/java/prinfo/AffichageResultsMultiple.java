@@ -131,7 +131,9 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
                         affichageDetailsComic.setVisible(true);
                         break;
                     case "volume":
-                        // TODO : Affichage détails série
+                        AffichageDetailsSerie affichageDetailsSerie =
+                                new AffichageDetailsSerie(apiConnection.getSerie(resultat.getId()));
+                        affichageDetailsSerie.setVisible(true);
                         break;
                 }
             } catch (IOException e) {
