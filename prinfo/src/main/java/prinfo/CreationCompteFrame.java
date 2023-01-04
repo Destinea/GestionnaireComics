@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import de.mkammerer.argon2.Argon2Factory.Argon2Types;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -54,12 +56,21 @@ public class CreationCompteFrame extends javax.swing.JFrame {
         fermeFenetreBouton = new javax.swing.JButton();
         infoMotDePasse = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Creation de Compte");
         setBackground(new java.awt.Color(255, 249, 176));
+        setMinimumSize(new java.awt.Dimension(700, 350));
         setPreferredSize(new java.awt.Dimension(700, 350));
+        setResizable(false);
         setSize(new java.awt.Dimension(700, 350));
 
         jPanel1.setBackground(new java.awt.Color(255, 249, 176));
+
+        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setText("Création d'un nouveau compte");
@@ -192,6 +203,9 @@ public class CreationCompteFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.out.println(jPasswordField1.getPassword());
         System.out.println(jPasswordField2.getPassword());
+        jTextField1.setBackground(Color.white);
+        jPasswordField2.setBackground(Color.white);
+        infoMotDePasse.setText("");
         String mdp1 = String.valueOf(jPasswordField1.getPassword());
         String mdp2 = String.valueOf(jPasswordField2.getPassword());
         Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
@@ -199,10 +213,21 @@ public class CreationCompteFrame extends javax.swing.JFrame {
         {
             
             try{
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
-            Statement stmt = con.createStatement();
-            bdd.insertion(stmt, jTextField1.getText(), mdp2, argon2);
-            infoMotDePasse.setText("Utilisateur Crée");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
+                Statement stmt = con.createStatement();
+                if(bdd.insertion(stmt, jTextField1.getText(), mdp2, argon2)){
+
+
+                    infoMotDePasse.setText("Utilisateur Crée");
+                    JFrame jFrame = new JFrame();
+                    JOptionPane.showMessageDialog(jFrame, "Votre Compte a été créé avec succès !!");
+                    this.dispose();
+                }
+                else{
+                    infoMotDePasse.setText("Nom d'utilisateur déjà utilisé");
+                    jTextField1.setBackground(Color.red);
+                }
+
             }
             catch(Exception e){
                 System.out.println("Marche pas");
@@ -219,6 +244,10 @@ public class CreationCompteFrame extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField2ActionPerformed
 
     /**
      * @param args the command line arguments

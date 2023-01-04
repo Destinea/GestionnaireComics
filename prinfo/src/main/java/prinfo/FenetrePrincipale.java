@@ -70,7 +70,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             jLabel4.setText("Se Connecter");
 
      }
-
+     public String getlogin(){
+         return connectionFrame.getlogin();
+     }
+     
 	int pageNumber = 0;
     /**
      * This method is called from within the constructor to initialize the form.
@@ -103,6 +106,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         btnSuivant = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1032, 600));
 
         jPanel1.setBackground(new java.awt.Color(255, 249, 176));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 204, 102), 1, true));
@@ -427,8 +431,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void PanelConnectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelConnectionMouseClicked
         // TODO add your handling code here:
+        if(estCo){
+            DeconnectionFrame deco = new DeconnectionFrame(this);
+            deco.setLocationRelativeTo(null);
+            deco.setVisible(true);
+   
+        }
+        else {
         connectionFrame = new ConnectionFrame(this);
+        connectionFrame.setLocationRelativeTo(null);
         connectionFrame.setVisible(true);
+        }
     }//GEN-LAST:event_PanelConnectionMouseClicked
 
     private void rechercheBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheBtnActionPerformed
@@ -479,11 +492,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             panelAffichageMultiple.removeAll();
         }
 
-        try {
-            ResultatsRecherche = test.GetResults(jTextField1.getText(), numPagePrecedente,dropListFiltre.getSelectedItem().toString());
-        } catch (IOException ex) {
-            Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         panelAffichageMultiple.setLayout(new GridLayout((int) ResultatsRecherche.size()/2, 2, 5, 5));
         scrollPaneAffichageMultiple.setVisible(true);
@@ -561,7 +569,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FenetrePrincipale().setVisible(true);
+                FenetrePrincipale main = new FenetrePrincipale();
+                main.setLocationRelativeTo(null);
+                main.setVisible(true);
             }
         });
     }
