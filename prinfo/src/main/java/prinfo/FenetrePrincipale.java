@@ -492,6 +492,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             panelAffichageMultiple.removeAll();
         }
 
+        try {
+            ResultatsRecherche = test.GetResults(jTextField1.getText(), numPagePrecedente,dropListFiltre.getSelectedItem().toString());
+        } catch (IOException ex) {
+            Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         panelAffichageMultiple.setLayout(new GridLayout((int) ResultatsRecherche.size()/2, 2, 5, 5));
         scrollPaneAffichageMultiple.setVisible(true);
