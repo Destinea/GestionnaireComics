@@ -462,7 +462,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         scrollPaneAffichageMultiple.setVisible(true);
 
         for (Results results : ResultatsRecherche) {
-            resultatsMultipleAffichage.add(new AffichageResultsMultiple(results));
+            resultatsMultipleAffichage.add(new AffichageResultsMultiple(results,this));
         }
 
         for (AffichageResultsMultiple affichageResultsMultiple : resultatsMultipleAffichage) {
@@ -502,7 +502,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         scrollPaneAffichageMultiple.setVisible(true);
 
         for (Results results : ResultatsRecherche) {
-            resultatsMultipleAffichage.add(new AffichageResultsMultiple(results));
+            resultatsMultipleAffichage.add(new AffichageResultsMultiple(results,this));
         }
 
         for (AffichageResultsMultiple affichageResultsMultiple : resultatsMultipleAffichage) {
@@ -533,7 +533,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         scrollPaneAffichageMultiple.setVisible(true);
 
         for (Results results : ResultatsRecherche) {
-            resultatsMultipleAffichage.add(new AffichageResultsMultiple(results));
+            resultatsMultipleAffichage.add(new AffichageResultsMultiple(results,this));
         }
 
         for (AffichageResultsMultiple affichageResultsMultiple : resultatsMultipleAffichage) {

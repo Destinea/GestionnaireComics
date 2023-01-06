@@ -4,6 +4,7 @@
  */
 package prinfo;
 
+import API.Comic;
 import API.Results;
 import API.api_connection;
 import com.mysql.cj.xdevapi.Result;
@@ -22,14 +23,20 @@ import javax.swing.ImageIcon;
 public class AffichageResultsMultiple extends javax.swing.JPanel {
     
     private Results resultat;
-    
+    FenetrePrincipale frame;
     /**
      * Creates new form AffichageResultsMultiple
      */
-    public AffichageResultsMultiple(Results res) {
+    public AffichageResultsMultiple(Results res, FenetrePrincipale frame) {
         resultat=res;
         initComponents();
         RemplirChamps();
+        if (("issue".equals(type.getText())) && (frame.getestCo())){
+            jCheckBox1.setVisible(true);
+        }
+        else{
+            jCheckBox1.setVisible(false);
+        }
     }
     
     private void RemplirChamps(){
@@ -42,6 +49,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
             Logger.getLogger(AffichageResultsMultiple.class.getName()).log(Level.SEVERE, null, ex);
         }
         iconLink.setIcon(img1);
+        
     }
     
     public javax.swing.JPanel getPanel(){
@@ -61,6 +69,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         titre = new javax.swing.JLabel();
         type = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         iconLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -72,6 +81,13 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
 
         type.setText("type1");
 
+        jCheckBox1.setText("Ajouter");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -80,8 +96,9 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(titre)
-                    .addComponent(type))
-                .addContainerGap(68, Short.MAX_VALUE))
+                    .addComponent(type)
+                    .addComponent(jCheckBox1))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,7 +107,9 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
                 .addComponent(titre)
                 .addGap(18, 18, 18)
                 .addComponent(type)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jCheckBox1)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -142,9 +161,20 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
   }
     }//GEN-LAST:event_iconLinkMouseClicked
 
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+        //if (jCheckBox1.isSelected()){
+           // Comic comicSelected = new Comic(resultat);
+           // frame.maCollection.addComic(comicSelected);
+        //}
+        //TODO else remove comic non selected
+        
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel iconLink;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel titre;
     private javax.swing.JLabel type;
