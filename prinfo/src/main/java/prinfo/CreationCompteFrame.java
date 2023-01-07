@@ -1,6 +1,9 @@
 package prinfo;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import static java.awt.image.ImageObserver.WIDTH;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
