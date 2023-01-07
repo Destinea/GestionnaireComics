@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-import BDD.BDDGestionCompte;
+import User.User_BDD;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 
@@ -250,7 +250,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
         try{
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
         Statement stmt = con.createStatement();
-        if(argon2.verify(BDDGestionCompte.lecture(stmt, logintemp), mdp)){
+        if(argon2.verify(User_BDD.lecture(stmt, logintemp), mdp)){
             login = logintemp;
             frame.switchestCo();
             this.dispose();
@@ -269,7 +269,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

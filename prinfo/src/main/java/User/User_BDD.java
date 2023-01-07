@@ -1,4 +1,4 @@
-package BDD;
+package User;
 
 import java.sql.*;
 
@@ -7,7 +7,7 @@ import java.sql.*;
 import de.mkammerer.argon2.Argon2;
 
 
-public class BDDGestionCompte {
+public class User_BDD {
 
 	public static boolean insertion(Statement stmt, String login, String psw, Argon2 argon2) {
 		// Insertion du login et du mdp

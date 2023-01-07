@@ -21,7 +21,7 @@ import javax.swing.ImageIcon;
  */
 public class AffichageResultsMultiple extends javax.swing.JPanel {
     
-    private Results resultat;
+    private final Results resultat;
     
     /**
      * Creates new form AffichageResultsMultiple

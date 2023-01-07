@@ -13,7 +13,7 @@ public class BDDGestionCollection {
         stmt.executeQuery(sql);
         ResultSet rs = stmt.getResultSet();
         while (rs.next()) {
-            collection.addComic(new Comic(rs.getString("nom"), rs.getString("description"), "comic", rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), "null"));
+            collection.addComic(new Comic_Collec(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), "null"));
         }
     }
     public static void insertionComic(Statement stmt, Comic c){

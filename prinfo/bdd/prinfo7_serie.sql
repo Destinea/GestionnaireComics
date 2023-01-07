@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `prinfo7` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `prinfo7`;
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: prinfo7
@@ -26,17 +28,8 @@ CREATE TABLE `serie` (
   `id_serie` int NOT NULL AUTO_INCREMENT,
   `nom_serie` varchar(255) NOT NULL,
   PRIMARY KEY (`id_serie`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `serie`
---
-
-LOCK TABLES `serie` WRITE;
-/*!40000 ALTER TABLE `serie` DISABLE KEYS */;
-/*!40000 ALTER TABLE `serie` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -47,4 +40,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-27 12:19:30
+-- Dump completed on 2023-01-04 16:19:34

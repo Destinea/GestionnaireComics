@@ -1,9 +1,9 @@
 package API;
 
 public class Comic extends Results{
-    private String SerieName;
-    private int SerieId;
-    private int number;
+    private final String SerieName;
+    private final int SerieId;
+    private final int number;
 
 
     public Comic(String name, String shortDescription, String type, int id, String iconLink, String serieName, int serieId, int number, String HTMLDescription) {

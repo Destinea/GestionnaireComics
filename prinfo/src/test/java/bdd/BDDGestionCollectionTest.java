@@ -12,7 +12,7 @@ import static org.junit.Assert.assertTrue;
 
 public class BDDGestionCollectionTest {
 
-    Comic c = new Comic("Wolverine", "Super Comic", "comic", 34, "link", "wolverine", 12, 3, "Super Serie");
+    Comic c = new Comic("Thor", "Super Comic", "comic", 36, "link", "thor", 12, 5, "Super Serie");
 
     @Before
     public void effacer() throws SQLException{
