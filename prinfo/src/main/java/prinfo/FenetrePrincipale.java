@@ -30,6 +30,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private api_connection test;
     private List<Results> ResultatsRecherche;
     ConnectionFrame connectionFrame;
+    Suggestion sugg;
 
 
     private List<AffichageResultsMultiple> resultatsMultipleAffichage;
@@ -49,6 +50,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         droplistFiltre.setVisible(true);
         scrollPaneAffichageMultiple.setVisible(false);
         Navbar.setVisible(false);
+        sugg = new Suggestion(this);
+        panelAffichageMultiple.setLayout(new GridLayout(1, 1, 5, 5));
+        scrollPaneAffichageMultiple.setVisible(true);
+        panelAffichageMultiple.add(sugg);
     }
     /**
      * Boolean true si on est connecté, false sinon
@@ -446,6 +451,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void rechercheBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheBtnActionPerformed
         // On supprime la liste précédemmant cherchée pour la set à nouveau
+        panelAffichageMultiple.removeAll();
         if (ResultatsRecherche!=null) {
             ResultatsRecherche.clear();
             resultatsMultipleAffichage.clear();
