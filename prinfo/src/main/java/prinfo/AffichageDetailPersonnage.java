@@ -61,13 +61,17 @@ public class AffichageDetailPersonnage extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1032, 600));
         setType(java.awt.Window.Type.POPUP);
 
-        jPanel2.setBackground(new java.awt.Color(255, 211, 132));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        jScrollPane2.setBackground(new java.awt.Color(255, 249, 176));
+        jScrollPane2.setBackground(new java.awt.Color(51, 51, 51));
+        jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jPanel1.setBackground(new java.awt.Color(255, 249, 176));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
+        HTMLDescription.setBackground(new java.awt.Color(51, 51, 51));
+        HTMLDescription.setForeground(new java.awt.Color(255, 255, 255));
         HTMLDescription.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         HTMLDescription.setText("jLabel1");
         HTMLDescription.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -93,37 +97,44 @@ public class AffichageDetailPersonnage extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jPanel1);
 
-        jSplitPane1.setBackground(new java.awt.Color(255, 211, 132));
+        jSplitPane1.setBackground(new java.awt.Color(0, 0, 0));
         jSplitPane1.setDividerLocation(120);
         jSplitPane1.setDividerSize(0);
+        jSplitPane1.setForeground(new java.awt.Color(255, 255, 255));
 
+        Icon.setBackground(new java.awt.Color(0, 0, 0));
         Icon.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        Icon.setForeground(new java.awt.Color(255, 255, 255));
         Icon.setIconTextGap(0);
         Icon.setMaximumSize(new java.awt.Dimension(180, 250));
         Icon.setMinimumSize(new java.awt.Dimension(180, 250));
         Icon.setPreferredSize(new java.awt.Dimension(180, 250));
         jSplitPane1.setLeftComponent(Icon);
 
-        jSplitPane2.setBackground(new java.awt.Color(255, 211, 132));
+        jSplitPane2.setBackground(new java.awt.Color(0, 0, 0));
         jSplitPane2.setDividerLocation(110);
         jSplitPane2.setDividerSize(0);
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        Name.setBackground(new java.awt.Color(255, 211, 132));
+        Name.setBackground(new java.awt.Color(0, 0, 0));
         Name.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        Name.setForeground(new java.awt.Color(255, 255, 255));
         Name.setText("Name");
         jSplitPane2.setTopComponent(Name);
 
+        jSplitPane3.setBackground(new java.awt.Color(0, 0, 0));
         jSplitPane3.setDividerSize(0);
         jSplitPane3.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        Real_Name.setBackground(new java.awt.Color(255, 211, 132));
+        Real_Name.setBackground(new java.awt.Color(0, 0, 0));
         Real_Name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Real_Name.setForeground(new java.awt.Color(255, 255, 255));
         Real_Name.setText("(Real Name)");
         jSplitPane3.setLeftComponent(Real_Name);
 
-        Nb_Apparitions.setBackground(new java.awt.Color(255, 211, 132));
+        Nb_Apparitions.setBackground(new java.awt.Color(0, 0, 0));
         Nb_Apparitions.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Nb_Apparitions.setForeground(new java.awt.Color(255, 255, 255));
         Nb_Apparitions.setText("est apparu dans XXX comics");
         Nb_Apparitions.setToolTipText("");
         jSplitPane3.setRightComponent(Nb_Apparitions);

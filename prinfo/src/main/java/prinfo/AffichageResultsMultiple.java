@@ -71,16 +71,28 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
         type = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
 
+        setBackground(new java.awt.Color(51, 51, 51));
+
+        iconLink.setBackground(new java.awt.Color(51, 51, 51));
+        iconLink.setForeground(new java.awt.Color(255, 255, 255));
         iconLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 iconLinkMouseClicked(evt);
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+
+        titre.setBackground(new java.awt.Color(51, 51, 51));
+        titre.setForeground(new java.awt.Color(255, 255, 255));
         titre.setText("titre1");
 
+        type.setBackground(new java.awt.Color(51, 51, 51));
+        type.setForeground(new java.awt.Color(255, 255, 255));
         type.setText("type1");
 
+        jCheckBox1.setBackground(new java.awt.Color(51, 51, 51));
+        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setText("Ajouter");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -106,19 +106,20 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         btnSuivant = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1032, 600));
 
-        jPanel1.setBackground(new java.awt.Color(255, 249, 176));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 204, 102), 1, true));
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 800));
 
-        entete.setBackground(new java.awt.Color(255, 211, 132));
+        entete.setBackground(new java.awt.Color(0, 0, 0));
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("NetComics");
 
-        PanelAccueil.setBackground(new java.awt.Color(255, 211, 132));
+        PanelAccueil.setBackground(new java.awt.Color(0, 0, 0));
         PanelAccueil.setToolTipText("");
         PanelAccueil.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         PanelAccueil.setName(""); // NOI18N
@@ -154,7 +155,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        PanelCollection.setBackground(new java.awt.Color(255, 211, 132));
+        PanelCollection.setBackground(new java.awt.Color(0, 0, 0));
         PanelCollection.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 PanelCollectionMouseEntered(evt);
@@ -186,6 +187,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jTextField1.setBackground(new java.awt.Color(0, 0, 0));
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setText("Rechercher");
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -198,7 +201,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        PanelConnection.setBackground(new java.awt.Color(255, 211, 132));
+        PanelConnection.setBackground(new java.awt.Color(0, 0, 0));
         PanelConnection.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PanelConnectionMouseClicked(evt);
@@ -235,6 +238,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
 
+        rechercheBtn.setBackground(new java.awt.Color(0, 0, 0));
+        rechercheBtn.setForeground(new java.awt.Color(255, 255, 255));
         rechercheBtn.setText("Rechercher");
         rechercheBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -301,12 +306,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                                 .addGap(17, 17, 17))))))
         );
 
-        contentPage.setBackground(new java.awt.Color(255, 249, 176));
+        contentPage.setBackground(new java.awt.Color(51, 51, 51));
+        contentPage.setForeground(new java.awt.Color(102, 102, 102));
         contentPage.setPreferredSize(new java.awt.Dimension(1030, 700));
 
         scrollPaneAffichageMultiple.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        panelAffichageMultiple.setBackground(new java.awt.Color(255, 249, 176));
+        panelAffichageMultiple.setBackground(new java.awt.Color(51, 51, 51));
 
         javax.swing.GroupLayout panelAffichageMultipleLayout = new javax.swing.GroupLayout(panelAffichageMultiple);
         panelAffichageMultiple.setLayout(panelAffichageMultipleLayout);
@@ -321,8 +327,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         scrollPaneAffichageMultiple.add(panelAffichageMultiple);
 
+        Navbar.setBackground(new java.awt.Color(51, 51, 51));
         Navbar.setLayout(new java.awt.GridLayout(1, 3));
 
+        btnPrecedent.setBackground(new java.awt.Color(51, 51, 51));
+        btnPrecedent.setForeground(new java.awt.Color(255, 255, 255));
         btnPrecedent.setText("Précédent");
         btnPrecedent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,10 +340,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         Navbar.add(btnPrecedent);
 
+        numPage.setBackground(new java.awt.Color(51, 51, 51));
+        numPage.setForeground(new java.awt.Color(255, 255, 255));
         numPage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numPage.setText("0");
         Navbar.add(numPage);
 
+        btnSuivant.setBackground(new java.awt.Color(51, 51, 51));
+        btnSuivant.setForeground(new java.awt.Color(255, 255, 255));
         btnSuivant.setText("Suivant");
         btnSuivant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
