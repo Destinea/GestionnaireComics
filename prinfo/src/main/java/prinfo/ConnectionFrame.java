@@ -255,7 +255,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
         try{
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
         Statement stmt = con.createStatement();
-        if(argon2.verify(User_BDD.lecture(stmt, logintemp), mdp)){
+        if(argon2.verify(User_BDD.lectureMdp(stmt, logintemp), mdp)){
             login = logintemp;
             frame.switchestCo();
             this.dispose();

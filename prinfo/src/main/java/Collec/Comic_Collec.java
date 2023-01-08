@@ -5,10 +5,7 @@ import API.Comic;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Comic_Collec extends Comic {
 
@@ -48,7 +45,7 @@ public class Comic_Collec extends Comic {
             System.out.println("On va supprimer des comics");
             supprimer_bdd(stmt, new_collection, login);
         }
-
+        verificationEtatLecture(stmt, new_collection, login);
     }
 
     // Comparaison avant après
@@ -170,8 +167,41 @@ public class Comic_Collec extends Comic {
         stmt.executeUpdate(sql);
     }
 
-    //TO DO
-    // Suppression Serie
-    // Maj etat_lecture
+    public static void verificationEtatLecture(Statement stmt, Collec collection, String login) throws SQLException {
+        System.out.println("Vérification changement etat lecture");
+        int id_user = getId(stmt, login);
+        for (Comic_Collec comic : collection.getComics()) {
+            String etat = comic.getEtat();
+            String sql = "SELECT etat_lecture FROM Collection WHERE id_comic = " + comic.getId() + " AND id_user = " + id_user + ";";
+            stmt.executeQuery(sql);
+            ResultSet rs = stmt.getResultSet();
+            System.out.println(rs);
+            String res = "";
+            while (rs.next()) {
+                res = rs.getString(1);
+            }
+            if (!Objects.equals(res, etat) && !res.isEmpty())
+            {
+                majEtatLecture(stmt, id_user, comic.getId(), etat);
+            }
+        }
+    }
+    public static void majEtatLecture(Statement stmt, int id_user, int id_comic, String etat) throws SQLException {
+        System.out.println("Maj etat lecture : " + id_comic);
+        String sql = "UPDATE collection SET etat_lecture= '" + etat + "' WHERE id_comic = " + id_comic + " AND id_user = '" + id_user + "';";
+        stmt.executeUpdate(sql);
+    }
 
+
+    public static List<Comic> getPlusLu(Statement stmt) throws SQLException {
+        String sql = "SELECT *, count(*) as count FROM collection INNER JOIN comic ON comic.id_comic = collection.id_comic INNER JOIN serie s on comic.id_serie = s.id_serie GROUP BY collection.id_comic ORDER BY count DESC LIMIT 3";
+        stmt.executeQuery(sql);
+        ResultSet rs = stmt.getResultSet();
+        List<Comic> liste_comic = new ArrayList<>();
+        while (rs.next())
+        {
+            liste_comic.add(new Comic_Collec(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), rs.getString("etat_lecture")));
+        }
+        return liste_comic;
+    }
 }

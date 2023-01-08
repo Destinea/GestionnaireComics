@@ -55,15 +55,14 @@ public class Collec {
 	public void addSerie(User_serie series) {
 		this.series.add(series);
 	}
-	public int searchComic(Comic comic) {
+	public Comic_Collec searchComic(Comic comic) {
 		for (Iterator<Comic_Collec> iterator = this.comics.iterator(); iterator.hasNext();) {
-			Comic c = iterator.next();
-			if (c==comic) {
-				return 1;
+			Comic_Collec c = iterator.next();
+			if (c.getId()==comic.getId()) {
+				return c;
 			}
 		}
-			
-		return 0;
+		return null ;
 	}
 
 	public int searchSerie(Serie serie) {
