@@ -1,13 +1,13 @@
 package API;
 
 public class Serie extends Results{
-    private int NumberOfComics;
-    private int StartYear;
+    private final int NumberOfComics;
+    private final int StartYear;
 
-    private int LastComicID;
-    private int FirstComicID;
-    private String LastComicName;
-    private String FirstComicName;
+    private final int LastComicID;
+    private final int FirstComicID;
+    private final String LastComicName;
+    private final String FirstComicName;
 
 
     public Serie(String name, String shortDescription, String type, int id, String iconLink, int numberOfComics, int startYear, String HTMLDescription, int lastComicID, int firstComicID, String lastComicName, String firstComicName) {

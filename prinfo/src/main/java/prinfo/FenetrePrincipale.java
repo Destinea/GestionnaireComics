@@ -27,13 +27,13 @@ import javax.swing.JFrame;
  * @author nathb
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
-    private api_connection test;
+    private final api_connection test;
     private List<Results> ResultatsRecherche;
     ConnectionFrame connectionFrame;
     Suggestion sugg;
 
 
-    private List<AffichageResultsMultiple> resultatsMultipleAffichage;
+    private final List<AffichageResultsMultiple> resultatsMultipleAffichage;
 
     /**
      * Creates new form FenetrePrincipale
@@ -477,7 +477,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        panelAffichageMultiple.setLayout(new GridLayout((int) ResultatsRecherche.size()/2, 2, 5, 5));
+        panelAffichageMultiple.setLayout(new GridLayout(ResultatsRecherche.size() /2, 2, 5, 5));
         scrollPaneAffichageMultiple.setVisible(true);
 
         for (Results results : ResultatsRecherche) {
@@ -517,7 +517,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        panelAffichageMultiple.setLayout(new GridLayout((int) ResultatsRecherche.size()/2, 2, 5, 5));
+        panelAffichageMultiple.setLayout(new GridLayout(ResultatsRecherche.size() /2, 2, 5, 5));
         scrollPaneAffichageMultiple.setVisible(true);
 
         for (Results results : ResultatsRecherche) {
@@ -548,7 +548,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        panelAffichageMultiple.setLayout(new GridLayout((int) ResultatsRecherche.size()/2, 2, 5, 5));
+        panelAffichageMultiple.setLayout(new GridLayout(ResultatsRecherche.size() /2, 2, 5, 5));
         scrollPaneAffichageMultiple.setVisible(true);
 
         for (Results results : ResultatsRecherche) {
@@ -566,7 +566,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

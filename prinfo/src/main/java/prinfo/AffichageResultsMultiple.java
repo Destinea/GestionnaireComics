@@ -22,7 +22,7 @@ import javax.swing.ImageIcon;
  */
 public class AffichageResultsMultiple extends javax.swing.JPanel {
     
-    private Results resultat;
+    private final Results resultat;
     FenetrePrincipale frame;
     /**
      * Creates new form AffichageResultsMultiple
@@ -31,12 +31,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
         resultat=res;
         initComponents();
         RemplirChamps();
-        if (("issue".equals(type.getText())) && (frame.getestCo())){
-            jCheckBox1.setVisible(true);
-        }
-        else{
-            jCheckBox1.setVisible(false);
-        }
+        jCheckBox1.setVisible(("issue".equals(type.getText())) && (frame.getestCo()));
     }
     
     private void RemplirChamps(){
