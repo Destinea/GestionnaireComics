@@ -18,19 +18,22 @@ USE `prinfo7`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `comic`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `comic`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  `id_user` int NOT NULL AUTO_INCREMENT,
-  `login` varchar(20) NOT NULL,
-  `nametag` varchar(255) DEFAULT NULL,
-  `password` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `comic` (
+  `id_comic` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  `lien_image` varchar(255) NOT NULL,
+  `id_serie` int DEFAULT NULL,
+  `numero` int NOT NULL,
+  PRIMARY KEY (`id_comic`),
+  KEY `id_serie` (`id_serie`),
+  CONSTRAINT `comic_ibfk_1` FOREIGN KEY (`id_serie`) REFERENCES `serie` (`id_serie`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -42,4 +45,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-04 16:19:34
+-- Dump completed on 2023-01-04 16:19:33

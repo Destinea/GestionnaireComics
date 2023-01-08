@@ -18,19 +18,21 @@ USE `prinfo7`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `collection`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `collection`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  `id_user` int NOT NULL AUTO_INCREMENT,
-  `login` varchar(20) NOT NULL,
-  `nametag` varchar(255) DEFAULT NULL,
-  `password` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `collection` (
+  `id_user` int NOT NULL,
+  `id_comic` int NOT NULL,
+  `etat_lecture` varchar(15) NOT NULL,
+  PRIMARY KEY (`id_user`,`id_comic`),
+  KEY `id_comic` (`id_comic`),
+  CONSTRAINT `collection_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
+  CONSTRAINT `collection_ibfk_2` FOREIGN KEY (`id_comic`) REFERENCES `comic` (`id_comic`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

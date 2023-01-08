@@ -18,19 +18,17 @@ USE `prinfo7`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `serie`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `serie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  `id_user` int NOT NULL AUTO_INCREMENT,
-  `login` varchar(20) NOT NULL,
-  `nametag` varchar(255) DEFAULT NULL,
-  `password` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `serie` (
+  `id_serie` int NOT NULL AUTO_INCREMENT,
+  `nom_serie` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_serie`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
