@@ -24,8 +24,6 @@ public class api_connection {
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
-        /*int responseCode = con.getResponseCode();
-        System.out.println("GET Response Code :: " + responseCode);*/
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuilder response = new StringBuilder();
@@ -110,7 +108,7 @@ public class api_connection {
         String iconLink = obj.getJSONObject("image").getString("icon_url");
         String SerieName = obj.getJSONObject("volume").getString("name");
         int SerieId = obj.getJSONObject("volume").getInt("id");
-        int number = obj.getInt("issue_number");
+        double number = obj.getDouble("issue_number");
         String HTMLDescription = obj.get("description").toString();
 
         return new Comic(name,shortDescription,"issue",id,iconLink,SerieName,SerieId,number,HTMLDescription);
@@ -135,6 +133,33 @@ public class api_connection {
         return new Character(name,shortDescription,"character",id,iconLink,appearances,firstComicID,firstComicName,gender, realName,HTMLDescription);
     }
 
+    /**
+     * Retourne les 10 derniers comics mis en ligne
+     * @return La liste des 10 derniers comics publiés
+     * @throws IOException erreur de parsage
+     */
+    public List<Comic> getLastComics() throws IOException{
+        List<Comic> lastComics = new ArrayList<>();
+        String requeteURL = "https://comicvine.gamespot.com/api/issues/?sort=date_added:desc&format=json&limit=10&api_key=53b33e3da09b63c64d3a69667f455e9076055dcc";
+        String jsonString = sendRequest(requeteURL);
+        JSONObject obj = new JSONObject(jsonString);
+        JSONArray JSONComics = obj.getJSONArray("results");
+        for(int i=0;i<JSONComics.length();i++){
+            String name = JSONComics.getJSONObject(i).get("name").toString();
+            String shortDescription = JSONComics.getJSONObject(i).get("deck").toString();
+            int id = JSONComics.getJSONObject(i).getInt("id");
+            String iconLink = JSONComics.getJSONObject(i).getJSONObject("image").getString("icon_url");
+            String SerieName = JSONComics.getJSONObject(i).getJSONObject("volume").getString("name");
+            int SerieId = JSONComics.getJSONObject(i).getJSONObject("volume").getInt("id");
+            double number = JSONComics.getJSONObject(i).getDouble("issue_number");
+            String HTMLDescription = JSONComics.getJSONObject(i).get("description").toString();
+
+            Comic newComic = new Comic(name,shortDescription,"issue",id,iconLink,SerieName,SerieId,number,HTMLDescription);
+            lastComics.add(newComic);
+        }
+        return lastComics;
+    }
+
     public Serie getSerie(int id) throws IOException{
         String requeteURL = "https://comicvine.gamespot.com/api/volumes/?filter=id:" + id +"&format=json&api_key=" + API_KEY;
         String jsonString = sendRequest(requeteURL);
@@ -156,40 +181,22 @@ public class api_connection {
                 lastComicID,firstComicID,lastComicName,firstComicName);
     }
 
-    /*
+    
     //Exemple d'utilisation de la classe :
     public static void main(String[] args) throws IOException {
         api_connection test = new api_connection();
 
         // Recherche générale
-        List<Results> ResultatsRecherche = test.GetResults("wolverine",1);
+        List<Comic> lastComics = test.getLastComics();
 
 
-        for (Results results : ResultatsRecherche) {
-            System.out.println(results.getName() + "\n");
-            System.out.println(results.getShortDescription() + "\n");
-            System.out.println(results.getType() + "\n");
+        for (Comic comics : lastComics) {
+            System.out.println(comics.getSerieName() + "\n");
+            System.out.println(comics.getNumber() + "\n");
             System.out.println("\n");
         }
-
-        // Recherche spécifique par id
-        Character Wolverine = test.getCharacter(1440);
-        System.out.println(Wolverine.getName() + " Vrai nom : "+Wolverine.getRealName()+ "\n"+
-                "Nombre d'apparitions : " + Wolverine.getComicAppearances() + " Première appartion : " +
-                Wolverine.getFirstComicAppearanceIssueName());
-
-        Comic UnComic = test.getComic(Wolverine.getFirstComicAppearanceIssueID());
-        System.out.println("Série : " + UnComic.getSerieName() + " numéro : " + UnComic.getNumber()
-                +"\n" + UnComic.getHTMLDescription());
-
-        Serie UneSerieDeComics = test.getSerie(UnComic.getSerieId());
-        System.out.println(UneSerieDeComics.getName() + " " + UneSerieDeComics.getNumberOfComics() + " numéros, série débutée en "
-                + UneSerieDeComics.getStartYear() +
-                "\n" + "Premier numéro : " + UneSerieDeComics.getFirstComicName() + "\n" +
-                "Dernier numéro : " + UneSerieDeComics.getLastComicName());
-
     }
-     */
+     
 
 
 }

@@ -1,12 +1,12 @@
 package API;
 
 public class Comic extends Results{
-    private final String SerieName;
-    private final int SerieId;
-    private final int number;
+    private String SerieName;
+    private int SerieId;
+    private double number;// Utilisation d'un double car il existe des comics n°4.5 par exemple
 
 
-    public Comic(String name, String shortDescription, String type, int id, String iconLink, String serieName, int serieId, int number, String HTMLDescription) {
+    public Comic(String name, String shortDescription, String type, int id, String iconLink, String serieName, int serieId, double number, String HTMLDescription) {
         super(name, shortDescription, type, id, iconLink, HTMLDescription);
         SerieName = serieName;
         SerieId = serieId;
@@ -21,7 +21,7 @@ public class Comic extends Results{
         return SerieId;
     }
 
-    public int getNumber() {
+    public double getNumber() {
         return number;
     }
 
