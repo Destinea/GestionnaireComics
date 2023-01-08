@@ -7,8 +7,8 @@ import API.Comic;
 import API.Serie;
 
 public class User_serie extends Serie{
-	private Comic[] full_serie;
-	private Integer[] user_serie;
+	private final Comic[] full_serie;
+	private final Integer[] user_serie;
 	
 	public User_serie(Comic[] full_serie,String name, String shortDescription, String type, int id, String iconLink, int numberOfComics, int startYear, String HTMLDescription, int lastComicID, int firstComicID, String lastComicName, String firstComicName) {
 		super(name, shortDescription, type, id, iconLink, numberOfComics, startYear, HTMLDescription, lastComicID, firstComicID, lastComicName, firstComicName);

@@ -3,7 +3,7 @@ package User;
 import Collec.Collec;
 
 public class User {
-	private String username;
+	private final String username;
 	private String nametag;
 	private Collec collection;
 	private Collec suggestions;

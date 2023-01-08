@@ -1,13 +1,13 @@
 package API;
 
 public class Character extends Results{
-    private int ComicAppearances;
-    private int FirstComicAppearanceIssueID;
-    private String FirstComicAppearanceIssueName;
+    private final int ComicAppearances;
+    private final int FirstComicAppearanceIssueID;
+    private final String FirstComicAppearanceIssueName;
 
     //Gender : male = 1, TODO Female = ?? Other = ??
-    private int gender;
-    private String RealName;
+    private final int gender;
+    private final String RealName;
 
     public Character(String name, String shortDescription, String type, int id, String iconLink, int comicAppearances, int firstComicAppearanceIssueID, String firstComicAppearanceIssueName, int gender, String realName,String HTMLDescription) {
         super(name, shortDescription, type, id, iconLink, HTMLDescription);

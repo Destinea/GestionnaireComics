@@ -5,13 +5,13 @@ package API;
  * @author Cyril
  */
 public class Results {
-    private String name;
-    private String shortDescription;
-    private String type;
-    private int id;
-    private String iconLink;
+    private final String name;
+    private final String shortDescription;
+    private final String type;
+    private final int id;
+    private final String iconLink;
 
-    private String HTMLDescription;
+    private final String HTMLDescription;
 
 
     public Results(String name, String shortDescription, String type, int id, String iconLink, String htmlDescription) {
