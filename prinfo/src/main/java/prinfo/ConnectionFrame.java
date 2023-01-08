@@ -57,7 +57,6 @@ public class ConnectionFrame extends javax.swing.JFrame {
         CreationCompteBouton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        fermeFenetreBouton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -65,15 +64,19 @@ public class ConnectionFrame extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         EtatConnection = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Connection");
         setBackground(new java.awt.Color(255, 249, 176));
-        setPreferredSize(new java.awt.Dimension(700, 350));
-        setSize(new java.awt.Dimension(700, 350));
+        setMinimumSize(new java.awt.Dimension(750, 380));
+        setResizable(false);
+        setSize(new java.awt.Dimension(750, 380));
 
-        jPanel1.setBackground(new java.awt.Color(255, 249, 176));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(700, 350));
 
-        ConnexionBouton.setBackground(java.awt.Color.lightGray);
+        ConnexionBouton.setBackground(new java.awt.Color(51, 51, 51));
+        ConnexionBouton.setForeground(new java.awt.Color(255, 255, 255));
         ConnexionBouton.setText("Connexion");
         ConnexionBouton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -89,7 +92,8 @@ public class ConnectionFrame extends javax.swing.JFrame {
             }
         });
 
-        CreationCompteBouton.setBackground(java.awt.Color.lightGray);
+        CreationCompteBouton.setBackground(new java.awt.Color(51, 51, 51));
+        CreationCompteBouton.setForeground(new java.awt.Color(255, 255, 255));
         CreationCompteBouton.setText("Créer un compte");
         CreationCompteBouton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -105,29 +109,39 @@ public class ConnectionFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setBackground(new java.awt.Color(51, 51, 51));
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("<html>Connectez-vous</html>");
 
+        jLabel3.setBackground(new java.awt.Color(51, 51, 51));
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("<html>Vous n'avez pas <br> encore de compte ?</html>");
 
-        fermeFenetreBouton.setBackground(new java.awt.Color(166, 172, 175));
-        fermeFenetreBouton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fermeFenetreBoutonActionPerformed(evt);
-            }
-        });
-
+        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Mot de passe oublié ?");
 
+        jLabel4.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Utilisateur ");
 
+        jLabel5.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Mot de passe ");
 
+        jPasswordField1.setBackground(new java.awt.Color(51, 51, 51));
+        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jTextField1.setBackground(new java.awt.Color(51, 51, 51));
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
+
+        EtatConnection.setBackground(new java.awt.Color(51, 51, 51));
         EtatConnection.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        EtatConnection.setForeground(new java.awt.Color(255, 51, 51));
+        EtatConnection.setForeground(new java.awt.Color(255, 255, 255));
         EtatConnection.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -153,23 +167,18 @@ public class ConnectionFrame extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(31, 31, 31)
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 42, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(122, 122, 122)
                         .addComponent(EtatConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(97, 97, 97)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(CreationCompteBouton)
+                        .addGap(161, 161, 161))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(CreationCompteBouton)
-                                .addGap(161, 161, 161))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(136, 136, 136))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(357, 357, 357)
-                        .addComponent(fermeFenetreBouton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(136, 136, 136))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(114, 114, 114)
                 .addComponent(jLabel1)
@@ -180,8 +189,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(fermeFenetreBouton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
                         .addComponent(CreationCompteBouton)
@@ -209,11 +217,11 @@ public class ConnectionFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -224,7 +232,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ConnexionBoutonMouseEntered
 
     private void ConnexionBoutonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnexionBoutonMouseExited
-        ConnexionBouton.setBackground(Color.LIGHT_GRAY);
+        ConnexionBouton.setBackground(new Color(51,51,51));
     }//GEN-LAST:event_ConnexionBoutonMouseExited
 
     private void CreationCompteBoutonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreationCompteBoutonMouseEntered
@@ -232,17 +240,14 @@ public class ConnectionFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CreationCompteBoutonMouseEntered
 
     private void CreationCompteBoutonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreationCompteBoutonMouseExited
-        CreationCompteBouton.setBackground(Color.LIGHT_GRAY);
+        CreationCompteBouton.setBackground(new Color(51,51,51));
     }//GEN-LAST:event_CreationCompteBoutonMouseExited
 
     private void CreationCompteBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreationCompteBoutonActionPerformed
         CreationCompteFrame creationCompte = new CreationCompteFrame();
+        creationCompte.setLocationRelativeTo(null);
         creationCompte.setVisible(true);
     }//GEN-LAST:event_CreationCompteBoutonActionPerformed
-
-    private void fermeFenetreBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fermeFenetreBoutonActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_fermeFenetreBoutonActionPerformed
 
     private void ConnexionBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnexionBoutonActionPerformed
         String logintemp = jTextField1.getText();
@@ -308,7 +313,6 @@ public class ConnectionFrame extends javax.swing.JFrame {
     private javax.swing.JButton ConnexionBouton;
     private javax.swing.JButton CreationCompteBouton;
     private javax.swing.JLabel EtatConnection;
-    private javax.swing.JButton fermeFenetreBouton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -70,32 +70,45 @@ public class AffichageDetailsSerie extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setType(java.awt.Window.Type.POPUP);
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(1032, 779));
 
+        Entete.setBackground(new java.awt.Color(0, 0, 0));
         Entete.setDividerLocation(120);
         Entete.setDividerSize(0);
 
+        Icon.setBackground(new java.awt.Color(0, 0, 0));
+        Icon.setForeground(new java.awt.Color(255, 255, 255));
         Icon.setMaximumSize(new java.awt.Dimension(180, 250));
         Icon.setMinimumSize(new java.awt.Dimension(180, 250));
         Icon.setPreferredSize(new java.awt.Dimension(180, 250));
         Entete.setLeftComponent(Icon);
 
+        jSplitPane1.setBackground(new java.awt.Color(0, 0, 0));
         jSplitPane1.setDividerLocation(110);
         jSplitPane1.setDividerSize(0);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
+        Date.setBackground(new java.awt.Color(0, 0, 0));
         Date.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Date.setForeground(new java.awt.Color(255, 255, 255));
         Date.setText("Débutée en AAAA");
         jSplitPane1.setRightComponent(Date);
 
+        jSplitPane2.setBackground(new java.awt.Color(0, 0, 0));
         jSplitPane2.setDividerLocation(500);
         jSplitPane2.setDividerSize(0);
 
+        Titre.setBackground(new java.awt.Color(0, 0, 0));
         Titre.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        Titre.setForeground(new java.awt.Color(255, 255, 255));
         Titre.setText("Titre");
         jSplitPane2.setTopComponent(Titre);
 
+        Nb_numeros.setBackground(new java.awt.Color(0, 0, 0));
+        Nb_numeros.setForeground(new java.awt.Color(255, 255, 255));
         Nb_numeros.setText("X numéros");
         jSplitPane2.setRightComponent(Nb_numeros);
 
@@ -103,10 +116,16 @@ public class AffichageDetailsSerie extends javax.swing.JFrame {
 
         Entete.setRightComponent(jSplitPane1);
 
+        jScrollPane1.setBackground(new java.awt.Color(51, 51, 51));
+        jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(957, 566));
 
+        HTMLDescription.setBackground(new java.awt.Color(51, 51, 51));
+        HTMLDescription.setForeground(new java.awt.Color(255, 255, 255));
         HTMLDescription.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         HTMLDescription.setText("HTML description");
         HTMLDescription.setVerticalAlignment(javax.swing.SwingConstants.TOP);
