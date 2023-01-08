@@ -2,21 +2,44 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package prinfo;
+package AffichageCollection;
 
+import User.User;
+import Collec.User_serie;
+import java.awt.GridLayout;
 /**
  *
- * @author alexi
+ * @author Alexi
  */
 public class UserSeriePanel extends javax.swing.JPanel {
-
+    private User user;
+    private User_serie serie;
     /**
      * Creates new form UserSeriePanel
      */
-    public UserSeriePanel() {
+    public UserSeriePanel(User user,User_serie serie) {
         initComponents();
+        this.user=user;
+        this.serie=serie;
+        InitUserSeriePanelCollection();
     }
+    
+    public void InitUserSeriePanelCollection(){
+        nomSerie.setText(serie.getName());
+        contentpageserie.setLayout(new GridLayout(1,6));
+        
+        /*
+        for (Comic comic : serie.getFullSerie()) {//MOdifier pour avoir la serie possédée
+            list_Suggestion_Comic.add(new Suggestion_Comic(comic,estCo));
+        }
 
+        for (Suggestion_Comic suggestion_Comic : list_Suggestion_Comic) {
+            contentpageserie.add(suggestion_Comic);
+        }
+        */
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,7 +81,7 @@ public class UserSeriePanel extends javax.swing.JPanel {
         );
         contentpageserieLayout.setVerticalGroup(
             contentpageserieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 186, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -80,11 +103,12 @@ public class UserSeriePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(nomSerie)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(contentpageserie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(afficherGauche, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                    .addComponent(afficherDroite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(contentpageserie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addComponent(afficherGauche, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(afficherDroite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 

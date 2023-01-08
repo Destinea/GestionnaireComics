@@ -72,6 +72,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Poss&#xe9;d&#xe9;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="box_possedeActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

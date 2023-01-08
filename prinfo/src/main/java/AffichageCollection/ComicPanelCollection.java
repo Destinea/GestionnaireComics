@@ -2,22 +2,49 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package prinfo;
+package AffichageCollection;
 
+import API.Comic;
+import API.api_connection;
+import User.User;
+import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import prinfo.AffichageDetailsComic;
 
 /**
  *
- * @author alexi
+ * @author Alexi
  */
 public class ComicPanelCollection extends javax.swing.JPanel {
-
+    private  User user;
+    private Comic comic;
     /**
      * Creates new form ComicPanelCollection
+     * @param user
+     * @param c
      */
-    public ComicPanelCollection() {
+    public ComicPanelCollection(User user,Comic c) {
         initComponents();
+        this.user=user;
+        this.comic=c;
+        InitComicPanelCollection();
     }
-
+    
+    public void InitComicPanelCollection(){
+        box_lu.setVisible(true);
+        box_possede.setVisible(true);
+        titre.setText(this.comic.getName());
+        ImageIcon img = null;
+        try {
+            img = new ImageIcon(new URL(comic.getIconLink()));
+        } catch (Exception ex) {
+            Logger.getLogger(ComicPanelCollection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        iconLink.setIcon(img);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,6 +80,11 @@ public class ComicPanelCollection extends javax.swing.JPanel {
         });
 
         box_possede.setText("Possédé");
+        box_possede.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                box_possedeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -82,36 +114,24 @@ public class ComicPanelCollection extends javax.swing.JPanel {
 
     private void iconLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconLinkMouseClicked
         if (evt.getClickCount() == 2 && evt.getButton() == java.awt.event.MouseEvent.BUTTON1) {
-            //api_connection apiConnection = new api_connection();
             try {
-                /*
-                switch (resultat.getType()){
-                    case "character":
-                    AffichageDetailPersonnage affichageDetailPersonnage=
-                    new AffichageDetailPersonnage(apiConnection.getCharacter(resultat.getId()));
-                    affichageDetailPersonnage.setVisible(true);
-                    break;
-                    case "issue":
-                    AffichageDetailsComic affichageDetailsComic =
-                    new AffichageDetailsComic(apiConnection.getComic(resultat.getId()));
-                    affichageDetailsComic.setVisible(true);
-                    break;
-                    case "volume":
-                    AffichageDetailsSerie affichageDetailsSerie =
-                    new AffichageDetailsSerie(apiConnection.getSerie(resultat.getId()));
-                    affichageDetailsSerie.setVisible(true);
-                    break;
-                }
-                */
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+                api_connection apiConnection = new api_connection();
+                AffichageDetailsComic affichageDetailsComic =
+                        new AffichageDetailsComic(apiConnection.getComic(this.comic.getId()));
+                affichageDetailsComic.setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(ComicPanelCollection.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_iconLinkMouseClicked
 
     private void box_luActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_luActionPerformed
-        // TODO add your handling code here:
+        //Modifier état de lecture dans user.collection
     }//GEN-LAST:event_box_luActionPerformed
+
+    private void box_possedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_possedeActionPerformed
+        //Modifier état de lecture user.collection
+    }//GEN-LAST:event_box_possedeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
