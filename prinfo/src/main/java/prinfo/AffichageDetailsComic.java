@@ -66,35 +66,51 @@ public class AffichageDetailsComic extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1032, 600));
         setType(java.awt.Window.Type.POPUP);
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(1032, 779));
 
+        Entete.setBackground(new java.awt.Color(0, 0, 0));
         Entete.setDividerLocation(120);
         Entete.setDividerSize(0);
+        Entete.setForeground(new java.awt.Color(255, 255, 255));
 
+        Icon.setBackground(new java.awt.Color(0, 0, 0));
+        Icon.setForeground(new java.awt.Color(255, 255, 255));
         Icon.setMaximumSize(new java.awt.Dimension(180, 250));
         Icon.setMinimumSize(new java.awt.Dimension(180, 250));
         Icon.setPreferredSize(new java.awt.Dimension(180, 250));
         Entete.setLeftComponent(Icon);
 
+        jSplitPane1.setBackground(new java.awt.Color(0, 0, 0));
         jSplitPane1.setDividerLocation(110);
         jSplitPane1.setDividerSize(0);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
+        Titre.setBackground(new java.awt.Color(0, 0, 0));
         Titre.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        Titre.setForeground(new java.awt.Color(255, 255, 255));
         Titre.setText("Titre");
         jSplitPane1.setTopComponent(Titre);
 
+        num_serie.setBackground(new java.awt.Color(0, 0, 0));
         num_serie.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        num_serie.setForeground(new java.awt.Color(255, 255, 255));
         num_serie.setText("n°X de la série Y");
         jSplitPane1.setRightComponent(num_serie);
 
         Entete.setRightComponent(jSplitPane1);
 
+        jScrollPane1.setBackground(new java.awt.Color(51, 51, 51));
+        jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(959, 568));
 
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(957, 566));
 
+        HTMLDescription.setBackground(new java.awt.Color(51, 51, 51));
+        HTMLDescription.setForeground(new java.awt.Color(255, 255, 255));
         HTMLDescription.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         HTMLDescription.setText("HTML description");
         HTMLDescription.setVerticalAlignment(javax.swing.SwingConstants.TOP);
