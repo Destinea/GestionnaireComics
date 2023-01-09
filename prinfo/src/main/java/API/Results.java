@@ -20,30 +20,41 @@ public class Results {
         this.type = type;
         this.id = id;
         this.iconLink = iconLink;
-        HTMLDescription = htmlDescription;
+        this.HTMLDescription = htmlDescription;
     }
-
+    public Results(Results res) {
+		this.name=res.getName();
+		this.shortDescription=res.getShortDescription();
+		this.type=res.getType();
+		this.id=res.getId();
+		this.iconLink=res.getIconLink();
+		this.HTMLDescription=res.getHTMLDescription();
+		
+    }
+    public Results getResultVersion() {
+		return this; 	
+    }
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getShortDescription() {
-        return shortDescription;
+        return this.shortDescription;
     }
 
     public String getType() {
-        return type;
+        return this.type;
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getIconLink() {
-        return iconLink;
+        return this.iconLink;
     }
 
     public String getHTMLDescription() {
-        return HTMLDescription;
+        return this.HTMLDescription;
     }
 }

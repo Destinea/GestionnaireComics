@@ -8,20 +8,29 @@ import java.sql.Statement;
 import java.util.*;
 
 public class Comic_Collec extends Comic {
+	
+	/*
+	 * 0 pas dans la collection
+	 * 1 favori (=présent dans la collection)
+	 * 2 lu
+	 * 3 possédé
+	 * 4 lu et possédé
+	 **/
+    private int Etat;
 
-    private String Etat;
-
-    public Comic_Collec(String name, int id, String iconLink, String serieName, int serieId, int number, String etat) {
-        super(name, "NULL", "comic", id, iconLink, serieName, serieId, number, "NULL");
+    public Comic_Collec(String name, int id, String iconLink, String serieName, int serieId, int number, int etat) {
+        super(name,id, iconLink, serieName, serieId, number);
         Etat = etat;
-
+    }
+    public Comic_Collec(Comic c, int etat) {
+        super(c);
+        Etat = etat;
+    }
+    public int getEtat() {
+        return this.Etat;
     }
 
-    public String getEtat() {
-        return Etat;
-    }
-
-    public void setEtat(String etat) { this.Etat = etat;}
+    public void setEtat(int etat) { this.Etat = etat;}
 
     // Lecture et Enregistrement
     public static void lectureBdd(Statement stmt, Collec collection, String login) throws SQLException {
@@ -29,7 +38,7 @@ public class Comic_Collec extends Comic {
         stmt.executeQuery(sql);
         ResultSet rs = stmt.getResultSet();
         while (rs.next()) {
-            collection.addComic(new Comic_Collec(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), rs.getString("etat_lecture")));
+            collection.addComic(new Comic_Collec(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), rs.getInt("etat_lecture")));
         }
     }
 
@@ -171,7 +180,8 @@ public class Comic_Collec extends Comic {
         System.out.println("Vérification changement etat lecture");
         int id_user = getId(stmt, login);
         for (Comic_Collec comic : collection.getComics()) {
-            String etat = comic.getEtat();
+            Integer int_etat = comic.getEtat();
+            String etat=int_etat.toString();
             String sql = "SELECT etat_lecture FROM Collection WHERE id_comic = " + comic.getId() + " AND id_user = " + id_user + ";";
             stmt.executeQuery(sql);
             ResultSet rs = stmt.getResultSet();
@@ -200,7 +210,7 @@ public class Comic_Collec extends Comic {
         List<Comic> liste_comic = new ArrayList<>();
         while (rs.next())
         {
-            liste_comic.add(new Comic_Collec(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), rs.getString("etat_lecture")));
+            liste_comic.add(new Comic_Collec(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), rs.getInt("etat_lecture")));
         }
         return liste_comic;
     }

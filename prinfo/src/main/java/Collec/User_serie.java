@@ -1,67 +1,44 @@
 package Collec;
 
 
-import java.util.Iterator;
+import java.util.HashSet;
 
 import API.Comic;
 import API.Serie;
 
 public class User_serie extends Serie{
-	private final Comic[] full_serie;
-	private final Integer[] user_serie;
+	private final HashSet<Comic_Collec> user_serie;
 	
-	public User_serie(Comic[] full_serie,String name, String shortDescription, String type, int id, String iconLink, int numberOfComics, int startYear, String HTMLDescription, int lastComicID, int firstComicID, String lastComicName, String firstComicName) {
-		super(name, shortDescription, type, id, iconLink, numberOfComics, startYear, HTMLDescription, lastComicID, firstComicID, lastComicName, firstComicName);
-		this.full_serie =full_serie;
-		this.user_serie=new Integer[full_serie.length];
-		for (int i = 0; i < full_serie.length; i++) {
-			user_serie[i]=0;			
-		}
+	public User_serie(Serie serie) {
+		super(serie);
+		this.user_serie = new HashSet<Comic_Collec>();		
 	}
 	
-	public Comic[] getUserComics() {
-		int nbcomics=0;
-		for (int i = 0; i < this.user_serie.length; i++) {
-			if (this.user_serie[i]>0) {
-				nbcomics++;
-			}
-			
-		}
-		
-		Comic[] user_comics= new Comic[nbcomics];
-		for (int i = 0; i < this.user_serie.length; i++) {
-			if (this.user_serie[i]>0) {
-				user_comics[i]=this.full_serie[i];
-			}
-					
-		}
-		return user_comics;
-	}
-	
-	public void addUserComic(Comic c,int status) {
-		for (int i = 0; i < this.full_serie.length; i++) {
-			if (c==this.full_serie[i]) {
-				this.user_serie[i]=status;
-				break;
-			}	
-		}
-		
-	}
-	
-	public int searchComic(Comic c) {
-		for (int i = 0; i < this.full_serie.length; i++) {
-			if (c==this.full_serie[i]) {
-				return this.user_serie[i];
+	public void changeComicStatus(Comic c,int status) {
+		for (Comic_Collec comic_Collec : user_serie) {//Recherche dans les comics possédés
+			if (comic_Collec.getId()==c.getId()) {
+				if (status>0) {
+				comic_Collec.setEtat(status);
+				}
+				else {
+					user_serie.remove(comic_Collec);//Supprimer le comic
+				}
 			}
 		}
-		return -1;
+		//Ajout à la série
+		user_serie.add(new Comic_Collec(c, status));
 	}
-	public Integer[] getUserSerie() {
+	
+	public Comic_Collec searchComic(Comic_Collec c) {
+		for (Comic_Collec comic_Collec : user_serie) {
+			if (comic_Collec.equals(c)) {
+				return c;
+			}
+		}
+		return null;
+	}
+	public HashSet<Comic_Collec> getUserSerie() {
 		return this.user_serie;
-	}
-	public Comic[] getFullSerie() {
-		return this.full_serie;
-		
 	}
 	
 	
