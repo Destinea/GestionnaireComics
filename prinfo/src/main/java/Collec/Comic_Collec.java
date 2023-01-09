@@ -38,7 +38,7 @@ public class Comic_Collec extends Comic {
         stmt.executeQuery(sql);
         ResultSet rs = stmt.getResultSet();
         while (rs.next()) {
-            collection.addComic(new Comic_Collec(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), rs.getInt("etat_lecture")));
+            collection.addComic(new Comic_Collec(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), rs.getInt("id_etat")));
         }
     }
 
@@ -142,7 +142,7 @@ public class Comic_Collec extends Comic {
         if (id_user != -1)
         {
             System.out.println("Liaison utilisateur " + id_user + " et comic " + id_comic);
-            String sql_UserCollection = "INSERT INTO collection(id_user, id_comic, etat_lecture) VALUES ('" + id_user + "', '" + id_comic + "', 'possede');";
+            String sql_UserCollection = "INSERT INTO collection(id_user, id_comic, id_etat) VALUES ('" + id_user + "', '" + id_comic + "', 1);";
             stmt.executeUpdate(sql_UserCollection);
         }
     }
@@ -181,24 +181,23 @@ public class Comic_Collec extends Comic {
         int id_user = getId(stmt, login);
         for (Comic_Collec comic : collection.getComics()) {
             Integer int_etat = comic.getEtat();
-            String etat=int_etat.toString();
-            String sql = "SELECT etat_lecture FROM Collection WHERE id_comic = " + comic.getId() + " AND id_user = " + id_user + ";";
+            String sql = "SELECT id_etat FROM Collection WHERE id_comic = " + comic.getId() + " AND id_user = " + id_user + ";";
             stmt.executeQuery(sql);
             ResultSet rs = stmt.getResultSet();
             System.out.println(rs);
-            String res = "";
+            Integer res = 0;
             while (rs.next()) {
-                res = rs.getString(1);
+                res = rs.getInt(1);
             }
-            if (!Objects.equals(res, etat) && !res.isEmpty())
+            if (!Objects.equals(res, int_etat) && res != 0)
             {
-                majEtatLecture(stmt, id_user, comic.getId(), etat);
+                majEtatLecture(stmt, id_user, comic.getId(), int_etat);
             }
         }
     }
-    public static void majEtatLecture(Statement stmt, int id_user, int id_comic, String etat) throws SQLException {
+    public static void majEtatLecture(Statement stmt, int id_user, int id_comic, int id_etat) throws SQLException {
         System.out.println("Maj etat lecture : " + id_comic);
-        String sql = "UPDATE collection SET etat_lecture= '" + etat + "' WHERE id_comic = " + id_comic + " AND id_user = '" + id_user + "';";
+        String sql = "UPDATE collection SET id_etat = " + id_etat + " WHERE id_comic = " + id_comic + " AND id_user = '" + id_user + "';";
         stmt.executeUpdate(sql);
     }
 
@@ -210,7 +209,7 @@ public class Comic_Collec extends Comic {
         List<Comic> liste_comic = new ArrayList<>();
         while (rs.next())
         {
-            liste_comic.add(new Comic_Collec(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), rs.getInt("etat_lecture")));
+            liste_comic.add(new Comic_Collec(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), rs.getInt("id_etat")));
         }
         return liste_comic;
     }
