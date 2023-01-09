@@ -126,7 +126,7 @@ public class api_connection {
         int firstComicID = obj.getJSONObject("first_appeared_in_issue").getInt("id");
         String firstComicName = obj.getJSONObject("first_appeared_in_issue").get("name").toString();
         int gender = obj.getInt("gender");
-        String realName = obj.getString("real_name");
+        String realName = obj.get("real_name").toString();
         String HTMLDescription = obj.get("description").toString();
 
 

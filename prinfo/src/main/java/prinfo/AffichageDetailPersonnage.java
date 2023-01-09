@@ -7,6 +7,7 @@ package prinfo;
 import API.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -23,7 +24,9 @@ public class AffichageDetailPersonnage extends javax.swing.JFrame {
     public AffichageDetailPersonnage(API.Character c) {
         initComponents();
         Name.setText(c.getName());
-        Real_Name.setText("("+c.getRealName()+")");
+        if(!Objects.equals(c.getRealName(), "null")){
+            Real_Name.setText("("+c.getRealName()+")");
+        }
         Nb_Apparitions.setText("Est apparu dans "+c.getComicAppearances()+" comics.");
         HTMLDescription.setText("<html>"+c.getHTMLDescription()+"</html>");
         ImageIcon img1 = null;
@@ -129,7 +132,6 @@ public class AffichageDetailPersonnage extends javax.swing.JFrame {
         Real_Name.setBackground(new java.awt.Color(0, 0, 0));
         Real_Name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Real_Name.setForeground(new java.awt.Color(255, 255, 255));
-        Real_Name.setText("(Real Name)");
         jSplitPane3.setLeftComponent(Real_Name);
 
         Nb_Apparitions.setBackground(new java.awt.Color(0, 0, 0));
