@@ -10,8 +10,8 @@ public class Serie extends Results{
     private final String FirstComicName;
 
 
-    public Serie(String name, String shortDescription, String type, int id, String iconLink, int numberOfComics, int startYear, String HTMLDescription, int lastComicID, int firstComicID, String lastComicName, String firstComicName) {
-        super(name, shortDescription, type, id, iconLink, HTMLDescription);
+    public Serie(Results res, int numberOfComics, int startYear, int lastComicID, int firstComicID, String lastComicName, String firstComicName) {
+        super(res);
         NumberOfComics = numberOfComics;
         StartYear = startYear;
         LastComicID = lastComicID;
@@ -19,28 +19,37 @@ public class Serie extends Results{
         LastComicName = lastComicName;
         FirstComicName = firstComicName;
     }
+    public Serie(Serie serie) {
+    	super(serie.getResultVersion());
+    	NumberOfComics=serie.getNumberOfComics();
+        StartYear=serie.getStartYear();
+        LastComicID=serie.getLastComicID();
+        FirstComicID=serie.getFirstComicID();
+        LastComicName=serie.getLastComicName();
+        FirstComicName=serie.getFirstComicName();
+    }
 
     public int getNumberOfComics() {
-        return NumberOfComics;
+        return this.NumberOfComics;
     }
 
     public int getStartYear() {
-        return StartYear;
+        return this.StartYear;
     }
 
     public int getLastComicID() {
-        return LastComicID;
+        return this.LastComicID;
     }
 
     public int getFirstComicID() {
-        return FirstComicID;
+        return this.FirstComicID;
     }
 
     public String getLastComicName() {
-        return LastComicName;
+        return this.LastComicName;
     }
 
     public String getFirstComicName() {
-        return FirstComicName;
+        return this.FirstComicName;
     }
 }

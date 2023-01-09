@@ -28,11 +28,11 @@ public class CollecTest {
 
     @Test
     public void testCompareCollection() {
-        Comic_Collec t1 = new Comic_Collec("Spiderman1", 1, "iconLink", "Spiderman", 1, 1, "souhait");
-        Comic_Collec t2 = new Comic_Collec("Spiderman2", 2, "iconLink", "Spiderman", 1, 2, "souhait");
-        Comic_Collec t3 = new Comic_Collec("Spiderman3", 3, "iconLink", "Spiderman", 1, 3, "souhait");
-        Comic_Collec t4 = new Comic_Collec("Batman2", 4, "iconLink", "Batman", 2, 2, "souhait");
-        Comic_Collec t5 = new Comic_Collec("Batman1", 5, "iconLink", "Batman", 2, 1, "souhait");
+        Comic_Collec t1 = new Comic_Collec("Spiderman1", 1, "iconLink", "Spiderman", 1, 1, 1);
+        Comic_Collec t2 = new Comic_Collec("Spiderman2", 2, "iconLink", "Spiderman", 1, 2, 1);
+        Comic_Collec t3 = new Comic_Collec("Spiderman3", 3, "iconLink", "Spiderman", 1, 3, 1);
+        Comic_Collec t4 = new Comic_Collec("Batman2", 4, "iconLink", "Batman", 2, 2, 1);
+        Comic_Collec t5 = new Comic_Collec("Batman1", 5, "iconLink", "Batman", 2, 1, 1);
         List<Integer> listsupp = new ArrayList<>();
         listsupp.add(5);
         Collec collection = new Collec();
@@ -58,8 +58,8 @@ public class CollecTest {
             Statement stmt = con.createStatement();
             Collec collection = new Collec();
             Comic_Collec.lectureBdd(stmt, collection, "tata");
-            Comic_Collec t1 = new Comic_Collec("wolverine 2", 41, "https://image.com", "wolverine", 12, 2, "possede");
-            Comic_Collec t2 = new Comic_Collec("wolverine 3", 42, "https://image.com", "wolverine", 12, 3, "lu");
+            Comic_Collec t1 = new Comic_Collec("wolverine 2", 41, "https://image.com", "wolverine", 12, 2, 2);
+            Comic_Collec t2 = new Comic_Collec("wolverine 3", 42, "https://image.com", "wolverine", 12, 3, 3);
 
             // Etape 1 : Ajout comic
             collection.addComic(t1);
@@ -89,17 +89,17 @@ public class CollecTest {
             Statement stmt = con.createStatement();
             Collec collection = new Collec();
             Comic_Collec.lectureBdd(stmt, collection, "tata");
-            Comic_Collec t1 = new Comic_Collec("wolverine 2", 41, "https://image.com", "wolverine", 12, 2, "possede");
-            Comic_Collec t2 = new Comic_Collec("wolverine 3", 42, "https://image.com", "wolverine", 12, 3, "lu");
+            Comic_Collec t1 = new Comic_Collec("wolverine 2", 41, "https://image.com", "wolverine", 12, 2, 3);
+            Comic_Collec t2 = new Comic_Collec("wolverine 3", 42, "https://image.com", "wolverine", 12, 3, 2);
 
             // Etape 2 : Modification comic
-            Comic_Collec comic1 = collection.searchComic(t1);
+            Comic_Collec comic1 = collection.searchComic(41);
             if (comic1 != null) {
-                comic1.setEtat("lu");
+                comic1.setEtat(2);
             }
-            Comic_Collec comic2 = collection.searchComic(t2);
+            Comic_Collec comic2 = collection.searchComic(42);
             if (comic2 != null) {
-                comic2.setEtat("possede");
+                comic2.setEtat(3);
             }
             Comic_Collec.saveBdd(stmt, collection, "tata");
 
@@ -127,8 +127,8 @@ public class CollecTest {
             Statement stmt = con.createStatement();
             Collec collection = new Collec();
             Comic_Collec.lectureBdd(stmt, collection, "tata");
-            Comic_Collec t1 = new Comic_Collec("wolverine 2", 41, "https://image.com", "wolverine", 12, 2, "possede");
-            Comic_Collec t2 = new Comic_Collec("wolverine 3", 42, "https://image.com", "wolverine", 12, 3, "lu");
+            Comic_Collec t1 = new Comic_Collec("wolverine 2", 41, "https://image.com", "wolverine", 12, 2, 3);
+            Comic_Collec t2 = new Comic_Collec("wolverine 3", 42, "https://image.com", "wolverine", 12, 3, 2);
 
             // Etape 3 : Suppression comic
             collection.rmComic(t1);

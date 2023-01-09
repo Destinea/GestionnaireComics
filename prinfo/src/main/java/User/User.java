@@ -1,5 +1,8 @@
 package User;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import Collec.Collec;
 
 public class User {
@@ -37,8 +40,9 @@ public class User {
 		this.nametag = nametag;
 	}
 
-	public void changePassword(String new_password) {
-		//Appelle a la BDD pour modifier le password 
+	public void changePassword(Statement stmt,String new_password) throws SQLException {
+		//Appelle a la BDD pour modifier le password
+		User_BDD.changerMotDePasse(stmt, this.username, new_password);
 	}
 	
 }
