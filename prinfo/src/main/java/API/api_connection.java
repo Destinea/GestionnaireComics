@@ -110,8 +110,8 @@ public class api_connection {
         int SerieId = obj.getJSONObject("volume").getInt("id");
         double number = obj.getDouble("issue_number");
         String HTMLDescription = obj.get("description").toString();
-
-        return new Comic(name,shortDescription,"issue",id,iconLink,SerieName,SerieId,number,HTMLDescription);
+        Results res= new Results(name, shortDescription, "issue", id, iconLink,HTMLDescription);
+        return new Comic( res,SerieName,SerieId,number);
     }
 
     public Character getCharacter(int id) throws IOException {
@@ -153,8 +153,8 @@ public class api_connection {
             int SerieId = JSONComics.getJSONObject(i).getJSONObject("volume").getInt("id");
             double number = JSONComics.getJSONObject(i).getDouble("issue_number");
             String HTMLDescription = JSONComics.getJSONObject(i).get("description").toString();
-
-            Comic newComic = new Comic(name,shortDescription,"issue",id,iconLink,SerieName,SerieId,number,HTMLDescription);
+            Results res= new Results(name, shortDescription, "issue", id, iconLink,HTMLDescription);
+            Comic newComic = new Comic(res,SerieName,SerieId,number);
             lastComics.add(newComic);
         }
         return lastComics;
@@ -176,9 +176,8 @@ public class api_connection {
         int firstComicID = obj.getJSONObject("first_issue").getInt("id");
         String firstComicName = obj.getJSONObject("first_issue").get("name").toString();
 
-
-        return new Serie(name,shortDescription,"volume",id,iconLink, numberOfComics, startYear,HTMLDescription,
-                lastComicID,firstComicID,lastComicName,firstComicName);
+        Results res= new Results(name, shortDescription, "volume", id, iconLink,HTMLDescription);
+        return new Serie(res, numberOfComics, startYear,lastComicID,firstComicID,lastComicName,firstComicName);
     }
 
     

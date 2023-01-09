@@ -4,10 +4,8 @@
  */
 package prinfo;
 
-import API.Comic;
 import API.Results;
 import API.api_connection;
-import com.mysql.cj.xdevapi.Result;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
