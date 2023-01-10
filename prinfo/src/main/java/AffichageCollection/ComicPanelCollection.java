@@ -6,6 +6,7 @@ package AffichageCollection;
 
 import API.Comic;
 import API.api_connection;
+import Collec.Comic_Collec;
 import User.User;
 import java.io.IOException;
 import java.net.URL;
@@ -20,13 +21,13 @@ import prinfo.AffichageDetailsComic;
  */
 public class ComicPanelCollection extends javax.swing.JPanel {
     private  User user;
-    private Comic comic;
+    private Comic_Collec comic;
     /**
      * Creates new form ComicPanelCollection
      * @param user
      * @param c
      */
-    public ComicPanelCollection(User user,Comic c) {
+    public ComicPanelCollection(User user,Comic_Collec c) {
         initComponents();
         this.user=user;
         this.comic=c;
@@ -58,6 +59,7 @@ public class ComicPanelCollection extends javax.swing.JPanel {
         iconLink = new javax.swing.JLabel();
         box_lu = new javax.swing.JCheckBox();
         box_possede = new javax.swing.JCheckBox();
+        box_possede1 = new javax.swing.JCheckBox();
 
         titre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titre.setText("nom");
@@ -86,17 +88,24 @@ public class ComicPanelCollection extends javax.swing.JPanel {
             }
         });
 
+        box_possede1.setText("Souhait");
+        box_possede1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                box_possede1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(titre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(iconLink, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(box_possede1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(box_possede, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                    .addComponent(box_lu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(box_possede, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(box_lu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,11 +113,13 @@ public class ComicPanelCollection extends javax.swing.JPanel {
                 .addComponent(titre, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(iconLink, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(box_possede1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(box_possede)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(box_lu)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -127,16 +138,22 @@ public class ComicPanelCollection extends javax.swing.JPanel {
 
     private void box_luActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_luActionPerformed
         //Modifier état de lecture dans user.collection
+        
     }//GEN-LAST:event_box_luActionPerformed
 
     private void box_possedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_possedeActionPerformed
         //Modifier état de lecture user.collection
     }//GEN-LAST:event_box_possedeActionPerformed
 
+    private void box_possede1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_possede1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_box_possede1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox box_lu;
     private javax.swing.JCheckBox box_possede;
+    private javax.swing.JCheckBox box_possede1;
     private javax.swing.JLabel iconLink;
     private javax.swing.JLabel titre;
     // End of variables declaration//GEN-END:variables
