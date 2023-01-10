@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="33" green="33" red="33" type="rgb"/>
+    </Property>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[127, 212]"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -18,9 +26,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="titre" alignment="0" max="32767" attributes="0"/>
           <Component id="iconLink" alignment="0" max="32767" attributes="0"/>
-          <Component id="box_possede1" alignment="0" max="32767" attributes="0"/>
+          <Component id="box_souhait" alignment="0" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
-              <Component id="box_possede" pref="115" max="32767" attributes="0"/>
+              <Component id="box_possede" pref="121" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Component id="box_lu" max="32767" attributes="0"/>
@@ -33,12 +41,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="iconLink" min="-2" pref="106" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="box_possede1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="box_possede" min="-2" max="-2" attributes="0"/>
+              <Component id="box_souhait" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="box_lu" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="box_possede" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,6 +54,12 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="titre">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="nom"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -53,6 +67,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="iconLink">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="image"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -63,6 +80,12 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="box_lu">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Lu"/>
       </Properties>
       <Events>
@@ -71,18 +94,30 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="box_possede">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Poss&#xe9;d&#xe9;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="box_possedeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="box_possede1">
+    <Component class="javax.swing.JCheckBox" name="box_souhait">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Souhait"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="box_possede1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="box_souhaitActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

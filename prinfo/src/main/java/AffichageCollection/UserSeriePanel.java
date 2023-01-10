@@ -62,9 +62,12 @@ public class UserSeriePanel extends javax.swing.JPanel {
         nomSerie = new javax.swing.JLabel();
         contentpageserie = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setMaximumSize(new java.awt.Dimension(1030, 32767));
         setPreferredSize(new java.awt.Dimension(1030, 146));
 
+        afficherGauche.setBackground(new java.awt.Color(153, 153, 153));
+        afficherGauche.setForeground(new java.awt.Color(255, 255, 255));
         afficherGauche.setText("<");
         afficherGauche.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +75,8 @@ public class UserSeriePanel extends javax.swing.JPanel {
             }
         });
 
+        afficherDroite.setBackground(new java.awt.Color(153, 153, 153));
+        afficherDroite.setForeground(new java.awt.Color(255, 255, 255));
         afficherDroite.setText(">");
         afficherDroite.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +84,11 @@ public class UserSeriePanel extends javax.swing.JPanel {
             }
         });
 
+        nomSerie.setBackground(new java.awt.Color(51, 51, 51));
+        nomSerie.setForeground(new java.awt.Color(255, 255, 255));
         nomSerie.setText("NomSerie");
+
+        contentpageserie.setBackground(new java.awt.Color(51, 51, 51));
 
         javax.swing.GroupLayout contentpageserieLayout = new javax.swing.GroupLayout(contentpageserie);
         contentpageserie.setLayout(contentpageserieLayout);
@@ -113,9 +122,8 @@ public class UserSeriePanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(afficherDroite, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(afficherGauche, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                        .addComponent(contentpageserie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(afficherGauche, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                    .addComponent(contentpageserie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 

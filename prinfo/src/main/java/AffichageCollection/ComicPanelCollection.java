@@ -59,12 +59,18 @@ public class ComicPanelCollection extends javax.swing.JPanel {
         iconLink = new javax.swing.JLabel();
         box_lu = new javax.swing.JCheckBox();
         box_possede = new javax.swing.JCheckBox();
-        box_possede1 = new javax.swing.JCheckBox();
+        box_souhait = new javax.swing.JCheckBox();
 
+        setBackground(new java.awt.Color(51, 51, 51));
+        setPreferredSize(new java.awt.Dimension(127, 212));
+
+        titre.setBackground(new java.awt.Color(51, 51, 51));
+        titre.setForeground(new java.awt.Color(255, 255, 255));
         titre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titre.setText("nom");
         titre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        iconLink.setBackground(new java.awt.Color(51, 51, 51));
         iconLink.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         iconLink.setText("image");
         iconLink.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -74,6 +80,8 @@ public class ComicPanelCollection extends javax.swing.JPanel {
             }
         });
 
+        box_lu.setBackground(new java.awt.Color(51, 51, 51));
+        box_lu.setForeground(new java.awt.Color(255, 255, 255));
         box_lu.setText("Lu");
         box_lu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +89,8 @@ public class ComicPanelCollection extends javax.swing.JPanel {
             }
         });
 
+        box_possede.setBackground(new java.awt.Color(51, 51, 51));
+        box_possede.setForeground(new java.awt.Color(255, 255, 255));
         box_possede.setText("Possédé");
         box_possede.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,10 +98,12 @@ public class ComicPanelCollection extends javax.swing.JPanel {
             }
         });
 
-        box_possede1.setText("Souhait");
-        box_possede1.addActionListener(new java.awt.event.ActionListener() {
+        box_souhait.setBackground(new java.awt.Color(51, 51, 51));
+        box_souhait.setForeground(new java.awt.Color(255, 255, 255));
+        box_souhait.setText("Souhait");
+        box_souhait.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                box_possede1ActionPerformed(evt);
+                box_souhaitActionPerformed(evt);
             }
         });
 
@@ -101,9 +113,9 @@ public class ComicPanelCollection extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(titre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(iconLink, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(box_possede1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(box_souhait, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(box_possede, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                .addComponent(box_possede, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(box_lu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -114,12 +126,12 @@ public class ComicPanelCollection extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(iconLink, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(box_possede1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(box_possede)
+                .addComponent(box_souhait)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(box_lu)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(box_possede)
+                .addGap(6, 6, 6))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -145,15 +157,15 @@ public class ComicPanelCollection extends javax.swing.JPanel {
         //Modifier état de lecture user.collection
     }//GEN-LAST:event_box_possedeActionPerformed
 
-    private void box_possede1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_possede1ActionPerformed
+    private void box_souhaitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_souhaitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_box_possede1ActionPerformed
+    }//GEN-LAST:event_box_souhaitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox box_lu;
     private javax.swing.JCheckBox box_possede;
-    private javax.swing.JCheckBox box_possede1;
+    private javax.swing.JCheckBox box_souhait;
     private javax.swing.JLabel iconLink;
     private javax.swing.JLabel titre;
     // End of variables declaration//GEN-END:variables

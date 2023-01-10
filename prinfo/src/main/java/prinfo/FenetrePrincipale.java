@@ -6,6 +6,9 @@ package prinfo;
 
 import API.Results;
 import API.api_connection;
+import AffichageCollection.UserSeriePanel;
+import Collec.User_serie;
+import User.User;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Choice;
@@ -14,6 +17,7 @@ import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -34,6 +38,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
 
     private final List<AffichageResultsMultiple> resultatsMultipleAffichage;
+    private final HashSet<UserSeriePanel> series_panels;
 
     /**
      * Creates new form FenetrePrincipale
@@ -42,8 +47,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         initComponents();
         test = new api_connection();
         resultatsMultipleAffichage = new LinkedList<AffichageResultsMultiple>();
+        this.series_panels = new HashSet<UserSeriePanel>();
         PanelCollection.setVisible(estCo);
-	    Choice droplistFiltre=new Choice();
+	Choice droplistFiltre=new Choice();
         droplistFiltre.add("Tout");
         droplistFiltre.add("Character");
         droplistFiltre.add("Comics");
@@ -58,19 +64,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     /**
      * Boolean true si on est connecté, false sinon
      */
+     private User user;
      private boolean estCo = false;
 
      public boolean getestCo(){
          return estCo;
      }
-     public void setestCo(boolean a){
-         estCo = a;
-     }
      public void switchestCo(){
          estCo = !estCo;
          PanelCollection.setVisible(estCo);
          if (estCo)
-            jLabel4.setText(connectionFrame.getlogin());
+            jLabel4.setText(getlogin());
          else
             jLabel4.setText("Se Connecter");
 
@@ -500,7 +504,24 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void rechercheBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechercheBtnMouseClicked
         // TODO add your handling code here:
-        
+        // On supprime la liste précédemmant cherchée pour la set à nouveau
+        panelAffichageMultiple.removeAll();
+        //On prepare le layout
+        panelAffichageMultiple.setLayout(new GridLayout(user.getCollection().getSeries().size(), 1, 10, 10));
+        //on active la barre de scroll
+        scrollPaneAffichageMultiple.setVisible(true);
+        //stockage des panels pour ne pas avoir a les recharger
+        for (User_serie user_serie : user.getCollection().getSeries()) {
+            series_panels.add(new UserSeriePanel(user, user_serie));
+        }
+        //Ajout des panels au panel parent
+        for (UserSeriePanel series_panel:series_panels) {
+            panelAffichageMultiple.add(series_panel);
+        }
+        //Update du panel parent
+        contentPage.updateUI();
+        //pas besoin de la navigation entre les pages de résultats
+        Navbar.setVisible(false);
     }//GEN-LAST:event_rechercheBtnMouseClicked
 
     private void btnPrecedentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrecedentActionPerformed
