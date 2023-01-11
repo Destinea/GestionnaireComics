@@ -77,6 +77,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
          PanelCollection.setVisible(estCo);
          if (estCo) {
         	user=connectionFrame.getUser();
+        	test();
             jLabel4.setText(user.getNametag());
          }
          else {
@@ -87,7 +88,18 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 		return user;
 	}
     public void deleteUser() {user=null;}
-    
+    public void test() {
+    	Comic_Collec t1 = new Comic_Collec("Spiderman1", 1, "iconLink", "Spiderman", 1, 1, 0);
+        Comic_Collec t2 = new Comic_Collec("Spiderman2", 2, "iconLink", "Spiderman", 1, 2, 0);
+        Comic_Collec t3 = new Comic_Collec("Spiderman3", 3, "iconLink", "Spiderman", 1, 3, 0);
+        Comic_Collec t4 = new Comic_Collec("Batman2", 4, "iconLink", "Batman", 2, 2, 0);
+        Comic_Collec t5 = new Comic_Collec("Batman1", 5, "iconLink", "Batman", 2, 1, 0);
+        user.changeComicStatus(t1.getComicVersion(), 1);
+        user.changeComicStatus(t2.getComicVersion(), 1);
+        user.changeComicStatus(t3.getComicVersion(), 1);
+        user.changeComicStatus(t4.getComicVersion(), 1);
+        user.changeComicStatus(t5.getComicVersion(), 1);
+	}
 	int pageNumber = 0;
     /**
      * This method is called from within the constructor to initialize the form.
