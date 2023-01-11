@@ -108,9 +108,9 @@ public class Comic_Collec extends Comic {
     // Suppression des anciens comics
     public static void supprimer_bdd(Statement stmt, Collec supp_collection, String login) throws SQLException {
         List<Integer> liste_suppression = supp_collection.getlisteSupp();
+        int id_user = getId(stmt, login);
         System.out.println("Liste a supprimer : " + liste_suppression);
-        String sql = "DELETE FROM Collection WHERE id_comic IN " + liste_suppression.toString().replace("[", "(").replace("]", ")");
-        stmt.executeUpdate(sql);
+        String sql = "DELETE FROM collection as c WHERE id_comic IN " + liste_suppression.toString().replace("[", "(").replace("]", ")") + " AND c.id_user = " + id_user;
         verificationCollection(stmt, liste_suppression);
     }
 
