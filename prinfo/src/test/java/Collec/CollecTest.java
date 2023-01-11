@@ -95,21 +95,21 @@ public class CollecTest {
             // Etape 2 : Modification comic
             Comic_Collec comic1 = collection.searchComic(41);
             if (comic1 != null) {
-                comic1.setEtat(2);
+                comic1.setEtat(3);
             }
             Comic_Collec comic2 = collection.searchComic(42);
             if (comic2 != null) {
-                comic2.setEtat(3);
+                comic2.setEtat(2);
             }
             Comic_Collec.saveBdd(stmt, collection, "tata");
 
 
-            String sql = "SELECT etat_lecture FROM collection INNER JOIN user ON collection.id_user = user.id_user WHERE login ='tata' AND id_comic = " + t1.getId() + " OR id_comic = " + t2.getId() + ";";
+            String sql = "SELECT id_etat FROM collection INNER JOIN user ON collection.id_user = user.id_user WHERE login ='tata' AND id_comic = " + t1.getId() + " OR id_comic = " + t2.getId() + ";";
             stmt.executeQuery(sql);
             ResultSet rs = stmt.getResultSet();
-            List<String> liste_id = new ArrayList<>();
+            List<Integer> liste_id = new ArrayList<>();
             while (rs.next()) {
-                liste_id.add(rs.getString(1));
+                liste_id.add(rs.getInt(1));
             }
 
             assert Objects.equals(t1.getEtat(), liste_id.get(0)) || Objects.equals(t1.getEtat(), liste_id.get(1));
