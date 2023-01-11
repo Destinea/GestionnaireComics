@@ -4,29 +4,24 @@
  */
 package prinfo;
 
-import API.Comic;
 import API.Results;
 import API.api_connection;
 import AffichageCollection.UserSeriePanel;
+import Collec.Collec;
 import Collec.Comic_Collec;
 import Collec.User_serie;
 import User.User;
-import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Choice;
-import java.awt.Component;
 import java.awt.GridLayout;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
 /**
  *
@@ -51,7 +46,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         resultatsMultipleAffichage = new LinkedList<AffichageResultsMultiple>();
         this.series_panels = new HashSet<UserSeriePanel>();
         PanelCollection.setVisible(estCo);
-	Choice droplistFiltre=new Choice();
+	    Choice droplistFiltre=new Choice();
         droplistFiltre.add("Tout");
         droplistFiltre.add("Character");
         droplistFiltre.add("Comics");
@@ -72,7 +67,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      public boolean getestCo(){
          return estCo;
      }
-     public void switchestCo(){
+     public void switchestCo() throws SQLException {
          estCo = !estCo;
          PanelCollection.setVisible(estCo);
          if (estCo) {
@@ -88,17 +83,18 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 		return user;
 	}
     public void deleteUser() {user=null;}
-    public void test() {
-    	Comic_Collec t1 = new Comic_Collec("Spiderman1", 1, "iconLink", "Spiderman", 1, 1, 0);
-        Comic_Collec t2 = new Comic_Collec("Spiderman2", 2, "iconLink", "Spiderman", 1, 2, 0);
-        Comic_Collec t3 = new Comic_Collec("Spiderman3", 3, "iconLink", "Spiderman", 1, 3, 0);
+    public void test() throws SQLException {
+    	Comic_Collec t1 = new Comic_Collec("Volume 6", 964086, "https://comicvine.gamespot.com/a/uploads/square_medium/11145/111450787/8781226-1935607198-97840.jpg", "Torishimariyaku Shima Kōsaku", 143311, 6, 0);
+        Comic_Collec t2 = new Comic_Collec("Action On Sniper Ridge", 401, "https://comicvine.gamespot.com/a/uploads/square_avatar/0/4/376-1493-401-1-battle-action.jpg", "Battle Action", 1493,11, 0);
+        /*Comic_Collec t3 = new Comic_Collec("Spiderman3", 3, "iconLink", "Spiderman", 1, 3, 0);
         Comic_Collec t4 = new Comic_Collec("Batman2", 4, "iconLink", "Batman", 2, 2, 0);
-        Comic_Collec t5 = new Comic_Collec("Batman1", 5, "iconLink", "Batman", 2, 1, 0);
-        user.changeComicStatus(t1.getComicVersion(), 1);
-        user.changeComicStatus(t2.getComicVersion(), 1);
-        user.changeComicStatus(t3.getComicVersion(), 1);
+        Comic_Collec t5 = new Comic_Collec("Batman1", 5, "iconLink", "Batman", 2, 1, 0);*/
+        user.chargeCollection();
+        user.changeComicStatus(t1.getComicVersion(), 0);
+        user.changeComicStatus(t2.getComicVersion(), 2);
+        /*user.changeComicStatus(t3.getComicVersion(), 1);
         user.changeComicStatus(t4.getComicVersion(), 1);
-        user.changeComicStatus(t5.getComicVersion(), 1);
+        user.changeComicStatus(t5.getComicVersion(), 1);*/
 	}
 	int pageNumber = 0;
     /**
@@ -132,6 +128,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         btnSuivant = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 204, 102), 1, true));
@@ -272,6 +273,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         rechercheBtn.setBackground(new java.awt.Color(0, 0, 0));
         rechercheBtn.setForeground(new java.awt.Color(255, 255, 255));
         rechercheBtn.setText("Rechercher");
+        rechercheBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
         rechercheBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rechercheBtnActionPerformed(evt);
@@ -600,6 +606,16 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         numPage.setText(String.valueOf(numPageSuivante));
         btnPrecedent.setVisible(true);
     }//GEN-LAST:event_btnSuivantActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if (estCo) {
+            try {
+                Comic_Collec.saveBdd(user);
+            } catch (SQLException ex) {
+                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_formWindowClosing
 
 
     /**

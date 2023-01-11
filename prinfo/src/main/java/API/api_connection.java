@@ -182,19 +182,22 @@ public class api_connection {
 
     
     //Exemple d'utilisation de la classe :
-    /*public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         api_connection test = new api_connection();
 
         // Recherche générale
-        List<Comic> lastComics = test.getLastComics();
-
+        /*List<Comic> lastComics = test.getLastComics();
 
         for (Comic comics : lastComics) {
-            System.out.println(comics.getSerieName() + "\n");
-            System.out.println(comics.getNumber() + "\n");
+            System.out.println(comics.getName());
+            System.out.println(comics.getId());
+            System.out.println(comics.getIconLink());
+            System.out.println(comics.getSerieName());
+            System.out.println(comics.getSerieId());
+            System.out.println(comics.getNumber());
             System.out.println("\n");
-        }
-    }*/
+        }*/
+    }
      
 
 

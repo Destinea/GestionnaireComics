@@ -1,10 +1,9 @@
 package Collec;
 
 import API.Comic;
+import User.User;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
 
 public class Comic_Collec extends Comic {
@@ -33,28 +32,37 @@ public class Comic_Collec extends Comic {
     public void setEtat(int etat) { this.Etat = etat;}
 
     // Lecture et Enregistrement
-    public static void lectureBdd(Statement stmt, Collec collection, String login) throws SQLException {
-        String sql = "SELECT * FROM comic INNER JOIN serie on comic.id_serie = serie.id_serie INNER JOIN collection c on comic.id_comic = c.id_comic INNER JOIN user u ON u.id_user = c.id_user WHERE u.login ='" + login + "';";
-        stmt.executeQuery(sql);
-        ResultSet rs = stmt.getResultSet();
-        while (rs.next()) {
-            collection.addComic(new Comic_Collec(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), rs.getInt("id_etat")));
-        }
-    }
 
-    public static void saveBdd(Statement stmt, Collec new_collection, String login) throws SQLException {
-        Collec old_collection = new Collec();
-        lectureBdd(stmt, old_collection, login);
-        compareCollection(new_collection, old_collection);
-        if (!new_collection.getlisteAjout().isEmpty()) {
-            System.out.println("On va ajouter des comics");
-            ajouter_bdd(stmt, new_collection, login);
+    public static void saveBdd(User user) throws SQLException {
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo")) {
+            Statement stmt;
+            stmt = con.createStatement();
+            User old_user = new User(user.getUsername(), "");
+            old_user.chargeCollection();
+
+            System.out.println("old");
+            for (Comic_Collec comic : old_user.getCollection().getComics())
+            {
+                System.out.println(comic.getName());
+            }
+
+            System.out.println("new");
+            for (Comic_Collec comic : user.getCollection().getComics())
+            {
+                System.out.println(comic.getName());
+            }
+
+            compareCollection(user.getCollection(), old_user.getCollection());
+            if (!user.getCollection().getlisteAjout().isEmpty()) {
+                System.out.println("On va ajouter des comics");
+                ajouter_bdd(stmt, user.getCollection(), old_user.getUsername());
+            }
+            if (!user.getCollection().getlisteSupp().isEmpty()) {
+                System.out.println("On va supprimer des comics");
+                supprimer_bdd(stmt, user.getCollection(), old_user.getUsername());
+            }
+            verificationEtatLecture(stmt, user.getCollection(), user.getUsername());
         }
-        if (!new_collection.getlisteSupp().isEmpty()) {
-            System.out.println("On va supprimer des comics");
-            supprimer_bdd(stmt, new_collection, login);
-        }
-        verificationEtatLecture(stmt, new_collection, login);
     }
 
     // Comparaison avant après
@@ -108,15 +116,16 @@ public class Comic_Collec extends Comic {
     // Suppression des anciens comics
     public static void supprimer_bdd(Statement stmt, Collec supp_collection, String login) throws SQLException {
         List<Integer> liste_suppression = supp_collection.getlisteSupp();
-        int id_user = getId(stmt, login);
+        int id_user = getUserId(stmt, login);
         System.out.println("Liste a supprimer : " + liste_suppression);
         String sql = "DELETE FROM collection as c WHERE id_comic IN " + liste_suppression.toString().replace("[", "(").replace("]", ")") + " AND c.id_user = " + id_user;
+        stmt.executeUpdate(sql);
         verificationCollection(stmt, liste_suppression);
     }
 
     public static void insertionComic(Statement stmt, Comic c) throws SQLException {
         System.out.println("Insertion du comic : " + c.getName() );
-        String sql = "INSERT INTO comic(id_comic, nom, lien_image, id_serie) VALUES (" + c.getId() + ",'" + c.getName() + "', '" + c.getIconLink() + "', " + c.getSerieId() + ");";
+        String sql = "INSERT INTO comic(id_comic, nom, lien_image, id_serie, numero) VALUES (" + c.getId() + ",'" + c.getName() + "', '" + c.getIconLink() + "', " + c.getSerieId() + "," + c.getNumber() + ");";
         stmt.executeUpdate(sql);
     }
 
@@ -138,7 +147,7 @@ public class Comic_Collec extends Comic {
     }
 
     public static void liaisonComicUser(Statement stmt, int id_comic, String login) throws SQLException {
-        int id_user = getId(stmt, login);
+        int id_user = getUserId(stmt, login);
         if (id_user != -1)
         {
             System.out.println("Liaison utilisateur " + id_user + " et comic " + id_comic);
@@ -147,7 +156,7 @@ public class Comic_Collec extends Comic {
         }
     }
 
-    public static int getId(Statement stmt, String login) throws SQLException {
+    public static int getUserId(Statement stmt, String login) throws SQLException {
         String sql_getLogin = "SELECT id_user FROM user WHERE login = '" + login + "';";
         stmt.executeQuery(sql_getLogin);
         ResultSet rs_idUser = stmt.getResultSet();
@@ -178,7 +187,7 @@ public class Comic_Collec extends Comic {
 
     public static void verificationEtatLecture(Statement stmt, Collec collection, String login) throws SQLException {
         System.out.println("Vérification changement etat lecture");
-        int id_user = getId(stmt, login);
+        int id_user = getUserId(stmt, login);
         for (Comic_Collec comic : collection.getComics()) {
             Integer int_etat = comic.getEtat();
             String sql = "SELECT id_etat FROM Collection WHERE id_comic = " + comic.getId() + " AND id_user = " + id_user + ";";
