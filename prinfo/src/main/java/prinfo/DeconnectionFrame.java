@@ -20,7 +20,7 @@ public class DeconnectionFrame extends javax.swing.JFrame {
      public DeconnectionFrame(FenetrePrincipale a) {
         initComponents();
         main = a;
-        UserLabel.setText(main.getlogin());
+        UserLabel.setText(main.getUser().getNametag());
     }
 
     /**
@@ -89,6 +89,7 @@ public class DeconnectionFrame extends javax.swing.JFrame {
     private void DecoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DecoButtonActionPerformed
         // TODO add your handling code here:
         main.switchestCo();
+        main.deleteUser();
         this.dispose();
     }//GEN-LAST:event_DecoButtonActionPerformed
 

@@ -4,9 +4,11 @@
  */
 package prinfo;
 
+import API.Comic;
 import API.Results;
 import API.api_connection;
 import AffichageCollection.UserSeriePanel;
+import Collec.Comic_Collec;
 import Collec.User_serie;
 import User.User;
 import java.awt.BorderLayout;
@@ -73,16 +75,19 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      public void switchestCo(){
          estCo = !estCo;
          PanelCollection.setVisible(estCo);
-         if (estCo)
-            jLabel4.setText(getlogin());
-         else
+         if (estCo) {
+        	user=connectionFrame.getUser();
+            jLabel4.setText(user.getNametag());
+         }
+         else {
             jLabel4.setText("Se Connecter");
-
+         }
      }
-     public String getlogin(){
-         return connectionFrame.getlogin();
-     }
-     
+    public User getUser() {
+		return user;
+	}
+    public void deleteUser() {user=null;}
+    
 	int pageNumber = 0;
     /**
      * This method is called from within the constructor to initialize the form.
