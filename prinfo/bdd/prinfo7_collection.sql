@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `prinfo7` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `prinfo7`;
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: prinfo7
@@ -27,11 +25,13 @@ DROP TABLE IF EXISTS `collection`;
 CREATE TABLE `collection` (
   `id_user` int NOT NULL,
   `id_comic` int NOT NULL,
-  `etat_lecture` varchar(15) NOT NULL,
+  `id_etat` int DEFAULT NULL,
   PRIMARY KEY (`id_user`,`id_comic`),
   KEY `id_comic` (`id_comic`),
+  KEY `id_etat` (`id_etat`),
   CONSTRAINT `collection_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
-  CONSTRAINT `collection_ibfk_2` FOREIGN KEY (`id_comic`) REFERENCES `comic` (`id_comic`)
+  CONSTRAINT `collection_ibfk_2` FOREIGN KEY (`id_comic`) REFERENCES `comic` (`id_comic`),
+  CONSTRAINT `collection_ibfk_3` FOREIGN KEY (`id_etat`) REFERENCES `etat_lecture` (`id_etat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -44,4 +44,4 @@ CREATE TABLE `collection` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-04 16:19:34
+-- Dump completed on 2023-01-11 15:40:30

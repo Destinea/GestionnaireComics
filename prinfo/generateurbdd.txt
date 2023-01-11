@@ -15,6 +15,9 @@ INSERT INTO Comic (nom, lien_image, id_serie, numero)
   FROM Serie;
 
 INSERT INTO Collection (id_user, id_comic, etat_lecture)
-  SELECT id_user, id_comic, CASE WHEN RAND() < 0.5 THEN 'à lire' ELSE 'lu' END
+  SELECT id_user, id_comic, CASE WHEN RAND() < 0.25 THEN 1
+    WHEN RAND() < 0.5 THEN 2
+    WHEN RAND() < 0.75 THEN 3
+    ELSE 4 END
   FROM User CROSS JOIN Comic
   ORDER BY RAND();
