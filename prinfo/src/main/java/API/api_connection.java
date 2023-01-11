@@ -62,7 +62,7 @@ public class api_connection {
                 break;
             default:
                 requeteURL = "https://comicvine.gamespot.com/api/search/?query=" + recherche + "&page=" + numPage +
-                        "&format=json&api_key=" + API_KEY;
+                        "&format=json&api_key=" + API_KEY+"&resources=issue,volume,character";
                 break;
         }
 
@@ -182,7 +182,7 @@ public class api_connection {
 
     
     //Exemple d'utilisation de la classe :
-    public static void main(String[] args) throws IOException {
+    /*public static void main(String[] args) throws IOException {
         api_connection test = new api_connection();
 
         // Recherche générale
@@ -194,7 +194,7 @@ public class api_connection {
             System.out.println(comics.getNumber() + "\n");
             System.out.println("\n");
         }
-    }
+    }*/
      
 
 
