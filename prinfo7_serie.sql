@@ -16,28 +16,18 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `etat_lecture`
+-- Table structure for table `serie`
 --
 
-DROP TABLE IF EXISTS `etat_lecture`;
+DROP TABLE IF EXISTS `serie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `etat_lecture` (
-  `id_etat` int NOT NULL,
-  `etat` varchar(20) NOT NULL,
-  PRIMARY KEY (`id_etat`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `serie` (
+  `id_serie` int NOT NULL AUTO_INCREMENT,
+  `nom_serie` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_serie`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `etat_lecture`
---
-
-LOCK TABLES `etat_lecture` WRITE;
-/*!40000 ALTER TABLE `etat_lecture` DISABLE KEYS */;
-INSERT INTO `etat_lecture` VALUES (1,'favori'),(2,'lu'),(3,'possede'),(4,'lu et possede');
-/*!40000 ALTER TABLE `etat_lecture` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -48,4 +38,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-11 15:44:06
+-- Dump completed on 2023-01-11 15:40:30
