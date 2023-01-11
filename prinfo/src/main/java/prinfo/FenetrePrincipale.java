@@ -86,6 +86,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     public User getUser() {
 		return user;
 	}
+    public void deleteUser() {user=null;}
+    
 	int pageNumber = 0;
     /**
      * This method is called from within the constructor to initialize the form.
