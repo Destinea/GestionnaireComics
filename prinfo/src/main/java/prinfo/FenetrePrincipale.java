@@ -178,6 +178,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Ma Collection");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelCollectionLayout = new javax.swing.GroupLayout(PanelCollection);
         PanelCollection.setLayout(PanelCollectionLayout);
@@ -250,11 +255,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         rechercheBtn.setBackground(new java.awt.Color(0, 0, 0));
         rechercheBtn.setForeground(new java.awt.Color(255, 255, 255));
         rechercheBtn.setText("Rechercher");
-        rechercheBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rechercheBtnMouseClicked(evt);
-            }
-        });
         rechercheBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rechercheBtnActionPerformed(evt);
@@ -502,7 +502,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
 
-    private void rechercheBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechercheBtnMouseClicked
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechercheBtnMouseClicked
         // TODO add your handling code here:
         // On supprime la liste précédemmant cherchée pour la set à nouveau
         panelAffichageMultiple.removeAll();
@@ -583,6 +583,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         numPage.setText(String.valueOf(numPageSuivante));
         btnPrecedent.setVisible(true);
     }//GEN-LAST:event_btnSuivantActionPerformed
+
 
     /**
      * @param args the command line arguments
