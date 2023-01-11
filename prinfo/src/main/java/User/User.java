@@ -3,6 +3,7 @@ package User;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import API.Comic;
 import Collec.Collec;
 
 public class User {
@@ -11,7 +12,7 @@ public class User {
 	private Collec collection;
 	private Collec suggestions;
 	
-	public User(String username,String nametag, String password) {
+	public User(String username,String nametag) {
 		this.username= username;
 		this.nametag= nametag;
 		this.collection= new Collec();
@@ -39,7 +40,9 @@ public class User {
 	public void changeNametag(String nametag) {
 		this.nametag = nametag;
 	}
-
+	public void changeComicStatus(Comic c,int etat) {
+		this.collection.changeComicStatus(c, etat);
+	}
 	public void changePassword(Statement stmt,String new_password) throws SQLException {
 		//Appelle a la BDD pour modifier le password
 		User_BDD.changerMotDePasse(stmt, this.username, new_password);

@@ -20,7 +20,7 @@ public class DeconnectionFrame extends javax.swing.JFrame {
      public DeconnectionFrame(FenetrePrincipale a) {
         initComponents();
         main = a;
-        UserLabel.setText(main.getlogin());
+        UserLabel.setText(main.getUser().getNametag());
     }
 
     /**

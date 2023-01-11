@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
+import User.User;
 import User.User_BDD;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
@@ -19,10 +20,10 @@ import de.mkammerer.argon2.Argon2Factory;
  */
 public class ConnectionFrame extends javax.swing.JFrame {
     FenetrePrincipale frame;
-    String login;
+    User user;
     
-    public String getlogin(){
-        return login;
+    public User getUser(){
+        return user;
     }
 
     /**
@@ -256,7 +257,8 @@ public class ConnectionFrame extends javax.swing.JFrame {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
         Statement stmt = con.createStatement();
         if(argon2.verify(User_BDD.lectureMdp(stmt, logintemp), mdp)){
-            login = logintemp;
+            user = new User(logintemp,logintemp);
+            //CHARGEMENT COLLECTION USER A FAIRE
             frame.switchestCo();
             this.dispose();
         }
