@@ -5,6 +5,12 @@
 
 package Suggestion;
 
+import API.Comic;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import prinfo.FenetrePrincipale;
 
 /**
@@ -14,10 +20,24 @@ import prinfo.FenetrePrincipale;
 public class SuggestionPanel extends javax.swing.JPanel {
 
     /** Creates new form SuggestionPanel
-     * @param frame */
-    public SuggestionPanel(FenetrePrincipale frame) {
+     * @param frame
+     * @param comic */
+    public SuggestionPanel(FenetrePrincipale frame, Comic comic) {
         initComponents();
         jCheckBox1.setVisible(frame.getestCo());
+        RemplirChamps(comic);
+    }
+    
+    private void RemplirChamps(Comic comic){
+        titre.setText(comic.getName());
+        ImageIcon img1 = null;
+        try {
+            img1 = new ImageIcon(new URL(comic.getIconLink()));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(SuggestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        photoComic.setIcon(img1);
+        
     }
     
     public javax.swing.JPanel getPanel(){
@@ -33,19 +53,17 @@ public class SuggestionPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        photoComic12 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        photoComic = new javax.swing.JLabel();
+        titre = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(51, 51, 51));
 
-        photoComic12.setText("photo");
-        photoComic12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        photoComic.setText("photo");
 
-        jLabel2.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("title11");
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        titre.setBackground(new java.awt.Color(51, 51, 51));
+        titre.setForeground(new java.awt.Color(255, 255, 255));
+        titre.setText("title11");
 
         jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setText("Ajouter");
@@ -61,10 +79,10 @@ public class SuggestionPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(photoComic12, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(photoComic, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titre, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox1))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
@@ -74,11 +92,11 @@ public class SuggestionPanel extends javax.swing.JPanel {
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(titre, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54)
                         .addComponent(jCheckBox1)
                         .addGap(0, 15, Short.MAX_VALUE))
-                    .addComponent(photoComic12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(photoComic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -90,8 +108,8 @@ public class SuggestionPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel photoComic12;
+    private javax.swing.JLabel photoComic;
+    private javax.swing.JLabel titre;
     // End of variables declaration//GEN-END:variables
 
 }

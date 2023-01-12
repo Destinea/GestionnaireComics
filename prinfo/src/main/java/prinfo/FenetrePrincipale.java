@@ -10,6 +10,7 @@ import API.api_connection;
 import AffichageCollection.UserSeriePanel;
 import Collec.Comic_Collec;
 import Collec.User_serie;
+import Suggestion.Suggestion;
 import User.User;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -45,7 +46,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     /**
      * Creates new form FenetrePrincipale
      */
-    public FenetrePrincipale() {
+    public FenetrePrincipale() throws IOException {
         initComponents();
         test = new api_connection();
         resultatsMultipleAffichage = new LinkedList<AffichageResultsMultiple>();
@@ -620,7 +621,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FenetrePrincipale main = new FenetrePrincipale();
+                FenetrePrincipale main = null;
+                try {
+                    main = new FenetrePrincipale();
+                } catch (IOException ex) {
+                    Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 main.setLocationRelativeTo(null);
                 main.setVisible(true);
             }

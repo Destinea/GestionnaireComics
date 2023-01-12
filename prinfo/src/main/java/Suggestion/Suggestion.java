@@ -4,7 +4,11 @@
  */
 package Suggestion;
 
+import API.Comic;
+import API.api_connection;
 import java.awt.GridLayout;
+import java.io.IOException;
+import java.util.List;
 import prinfo.FenetrePrincipale;
 
 /**
@@ -12,21 +16,22 @@ import prinfo.FenetrePrincipale;
  * @author Sarah-Marie JULES
  */
 public class Suggestion extends javax.swing.JPanel {
+    private api_connection test;
     /**
      * Creates new form Suggestion
      * @param frame
      */
-    public Suggestion(FenetrePrincipale frame) {
+    public Suggestion(FenetrePrincipale frame) throws IOException {
+        test = new api_connection();
         initComponents();
         Suggestion(frame);
         
     }
     
-    public void Suggestion(FenetrePrincipale frame){
+    public void Suggestion(FenetrePrincipale frame) throws IOException{
         contentSuggestion.setLayout(new GridLayout(3,1));
-        for (int i=0; i<3; i++) {//MOdifier pour avoir la serie possédée
-            contentSuggestion.add(new Categorie(frame));
-        }
+        List<Comic> firstCategorie = test.getLastComics();
+        contentSuggestion.add(new Categorie(frame,firstCategorie.subList(6,9),"Derniers Ajouts"));
         contentSuggestion.setVisible(true);
     }
 

@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Suggestion;
+import API.Comic;
 import java.awt.GridLayout;
+import java.util.List;
 import prinfo.FenetrePrincipale;
 
 /**
@@ -15,17 +17,19 @@ public class Categorie extends javax.swing.JPanel {
     /**
      * Creates new form Categorie
      * @param frame
+     * @param comics
+     * @param name
      */
-    public Categorie(FenetrePrincipale frame) {
+    public Categorie(FenetrePrincipale frame, List<Comic> comics, String name) {
         initComponents();
-        initCategorie(frame);
+        initCategorie(frame,comics,name);
     }
     
-    public void initCategorie(FenetrePrincipale frame){
-        categorie1.setText("Tendances");
+    public void initCategorie(FenetrePrincipale frame, List<Comic> comics, String name){
+        categorieName.setText(name);
         contentCategorie1 .setLayout(new GridLayout(1,3));
-        for (int i=0; i<3; i++) {//MOdifier pour avoir la serie possédée
-            contentCategorie1.add(new SuggestionPanel(frame));
+        for (Comic comic : comics) {//MOdifier pour avoir la serie possédée
+            contentCategorie1.add(new SuggestionPanel(frame,comic));
         }
         contentCategorie1.setVisible(true);
     }
@@ -39,14 +43,14 @@ public class Categorie extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        categorie1 = new javax.swing.JLabel();
+        categorieName = new javax.swing.JLabel();
         contentCategorie1 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(51, 51, 51));
 
-        categorie1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        categorie1.setForeground(new java.awt.Color(255, 255, 255));
-        categorie1.setText("Categorie 1");
+        categorieName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        categorieName.setForeground(new java.awt.Color(255, 255, 255));
+        categorieName.setText("Categorie 1");
 
         contentCategorie1.setBackground(new java.awt.Color(55, 55, 55));
 
@@ -70,7 +74,7 @@ public class Categorie extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(contentCategorie1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(categorie1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(categorieName, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 370, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -78,7 +82,7 @@ public class Categorie extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(categorie1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(categorieName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contentCategorie1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -87,7 +91,7 @@ public class Categorie extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel categorie1;
+    private javax.swing.JLabel categorieName;
     private javax.swing.JPanel contentCategorie1;
     // End of variables declaration//GEN-END:variables
 }

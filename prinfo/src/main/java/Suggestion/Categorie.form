@@ -26,7 +26,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="contentCategorie1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="categorie1" min="-2" pref="129" max="-2" attributes="0"/>
+                      <Component id="categorieName" min="-2" pref="129" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="370" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -38,7 +38,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="categorie1" min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="categorieName" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="contentCategorie1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -47,7 +47,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="categorie1">
+    <Component class="javax.swing.JLabel" name="categorieName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
