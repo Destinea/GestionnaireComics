@@ -4,14 +4,20 @@
  */
 package prinfo;
 
+import API.Comic;
 import API.Results;
 import API.api_connection;
+import com.mysql.cj.xdevapi.Result;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,8 +25,8 @@ import javax.swing.ImageIcon;
  * @author Jujubaca
  */
 public class AffichageResultsMultiple extends javax.swing.JPanel {
-    
-    private final Results resultat;
+
+    private Results resultat;
     FenetrePrincipale frame;
     /**
      * Creates new form AffichageResultsMultiple
@@ -29,22 +35,40 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
         resultat=res;
         initComponents();
         RemplirChamps();
-        jCheckBox1.setVisible(("issue".equals(type.getText())) && (frame.getestCo()));
+        if (("issue".equals(type.getText())) && (frame.getestCo())){
+            jCheckBox1.setVisible(true);
+        }
+        else{
+            jCheckBox1.setVisible(false);
+        }
     }
-    
+
     private void RemplirChamps(){
         titre.setText(resultat.getName());
         type.setText(resultat.getType());
-        ImageIcon img1 = null;
-        try {
-            img1 = new ImageIcon(new URL(resultat.getIconLink()));
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(AffichageResultsMultiple.class.getName()).log(Level.SEVERE, null, ex);
+
+        iconLink.setIcon(null);
+        ImageIcon img1=null;
+        BufferedImage img=null;
+        Image dimg=null;
+        try{
+            img= ImageIO.read(new URL(resultat.getIconLink()));
+            int newWidth=100;
+            if(img.getWidth()==0){
+                img=ImageIO.read(new File("C:\\Projets_GIT\\FISE2\\Info7\\prinfo\\src\\main\\resources\\image_comic_default.png"));
+            }
+            float aspectRatio=(float)img.getWidth(null)/img.getHeight(null);
+            int newHeight=(int)(newWidth*aspectRatio);
+            dimg=img.getScaledInstance(newWidth,newHeight,Image.SCALE_SMOOTH);
+            img1=new ImageIcon(dimg);
+
+        }catch(IOException ex){
+            Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE,null,ex);
         }
         iconLink.setIcon(img1);
-        
+
     }
-    
+
     public javax.swing.JPanel getPanel(){
         return this;
     }
@@ -68,6 +92,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
 
         iconLink.setBackground(new java.awt.Color(51, 51, 51));
         iconLink.setForeground(new java.awt.Color(255, 255, 255));
+        iconLink.setPreferredSize(new java.awt.Dimension(100, 98));
         iconLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 iconLinkMouseClicked(evt);
@@ -77,6 +102,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
         titre.setBackground(new java.awt.Color(51, 51, 51));
+        titre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         titre.setForeground(new java.awt.Color(255, 255, 255));
         titre.setText("titre1");
 
@@ -110,7 +136,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(titre)
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
                 .addComponent(type)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jCheckBox1)
@@ -123,8 +149,8 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(iconLink, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(iconLink, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -134,7 +160,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(iconLink, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+                    .addComponent(iconLink, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -163,17 +189,17 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-  }
+        }
     }//GEN-LAST:event_iconLinkMouseClicked
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
         //if (jCheckBox1.isSelected()){
-           // Comic comicSelected = new Comic(resultat);
-           // frame.maCollection.addComic(comicSelected);
+        // Comic comicSelected = new Comic(resultat);
+        // frame.maCollection.addComic(comicSelected);
         //}
         //TODO else remove comic non selected
-        
+
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
 

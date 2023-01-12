@@ -4,24 +4,30 @@
  */
 package prinfo;
 
+import API.Comic;
 import API.Results;
 import API.api_connection;
 import AffichageCollection.UserSeriePanel;
-import Collec.Collec;
 import Collec.Comic_Collec;
 import Collec.User_serie;
 import User.User;
-
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Choice;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -46,7 +52,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         resultatsMultipleAffichage = new LinkedList<AffichageResultsMultiple>();
         this.series_panels = new HashSet<UserSeriePanel>();
         PanelCollection.setVisible(estCo);
-	    Choice droplistFiltre=new Choice();
+        Choice droplistFiltre=new Choice();
         droplistFiltre.add("Tout");
         droplistFiltre.add("Character");
         droplistFiltre.add("Comics");
@@ -61,42 +67,29 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     /**
      * Boolean true si on est connecté, false sinon
      */
-     private User user;
-     private boolean estCo = false;
+    private User user;
+    private boolean estCo = false;
 
-     public boolean getestCo(){
-         return estCo;
-     }
-     public void switchestCo() throws SQLException {
-         estCo = !estCo;
-         PanelCollection.setVisible(estCo);
-         if (estCo) {
-        	user=connectionFrame.getUser();
-        	test();
+    public boolean getestCo(){
+        return estCo;
+    }
+    public void switchestCo(){
+        estCo = !estCo;
+        PanelCollection.setVisible(estCo);
+        if (estCo) {
+            user=connectionFrame.getUser();
             jLabel4.setText(user.getNametag());
-         }
-         else {
+        }
+        else {
             jLabel4.setText("Se Connecter");
-         }
-     }
+        }
+    }
     public User getUser() {
-		return user;
-	}
+        return user;
+    }
     public void deleteUser() {user=null;}
-    public void test() throws SQLException {
-    	Comic_Collec t1 = new Comic_Collec("Volume 6", 964086, "https://comicvine.gamespot.com/a/uploads/square_medium/11145/111450787/8781226-1935607198-97840.jpg", "Torishimariyaku Shima Kōsaku", 143311, 6, 0);
-        Comic_Collec t2 = new Comic_Collec("Action On Sniper Ridge", 401, "https://comicvine.gamespot.com/a/uploads/square_avatar/0/4/376-1493-401-1-battle-action.jpg", "Battle Action", 1493,11, 0);
-        /*Comic_Collec t3 = new Comic_Collec("Spiderman3", 3, "iconLink", "Spiderman", 1, 3, 0);
-        Comic_Collec t4 = new Comic_Collec("Batman2", 4, "iconLink", "Batman", 2, 2, 0);
-        Comic_Collec t5 = new Comic_Collec("Batman1", 5, "iconLink", "Batman", 2, 1, 0);*/
-        user.chargeCollection();
-        user.changeComicStatus(t1.getComicVersion(), 0);
-        user.changeComicStatus(t2.getComicVersion(), 2);
-        /*user.changeComicStatus(t3.getComicVersion(), 1);
-        user.changeComicStatus(t4.getComicVersion(), 1);
-        user.changeComicStatus(t5.getComicVersion(), 1);*/
-	}
-	int pageNumber = 0;
+
+    int pageNumber = 0;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -136,19 +129,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 204, 102), 1, true));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 800));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1032, 800));
 
         entete.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("NetComics");
-
         PanelAccueil.setBackground(new java.awt.Color(0, 0, 0));
         PanelAccueil.setToolTipText("");
-        PanelAccueil.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        PanelAccueil.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        PanelAccueil.setMaximumSize(null);
         PanelAccueil.setName(""); // NOI18N
         PanelAccueil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -159,28 +147,33 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Accueil");
         jLabel2.setName("Acc"); // NOI18N
+        jLabel2.setPreferredSize(new java.awt.Dimension(94, 30));
 
         javax.swing.GroupLayout PanelAccueilLayout = new javax.swing.GroupLayout(PanelAccueil);
         PanelAccueil.setLayout(PanelAccueilLayout);
         PanelAccueilLayout.setHorizontalGroup(
-            PanelAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelAccueilLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                .addContainerGap())
+                PanelAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PanelAccueilLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         PanelAccueilLayout.setVerticalGroup(
-            PanelAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelAccueilLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                .addContainerGap())
+                PanelAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("NetComics");
+
 
         PanelCollection.setBackground(new java.awt.Color(0, 0, 0));
         PanelCollection.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -192,10 +185,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Ma Collection");
+        jLabel3.setMinimumSize(new java.awt.Dimension(94, 19));
+        jLabel3.setPreferredSize(new java.awt.Dimension(94, 30));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -205,28 +200,32 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         javax.swing.GroupLayout PanelCollectionLayout = new javax.swing.GroupLayout(PanelCollection);
         PanelCollection.setLayout(PanelCollectionLayout);
         PanelCollectionLayout.setHorizontalGroup(
-            PanelCollectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCollectionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                .addContainerGap())
+                PanelCollectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCollectionLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         PanelCollectionLayout.setVerticalGroup(
-            PanelCollectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelCollectionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                PanelCollectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PanelCollectionLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
+                                .addContainerGap())
         );
 
         jTextField1.setBackground(new java.awt.Color(0, 0, 0));
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setText("Rechercher");
+        jTextField1.setPreferredSize(new java.awt.Dimension(146, 27));
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField1MouseClicked(evt);
+
             }
         });
+
+
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -254,17 +253,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         javax.swing.GroupLayout PanelConnectionLayout = new javax.swing.GroupLayout(PanelConnection);
         PanelConnection.setLayout(PanelConnectionLayout);
         PanelConnectionLayout.setHorizontalGroup(
-            PanelConnectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelConnectionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                .addContainerGap())
+                PanelConnectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PanelConnectionLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(19, 19, 19))
         );
         PanelConnectionLayout.setVerticalGroup(
-            PanelConnectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelConnectionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                PanelConnectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PanelConnectionLayout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -273,11 +272,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         rechercheBtn.setBackground(new java.awt.Color(0, 0, 0));
         rechercheBtn.setForeground(new java.awt.Color(255, 255, 255));
         rechercheBtn.setText("Rechercher");
-        rechercheBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
-            }
-        });
+
         rechercheBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rechercheBtnActionPerformed(evt);
@@ -285,57 +280,56 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
 
         dropListFiltre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tout", "Personnages", "Séries", "Comic" }));
+        dropListFiltre.setMinimumSize(new java.awt.Dimension(117, 22));
+        dropListFiltre.setPreferredSize(new java.awt.Dimension(117, 27));
 
         javax.swing.GroupLayout enteteLayout = new javax.swing.GroupLayout(entete);
         entete.setLayout(enteteLayout);
         enteteLayout.setHorizontalGroup(
-            enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(enteteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addComponent(PanelAccueil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(PanelCollection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(enteteLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(PanelConnection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, enteteLayout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dropListFiltre, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rechercheBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(enteteLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabel1)
+                                .addGap(21, 21, 21)
+                                .addComponent(PanelAccueil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(15, 15, 15)
+                                .addComponent(PanelCollection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dropListFiltre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rechercheBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(PanelConnection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         enteteLayout.setVerticalGroup(
-            enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enteteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(enteteLayout.createSequentialGroup()
-                        .addComponent(PanelConnection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(enteteLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(PanelAccueil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(PanelCollection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(enteteLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(rechercheBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(dropListFiltre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(17, 17, 17))))))
+                enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(enteteLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(enteteLayout.createSequentialGroup()
+                                                .addGap(30, 30, 30)
+                                                .addComponent(PanelConnection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 8, Short.MAX_VALUE))))
+                        .addGroup(enteteLayout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addGroup(enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(PanelAccueil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(PanelCollection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(rechercheBtn)
+                                                        .addGroup(enteteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(dropListFiltre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         contentPage.setBackground(new java.awt.Color(51, 51, 51));
@@ -349,13 +343,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         javax.swing.GroupLayout panelAffichageMultipleLayout = new javax.swing.GroupLayout(panelAffichageMultiple);
         panelAffichageMultiple.setLayout(panelAffichageMultipleLayout);
         panelAffichageMultipleLayout.setHorizontalGroup(
-            panelAffichageMultipleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
+                panelAffichageMultipleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 1098, Short.MAX_VALUE)
         );
         panelAffichageMultipleLayout.setVerticalGroup(
-            panelAffichageMultipleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 568, Short.MAX_VALUE)
+                panelAffichageMultipleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 631, Short.MAX_VALUE)
         );
+
 
         scrollPaneAffichageMultiple.add(panelAffichageMultiple);
 
@@ -391,50 +386,50 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         javax.swing.GroupLayout contentPageLayout = new javax.swing.GroupLayout(contentPage);
         contentPage.setLayout(contentPageLayout);
         contentPageLayout.setHorizontalGroup(
-            contentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentPageLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(scrollPaneAffichageMultiple, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPageLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Navbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(333, 333, 333))
+                contentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(contentPageLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(scrollPaneAffichageMultiple, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPageLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Navbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(333, 333, 333))
         );
         contentPageLayout.setVerticalGroup(
-            contentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentPageLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(scrollPaneAffichageMultiple, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Navbar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                contentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(contentPageLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(scrollPaneAffichageMultiple, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Navbar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(entete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(contentPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(entete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(contentPage, javax.swing.GroupLayout.DEFAULT_SIZE, 1034, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(entete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contentPage, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(entete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(contentPage, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1032, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
 
         pack();
@@ -451,7 +446,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void PanelCollectionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelCollectionMouseEntered
         // TODO add your handling code here:
-       jLabel3.setForeground(new Color(112,128,144));
+        jLabel3.setForeground(new Color(112,128,144));
     }//GEN-LAST:event_PanelCollectionMouseEntered
 
     private void PanelConnectionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelConnectionMouseEntered
@@ -480,12 +475,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             DeconnectionFrame deco = new DeconnectionFrame(this);
             deco.setLocationRelativeTo(null);
             deco.setVisible(true);
-   
+
         }
         else {
-        connectionFrame = new ConnectionFrame(this);
-        connectionFrame.setLocationRelativeTo(null);
-        connectionFrame.setVisible(true);
+            connectionFrame = new ConnectionFrame(this);
+            connectionFrame.setLocationRelativeTo(null);
+            connectionFrame.setVisible(true);
         }
     }//GEN-LAST:event_PanelConnectionMouseClicked
 
@@ -615,8 +610,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_formWindowClosing
-
+    }
 
     /**
      * @param args the command line arguments
@@ -625,7 +619,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -678,3 +672,4 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private java.awt.ScrollPane scrollPaneAffichageMultiple;
     // End of variables declaration//GEN-END:variables
 }
+
