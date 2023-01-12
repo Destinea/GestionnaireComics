@@ -1,6 +1,9 @@
 package Collec;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 import API.Comic;
@@ -18,6 +21,7 @@ public class Collec {
 		this.listeAjout = new HashSet<Comic_Collec>(); // Récupère les infos des comics à ajouter à la BDD
 		this.listeSupp = new ArrayList<Integer>(); // Récupère les id des comics à supprimer de la BDD
 	}
+
 	public void changeComicStatus(Comic c,int etat) {
 		//Ajout aux series
 		for (Iterator<User_serie> iterator = series.iterator(); iterator.hasNext();) {
@@ -27,16 +31,18 @@ public class Collec {
 		//Creation nouvelle série
 		api_connection apiConnection = new api_connection();
 		try {
-			User_serie new_serie=new User_serie( apiConnection.getSerie(c.getSerieId()));
+			User_serie new_serie=new User_serie(apiConnection.getSerie(c.getSerieId()));
 			new_serie.changeComicStatus(c, etat);
 			series.add(new_serie);
 		} catch (IOException e) {
 			System.out.println("Impossible d'ajouter la serie "+c.getSerieName());
 		}
+		boolean find = false;
 		//Ajout aux comics
 		for (Iterator<Comic_Collec> iterator = comics.iterator(); iterator.hasNext();) {
 			Comic_Collec comic_Collec = (Comic_Collec) iterator.next();
 			if (c.getId()==comic_Collec.getId()) {
+				find = true;
 				if(etat>0) {
 					comic_Collec.setEtat(etat);
 				}
@@ -44,6 +50,10 @@ public class Collec {
 					comics.remove(comic_Collec);
 				}
 			}
+		}
+		if (!find)
+		{
+			this.addComic(new Comic_Collec(c, etat));
 		}
 	}
 	

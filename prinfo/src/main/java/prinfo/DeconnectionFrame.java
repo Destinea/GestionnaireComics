@@ -4,6 +4,8 @@
  */
 package prinfo;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author nathb
@@ -45,7 +47,11 @@ public class DeconnectionFrame extends javax.swing.JFrame {
         DecoButton.setText("Déconnection");
         DecoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DecoButtonActionPerformed(evt);
+                try {
+                    DecoButtonActionPerformed(evt);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -86,7 +92,7 @@ public class DeconnectionFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void DecoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DecoButtonActionPerformed
+    private void DecoButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_DecoButtonActionPerformed
         // TODO add your handling code here:
         main.switchestCo();
         main.deleteUser();
