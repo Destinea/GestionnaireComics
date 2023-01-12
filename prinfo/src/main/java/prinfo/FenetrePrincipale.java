@@ -4,7 +4,6 @@
  */
 package prinfo;
 
-import API.Comic;
 import API.Results;
 import API.api_connection;
 import AffichageCollection.UserSeriePanel;
@@ -12,10 +11,9 @@ import Collec.Collec;
 import Collec.Comic_Collec;
 import Collec.User_serie;
 import User.User;
-import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Choice;
-import java.awt.Component;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -24,9 +22,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -116,6 +115,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         PanelAccueil = new javax.swing.JPanel();
         accueilBtn = new javax.swing.JLabel();
+        accueilBtn.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		//rechercheBtnActionPerformed(null);
+        	}
+        });
         PanelCollection = new javax.swing.JPanel();
         collecBtn = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -203,7 +208,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         collecBtn.setText("Ma Collection");
         collecBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                collecBtnMouseClicked(evt);
             }
         });
 
@@ -223,6 +228,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(collecBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+        PanelCollection.setLayout(PanelCollectionLayout);
 
         jTextField1.setBackground(new java.awt.Color(0, 0, 0));
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
@@ -530,7 +536,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechercheBtnMouseClicked
+    private void collecBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechercheBtnMouseClicked
         // TODO add your handling code here:
         // On supprime la liste précédemmant cherchée pour la set à nouveau
         panelAffichageMultiple.removeAll();

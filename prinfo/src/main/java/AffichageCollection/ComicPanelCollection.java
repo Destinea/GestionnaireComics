@@ -15,6 +15,9 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import prinfo.AffichageDetailsComic;
 import javax.swing.SwingConstants;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  *
@@ -108,31 +111,31 @@ public class ComicPanelCollection extends javax.swing.JPanel {
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(iconLink, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(box_souhait, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(box_possede, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(box_lu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addComponent(titre, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+        		.addComponent(iconLink, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        		.addComponent(box_souhait, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+        		.addGroup(layout.createSequentialGroup()
+        			.addComponent(box_possede, GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+        			.addContainerGap())
+        		.addComponent(box_lu, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(titre, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(iconLink, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(box_souhait)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(box_lu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(box_possede)
-                .addGap(6, 6, 6))
+        	layout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addComponent(titre, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(iconLink, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+        			.addComponent(box_souhait)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(box_lu)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(box_possede)
+        			.addGap(6))
         );
+        this.setLayout(layout);
     }// </editor-fold>//GEN-END:initComponents
 
     private void iconLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconLinkMouseClicked

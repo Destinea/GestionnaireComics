@@ -69,10 +69,10 @@ public class UserSeriePanel extends javax.swing.JPanel {
 
         setBackground(new Color(99, 99, 99));
         setMaximumSize(new java.awt.Dimension(1030, 32767));
-        setPreferredSize(new Dimension(1030, 239));
+        setPreferredSize(new Dimension(977, 253));
 
         afficherGauche.setBackground(new java.awt.Color(153, 153, 153));
-        afficherGauche.setForeground(new java.awt.Color(255, 255, 255));
+        afficherGauche.setForeground(new Color(0, 0, 0));
         afficherGauche.setText("<");
         afficherGauche.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,7 +81,7 @@ public class UserSeriePanel extends javax.swing.JPanel {
         });
 
         afficherDroite.setBackground(new java.awt.Color(153, 153, 153));
-        afficherDroite.setForeground(new java.awt.Color(255, 255, 255));
+        afficherDroite.setForeground(new Color(0, 0, 0));
         afficherDroite.setText(">");
         afficherDroite.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,22 +110,26 @@ public class UserSeriePanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
-        			.addComponent(afficherGauche, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(contentpageserie, GroupLayout.PREFERRED_SIZE, 959, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(afficherDroite, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
-        		.addComponent(nomSerie, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(afficherGauche)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(contentpageserie, GroupLayout.PREFERRED_SIZE, 884, GroupLayout.PREFERRED_SIZE)
+        					.addGap(6)
+        					.addComponent(afficherDroite))
+        				.addComponent(nomSerie, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap())
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
+        		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
         			.addComponent(nomSerie, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
-        				.addComponent(contentpageserie, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
         				.addComponent(afficherDroite, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-        				.addComponent(afficherGauche, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)))
+        				.addComponent(afficherGauche, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+        				.addComponent(contentpageserie, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
+        			.addGap(22))
         );
         this.setLayout(layout);
     }// </editor-fold>//GEN-END:initComponents
