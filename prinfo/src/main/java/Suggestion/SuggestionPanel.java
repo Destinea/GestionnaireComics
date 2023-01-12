@@ -6,10 +6,14 @@
 package Suggestion;
 
 import API.Comic;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import prinfo.FenetrePrincipale;
 
@@ -21,21 +25,27 @@ public class SuggestionPanel extends javax.swing.JPanel {
 
     /** Creates new form SuggestionPanel
      * @param frame
-     * @param comic */
-    public SuggestionPanel(FenetrePrincipale frame, Comic comic) {
+     * @param comic
+     * @throws java.io.IOException */
+    public SuggestionPanel(FenetrePrincipale frame, Comic comic) throws IOException {
         initComponents();
         jCheckBox1.setVisible(frame.getestCo());
         RemplirChamps(comic);
     }
     
-    private void RemplirChamps(Comic comic){
+    private void RemplirChamps(Comic comic) throws IOException{
         titre.setText(comic.getName());
         ImageIcon img1 = null;
         try {
-            img1 = new ImageIcon(new URL(comic.getIconLink()));
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(SuggestionPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                BufferedImage img = ImageIO.read(new URL(comic.getIconLink()));
+                var newWidth = img.getWidth();
+                float aspectRatio = (float)img.getHeight(null)/img.getWidth(null);
+                int newHeight = (int)(newWidth * aspectRatio);
+                Image dimg = img.getScaledInstance(newWidth, newHeight ,Image.SCALE_SMOOTH);
+                img1 = new ImageIcon(dimg);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+            }
         photoComic.setIcon(img1);
         
     }

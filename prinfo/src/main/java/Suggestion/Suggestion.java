@@ -16,10 +16,11 @@ import prinfo.FenetrePrincipale;
  * @author Sarah-Marie JULES
  */
 public class Suggestion extends javax.swing.JPanel {
-    private api_connection test;
+    private final api_connection test;
     /**
      * Creates new form Suggestion
      * @param frame
+     * @throws java.io.IOException
      */
     public Suggestion(FenetrePrincipale frame) throws IOException {
         test = new api_connection();
@@ -31,7 +32,7 @@ public class Suggestion extends javax.swing.JPanel {
     public void Suggestion(FenetrePrincipale frame) throws IOException{
         contentSuggestion.setLayout(new GridLayout(3,1));
         List<Comic> firstCategorie = test.getLastComics();
-        contentSuggestion.add(new Categorie(frame,firstCategorie.subList(6,9),"Derniers Ajouts"));
+        contentSuggestion.add(new Categorie(frame,firstCategorie.subList(0,3),"Derniers Ajouts"));
         contentSuggestion.setVisible(true);
     }
 
