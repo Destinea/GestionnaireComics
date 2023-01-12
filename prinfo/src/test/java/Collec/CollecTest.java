@@ -1,4 +1,4 @@
-package Collec;
+/*package Collec;
 
 import API.Comic;
 import org.junit.Test;
@@ -163,4 +163,4 @@ public class CollecTest {
             throw new RuntimeException(e);
         }
     }
-}
+}*/

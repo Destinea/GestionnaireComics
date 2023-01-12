@@ -18,10 +18,12 @@ public class Comic_Collec extends Comic {
 	 **/
     private int Etat;
 
-    public Comic_Collec(String name, int id, String iconLink, String serieName, int serieId, int number, int etat) {
+    /*
+    public Comic_Collec(String name, int id, String iconLink, String serieName, int serieId, int number,String int etat) {
         super(name,id, iconLink, serieName, serieId, number);
         Etat = etat;
     }
+     */
     public Comic_Collec(Comic c, int etat) {
         super(c);
         Etat = etat;
@@ -38,7 +40,9 @@ public class Comic_Collec extends Comic {
         stmt.executeQuery(sql);
         ResultSet rs = stmt.getResultSet();
         while (rs.next()) {
-            collection.addComic(new Comic_Collec(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), rs.getInt("id_etat")));
+            //TODO : Modifier quand la bdd sera mise à jour (champ bigIconLink)
+            Comic comic = new Comic(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), "BIG_ICON_LINK");
+            collection.addComic(new Comic_Collec(comic, rs.getInt("id_etat")));
         }
     }
 
@@ -209,7 +213,8 @@ public class Comic_Collec extends Comic {
         List<Comic> liste_comic = new ArrayList<>();
         while (rs.next())
         {
-            liste_comic.add(new Comic_Collec(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), rs.getInt("id_etat")));
+            Comic comic = new Comic(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"), "BIG_ICON_LINK");
+            liste_comic.add(new Comic_Collec(comic, rs.getInt("id_etat")));
         }
         return liste_comic;
     }
