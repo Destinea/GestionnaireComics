@@ -115,9 +115,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         entete = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         PanelAccueil = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        accueilBtn = new javax.swing.JLabel();
         PanelCollection = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        collecBtn = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         PanelConnection = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -164,11 +164,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Accueil");
-        jLabel2.setName("Acc"); // NOI18N
+        accueilBtn.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        accueilBtn.setForeground(new java.awt.Color(255, 255, 255));
+        accueilBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        accueilBtn.setText("Accueil");
+        accueilBtn.setName("Acc"); // NOI18N
 
         javax.swing.GroupLayout PanelAccueilLayout = new javax.swing.GroupLayout(PanelAccueil);
         PanelAccueil.setLayout(PanelAccueilLayout);
@@ -176,14 +176,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             PanelAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelAccueilLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addComponent(accueilBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                 .addContainerGap())
         );
         PanelAccueilLayout.setVerticalGroup(
             PanelAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelAccueilLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addComponent(accueilBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -197,11 +197,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Ma Collection");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        collecBtn.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        collecBtn.setForeground(new java.awt.Color(255, 255, 255));
+        collecBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        collecBtn.setText("Ma Collection");
+        collecBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
             }
@@ -213,14 +213,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             PanelCollectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCollectionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addComponent(collecBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                 .addContainerGap())
         );
         PanelCollectionLayout.setVerticalGroup(
             PanelCollectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelCollectionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(collecBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -451,12 +451,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void PanelAccueilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelAccueilMouseEntered
         // TODO add your handling code here:
-        jLabel2.setForeground(new Color(112, 128, 144));
+        accueilBtn.setForeground(new Color(112, 128, 144));
     }//GEN-LAST:event_PanelAccueilMouseEntered
 
     private void PanelCollectionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelCollectionMouseEntered
         // TODO add your handling code here:
-       jLabel3.setForeground(new Color(112,128,144));
+       collecBtn.setForeground(new Color(112,128,144));
     }//GEN-LAST:event_PanelCollectionMouseEntered
 
     private void PanelConnectionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelConnectionMouseEntered
@@ -466,12 +466,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void PanelAccueilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelAccueilMouseExited
         // TODO add your handling code here:
-        jLabel2.setForeground(new Color(255,255,255));
+        accueilBtn.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_PanelAccueilMouseExited
 
     private void PanelCollectionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelCollectionMouseExited
         // TODO add your handling code here:
-        jLabel3.setForeground(new Color(255,255,255));
+        collecBtn.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_PanelCollectionMouseExited
 
     private void PanelConnectionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelConnectionMouseExited
@@ -671,8 +671,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> dropListFiltre;
     private javax.swing.JPanel entete;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel accueilBtn;
+    private javax.swing.JLabel collecBtn;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

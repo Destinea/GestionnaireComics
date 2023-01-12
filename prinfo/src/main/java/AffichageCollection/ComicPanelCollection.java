@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import prinfo.AffichageDetailsComic;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -66,14 +67,13 @@ public class ComicPanelCollection extends javax.swing.JPanel {
 
         titre.setBackground(new java.awt.Color(51, 51, 51));
         titre.setForeground(new java.awt.Color(255, 255, 255));
-        titre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titre.setHorizontalAlignment(SwingConstants.LEFT);
         titre.setText("nom");
         titre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         iconLink.setBackground(new java.awt.Color(51, 51, 51));
-        iconLink.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        iconLink.setText("image");
-        iconLink.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        iconLink.setHorizontalAlignment(SwingConstants.LEFT);
+        iconLink.setHorizontalTextPosition(SwingConstants.LEFT);
         iconLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 iconLinkMouseClicked(evt);
