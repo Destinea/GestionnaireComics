@@ -486,6 +486,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void rechercheBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheBtnActionPerformed
         // On supprime la liste précédemmant cherchée pour la set à nouveau
+        sugg.setVisible(false);
         panelAffichageMultiple.removeAll();
         if (ResultatsRecherche!=null) {
             ResultatsRecherche.clear();

@@ -19,8 +19,8 @@ public class Comic extends Results{
     	this.number=comic.getNumber();
     }
 
-    public Comic(String name, int id, String iconLink, String serieName, int serieId,int number, String bigIconLink) {
-    	super(name,"NULL","issue",id,iconLink,"NULL", bigIconLink);
+    public Comic(String name, int id, String iconLink, String serieName, int serieId,int number) {
+    	super(name,"NULL","issue",id,iconLink,"NULL", "NULL");
     	this.SerieName = serieName;
         this.SerieId = serieId;
         this.number = number;

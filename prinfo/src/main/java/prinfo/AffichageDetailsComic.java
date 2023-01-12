@@ -40,9 +40,9 @@ public class AffichageDetailsComic extends javax.swing.JFrame {
 
         ImageIcon img1 = null;
         try {
-                BufferedImage img = ImageIO.read(new URL(c.getIconLink()));
+                BufferedImage img = ImageIO.read(new URL(c.getBigIconLink()));
                 int newWidth = Icon.getWidth();
-                float aspectRatio = (float)img.getWidth(null)/img.getHeight(null);
+                float aspectRatio = (float)img.getHeight(null)/img.getWidth(null);
                 int newHeight = (int)(newWidth * aspectRatio);
                 Image dimg = img.getScaledInstance(newWidth, newHeight ,Image.SCALE_SMOOTH);
                 img1 = new ImageIcon(dimg);
@@ -83,18 +83,19 @@ public class AffichageDetailsComic extends javax.swing.JFrame {
         Entete.setDividerSize(0);
         Entete.setForeground(new java.awt.Color(255, 255, 255));
         Entete.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        Entete.setMinimumSize(new java.awt.Dimension(614, 73));
 
         num_serie.setBackground(new java.awt.Color(0, 0, 0));
         num_serie.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         num_serie.setForeground(new java.awt.Color(255, 255, 255));
         num_serie.setText("n°X de la série Y");
-        Entete.setRightComponent(num_serie);
+        Entete.setBottomComponent(num_serie);
 
         Titre.setBackground(new java.awt.Color(0, 0, 0));
         Titre.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Titre.setForeground(new java.awt.Color(255, 255, 255));
         Titre.setText("Titre");
-        Entete.setLeftComponent(Titre);
+        Entete.setTopComponent(Titre);
 
         jScrollPane1.setBackground(new java.awt.Color(51, 51, 51));
         jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
@@ -145,25 +146,27 @@ public class AffichageDetailsComic extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
+                .addComponent(Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Entete, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Entete, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Entete, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(Entete, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
