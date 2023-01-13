@@ -23,37 +23,44 @@ public class Collec {
 	}
 
 	public void changeComicStatus(Comic c,int etat) {
-		//Ajout aux series
+		boolean find = false;	
 		for (Iterator<User_serie> iterator = series.iterator(); iterator.hasNext();) {
 			User_serie serie = (User_serie) iterator.next();
-			if (serie.getId()==c.getSerieId()) {serie.changeComicStatus(c, etat);}
-		}
-		//Creation nouvelle série
-		api_connection apiConnection = new api_connection();
-		try {
-			User_serie new_serie=new User_serie(apiConnection.getSerie(c.getSerieId()));
-			new_serie.changeComicStatus(c, etat);
-			series.add(new_serie);
-		} catch (IOException e) {
-			System.out.println("Impossible d'ajouter la serie "+c.getSerieName());
-		}
-		boolean find = false;
-		//Ajout aux comics
-		for (Iterator<Comic_Collec> iterator = comics.iterator(); iterator.hasNext();) {
-			Comic_Collec comic_Collec = (Comic_Collec) iterator.next();
-			if (c.getId()==comic_Collec.getId()) {
-				find = true;
-				if(etat>0) {
-					comic_Collec.setEtat(etat);
+			if (serie.getId()==c.getSerieId()) {
+				//modif series
+				serie.changeSerieComicStatus(c, etat);
+				//modif comics
+				for (Iterator<Comic_Collec> it = comics.iterator(); it.hasNext();) {
+					Comic_Collec comic_Collec = (Comic_Collec) it.next();
+					if (c.getId()==comic_Collec.getId()) {
+						find = true;
+						if(etat>0) {
+							comic_Collec.setEtat(etat);
+						}
+						else {
+							comics.remove(comic_Collec);
+						}
+					}
 				}
-				else {
-					comics.remove(comic_Collec);
-				}
+				find=true;
+				
 			}
 		}
+		//Nouveau Comic
+		
 		if (!find)
 		{
-			this.addComic(new Comic_Collec(c, etat));
+			if (etat>0) {
+				this.addComic(new Comic_Collec(c, etat));
+				api_connection apiConnection = new api_connection();
+				try {
+					User_serie new_serie=new User_serie(apiConnection.getSerie(c.getSerieId()));
+					new_serie.changeSerieComicStatus(c, etat);
+					addSerie(new_serie);
+				} catch (IOException e) {
+					System.out.println("Impossible d'ajouter la serie "+c.getSerieName());
+				}
+			}
 		}
 	}
 	
@@ -80,6 +87,7 @@ public class Collec {
 	public Set<Comic_Collec> getComics() {
 		return comics;
 	}
+	
 	public void addComic(Comic_Collec comic) {
 		this.comics.add(comic);
 	}
@@ -87,8 +95,8 @@ public class Collec {
 	public void rmComic(Comic_Collec rm_comic) {
 		this.comics.removeIf(comic -> comic.getId() == rm_comic.getId());
 	}
-
-	public Set<User_serie> getSeries() {
+	
+	public HashSet<User_serie> getSeries() {
 		return series;
 	}
 	public void addSerie(User_serie serie) {
