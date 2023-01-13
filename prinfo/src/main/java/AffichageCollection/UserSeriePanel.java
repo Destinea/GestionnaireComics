@@ -68,8 +68,8 @@ public class UserSeriePanel extends javax.swing.JPanel {
         contentpageserie = new javax.swing.JPanel();
 
         setBackground(new Color(99, 99, 99));
-        setMaximumSize(new java.awt.Dimension(1030, 32767));
-        setPreferredSize(new Dimension(977, 253));
+        setMaximumSize(new Dimension(977, 237));
+        setPreferredSize(new Dimension(977, 237));
 
         afficherGauche.setBackground(new java.awt.Color(153, 153, 153));
         afficherGauche.setForeground(new Color(0, 0, 0));
@@ -121,15 +121,15 @@ public class UserSeriePanel extends javax.swing.JPanel {
         			.addContainerGap())
         );
         layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        	layout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
         			.addComponent(nomSerie, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(afficherDroite, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-        				.addComponent(afficherGauche, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-        				.addComponent(contentpageserie, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
-        			.addGap(22))
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
+        				.addComponent(afficherDroite, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(afficherGauche, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(contentpageserie, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
+        			.addContainerGap(39, Short.MAX_VALUE))
         );
         this.setLayout(layout);
     }// </editor-fold>//GEN-END:initComponents
