@@ -4,6 +4,7 @@
  */
 package prinfo;
 
+import API.Comic;
 import API.Results;
 import API.api_connection;
 import AffichageCollection.UserSeriePanel;
@@ -11,9 +12,10 @@ import Collec.Collec;
 import Collec.Comic_Collec;
 import Collec.User_serie;
 import User.User;
-
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Choice;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -62,6 +64,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         scrollPaneAffichageMultiple.setVisible(true);
         panelAffichageMultiple.add(sugg);
     }
+    /**
+     * Boolean true si on est connecté, false sinon
+     */
      private User user;
      private boolean estCo = false;
 
@@ -212,18 +217,18 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         javax.swing.GroupLayout PanelCollectionLayout = new javax.swing.GroupLayout(PanelCollection);
         PanelCollection.setLayout(PanelCollectionLayout);
         PanelCollectionLayout.setHorizontalGroup(
-            PanelCollectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCollectionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(collecBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                .addContainerGap())
+        	PanelCollectionLayout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(PanelCollectionLayout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(collecBtn, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+        			.addContainerGap())
         );
         PanelCollectionLayout.setVerticalGroup(
-            PanelCollectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelCollectionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(collecBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+        	PanelCollectionLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(PanelCollectionLayout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(collecBtn, GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+        			.addContainerGap())
         );
         PanelCollection.setLayout(PanelCollectionLayout);
 
@@ -281,11 +286,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         rechercheBtn.setBackground(new java.awt.Color(0, 0, 0));
         rechercheBtn.setForeground(new java.awt.Color(255, 255, 255));
         rechercheBtn.setText("Rechercher");
-        rechercheBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
-            }
-        });
         rechercheBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rechercheBtnActionPerformed(evt);
