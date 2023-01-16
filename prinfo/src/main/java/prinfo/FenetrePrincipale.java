@@ -166,12 +166,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Accueil");
-        jLabel2.setName("Acc"); // NOI18N
-        jLabel2.setPreferredSize(new java.awt.Dimension(94, 30));
+        accueilBtn.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        accueilBtn.setForeground(new java.awt.Color(255, 255, 255));
+        accueilBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        accueilBtn.setText("Accueil");
+        accueilBtn.setName("Acc"); // NOI18N
+        accueilBtn.setPreferredSize(new java.awt.Dimension(94, 30));
 
         javax.swing.GroupLayout PanelAccueilLayout = new javax.swing.GroupLayout(PanelAccueil);
         PanelAccueil.setLayout(PanelAccueilLayout);
@@ -179,12 +179,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 PanelAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(PanelAccueilLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(accueilBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())
         );
         PanelAccueilLayout.setVerticalGroup(
                 PanelAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(accueilBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -204,13 +204,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Ma Collection");
-        jLabel3.setMinimumSize(new java.awt.Dimension(94, 19));
-        jLabel3.setPreferredSize(new java.awt.Dimension(94, 30));
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        collecBtn.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        collecBtn.setForeground(new java.awt.Color(255, 255, 255));
+        collecBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        collecBtn.setText("Ma Collection");
+        collecBtn.setMinimumSize(new java.awt.Dimension(94, 19));
+        collecBtn.setPreferredSize(new java.awt.Dimension(94, 30));
+        collecBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 collecBtnMouseClicked(evt);
             }
@@ -222,14 +222,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 PanelCollectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCollectionLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                .addComponent(collecBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                                 .addContainerGap())
         );
         PanelCollectionLayout.setVerticalGroup(
                 PanelCollectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(PanelCollectionLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
+                                .addComponent(collecBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
                                 .addContainerGap())
         );
         PanelCollection.setLayout(PanelCollectionLayout);
@@ -465,7 +465,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void PanelCollectionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelCollectionMouseEntered
         // TODO add your handling code here:
-        jLabel3.setForeground(new Color(112,128,144));
+        collecBtn.setForeground(new Color(112,128,144));
     }//GEN-LAST:event_PanelCollectionMouseEntered
 
     private void PanelConnectionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelConnectionMouseEntered
@@ -548,6 +548,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         panelAffichageMultiple.setLayout(new GridLayout(user.getCollection().getSeries().size(), 1, 10, 10));
         //on active la barre de scroll
         scrollPaneAffichageMultiple.setVisible(true);
+        series_panels.removeAll(series_panels);
         //stockage des panels pour ne pas avoir a les recharger
         for (User_serie user_serie : user.getCollection().getSeries()) {
             series_panels.add(new UserSeriePanel(user, user_serie));
