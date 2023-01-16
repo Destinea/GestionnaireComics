@@ -731,8 +731,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }//GEN-LAST:event_PanelChangeMDPMouseExited
 
     private void PanelDeconnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelDeconnexionMouseClicked
-        // TODO add your handling code here:
-        this.switchestCo();
+        try {
+            // TODO add your handling code here:
+            this.switchestCo();
+        } catch (SQLException ex) {
+            Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.deleteUser();
         PanelUser.setVisible(false);
     }//GEN-LAST:event_PanelDeconnexionMouseClicked
@@ -771,15 +775,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void PanelAccueilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelAccueilMouseClicked
         panelAffichageMultiple.removeAll();
-        System.out.println("Acceuil");
         try {
             // TODO add your handling code here:
 
             sugg = new Suggestion(this);
             sugg.setVisible(true);
         } catch (IOException ex) {
-            Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("prinfo.FenetrePrincipale.PanelAccueilMouseClicked()");
+            Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);            
         }
         
         

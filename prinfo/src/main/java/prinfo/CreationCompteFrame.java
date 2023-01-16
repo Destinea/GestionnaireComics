@@ -203,17 +203,31 @@ public class CreationCompteFrame extends javax.swing.JFrame {
         String mdp1 = String.valueOf(jPasswordField1.getPassword());
         String mdp2 = String.valueOf(jPasswordField2.getPassword());
         Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
+        jPasswordField2.setBackground(new Color(51, 51, 51));
+        infoMotDePasse.setForeground(Color.white);
+        infoMotDePasse.setText("");
+        jTextField1.setBackground(new Color(51, 51, 51));
+        
+        
         if (mdp1.equals(mdp2))
         {
 
             try{
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
                 Statement stmt = con.createStatement();
-                User_BDD.insertion(stmt, jTextField1.getText(), mdp2, argon2);
+                if(!User_BDD.insertion(stmt, jTextField1.getText(), mdp2, argon2)){
+                    infoMotDePasse.setForeground(Color.red);
+                    infoMotDePasse.setText("Nom d'Utilisateur déja Utilisé");
+                    jTextField1.setBackground(Color.red);
+                    
+                }
+                else{
+                infoMotDePasse.setForeground(Color.green);
                 infoMotDePasse.setText("Utilisateur Crée");
                 JFrame jFrame = new JFrame();
                 JOptionPane.showMessageDialog(jFrame, "Votre Compte à bien été crée");
                 this.dispose();
+                }
             }
             catch(Exception e){
                 System.out.println("Marche pas");

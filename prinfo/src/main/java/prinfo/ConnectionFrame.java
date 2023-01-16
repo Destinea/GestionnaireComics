@@ -257,6 +257,8 @@ public class ConnectionFrame extends javax.swing.JFrame {
     private void ConnexionBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnexionBoutonActionPerformed
         String logintemp = jTextField1.getText();
         String mdp = jPasswordField1.getText();
+        jPasswordField1.setBackground(new Color(51, 51, 51));
+        
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
         try{
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
@@ -269,7 +271,10 @@ public class ConnectionFrame extends javax.swing.JFrame {
         }
         else
         {
-            EtatConnection.setText("Mauvais MDP Ou Login inexistant");
+            EtatConnection.setForeground(Color.red);
+            jPasswordField1.setBackground(Color.red);
+            EtatConnection.setText("Mauvais mot de passe ou login inexistant");
+            
         }
         }
         catch(Exception e){
