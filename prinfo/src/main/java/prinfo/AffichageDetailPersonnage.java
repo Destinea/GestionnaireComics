@@ -5,11 +5,16 @@
 package prinfo;
 
 import API.*;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
@@ -21,7 +26,7 @@ public class AffichageDetailPersonnage extends javax.swing.JFrame {
     /**
      * Creates new form AffichageDetailPersonnage
      */
-    public AffichageDetailPersonnage(API.Character c) {
+    public AffichageDetailPersonnage(API.Character c) throws IOException {
         initComponents();
         Name.setText(c.getName());
         if(!Objects.equals(c.getRealName(), "null")){
@@ -31,10 +36,15 @@ public class AffichageDetailPersonnage extends javax.swing.JFrame {
         HTMLDescription.setText("<html>"+c.getHTMLDescription()+"</html>");
         ImageIcon img1 = null;
         try {
-                img1 = new ImageIcon(new URL(c.getIconLink()));
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            BufferedImage img = ImageIO.read(new URL(c.getBigIconLink()));
+            int newWidth = Icon.getWidth();
+            float aspectRatio = (float)img.getHeight(null)/img.getWidth(null);
+            int newHeight = (int)(newWidth * aspectRatio);
+            Image dimg = img.getScaledInstance(newWidth, newHeight ,Image.SCALE_SMOOTH);
+            img1 = new ImageIcon(dimg);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Icon.setIcon(img1);
     }
 
@@ -47,103 +57,75 @@ public class AffichageDetailPersonnage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        HTMLDescription = new javax.swing.JLabel();
-        jSplitPane1 = new javax.swing.JSplitPane();
-        Icon = new javax.swing.JLabel();
-        jSplitPane2 = new javax.swing.JSplitPane();
-        Name = new javax.swing.JLabel();
-        jSplitPane3 = new javax.swing.JSplitPane();
+        Entete = new javax.swing.JSplitPane();
+        Informations = new javax.swing.JSplitPane();
         Real_Name = new javax.swing.JLabel();
         Nb_Apparitions = new javax.swing.JLabel();
+        Name = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        HTMLDescription = new javax.swing.JLabel();
+        Icon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 249, 176));
-        setPreferredSize(new java.awt.Dimension(1032, 600));
+        setSize(new java.awt.Dimension(1032, 600));
         setType(java.awt.Window.Type.POPUP);
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 600));
 
-        jScrollPane2.setBackground(new java.awt.Color(51, 51, 51));
-        jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        Entete.setBackground(new java.awt.Color(0, 0, 0));
+        Entete.setDividerLocation(80);
+        Entete.setDividerSize(0);
+        Entete.setForeground(new java.awt.Color(255, 255, 255));
+        Entete.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        Informations.setBackground(new java.awt.Color(0, 0, 0));
+        Informations.setDividerLocation(50);
+        Informations.setDividerSize(0);
+        Informations.setForeground(new java.awt.Color(0, 0, 0));
+        Informations.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        HTMLDescription.setBackground(new java.awt.Color(51, 51, 51));
-        HTMLDescription.setForeground(new java.awt.Color(255, 255, 255));
-        HTMLDescription.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        HTMLDescription.setText("jLabel1");
-        HTMLDescription.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        HTMLDescription.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        HTMLDescription.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        Real_Name.setBackground(new java.awt.Color(0, 0, 0));
+        Real_Name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Real_Name.setForeground(new java.awt.Color(255, 255, 255));
+        Informations.setTopComponent(Real_Name);
+        Real_Name.getAccessibleContext().setAccessibleName("Real_Name");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(HTMLDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 945, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(HTMLDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        Nb_Apparitions.setBackground(new java.awt.Color(0, 0, 0));
+        Nb_Apparitions.setForeground(new java.awt.Color(255, 255, 255));
+        Nb_Apparitions.setText("est apparu dans XX Comics");
+        Informations.setRightComponent(Nb_Apparitions);
 
-        jScrollPane2.setViewportView(jPanel1);
-
-        jSplitPane1.setBackground(new java.awt.Color(0, 0, 0));
-        jSplitPane1.setDividerLocation(120);
-        jSplitPane1.setDividerSize(0);
-        jSplitPane1.setForeground(new java.awt.Color(255, 255, 255));
-
-        Icon.setBackground(new java.awt.Color(0, 0, 0));
-        Icon.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        Icon.setForeground(new java.awt.Color(255, 255, 255));
-        Icon.setIconTextGap(0);
-        Icon.setMaximumSize(new java.awt.Dimension(180, 250));
-        Icon.setMinimumSize(new java.awt.Dimension(180, 250));
-        Icon.setPreferredSize(new java.awt.Dimension(180, 250));
-        jSplitPane1.setLeftComponent(Icon);
-
-        jSplitPane2.setBackground(new java.awt.Color(0, 0, 0));
-        jSplitPane2.setDividerLocation(110);
-        jSplitPane2.setDividerSize(0);
-        jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        Entete.setRightComponent(Informations);
 
         Name.setBackground(new java.awt.Color(0, 0, 0));
         Name.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Name.setForeground(new java.awt.Color(255, 255, 255));
         Name.setText("Name");
-        jSplitPane2.setTopComponent(Name);
+        Entete.setLeftComponent(Name);
 
-        jSplitPane3.setBackground(new java.awt.Color(0, 0, 0));
-        jSplitPane3.setDividerSize(0);
-        jSplitPane3.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        jScrollPane1.setBackground(new java.awt.Color(51, 51, 51));
+        jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(959, 568));
 
-        Real_Name.setBackground(new java.awt.Color(0, 0, 0));
-        Real_Name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Real_Name.setForeground(new java.awt.Color(255, 255, 255));
-        jSplitPane3.setLeftComponent(Real_Name);
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.setPreferredSize(new java.awt.Dimension(957, 366));
 
-        Nb_Apparitions.setBackground(new java.awt.Color(0, 0, 0));
-        Nb_Apparitions.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Nb_Apparitions.setForeground(new java.awt.Color(255, 255, 255));
-        Nb_Apparitions.setText("est apparu dans XXX comics");
-        Nb_Apparitions.setToolTipText("");
-        jSplitPane3.setRightComponent(Nb_Apparitions);
-
-        jSplitPane2.setRightComponent(jSplitPane3);
-
-        jSplitPane1.setRightComponent(jSplitPane2);
+        HTMLDescription.setBackground(new java.awt.Color(51, 51, 51));
+        HTMLDescription.setForeground(new java.awt.Color(255, 255, 255));
+        HTMLDescription.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        HTMLDescription.setText("HTML description");
+        HTMLDescription.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        HTMLDescription.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        HTMLDescription.setMaximumSize(new java.awt.Dimension(37, 16));
+        HTMLDescription.setMinimumSize(new java.awt.Dimension(37, 16));
+        HTMLDescription.setPreferredSize(new java.awt.Dimension(37, 16));
+        HTMLDescription.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -151,21 +133,48 @@ public class AffichageDetailPersonnage extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 976, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)))
-                .addContainerGap())
+                .addComponent(HTMLDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(378, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(HTMLDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setViewportView(jPanel2);
+
+        Icon.setBackground(new java.awt.Color(0, 0, 0));
+        Icon.setForeground(new java.awt.Color(255, 255, 255));
+        Icon.setMaximumSize(new java.awt.Dimension(180, 500));
+        Icon.setMinimumSize(new java.awt.Dimension(180, 500));
+        Icon.setPreferredSize(new java.awt.Dimension(180, 500));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Icon, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Entete, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Entete, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,15 +183,14 @@ public class AffichageDetailPersonnage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 7, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -221,16 +229,15 @@ public class AffichageDetailPersonnage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSplitPane Entete;
     private javax.swing.JLabel HTMLDescription;
     private javax.swing.JLabel Icon;
+    private javax.swing.JSplitPane Informations;
     private javax.swing.JLabel Name;
     private javax.swing.JLabel Nb_Apparitions;
     private javax.swing.JLabel Real_Name;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JSplitPane jSplitPane3;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

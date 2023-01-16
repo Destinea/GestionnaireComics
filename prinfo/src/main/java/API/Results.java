@@ -13,14 +13,17 @@ public class Results {
 
     private final String HTMLDescription;
 
+    private final String bigIconLink;
 
-    public Results(String name, String shortDescription, String type, int id, String iconLink, String htmlDescription) {
+
+    public Results(String name, String shortDescription, String type, int id, String iconLink, String htmlDescription, String bigIconLink) {
         this.name = name;
         this.shortDescription = shortDescription;
         this.type = type;
         this.id = id;
         this.iconLink = iconLink;
         this.HTMLDescription = htmlDescription;
+        this.bigIconLink = bigIconLink;
     }
     public Results(Results res) {
 		this.name=res.getName();
@@ -29,6 +32,7 @@ public class Results {
 		this.id=res.getId();
 		this.iconLink=res.getIconLink();
 		this.HTMLDescription=res.getHTMLDescription();
+        this.bigIconLink = res.getBigIconLink();
 		
     }
     public Results getResultVersion() {
@@ -52,6 +56,10 @@ public class Results {
 
     public String getIconLink() {
         return this.iconLink;
+    }
+
+    public String getBigIconLink() {
+        return bigIconLink;
     }
 
     public String getHTMLDescription() {

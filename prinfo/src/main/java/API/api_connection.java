@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Classe permettant d'effctuer des recherches sur ComicVine.
@@ -92,8 +93,9 @@ public class api_connection {
 
             int id = JSONresults.getJSONObject(i).getInt("id");
             String iconLink = JSONresults.getJSONObject(i).getJSONObject("image").getString("icon_url");
+            String bigIconLink = JSONresults.getJSONObject(i).getJSONObject("image").getString("super_url");
             String HTMLDescription = JSONresults.getJSONObject(i).get("description").toString();
-            results.add(new Results(name,shortDescription,type,id, iconLink, HTMLDescription));
+            results.add(new Results(name,shortDescription,type,id, iconLink, HTMLDescription, bigIconLink));
         }
         return results;
     }
@@ -106,11 +108,12 @@ public class api_connection {
         String name = obj.get("name").toString();
         String shortDescription = obj.get("deck").toString();
         String iconLink = obj.getJSONObject("image").getString("icon_url");
+        String bigIconLink = obj.getJSONObject("image").getString("super_url");
         String SerieName = obj.getJSONObject("volume").getString("name");
         int SerieId = obj.getJSONObject("volume").getInt("id");
         double number = obj.getDouble("issue_number");
         String HTMLDescription = obj.get("description").toString();
-        Results res= new Results(name, shortDescription, "issue", id, iconLink,HTMLDescription);
+        Results res= new Results(name, shortDescription, "issue", id, iconLink,HTMLDescription, bigIconLink);
         return new Comic( res,SerieName,SerieId,number);
     }
 
@@ -122,6 +125,7 @@ public class api_connection {
         String name = obj.get("name").toString();
         String shortDescription = obj.get("deck").toString();
         String iconLink = obj.getJSONObject("image").getString("icon_url");
+        String bigIconLink = obj.getJSONObject("image").getString("super_url");
         int appearances = obj.getInt("count_of_issue_appearances");
         int firstComicID = obj.getJSONObject("first_appeared_in_issue").getInt("id");
         String firstComicName = obj.getJSONObject("first_appeared_in_issue").get("name").toString();
@@ -130,7 +134,7 @@ public class api_connection {
         String HTMLDescription = obj.get("description").toString();
 
 
-        return new Character(name,shortDescription,"character",id,iconLink,appearances,firstComicID,firstComicName,gender, realName,HTMLDescription);
+        return new Character(name,shortDescription,"character",id,iconLink,appearances,firstComicID,firstComicName,gender, realName,HTMLDescription,bigIconLink);
     }
 
     /**
@@ -149,11 +153,12 @@ public class api_connection {
             String shortDescription = JSONComics.getJSONObject(i).get("deck").toString();
             int id = JSONComics.getJSONObject(i).getInt("id");
             String iconLink = JSONComics.getJSONObject(i).getJSONObject("image").getString("icon_url");
+            String bigIconLink = JSONComics.getJSONObject(i).getJSONObject("image").getString("super_url");
             String SerieName = JSONComics.getJSONObject(i).getJSONObject("volume").getString("name");
             int SerieId = JSONComics.getJSONObject(i).getJSONObject("volume").getInt("id");
             double number = JSONComics.getJSONObject(i).getDouble("issue_number");
             String HTMLDescription = JSONComics.getJSONObject(i).get("description").toString();
-            Results res= new Results(name, shortDescription, "issue", id, iconLink,HTMLDescription);
+            Results res= new Results(name, shortDescription, "issue", id, iconLink,HTMLDescription, bigIconLink);
             Comic newComic = new Comic(res,SerieName,SerieId,number);
             lastComics.add(newComic);
         }
@@ -168,6 +173,7 @@ public class api_connection {
         String name = obj.get("name").toString();
         String shortDescription = obj.get("deck").toString();
         String iconLink = obj.getJSONObject("image").getString("icon_url");
+        String bigIconLink = obj.getJSONObject("image").getString("super_url");
         int numberOfComics = obj.getInt("count_of_issues");
         int startYear = obj.getInt("start_year");
         String HTMLDescription = obj.get("description").toString();
@@ -176,17 +182,35 @@ public class api_connection {
         int firstComicID = obj.getJSONObject("first_issue").getInt("id");
         String firstComicName = obj.getJSONObject("first_issue").get("name").toString();
 
-        Results res= new Results(name, shortDescription, "volume", id, iconLink,HTMLDescription);
+        Results res= new Results(name, shortDescription, "volume", id, iconLink,HTMLDescription, bigIconLink);
         return new Serie(res, numberOfComics, startYear,lastComicID,firstComicID,lastComicName,firstComicName);
     }
 
+    public List<Comic> getRandomComics() throws IOException{
+        List<Comic> randomComics = new ArrayList<>();
+        String requeteMaxId = "https://comicvine.gamespot.com/api/issues/?sort=id:desc&format=json&limit=1&api_key=53b33e3da09b63c64d3a69667f455e9076055dcc";
+        JSONObject objMaxId = new JSONObject(sendRequest(requeteMaxId));
+        final int ID_MAX = objMaxId.getJSONArray("results").getJSONObject(0).getInt("id");
+        for(int i=0;i<3;i++){
+            Random rand = new Random();
+            int randomId = rand.nextInt(ID_MAX + 1);
+            System.out.println(randomId);
+            try{
+                randomComics.add(getComic(randomId));
+            }catch (Exception e) {
+                i--;
+            }
+
+        }
+        return randomComics;
+    }
     
     //Exemple d'utilisation de la classe :
+    /*
     public static void main(String[] args) throws IOException {
         api_connection test = new api_connection();
 
-        // Recherche générale
-        /*List<Comic> lastComics = test.getLastComics();
+        List<Comic> lastComics = test.getRandomComics();
 
         for (Comic comics : lastComics) {
             System.out.println(comics.getName());
@@ -196,9 +220,9 @@ public class api_connection {
             System.out.println(comics.getSerieId());
             System.out.println(comics.getNumber());
             System.out.println("\n");
-        }*/
+        }
     }
-     
+     */
 
 
 }
