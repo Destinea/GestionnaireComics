@@ -4,6 +4,7 @@
  */
 package prinfo;
 
+import API.Comic;
 import API.Results;
 import API.api_connection;
 import AffichageCollection.UserSeriePanel;
@@ -11,9 +12,10 @@ import Collec.Comic_Collec;
 import Collec.User_serie;
 import Suggestion.Suggestion;
 import User.User;
-
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Choice;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,6 +24,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -61,17 +67,19 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     /**
      * Boolean true si on est connecté, false sinon
      */
-    private User user;
-    private boolean estCo = false;
+     private User user;
+     private boolean estCo = false;
 
-    public boolean getestCo(){
-        return estCo;
-    }
-    public void switchestCo(){
-        estCo = !estCo;
-        PanelCollection.setVisible(estCo);
-        if (estCo) {
-            user=connectionFrame.getUser();
+     public boolean getestCo(){
+         return estCo;
+     }
+     public void switchestCo() throws SQLException {
+         estCo = !estCo;
+         PanelCollection.setVisible(estCo);
+         if (estCo) {
+        	user=connectionFrame.getUser();
+        	user.chargeCollection();
+        	test();
             jLabel4.setText(user.getNametag());
         }
         else {
@@ -82,8 +90,19 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         return user;
     }
     public void deleteUser() {user=null;}
-
-    int pageNumber = 0;
+    public void test() throws SQLException {
+    	Comic_Collec t1 = new Comic_Collec("Volume 6", 964086, "https://comicvine.gamespot.com/a/uploads/square_medium/11145/111450787/8781226-1935607198-97840.jpg", "Torishimariyaku Shima Kōsaku", 143311, 6, 0);
+        Comic_Collec t2 = new Comic_Collec("Action On Sniper Ridge", 401, "https://comicvine.gamespot.com/a/uploads/square_avatar/0/4/376-1493-401-1-battle-action.jpg", "Battle Action", 1493,11, 0);
+        /*Comic_Collec t3 = new Comic_Collec("Spiderman3", 3, "iconLink", "Spiderman", 1, 3, 0);
+        Comic_Collec t4 = new Comic_Collec("Batman2", 4, "iconLink", "Batman", 2, 2, 0);
+        Comic_Collec t5 = new Comic_Collec("Batman1", 5, "iconLink", "Batman", 2, 1, 0);*/
+        user.changeUserComicStatus(t1.getComicVersion(),0 );
+        user.changeUserComicStatus(t2.getComicVersion(), 2);
+        /*user.changeComicStatus(t3.getComicVersion(), 1);
+        user.changeComicStatus(t4.getComicVersion(), 1);
+        user.changeComicStatus(t5.getComicVersion(), 1);*/
+	}
+	int pageNumber = 0;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,9 +116,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         entete = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         PanelAccueil = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        accueilBtn = new javax.swing.JLabel();
+        accueilBtn.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		//rechercheBtnActionPerformed(null);
+        	}
+        });
         PanelCollection = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        collecBtn = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         PanelConnection = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -187,7 +212,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jLabel3.setPreferredSize(new java.awt.Dimension(94, 30));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                collecBtnMouseClicked(evt);
             }
         });
 
@@ -207,6 +232,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
                                 .addContainerGap())
         );
+        PanelCollection.setLayout(PanelCollectionLayout);
 
         jTextField1.setBackground(new java.awt.Color(0, 0, 0));
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
@@ -266,7 +292,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         rechercheBtn.setBackground(new java.awt.Color(0, 0, 0));
         rechercheBtn.setForeground(new java.awt.Color(255, 255, 255));
         rechercheBtn.setText("Rechercher");
-
         rechercheBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rechercheBtnActionPerformed(evt);
@@ -435,7 +460,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void PanelAccueilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelAccueilMouseEntered
         // TODO add your handling code here:
-        jLabel2.setForeground(new Color(112, 128, 144));
+        accueilBtn.setForeground(new Color(112, 128, 144));
     }//GEN-LAST:event_PanelAccueilMouseEntered
 
     private void PanelCollectionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelCollectionMouseEntered
@@ -450,12 +475,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void PanelAccueilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelAccueilMouseExited
         // TODO add your handling code here:
-        jLabel2.setForeground(new Color(255,255,255));
+        accueilBtn.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_PanelAccueilMouseExited
 
     private void PanelCollectionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelCollectionMouseExited
         // TODO add your handling code here:
-        jLabel3.setForeground(new Color(255,255,255));
+        collecBtn.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_PanelCollectionMouseExited
 
     private void PanelConnectionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelConnectionMouseExited
@@ -515,7 +540,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechercheBtnMouseClicked
+    private void collecBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechercheBtnMouseClicked
         // TODO add your handling code here:
         // On supprime la liste précédemmant cherchée pour la set à nouveau
         panelAffichageMultiple.removeAll();
@@ -660,8 +685,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> dropListFiltre;
     private javax.swing.JPanel entete;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel accueilBtn;
+    private javax.swing.JLabel collecBtn;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
