@@ -5,6 +5,8 @@ import java.sql.*;
 import API.Comic;
 import Collec.Collec;
 import Collec.Comic_Collec;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 
 public class User {
 	private final String username;
@@ -60,9 +62,10 @@ public class User {
 			}
 		}
 	}
-		public void changePassword(Statement stmt,String new_password) throws SQLException {
+	public void changePassword(Statement stmt,String new_password) throws SQLException {
 		//Appelle a la BDD pour modifier le password
-		User_BDD.changerMotDePasse(stmt, this.username, new_password);
+                Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+		User_BDD.changerMotDePasse(stmt, this.username, new_password, argon2);
 	}
 	
 }

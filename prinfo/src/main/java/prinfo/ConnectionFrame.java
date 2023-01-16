@@ -73,7 +73,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(700, 350));
+        jPanel1.setPreferredSize(new java.awt.Dimension(750, 380));
 
         ConnexionBouton.setBackground(new java.awt.Color(51, 51, 51));
         ConnexionBouton.setForeground(new java.awt.Color(255, 255, 255));
@@ -135,6 +135,11 @@ public class ConnectionFrame extends javax.swing.JFrame {
 
         jPasswordField1.setBackground(new java.awt.Color(51, 51, 51));
         jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setBackground(new java.awt.Color(51, 51, 51));
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
@@ -167,7 +172,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(31, 31, 31)
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 42, Short.MAX_VALUE))))
+                                .addGap(0, 45, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(122, 122, 122)
                         .addComponent(EtatConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -217,11 +222,11 @@ public class ConnectionFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -252,6 +257,8 @@ public class ConnectionFrame extends javax.swing.JFrame {
     private void ConnexionBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnexionBoutonActionPerformed
         String logintemp = jTextField1.getText();
         String mdp = jPasswordField1.getText();
+        jPasswordField1.setBackground(new Color(51, 51, 51));
+        
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
         try{
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
@@ -264,7 +271,10 @@ public class ConnectionFrame extends javax.swing.JFrame {
         }
         else
         {
-            EtatConnection.setText("Mauvais MDP Ou Login inexistant");
+            EtatConnection.setForeground(Color.red);
+            jPasswordField1.setBackground(Color.red);
+            EtatConnection.setText("Mauvais mot de passe ou login inexistant");
+            
         }
         }
         catch(Exception e){
@@ -272,6 +282,12 @@ public class ConnectionFrame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_ConnexionBoutonActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+        ConnexionBoutonActionPerformed(evt);
+        
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments
