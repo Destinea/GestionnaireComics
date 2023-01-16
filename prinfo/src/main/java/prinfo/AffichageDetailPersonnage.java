@@ -110,11 +110,11 @@ public class AffichageDetailPersonnage extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(51, 51, 51));
         jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setToolTipText("");
         jScrollPane1.setPreferredSize(new java.awt.Dimension(959, 568));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.setPreferredSize(new java.awt.Dimension(957, 366));
 
         HTMLDescription.setBackground(new java.awt.Color(51, 51, 51));
         HTMLDescription.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,8 +122,6 @@ public class AffichageDetailPersonnage extends javax.swing.JFrame {
         HTMLDescription.setText("HTML description");
         HTMLDescription.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         HTMLDescription.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        HTMLDescription.setMaximumSize(new java.awt.Dimension(37, 16));
-        HTMLDescription.setMinimumSize(new java.awt.Dimension(37, 16));
         HTMLDescription.setPreferredSize(new java.awt.Dimension(37, 16));
         HTMLDescription.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
@@ -133,14 +131,14 @@ public class AffichageDetailPersonnage extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(HTMLDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(378, Short.MAX_VALUE))
+                .addComponent(HTMLDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(HTMLDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(HTMLDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jScrollPane1.setViewportView(jPanel2);
@@ -173,7 +171,7 @@ public class AffichageDetailPersonnage extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Entete, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
