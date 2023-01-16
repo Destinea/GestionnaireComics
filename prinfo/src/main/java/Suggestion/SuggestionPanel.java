@@ -6,8 +6,11 @@
 package Suggestion;
 
 import API.Comic;
+import API.Results;
+import API.api_connection;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import prinfo.AffichageDetailsComic;
 import prinfo.FenetrePrincipale;
 
 /**
@@ -23,29 +27,35 @@ import prinfo.FenetrePrincipale;
  */
 public class SuggestionPanel extends javax.swing.JPanel {
 
+    private Comic comic;
     /** Creates new form SuggestionPanel
      * @param frame
-     * @param comic
+     * @param com
      * @throws java.io.IOException */
-    public SuggestionPanel(FenetrePrincipale frame, Comic comic) throws IOException {
+    public SuggestionPanel(FenetrePrincipale frame, Comic com) throws IOException {
+        comic = com ;
         initComponents();
         jCheckBox1.setVisible(frame.getestCo());
         RemplirChamps(comic);
     }
     
     private void RemplirChamps(Comic comic) throws IOException{
-        titre.setText(comic.getName());
+        titre.setText(comic.getSerieName());
         ImageIcon img1 = null;
-        try {
-                BufferedImage img = ImageIO.read(new URL(comic.getIconLink()));
-                var newWidth = img.getWidth();
-                float aspectRatio = (float)img.getHeight(null)/img.getWidth(null);
-                int newHeight = (int)(newWidth * aspectRatio);
-                Image dimg = img.getScaledInstance(newWidth, newHeight ,Image.SCALE_SMOOTH);
-                img1 = new ImageIcon(dimg);
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+        try{
+            BufferedImage img= ImageIO.read(new URL(comic.getIconLink()));
+            int newWidth=100;
+            if(img.getWidth()==0){
+                img=ImageIO.read(new File("C:\\Projets_GIT\\FISE2\\Info7\\prinfo\\src\\main\\resources\\image_comic_default.png"));
             }
+            float aspectRatio=(float)img.getWidth(null)/img.getHeight(null);
+            int newHeight=(int)(newWidth*aspectRatio);
+            Image dimg=img.getScaledInstance(newWidth,newHeight,Image.SCALE_SMOOTH);
+            img1=new ImageIcon(dimg);
+
+        }catch(IOException ex){
+            Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE,null,ex);
+        }
         photoComic.setIcon(img1);
         
     }
@@ -70,6 +80,11 @@ public class SuggestionPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(51, 51, 51));
 
         photoComic.setText("photo");
+        photoComic.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                photoComicMouseClicked(evt);
+            }
+        });
 
         titre.setBackground(new java.awt.Color(51, 51, 51));
         titre.setForeground(new java.awt.Color(255, 255, 255));
@@ -102,8 +117,9 @@ public class SuggestionPanel extends javax.swing.JPanel {
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addComponent(titre, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
+                        .addGap(44, 44, 44)
                         .addComponent(jCheckBox1)
                         .addGap(0, 15, Short.MAX_VALUE))
                     .addComponent(photoComic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -114,6 +130,18 @@ public class SuggestionPanel extends javax.swing.JPanel {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void photoComicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_photoComicMouseClicked
+        // TODO add your handling code here:
+        api_connection apiConnection = new api_connection();
+        AffichageDetailsComic affichageDetailsComic = null;
+        try {
+            affichageDetailsComic = new AffichageDetailsComic(apiConnection.getComic(comic.getId()));
+        } catch (IOException ex) {
+            Logger.getLogger(SuggestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        affichageDetailsComic.setVisible(true);
+    }//GEN-LAST:event_photoComicMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
