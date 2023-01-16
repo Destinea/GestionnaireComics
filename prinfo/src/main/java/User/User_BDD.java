@@ -83,8 +83,9 @@ public class User_BDD {
         }
     }
 
-    public static void changerMotDePasse(Statement stmt, String login, String password) throws SQLException {
-        String sql = "UPDATE user SET password = '" + password + "' WHERE login = '" + login + "';";
+    public static void changerMotDePasse(Statement stmt, String login, String password, Argon2 argon2) throws SQLException {
+        String hash_password = argon2.hash(4, 1024 * 1024, 8, password);
+        String sql = "UPDATE user SET password = '" + hash_password + "' WHERE login = '" + login + "';";
         stmt.executeUpdate(sql);
     }
 }
