@@ -135,6 +135,11 @@ public class ConnectionFrame extends javax.swing.JFrame {
 
         jPasswordField1.setBackground(new java.awt.Color(51, 51, 51));
         jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setBackground(new java.awt.Color(51, 51, 51));
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
@@ -272,6 +277,12 @@ public class ConnectionFrame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_ConnexionBoutonActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+        ConnexionBoutonActionPerformed(evt);
+        
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments

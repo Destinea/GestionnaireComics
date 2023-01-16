@@ -166,6 +166,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         PanelAccueil.setMaximumSize(null);
         PanelAccueil.setName(""); // NOI18N
         PanelAccueil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelAccueilMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 PanelAccueilMouseEntered(evt);
             }
@@ -558,6 +561,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        
+        rechercheBtnActionPerformed(evt);
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1ActionPerformed
 
@@ -637,6 +642,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         btnPrecedent.setVisible(false);
     }//GEN-LAST:event_rechercheBtnActionPerformed
 
+    private void rechercheBtnMouseClicked(java.awt.event.MouseEvent evt){
+        
+    }
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
@@ -760,6 +768,24 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         //pas besoin de la navigation entre les pages de résultats
         Navbar.setVisible(false);
     }//GEN-LAST:event_PanelCollectionMouseClicked
+
+    private void PanelAccueilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelAccueilMouseClicked
+        panelAffichageMultiple.removeAll();
+        System.out.println("Acceuil");
+        try {
+            // TODO add your handling code here:
+
+            sugg = new Suggestion(this);
+            sugg.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("prinfo.FenetrePrincipale.PanelAccueilMouseClicked()");
+        }
+        
+        
+        panelAffichageMultiple.add(sugg);
+        contentPage.updateUI();
+    }//GEN-LAST:event_PanelAccueilMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {                                   
         if (estCo) {
