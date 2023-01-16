@@ -120,12 +120,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         PanelAccueil = new javax.swing.JPanel();
         accueilBtn = new javax.swing.JLabel();
-        accueilBtn.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent e) {
-        		//rechercheBtnActionPerformed(null);
-        	}
-        });
         PanelCollection = new javax.swing.JPanel();
         collecBtn = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -223,11 +217,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         collecBtn.setText("Ma Collection");
         collecBtn.setMinimumSize(new java.awt.Dimension(94, 19));
         collecBtn.setPreferredSize(new java.awt.Dimension(94, 30));
-        collecBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                collecBtnMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout PanelCollectionLayout = new javax.swing.GroupLayout(PanelCollection);
         PanelCollection.setLayout(PanelCollectionLayout);
