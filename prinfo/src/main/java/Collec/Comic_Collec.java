@@ -125,8 +125,20 @@ public class Comic_Collec extends Comic {
 
     public static void insertionComic(Statement stmt, Comic c) throws SQLException {
         System.out.println("Insertion du comic : " + c.getName() );
-        String sql = "INSERT INTO comic(id_comic, nom, lien_image, id_serie, numero) VALUES (" + c.getId() + ",'" + c.getName() + "', '" + c.getIconLink() + "', " + c.getSerieId() + "," + c.getNumber() + ");";
-        stmt.executeUpdate(sql);
+        if (VerificationComic(stmt, c))
+        {
+            System.out.println("Il faut insérer");
+            String sql = "INSERT INTO comic(id_comic, nom, lien_image, id_serie, numero) VALUES (" + c.getId() + ",'" + c.getName() + "', '" + c.getIconLink() + "', " + c.getSerieId() + "," + c.getNumber() + ");";
+            stmt.executeUpdate(sql);
+        }
+    }
+
+    public static boolean VerificationComic(Statement stmt, Comic c) throws SQLException {
+        System.out.println("Vérification de l'existence du comic " + c.getId() + " dans la bdd");
+        String sql = "SELECT * FROM comic WHERE id_comic = " + c.getId() + ";";
+        stmt.executeQuery(sql);
+        ResultSet rs = stmt.getResultSet();
+        return !rs.next();
     }
 
     public static void insertionSerie(Statement stmt, Comic c) throws SQLException {

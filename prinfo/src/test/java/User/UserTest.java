@@ -74,7 +74,7 @@ public class UserTest {
             Statement stmt;
             stmt = con.createStatement();
             Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
-            User_BDD.changerMotDePasse(stmt, "tota", "test1");
+            User_BDD.changerMotDePasse(stmt, "tota", "test1",argon2 );
             String password = User_BDD.lectureMdp(stmt, "tota");
             assertTrue(User_BDD.comparaison(password, "test1", argon2));
 

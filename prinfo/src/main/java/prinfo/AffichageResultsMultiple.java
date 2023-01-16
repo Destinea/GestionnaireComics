@@ -47,19 +47,16 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
         titre.setText(resultat.getName());
         type.setText(resultat.getType());
 
-        iconLink.setIcon(null);
         ImageIcon img1=null;
-        BufferedImage img=null;
-        Image dimg=null;
         try{
-            img= ImageIO.read(new URL(resultat.getIconLink()));
+            BufferedImage img= ImageIO.read(new URL(resultat.getIconLink()));
             int newWidth=100;
             if(img.getWidth()==0){
-                img=ImageIO.read(new File("C:\\Projets_GIT\\FISE2\\Info7\\prinfo\\src\\main\\resources\\image_comic_default.png"));
+                img=ImageIO.read(new File("prinfo/src/main/resources/image_comic_default.png"));
             }
             float aspectRatio=(float)img.getWidth(null)/img.getHeight(null);
             int newHeight=(int)(newWidth*aspectRatio);
-            dimg=img.getScaledInstance(newWidth,newHeight,Image.SCALE_SMOOTH);
+            Image dimg=img.getScaledInstance(newWidth,newHeight,Image.SCALE_SMOOTH);
             img1=new ImageIcon(dimg);
 
         }catch(IOException ex){

@@ -30,23 +30,21 @@ public class SuggestionPanel extends javax.swing.JPanel {
     private Comic comic;
     /** Creates new form SuggestionPanel
      * @param frame
-     * @param com
-     * @throws java.io.IOException */
-    public SuggestionPanel(FenetrePrincipale frame, Comic com) throws IOException {
-        comic = com ;
+     * @param comic */
+    public SuggestionPanel(FenetrePrincipale frame, Comic comic) {
         initComponents();
         jCheckBox1.setVisible(frame.getestCo());
         RemplirChamps(comic);
     }
     
-    private void RemplirChamps(Comic comic) throws IOException{
-        titre.setText(comic.getSerieName());
+    private void RemplirChamps(Comic comic){
+        titre.setText(comic.getName());
         ImageIcon img1 = null;
         try{
             BufferedImage img= ImageIO.read(new URL(comic.getIconLink()));
             int newWidth=100;
             if(img.getWidth()==0){
-                img=ImageIO.read(new File("C:\\Projets_GIT\\FISE2\\Info7\\prinfo\\src\\main\\resources\\image_comic_default.png"));
+                img=ImageIO.read(new File("prinfo/src/main/resources/image_comic_default.png"));
             }
             float aspectRatio=(float)img.getWidth(null)/img.getHeight(null);
             int newHeight=(int)(newWidth*aspectRatio);
