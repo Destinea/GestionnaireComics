@@ -5,6 +5,7 @@
 package Suggestion;
 import API.Comic;
 import java.awt.GridLayout;
+import java.io.IOException;
 import java.util.List;
 import prinfo.FenetrePrincipale;
 
@@ -19,13 +20,14 @@ public class Categorie extends javax.swing.JPanel {
      * @param frame
      * @param comics
      * @param name
+     * @throws java.io.IOException
      */
-    public Categorie(FenetrePrincipale frame, List<Comic> comics, String name) {
+    public Categorie(FenetrePrincipale frame, List<Comic> comics, String name) throws IOException {
         initComponents();
         initCategorie(frame,comics,name);
     }
     
-    public void initCategorie(FenetrePrincipale frame, List<Comic> comics, String name){
+    public void initCategorie(FenetrePrincipale frame, List<Comic> comics, String name) throws IOException{
         categorieName.setText(name);
         contentCategorie1 .setLayout(new GridLayout(1,3));
         for (Comic comic : comics) {//MOdifier pour avoir la serie possédée
