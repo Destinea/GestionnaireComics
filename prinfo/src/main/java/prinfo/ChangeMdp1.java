@@ -194,6 +194,8 @@ public class ChangeMdp1 extends javax.swing.JFrame {
 
     private void ConfMDPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfMDPActionPerformed
         // TODO add your handling code here:
+        soumettreButtonActionPerformed(evt);
+        
     }//GEN-LAST:event_ConfMDPActionPerformed
 
     /**
