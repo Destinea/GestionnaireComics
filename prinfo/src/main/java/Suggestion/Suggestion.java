@@ -25,16 +25,18 @@ public class Suggestion extends javax.swing.JPanel {
     public Suggestion(FenetrePrincipale frame) throws IOException {
         test = new api_connection();
         initComponents();
-        this.suggestion(frame);
+        this.generateSuggestion(frame);
         
     }
     
-    public void suggestion(FenetrePrincipale frame) throws IOException{
+    private void generateSuggestion(FenetrePrincipale frame) throws IOException{
         contentSuggestion.setLayout(new GridLayout(3,1));
         List<Comic> firstCategorie = test.getLastComics();
         contentSuggestion.add(new Categorie(frame,firstCategorie.subList(0,3),"Derniers Ajouts"));
         List<Comic> secondCategorie = test.getRandomComics();
         if (frame.getestCo()){
+            //A modifier par la collection
+            contentSuggestion.add(new Categorie(frame,secondCategorie.subList(0,3),"Aléatoires"));
         } else {
             contentSuggestion.add(new Categorie(frame,secondCategorie.subList(0,3),"Aléatoires"));
         }

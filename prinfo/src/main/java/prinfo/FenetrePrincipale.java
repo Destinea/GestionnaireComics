@@ -765,15 +765,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void PanelAccueilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelAccueilMouseClicked
         panelAffichageMultiple.removeAll();
         try {
-            // TODO add your handling code here:
-
             sugg = new Suggestion(this);
-            sugg.setVisible(true);
         } catch (IOException ex) {
-            Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);            
+            Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+        sugg.setVisible(true);
         panelAffichageMultiple.add(sugg);
         contentPage.updateUI();
     }//GEN-LAST:event_PanelAccueilMouseClicked

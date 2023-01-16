@@ -31,7 +31,8 @@ public class SuggestionPanel extends javax.swing.JPanel {
     /** Creates new form SuggestionPanel
      * @param frame
      * @param comic */
-    public SuggestionPanel(FenetrePrincipale frame, Comic comic) {
+    public SuggestionPanel(FenetrePrincipale frame, Comic com) {
+        comic = com;
         initComponents();
         jCheckBox1.setVisible(frame.getestCo());
         RemplirChamps(comic);
