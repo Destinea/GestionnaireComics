@@ -103,7 +103,6 @@ public class AffichageDetailsComic extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.setPreferredSize(new java.awt.Dimension(957, 366));
 
         HTMLDescription.setBackground(new java.awt.Color(51, 51, 51));
         HTMLDescription.setForeground(new java.awt.Color(255, 255, 255));
@@ -111,9 +110,6 @@ public class AffichageDetailsComic extends javax.swing.JFrame {
         HTMLDescription.setText("HTML description");
         HTMLDescription.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         HTMLDescription.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        HTMLDescription.setMaximumSize(new java.awt.Dimension(37, 16));
-        HTMLDescription.setMinimumSize(new java.awt.Dimension(37, 16));
-        HTMLDescription.setPreferredSize(new java.awt.Dimension(37, 16));
         HTMLDescription.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -128,7 +124,7 @@ public class AffichageDetailsComic extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(HTMLDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(HTMLDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -162,7 +158,7 @@ public class AffichageDetailsComic extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Entete, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
