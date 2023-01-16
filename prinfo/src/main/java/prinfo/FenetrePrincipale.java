@@ -4,7 +4,6 @@
  */
 package prinfo;
 
-import API.Comic;
 import API.Results;
 import API.api_connection;
 import AffichageCollection.UserSeriePanel;
@@ -12,23 +11,17 @@ import Collec.Comic_Collec;
 import Collec.User_serie;
 import Suggestion.Suggestion;
 import User.User;
-import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Choice;
-import java.awt.Component;
 import java.awt.GridLayout;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
 /**
  *

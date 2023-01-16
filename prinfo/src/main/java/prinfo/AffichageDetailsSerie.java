@@ -4,11 +4,15 @@
  */
 package prinfo;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 /**
  *
@@ -19,7 +23,7 @@ public class AffichageDetailsSerie extends javax.swing.JFrame {
     /**
      * Creates new form AffichageDetailsSerie
      */
-    public AffichageDetailsSerie(API.Serie s) {
+    public AffichageDetailsSerie(API.Serie s) throws IOException {
         initComponents();
         if(s.getName()!="null"){
             Titre.setText(s.getName());
@@ -36,14 +40,19 @@ public class AffichageDetailsSerie extends javax.swing.JFrame {
         else{
             HTMLDescription.setVisible(false);
         }
-        
+
         ImageIcon img1 = null;
         try {
-                img1 = new ImageIcon(new URL(s.getIconLink()));
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        Icon.setIcon(img1);
+            BufferedImage img = ImageIO.read(new URL(s.getBigIconLink()));
+            int newWidth = Icon1.getWidth();
+            float aspectRatio = (float)img.getHeight(null)/img.getWidth(null);
+            int newHeight = (int)(newWidth * aspectRatio);
+            Image dimg = img.getScaledInstance(newWidth, newHeight ,Image.SCALE_SMOOTH);
+            img1 = new ImageIcon(dimg);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Icon1.setIcon(img1);
     }
 
     /**
@@ -57,72 +66,62 @@ public class AffichageDetailsSerie extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Entete = new javax.swing.JSplitPane();
-        Icon = new javax.swing.JLabel();
-        jSplitPane1 = new javax.swing.JSplitPane();
+        Informations = new javax.swing.JSplitPane();
         Date = new javax.swing.JLabel();
-        jSplitPane2 = new javax.swing.JSplitPane();
-        Titre = new javax.swing.JLabel();
         Nb_numeros = new javax.swing.JLabel();
+        Titre = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         HTMLDescription = new javax.swing.JLabel();
+        Icon1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setSize(new java.awt.Dimension(1032, 600));
         setType(java.awt.Window.Type.POPUP);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1032, 779));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 600));
 
         Entete.setBackground(new java.awt.Color(0, 0, 0));
-        Entete.setDividerLocation(120);
+        Entete.setDividerLocation(100);
         Entete.setDividerSize(0);
+        Entete.setForeground(new java.awt.Color(255, 255, 255));
+        Entete.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        Icon.setBackground(new java.awt.Color(0, 0, 0));
-        Icon.setForeground(new java.awt.Color(255, 255, 255));
-        Icon.setMaximumSize(new java.awt.Dimension(180, 250));
-        Icon.setMinimumSize(new java.awt.Dimension(180, 250));
-        Icon.setPreferredSize(new java.awt.Dimension(180, 250));
-        Entete.setLeftComponent(Icon);
-
-        jSplitPane1.setBackground(new java.awt.Color(0, 0, 0));
-        jSplitPane1.setDividerLocation(110);
-        jSplitPane1.setDividerSize(0);
-        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        Informations.setBackground(new java.awt.Color(0, 0, 0));
+        Informations.setDividerLocation(50);
+        Informations.setDividerSize(0);
+        Informations.setForeground(new java.awt.Color(0, 0, 0));
+        Informations.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         Date.setBackground(new java.awt.Color(0, 0, 0));
         Date.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Date.setForeground(new java.awt.Color(255, 255, 255));
         Date.setText("Débutée en AAAA");
-        jSplitPane1.setRightComponent(Date);
+        Informations.setTopComponent(Date);
+        Date.getAccessibleContext().setAccessibleName("Date");
 
-        jSplitPane2.setBackground(new java.awt.Color(0, 0, 0));
-        jSplitPane2.setDividerLocation(500);
-        jSplitPane2.setDividerSize(0);
+        Nb_numeros.setBackground(new java.awt.Color(0, 0, 0));
+        Nb_numeros.setForeground(new java.awt.Color(255, 255, 255));
+        Nb_numeros.setText("jLabel1");
+        Informations.setRightComponent(Nb_numeros);
+
+        Entete.setRightComponent(Informations);
 
         Titre.setBackground(new java.awt.Color(0, 0, 0));
         Titre.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Titre.setForeground(new java.awt.Color(255, 255, 255));
         Titre.setText("Titre");
-        jSplitPane2.setTopComponent(Titre);
-
-        Nb_numeros.setBackground(new java.awt.Color(0, 0, 0));
-        Nb_numeros.setForeground(new java.awt.Color(255, 255, 255));
-        Nb_numeros.setText("X numéros");
-        jSplitPane2.setRightComponent(Nb_numeros);
-
-        jSplitPane1.setLeftComponent(jSplitPane2);
-
-        Entete.setRightComponent(jSplitPane1);
+        Entete.setLeftComponent(Titre);
 
         jScrollPane1.setBackground(new java.awt.Color(51, 51, 51));
         jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(959, 568));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.setPreferredSize(new java.awt.Dimension(957, 566));
+        jPanel2.setPreferredSize(new java.awt.Dimension(957, 366));
 
         HTMLDescription.setBackground(new java.awt.Color(51, 51, 51));
         HTMLDescription.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,43 +140,48 @@ public class AffichageDetailsSerie extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(HTMLDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 945, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(HTMLDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(378, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(HTMLDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(544, 544, 544))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(HTMLDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel2);
+
+        Icon1.setBackground(new java.awt.Color(0, 0, 0));
+        Icon1.setForeground(new java.awt.Color(255, 255, 255));
+        Icon1.setMaximumSize(new java.awt.Dimension(180, 500));
+        Icon1.setMinimumSize(new java.awt.Dimension(180, 500));
+        Icon1.setPreferredSize(new java.awt.Dimension(180, 500));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 976, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(Icon1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Entete, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(Entete)
-                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 219, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(Entete, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Icon1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Entete, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,15 +190,14 @@ public class AffichageDetailsSerie extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 6, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -216,13 +219,8 @@ public class AffichageDetailsSerie extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AffichageDetailsSerie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AffichageDetailsSerie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AffichageDetailsSerie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AffichageDetailsSerie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -236,13 +234,12 @@ public class AffichageDetailsSerie extends javax.swing.JFrame {
     private javax.swing.JLabel Date;
     private javax.swing.JSplitPane Entete;
     private javax.swing.JLabel HTMLDescription;
-    private javax.swing.JLabel Icon;
+    private javax.swing.JLabel Icon1;
+    private javax.swing.JSplitPane Informations;
     private javax.swing.JLabel Nb_numeros;
     private javax.swing.JLabel Titre;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JSplitPane jSplitPane2;
     // End of variables declaration//GEN-END:variables
 }
