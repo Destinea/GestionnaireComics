@@ -24,11 +24,11 @@ public class Suggestion extends javax.swing.JPanel {
     public Suggestion(FenetrePrincipale frame) throws IOException {
         test = new api_connection();
         initComponents();
-        Suggestion(frame);
+        this.suggestion(frame);
         
     }
     
-    public void Suggestion(FenetrePrincipale frame) throws IOException{
+    public void suggestion(FenetrePrincipale frame) throws IOException{
         contentSuggestion.setLayout(new GridLayout(3,1));
         List<Comic> firstCategorie = test.getLastComics();
         contentSuggestion.add(new Categorie(frame,firstCategorie.subList(6,9),"Derniers Ajouts"));
