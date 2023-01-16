@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Classe permettant d'effctuer des recherches sur ComicVine.
@@ -185,13 +186,31 @@ public class api_connection {
         return new Serie(res, numberOfComics, startYear,lastComicID,firstComicID,lastComicName,firstComicName);
     }
 
+    public List<Comic> getRandomComics() throws IOException{
+        List<Comic> randomComics = new ArrayList<>();
+        String requeteMaxId = "https://comicvine.gamespot.com/api/issues/?sort=id:desc&format=json&limit=1&api_key=53b33e3da09b63c64d3a69667f455e9076055dcc";
+        JSONObject objMaxId = new JSONObject(sendRequest(requeteMaxId));
+        final int ID_MAX = objMaxId.getJSONArray("results").getJSONObject(0).getInt("id");
+        for(int i=0;i<3;i++){
+            Random rand = new Random();
+            int randomId = rand.nextInt(ID_MAX + 1);
+            System.out.println(randomId);
+            try{
+                randomComics.add(getComic(randomId));
+            }catch (Exception e) {
+                i--;
+            }
+
+        }
+        return randomComics;
+    }
     
     //Exemple d'utilisation de la classe :
+    /*
     public static void main(String[] args) throws IOException {
         api_connection test = new api_connection();
 
-        // Recherche générale
-        /*List<Comic> lastComics = test.getLastComics();
+        List<Comic> lastComics = test.getRandomComics();
 
         for (Comic comics : lastComics) {
             System.out.println(comics.getName());
@@ -201,9 +220,9 @@ public class api_connection {
             System.out.println(comics.getSerieId());
             System.out.println(comics.getNumber());
             System.out.println("\n");
-        }*/
+        }
     }
-     
+     */
 
 
 }
