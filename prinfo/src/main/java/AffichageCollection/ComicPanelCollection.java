@@ -23,6 +23,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -31,21 +33,27 @@ import java.awt.Font;
 public class ComicPanelCollection extends javax.swing.JPanel {
     private  User user;
     private Comic_Collec comic;
+    private UserSeriePanel usp;
     /**
      * Creates new form ComicPanelCollection
      * @param user
      * @param c
      */
-    public ComicPanelCollection(User user,Comic_Collec c) {
+    public ComicPanelCollection(User user,Comic_Collec c,UserSeriePanel usp) {
         initComponents();
         this.user=user;
         this.comic=c;
+        this.usp=usp;
         InitComicPanelCollection();
     }
     
     public void InitComicPanelCollection(){
         box_lu.setVisible(true);
         box_possede.setVisible(true);
+        box_lu.setSelected(((comic.getEtat()==2) || (comic.getEtat()==4)));
+        box_possede.setSelected((comic.getEtat()>2));
+        deleteBtn.setVisible(true);
+        deleteBtn.setSelected(false);
         titre.setText(this.comic.getName());
         ImageIcon img = null;
         try {
@@ -71,7 +79,7 @@ public class ComicPanelCollection extends javax.swing.JPanel {
         box_lu.setFont(new Font("Dialog", Font.BOLD, 10));
         box_possede = new javax.swing.JCheckBox();
         box_possede.setFont(new Font("Dialog", Font.BOLD, 10));
-        box_possede.setHorizontalAlignment(SwingConstants.TRAILING);
+        box_possede.setHorizontalAlignment(SwingConstants.LEFT);
 
         setBackground(new java.awt.Color(51, 51, 51));
         setPreferredSize(new Dimension(127, 195));
@@ -96,7 +104,7 @@ public class ComicPanelCollection extends javax.swing.JPanel {
         box_lu.setText("Lu");
         box_lu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                box_luActionPerformed(evt);
+                boxActionPerformed(evt);
             }
         });
 
@@ -105,15 +113,20 @@ public class ComicPanelCollection extends javax.swing.JPanel {
         box_possede.setText("Possédé");
         box_possede.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                box_possedeActionPerformed(evt);
+                boxActionPerformed(evt);
             }
         });
-        
-        JLabel deleteBtn = new JLabel("Supprimer");
+        deleteBtn= new javax.swing.JButton();
+        deleteBtn.setText("Supprimer");
+        deleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        	public void mouseClicked(java.awt.event.MouseEvent evt) {
+        		deleteBtnActionPerformed(evt);
+        	}
+        });
+        deleteBtn.setEnabled(false);
         deleteBtn.setFont(new Font("Dialog", Font.BOLD, 10));
-        deleteBtn.setBackground(new Color(99, 99, 99));
-        deleteBtn.setForeground(new Color(255, 255, 255));
-        deleteBtn.setHorizontalAlignment(SwingConstants.CENTER);
+        deleteBtn.setBackground(new Color(51, 51, 51));
+        deleteBtn.setForeground(new Color(51, 51, 51));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         layout.setHorizontalGroup(
@@ -163,19 +176,37 @@ public class ComicPanelCollection extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_iconLinkMouseClicked
 
-    private void box_luActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_luActionPerformed
-        //Modifier état de lecture dans user.collection
-        
-    }//GEN-LAST:event_box_luActionPerformed
+    private void boxActionPerformed(java.awt.event.ActionEvent evt) {
+        int state;
+    	if (box_lu.isSelected()) {
+			if (box_possede.isSelected()) {
+				state=4;
+			} else {
+				state=2;
+			}
+		}
+    	else {
+    		if (box_possede.isSelected()) {
+				state=3;
+			} else {
+				state=1;
+			}
+    	}
+        user.changeUserComicStatus(comic, state);
+    }
 
-    private void box_possedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_possedeActionPerformed
-        //Modifier état de lecture user.collection
-    }//GEN-LAST:event_box_possedeActionPerformed
-
-
+    private void deleteBtnActionPerformed(java.awt.event.MouseEvent evt) {//GEN-FIRST:deleteBtnActionPerformed	
+    	deleteBtn.setEnabled(true);
+		user.changeUserComicStatus(comic, 0);
+		usp.deleteComic(comic.getId());//Ask the parent panel to destroy this panel
+    }//GEN-LAST:deleteBtnActionPerformed
+    public Comic_Collec getPanelComic() {
+		return this.comic;
+	}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox box_lu;
     private javax.swing.JCheckBox box_possede;
     private javax.swing.JLabel iconLink;
     private javax.swing.JLabel titre;
+    private javax.swing.JButton deleteBtn;
 }

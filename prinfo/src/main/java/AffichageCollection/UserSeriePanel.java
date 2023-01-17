@@ -40,7 +40,7 @@ public class UserSeriePanel extends javax.swing.JPanel {
         
         
         for (Comic_Collec comic : serie.getUserSerie()) {//MOdifier pour avoir la serie possédée
-            comic_panels.add(new ComicPanelCollection(this.user,comic));
+            comic_panels.add(new ComicPanelCollection(this.user,comic,this));
         }
         Iterator<ComicPanelCollection> iterator = comic_panels.iterator();
         
@@ -51,7 +51,17 @@ public class UserSeriePanel extends javax.swing.JPanel {
         }
         
     }
-    
+    public void deleteComic(int id) {
+		for (ComicPanelCollection comicPanelCollection : comic_panels) {
+			if (comicPanelCollection.getPanelComic().getId()==id) {
+				comic_panels.remove(comicPanelCollection);
+				contentpageserie.remove(comicPanelCollection);
+				System.out.println("found");
+			}
+		}
+		contentpageserie.updateUI();
+		System.out.println("not found");
+	}
     
     /**
      * This method is called from within the constructor to initialize the form.
