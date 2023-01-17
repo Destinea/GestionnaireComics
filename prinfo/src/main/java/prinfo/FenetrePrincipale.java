@@ -629,23 +629,16 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }//GEN-LAST:event_rechercheBtnActionPerformed
 
     private void rechercheBtnMouseClicked(java.awt.event.MouseEvent evt){
-        
+    	rechercheBtnActionPerformed(null);
     }
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
 
-    private void collecBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechercheBtnMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rechercheBtnMouseClicked
 
     private void btnPrecedentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrecedentActionPerformed
         int numPagePrecedente = Integer.parseInt(numPage.getText())-1;
-        if (ResultatsRecherche!=null) {
-            ResultatsRecherche.clear();
-            resultatsMultipleAffichage.clear();
-            panelAffichageMultiple.removeAll();
-        }
+        clearAffichageMultiple();
 
         try {
             ResultatsRecherche = test.GetResults(jTextField1.getText(), numPagePrecedente,dropListFiltre.getSelectedItem().toString());
@@ -765,17 +758,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 		contentPage.updateUI();
 	}
     private void clearAffichageMultiple() {
-    	sugg.setVisible(false);
+    	if (sugg.isVisible()) {
+    		panelAffichageMultiple.remove(sugg);
+    	}
         if (ResultatsRecherche!=null) {
             ResultatsRecherche.clear();
             resultatsMultipleAffichage.clear();
         }
         if (series_panels!=null) {
-        	for (UserSeriePanel p : series_panels) {
-        		p.setVisible(false);
-				panelAffichageMultiple.remove(p);
-				series_panels.remove(p);
-			}
+			series_panels.clear();
         }
         panelAffichageMultiple.removeAll();
         contentPage.updateUI();
