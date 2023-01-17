@@ -622,7 +622,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             panelAffichageMultiple.add(affichageResultsMultiple);
         }
         contentPage.updateUI();
-
+        panelAffichageMultiple.repaint();
         numPage.setText("1");
         Navbar.setVisible(true);
         btnPrecedent.setVisible(false);
@@ -657,6 +657,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             panelAffichageMultiple.add(affichageResultsMultiple);
         }
         contentPage.updateUI();
+        panelAffichageMultiple.repaint();
         numPage.setText(String.valueOf(numPagePrecedente));
         if(numPagePrecedente<=1){
             btnPrecedent.setVisible(false);
@@ -684,6 +685,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             panelAffichageMultiple.add(affichageResultsMultiple);
         }
         contentPage.updateUI();
+        panelAffichageMultiple.repaint();
         numPage.setText(String.valueOf(numPageSuivante));
         btnPrecedent.setVisible(true);
     }//GEN-LAST:event_btnSuivantActionPerformed
@@ -757,11 +759,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 			
 		}
 		contentPage.updateUI();
+		panelAffichageMultiple.repaint();
 	}
     private void clearAffichageMultiple() {
-    	if (sugg.isVisible()) {
-    		panelAffichageMultiple.remove(sugg);
-    	}
+    	panelAffichageMultiple.removeAll();
+        panelAffichageMultiple.repaint();
         if (ResultatsRecherche!=null) {
             ResultatsRecherche.clear();
             resultatsMultipleAffichage.clear();
@@ -769,8 +771,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         if (series_panels!=null) {
 			series_panels.clear();
         }
-        panelAffichageMultiple.removeAll();
-        contentPage.updateUI();
+        
     }
     private void PanelAccueilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelAccueilMouseClicked
         clearAffichageMultiple();
@@ -782,6 +783,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         sugg.setVisible(true);
         panelAffichageMultiple.add(sugg);
         contentPage.updateUI();
+        panelAffichageMultiple.repaint();
     }//GEN-LAST:event_PanelAccueilMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {                                   
