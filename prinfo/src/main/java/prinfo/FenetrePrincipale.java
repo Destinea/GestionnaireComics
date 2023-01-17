@@ -82,7 +82,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
          if (estCo) {
         	user=connectionFrame.getUser();
         	user.chargeCollection();
-        	test();
+        	//test();
             jLabel4.setText(user.getNametag());
         }
         else {
@@ -93,6 +93,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         return user;
     }
     public void deleteUser() {user=null;}
+    /* FOONTION D'ajout manuel a la collection
     public void test() throws SQLException {
     	Comic_Collec t1 = new Comic_Collec("Volume 6", 964086, "https://comicvine.gamespot.com/a/uploads/square_medium/11145/111450787/8781226-1935607198-97840.jpg", "Torishimariyaku Shima Kōsaku", 143311, 6, 0);
         Comic_Collec t2 = new Comic_Collec("Action On Sniper Ridge", 401, "https://comicvine.gamespot.com/a/uploads/square_avatar/0/4/376-1493-401-1-battle-action.jpg", "Battle Action", 1493,11, 0);
@@ -103,8 +104,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         //user.changeUserComicStatus(t2.getComicVersion(), 2);
         /*user.changeComicStatus(t3.getComicVersion(), 1);
         user.changeComicStatus(t4.getComicVersion(), 1);
-        user.changeComicStatus(t5.getComicVersion(), 1);*/
+        user.changeComicStatus(t5.getComicVersion(), 1);
 	}
+	*/
 	int pageNumber = 0;
     /**
      * This method is called from within the constructor to initialize the form.
