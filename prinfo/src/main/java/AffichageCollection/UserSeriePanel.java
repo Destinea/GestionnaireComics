@@ -6,6 +6,7 @@ package AffichageCollection;
 
 import Collec.Comic_Collec;
 import User.User;
+import prinfo.FenetrePrincipale;
 import Collec.User_serie;
 import java.awt.GridLayout;
 import java.util.HashSet;
@@ -23,17 +24,22 @@ public class UserSeriePanel extends javax.swing.JPanel {
     private User user;
     private User_serie serie;
     private HashSet<ComicPanelCollection> comic_panels; 
+    private FenetrePrincipale fp;
     /**
      * Creates new form UserSeriePanel
      */
-    public UserSeriePanel(User user,User_serie serie) {
+    public UserSeriePanel(User user,User_serie serie,FenetrePrincipale f) {
         initComponents();
         this.user=user;
         this.serie=serie;
         this.comic_panels= new HashSet<>();
+        fp=f;
         InitUserSeriePanelCollection();
     }
     
+    public User_serie getPanelSerie() {
+    	return this.serie;
+    }
     public void InitUserSeriePanelCollection(){
         nomSerie.setText(serie.getName());
         contentpageserie.setLayout(new GridLayout(1,6));
@@ -56,11 +62,12 @@ public class UserSeriePanel extends javax.swing.JPanel {
 			if (comicPanelCollection.getPanelComic().getId()==id) {
 				comic_panels.remove(comicPanelCollection);
 				contentpageserie.remove(comicPanelCollection);
-				System.out.println("found");
 			}
 		}
 		contentpageserie.updateUI();
-		System.out.println("not found");
+		if (comic_panels.size()<1) {
+			fp.deleteSeriePanel(serie.getId());
+		}
 	}
     
     /**

@@ -100,7 +100,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         Comic_Collec t4 = new Comic_Collec("Batman2", 4, "iconLink", "Batman", 2, 2, 0);
         Comic_Collec t5 = new Comic_Collec("Batman1", 5, "iconLink", "Batman", 2, 1, 0);*/
         user.changeUserComicStatus(t1.getComicVersion(),0 );
-        //user.changeUserComicStatus(t2.getComicVersion(), 2);
+        user.changeUserComicStatus(t2.getComicVersion(), 2);
         /*user.changeComicStatus(t3.getComicVersion(), 1);
         user.changeComicStatus(t4.getComicVersion(), 1);
         user.changeComicStatus(t5.getComicVersion(), 1);*/
@@ -675,11 +675,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void btnSuivantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuivantActionPerformed
         int numPageSuivante = Integer.parseInt(numPage.getText())+1;
-        if (ResultatsRecherche!=null) {
-            ResultatsRecherche.clear();
-            resultatsMultipleAffichage.clear();
-            panelAffichageMultiple.removeAll();
-        }
+        clearAffichageMultiple();
 
         try {
             ResultatsRecherche = test.GetResults(jTextField1.getText(), numPageSuivante,dropListFiltre.getSelectedItem().toString());
@@ -743,14 +739,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void PanelCollectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelCollectionMouseClicked
         // TODO add your handling code here:
         // On supprime la liste précédemmant cherchée pour la set à nouveau
-        panelAffichageMultiple.removeAll();
+        clearAffichageMultiple();
         //On prepare le layout
         panelAffichageMultiple.setLayout(new GridLayout(user.getCollection().getSeries().size(), 1, 10, 10));
         //on active la barre de scroll
         scrollPaneAffichageMultiple.setVisible(true);
         //stockage des panels pour ne pas avoir a les recharger
         for (User_serie user_serie : user.getCollection().getSeries()) {
-            series_panels.add(new UserSeriePanel(user, user_serie));
+            series_panels.add(new UserSeriePanel(user, user_serie,this));
         }
         //Ajout des panels au panel parent
         for (UserSeriePanel series_panel:series_panels) {
@@ -761,9 +757,28 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         //pas besoin de la navigation entre les pages de résultats
         Navbar.setVisible(false);
     }//GEN-LAST:event_PanelCollectionMouseClicked
-
+    public void deleteSeriePanel(int id) {
+		for (UserSeriePanel series_panel:series_panels) {
+			if (series_panel.getPanelSerie().getId()==id) {
+				series_panels.remove(series_panel);
+				panelAffichageMultiple.remove(series_panel);
+			}
+			
+		}
+		contentPage.updateUI();
+	}
+    private void clearAffichageMultiple() {
+    	panelAffichageMultiple.removeAll();
+        if (ResultatsRecherche!=null) {
+            ResultatsRecherche.clear();
+            resultatsMultipleAffichage.clear();
+        }
+        if (series_panels!=null) {
+            series_panels.clear();
+        }
+    }
     private void PanelAccueilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelAccueilMouseClicked
-        panelAffichageMultiple.removeAll();
+        clearAffichageMultiple();
         try {
             // TODO add your handling code here:
 
