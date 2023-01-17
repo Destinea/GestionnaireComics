@@ -600,13 +600,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void rechercheBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheBtnActionPerformed
         // On supprime la liste précédemmant cherchée pour la set à nouveau
-        sugg.setVisible(false);
-        panelAffichageMultiple.removeAll();
-        if (ResultatsRecherche!=null) {
-            ResultatsRecherche.clear();
-            resultatsMultipleAffichage.clear();
-            panelAffichageMultiple.removeAll();
-        }
+        
+        clearAffichageMultiple();
 
         try {
             ResultatsRecherche = test.GetResults(jTextField1.getText(), 1,dropListFiltre.getSelectedItem().toString());
@@ -768,14 +763,20 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 		contentPage.updateUI();
 	}
     private void clearAffichageMultiple() {
-    	panelAffichageMultiple.removeAll();
+    	sugg.setVisible(false);
         if (ResultatsRecherche!=null) {
             ResultatsRecherche.clear();
             resultatsMultipleAffichage.clear();
         }
         if (series_panels!=null) {
-            series_panels.clear();
+        	for (UserSeriePanel p : series_panels) {
+        		p.setVisible(false);
+				panelAffichageMultiple.remove(p);
+				series_panels.remove(p);
+			}
         }
+        panelAffichageMultiple.removeAll();
+        contentPage.updateUI();
     }
     private void PanelAccueilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelAccueilMouseClicked
         clearAffichageMultiple();
