@@ -99,8 +99,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         /*Comic_Collec t3 = new Comic_Collec("Spiderman3", 3, "iconLink", "Spiderman", 1, 3, 0);
         Comic_Collec t4 = new Comic_Collec("Batman2", 4, "iconLink", "Batman", 2, 2, 0);
         Comic_Collec t5 = new Comic_Collec("Batman1", 5, "iconLink", "Batman", 2, 1, 0);*/
-        user.changeUserComicStatus(t1.getComicVersion(),0 );
-        user.changeUserComicStatus(t2.getComicVersion(), 2);
+        //user.changeUserComicStatus(t1.getComicVersion(),0 );
+        //user.changeUserComicStatus(t2.getComicVersion(), 2);
         /*user.changeComicStatus(t3.getComicVersion(), 1);
         user.changeComicStatus(t4.getComicVersion(), 1);
         user.changeComicStatus(t5.getComicVersion(), 1);*/

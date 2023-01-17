@@ -7,6 +7,9 @@ package prinfo;
 import API.Comic;
 import API.Results;
 import API.api_connection;
+import Collec.Comic_Collec;
+import User.User;
+
 import com.mysql.cj.xdevapi.Result;
 
 import java.awt.*;
@@ -31,12 +34,20 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
     /**
      * Creates new form AffichageResultsMultiple
      */
-    public AffichageResultsMultiple(Results res, FenetrePrincipale frame) {
+    public AffichageResultsMultiple(Results res, FenetrePrincipale f) {
+    	this.frame=f;
         resultat=res;
         initComponents();
         RemplirChamps();
         if (("issue".equals(type.getText())) && (frame.getestCo())){
             jCheckBox1.setVisible(true);
+            Comic test_possession= frame.getUser().getCollection().searchComic(res.getId());
+            if (test_possession!=null) {
+				jCheckBox1.setSelected(true);
+			}
+            else {
+				jCheckBox1.setSelected(false);
+			}
         }
         else{
             jCheckBox1.setVisible(false);
@@ -191,10 +202,25 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
-        //if (jCheckBox1.isSelected()){
-        // Comic comicSelected = new Comic(resultat);
-        // frame.maCollection.addComic(comicSelected);
-        //}
+    	
+        if (jCheckBox1.isSelected()){
+        	//Pas dans la collection, on doit l'ajouter
+        	api_connection conn= new api_connection();   	
+        	Comic comicSelected;
+			try {
+				comicSelected = conn.getComic(resultat.getId());
+				frame.getUser().addUserComic(comicSelected);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}     	
+        }
+        else {
+        	//Deja dans la collection, on doit le supprimer
+        	User user=frame.getUser();
+        	Comic comicSelected =user.getCollection().searchComic(resultat.getId());//recup du comic
+			user.changeUserComicStatus(comicSelected, 0);
+		}
         //TODO else remove comic non selected
 
     }//GEN-LAST:event_jCheckBox1ActionPerformed
