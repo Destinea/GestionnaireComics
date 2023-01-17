@@ -111,7 +111,12 @@ public class api_connection {
         String bigIconLink = obj.getJSONObject("image").getString("super_url");
         String SerieName = obj.getJSONObject("volume").getString("name");
         int SerieId = obj.getJSONObject("volume").getInt("id");
-        double number = obj.getDouble("issue_number");
+        double number;
+        try{
+            number = obj.getDouble("issue_number");
+        }catch(Exception e){
+            number = -1;
+        }
         String HTMLDescription = obj.get("description").toString();
         Results res= new Results(name, shortDescription, "issue", id, iconLink,HTMLDescription, bigIconLink);
         return new Comic( res,SerieName,SerieId,number);
@@ -194,7 +199,6 @@ public class api_connection {
         for(int i=0;i<3;i++){
             Random rand = new Random();
             int randomId = rand.nextInt(ID_MAX + 1);
-            System.out.println(randomId);
             try{
                 randomComics.add(getComic(randomId));
             }catch (Exception e) {
