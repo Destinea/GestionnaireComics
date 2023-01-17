@@ -27,8 +27,13 @@ public class Collec {
 		for (Iterator<User_serie> iterator = series.iterator(); iterator.hasNext();) {
 			User_serie serie = (User_serie) iterator.next();
 			if (serie.getId()==c.getSerieId()) {
+				find=true;
 				//modif series
 				serie.changeSerieComicStatus(c, etat);
+				
+				if (serie.getUserSerie().isEmpty()) {//supp serie vide
+					series.remove(serie);
+				}
 				//modif comics
 				for (Iterator<Comic_Collec> it = comics.iterator(); it.hasNext();) {
 					Comic_Collec comic_Collec = (Comic_Collec) it.next();
@@ -42,7 +47,6 @@ public class Collec {
 						}
 					}
 				}
-				find=true;
 				
 			}
 		}
