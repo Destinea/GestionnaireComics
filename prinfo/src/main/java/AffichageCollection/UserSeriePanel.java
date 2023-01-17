@@ -6,6 +6,7 @@ package AffichageCollection;
 
 import Collec.Comic_Collec;
 import User.User;
+import prinfo.FenetrePrincipale;
 import Collec.User_serie;
 import java.awt.GridLayout;
 import java.util.HashSet;
@@ -23,24 +24,29 @@ public class UserSeriePanel extends javax.swing.JPanel {
     private User user;
     private User_serie serie;
     private HashSet<ComicPanelCollection> comic_panels; 
+    private FenetrePrincipale fp;
     /**
      * Creates new form UserSeriePanel
      */
-    public UserSeriePanel(User user,User_serie serie) {
+    public UserSeriePanel(User user,User_serie serie,FenetrePrincipale f) {
         initComponents();
         this.user=user;
         this.serie=serie;
         this.comic_panels= new HashSet<>();
+        fp=f;
         InitUserSeriePanelCollection();
     }
     
+    public User_serie getPanelSerie() {
+    	return this.serie;
+    }
     public void InitUserSeriePanelCollection(){
         nomSerie.setText(serie.getName());
         contentpageserie.setLayout(new GridLayout(1,6));
         
         
         for (Comic_Collec comic : serie.getUserSerie()) {//MOdifier pour avoir la serie possédée
-            comic_panels.add(new ComicPanelCollection(this.user,comic));
+            comic_panels.add(new ComicPanelCollection(this.user,comic,this));
         }
         Iterator<ComicPanelCollection> iterator = comic_panels.iterator();
         
@@ -51,7 +57,18 @@ public class UserSeriePanel extends javax.swing.JPanel {
         }
         
     }
-    
+    public void deleteComic(int id) {
+		for (ComicPanelCollection comicPanelCollection : comic_panels) {
+			if (comicPanelCollection.getPanelComic().getId()==id) {
+				comic_panels.remove(comicPanelCollection);
+				contentpageserie.remove(comicPanelCollection);
+			}
+		}
+		contentpageserie.updateUI();
+		if (comic_panels.size()<1) {
+			fp.deleteSeriePanel(serie.getId());
+		}
+	}
     
     /**
      * This method is called from within the constructor to initialize the form.
