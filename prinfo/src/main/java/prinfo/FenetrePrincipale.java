@@ -48,7 +48,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     /**
      * Creates new form FenetrePrincipale
      */
-    public FenetrePrincipale() throws IOException {
+    public FenetrePrincipale() throws IOException, SQLException {
         initComponents();
         test = new api_connection();
         resultatsMultipleAffichage = new LinkedList<AffichageResultsMultiple>();
@@ -784,7 +784,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         clearAffichageMultiple();
         try {
             sugg = new Suggestion(this);
-        } catch (IOException ex) {
+        } catch (IOException | SQLException ex) {
             Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
         sugg.setVisible(true);
@@ -836,6 +836,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 try {
                     main = new FenetrePrincipale();
                 } catch (IOException ex) {
+                    Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
                     Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 main.setLocationRelativeTo(null);
