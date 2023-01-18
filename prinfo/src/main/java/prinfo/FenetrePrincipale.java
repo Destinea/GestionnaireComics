@@ -736,7 +736,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         //On prepare le layout
         panelAffichageMultiple.setLayout(new GridLayout(user.getCollection().getSeries().size(), 1, 10, 10));
         //on active la barre de scroll
-        scrollPaneAffichageMultiple.setVisible(true);
         //stockage des panels pour ne pas avoir a les recharger
         for (User_serie user_serie : user.getCollection().getSeries()) {
             series_panels.add(new UserSeriePanel(user, user_serie,this));
@@ -746,9 +745,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             panelAffichageMultiple.add(series_panel);
         }
         //Update du panel parent
-        contentPage.updateUI();
+        
         //pas besoin de la navigation entre les pages de résultats
         Navbar.setVisible(false);
+        scrollPaneAffichageMultiple.setVisible(true);
+        contentPage.updateUI();
+        panelAffichageMultiple.repaint();
     }//GEN-LAST:event_PanelCollectionMouseClicked
     public void deleteSeriePanel(int id) {
 		for (UserSeriePanel series_panel:series_panels) {
