@@ -8,6 +8,7 @@ package Suggestion;
 import API.Comic;
 import API.Results;
 import API.api_connection;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -77,11 +78,19 @@ public class SuggestionPanel extends javax.swing.JPanel {
         jCheckBox1 = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(51, 51, 51));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                formMouseExited(evt);
+            }
+        });
 
         photoComic.setText("photo");
         photoComic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 photoComicMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                photoComicMouseEntered(evt);
             }
         });
 
@@ -141,6 +150,14 @@ public class SuggestionPanel extends javax.swing.JPanel {
         }
         affichageDetailsComic.setVisible(true);
     }//GEN-LAST:event_photoComicMouseClicked
+
+    private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
+        this.setBackground(new Color(51,51,51));
+    }//GEN-LAST:event_formMouseExited
+
+    private void photoComicMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_photoComicMouseEntered
+        this.setBackground(Color.darkGray);
+    }//GEN-LAST:event_photoComicMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

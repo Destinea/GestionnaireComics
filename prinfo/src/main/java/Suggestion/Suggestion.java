@@ -57,13 +57,13 @@ public class Suggestion extends javax.swing.JPanel {
         TitleSuggestion = new javax.swing.JLabel();
         contentSuggestion = new javax.swing.JPanel();
 
-        setBackground(new java.awt.Color(55, 55, 55));
+        setBackground(new java.awt.Color(51, 51, 51));
 
         TitleSuggestion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         TitleSuggestion.setForeground(new java.awt.Color(255, 255, 255));
         TitleSuggestion.setText("Suggestions");
 
-        contentSuggestion.setBackground(new java.awt.Color(55, 55, 55));
+        contentSuggestion.setBackground(new java.awt.Color(51, 51, 51));
 
         javax.swing.GroupLayout contentSuggestionLayout = new javax.swing.GroupLayout(contentSuggestion);
         contentSuggestion.setLayout(contentSuggestionLayout);
