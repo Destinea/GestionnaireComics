@@ -357,7 +357,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         LabelDeconnexion.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         LabelDeconnexion.setForeground(new java.awt.Color(255, 255, 255));
         LabelDeconnexion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LabelDeconnexion.setText("Déconnecxion");
+        LabelDeconnexion.setText("Déconnexion");
 
         javax.swing.GroupLayout PanelDeconnexionLayout = new javax.swing.GroupLayout(PanelDeconnexion);
         PanelDeconnexion.setLayout(PanelDeconnexionLayout);
@@ -716,6 +716,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             this.switchestCo();
+            Comic_Collec.saveBdd(user);
         } catch (SQLException ex) {
             Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
