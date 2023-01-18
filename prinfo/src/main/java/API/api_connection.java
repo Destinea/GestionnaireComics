@@ -90,7 +90,10 @@ public class api_connection {
                     type = JSONresults.getJSONObject(i).getString("resource_type");
                     break;
             }
-
+            if(type=="issue"&&name=="null"){
+                name = JSONresults.getJSONObject(i).getJSONObject("volume").getString("name").toString() +
+                        " - n°"+JSONresults.getJSONObject(i).get("issue_number").toString();
+            }
             int id = JSONresults.getJSONObject(i).getInt("id");
             String iconLink = JSONresults.getJSONObject(i).getJSONObject("image").getString("icon_url");
             String bigIconLink = JSONresults.getJSONObject(i).getJSONObject("image").getString("super_url");
@@ -112,6 +115,10 @@ public class api_connection {
         String SerieName = obj.getJSONObject("volume").getString("name");
         int SerieId = obj.getJSONObject("volume").getInt("id");
         double number;
+        if(name=="null"){
+            name = obj.getJSONObject("volume").getString("name").toString() +
+                    " - n°"+obj.get("issue_number").toString();
+        }
         try{
             number = obj.getDouble("issue_number");
         }catch(Exception e){
@@ -162,6 +169,10 @@ public class api_connection {
             String SerieName = JSONComics.getJSONObject(i).getJSONObject("volume").getString("name");
             int SerieId = JSONComics.getJSONObject(i).getJSONObject("volume").getInt("id");
             double number = JSONComics.getJSONObject(i).getDouble("issue_number");
+            if(name=="null"){
+                name = JSONComics.getJSONObject(i).getJSONObject("volume").getString("name").toString() +
+                        " - n°"+JSONComics.getJSONObject(i).get("issue_number").toString();
+            }
             String HTMLDescription = JSONComics.getJSONObject(i).get("description").toString();
             Results res= new Results(name, shortDescription, "issue", id, iconLink,HTMLDescription, bigIconLink);
             Comic newComic = new Comic(res,SerieName,SerieId,number);
