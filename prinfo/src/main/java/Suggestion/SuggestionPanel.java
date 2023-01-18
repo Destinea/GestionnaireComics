@@ -79,9 +79,6 @@ public class SuggestionPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(51, 51, 51));
         addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                formMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 formMouseExited(evt);
             }
@@ -153,9 +150,6 @@ public class SuggestionPanel extends javax.swing.JPanel {
         }
         affichageDetailsComic.setVisible(true);
     }//GEN-LAST:event_photoComicMouseClicked
-
-    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
-    }//GEN-LAST:event_formMouseEntered
 
     private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
         this.setBackground(new Color(51,51,51));
