@@ -732,26 +732,40 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void PanelCollectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelCollectionMouseClicked
         // TODO add your handling code here:
         // On supprime la liste précédemmant cherchée pour la set à nouveau
-        clearAffichageMultiple();
         //On prepare le layout
-        panelAffichageMultiple.setLayout(new GridLayout(user.getCollection().getSeries().size(), 1, 10, 10));
-        //on active la barre de scroll
-        //stockage des panels pour ne pas avoir a les recharger
-        for (User_serie user_serie : user.getCollection().getSeries()) {
-            series_panels.add(new UserSeriePanel(user, user_serie,this));
+        boolean update_series=false;
+        for (UserSeriePanel series_panel:series_panels) {
+        	for (User_serie user_serie : user.getCollection().getSeries()) {
+	            if (series_panel.getPanelSerie().getUserSerie().size()!=user_serie.getUserSerie().size()) {
+					update_series=true;
+				}
+	        }
         }
+        
+        if (series_panels.size()!=user.getCollection().getSeries().size() || update_series || series_panels.isEmpty()) {
+        	series_panels.clear();
+	        //on active la barre de scroll
+	        //stockage des panels pour ne pas avoir a les recharger
+	        for (User_serie user_serie : user.getCollection().getSeries()) {
+	            series_panels.add(new UserSeriePanel(user, user_serie,this));
+	        }    	
+		}
+        clearAffichageMultiple();
+        panelAffichageMultiple.setLayout(new GridLayout(series_panels.size(), 1, 10, 10));
         //Ajout des panels au panel parent
         for (UserSeriePanel series_panel:series_panels) {
             panelAffichageMultiple.add(series_panel);
         }
-        //Update du panel parent
         
         //pas besoin de la navigation entre les pages de résultats
         Navbar.setVisible(false);
         scrollPaneAffichageMultiple.setVisible(true);
+        //Update du panel parent
         contentPage.updateUI();
         panelAffichageMultiple.repaint();
     }//GEN-LAST:event_PanelCollectionMouseClicked
+    
+    
     public void deleteSeriePanel(int id) {
 		for (UserSeriePanel series_panel:series_panels) {
 			if (series_panel.getPanelSerie().getId()==id) {
@@ -760,7 +774,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 			}
 			
 		}
-		contentPage.updateUI();
 		panelAffichageMultiple.repaint();
 	}
     private void clearAffichageMultiple() {
@@ -769,9 +782,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         if (ResultatsRecherche!=null) {
             ResultatsRecherche.clear();
             resultatsMultipleAffichage.clear();
-        }
-        if (series_panels!=null) {
-			series_panels.clear();
         }
         
     }
