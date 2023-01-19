@@ -21,41 +21,48 @@ public class Collec {
 		this.listeAjout = new HashSet<Comic_Collec>(); // Récupère les infos des comics à ajouter à la BDD
 		this.listeSupp = new ArrayList<Integer>(); // Récupère les id des comics à supprimer de la BDD
 	}
-
+	
+	public void display() {
+		System.out.println("Collection");
+		for (Comic_Collec comic_Collec : comics) {
+			System.out.println(comic_Collec.getName());
+		}
+		System.out.println("-------------");
+	}
 	public void changeComicStatus(Comic c,int etat) {
-		boolean find = false;	
+		boolean find_serie = false;
+		boolean find_comic= false;
 		for (Iterator<User_serie> iterator = series.iterator(); iterator.hasNext();) {
 			User_serie serie = (User_serie) iterator.next();
 			if (serie.getId()==c.getSerieId()) {
-				find=true;
+				find_serie=true;
 				//modif series
 				serie.changeSerieComicStatus(c, etat);
 				
 				if (serie.getUserSerie().isEmpty()) {//supp serie vide
 					series.remove(serie);
 				}
-				//modif comics
-				for (Iterator<Comic_Collec> it = comics.iterator(); it.hasNext();) {
-					Comic_Collec comic_Collec = (Comic_Collec) it.next();
-					if (c.getId()==comic_Collec.getId()) {
-						find = true;
-						if(etat>0) {
-							comic_Collec.setEtat(etat);
-						}
-						else {
-							comics.remove(comic_Collec);
-						}
-					}
-				}
-				
 			}
 		}
-		//Nouveau Comic
+		//modif comics
+		for (Iterator<Comic_Collec> it = comics.iterator(); it.hasNext();) {
+			Comic_Collec comic_Collec = (Comic_Collec) it.next();
+			if (c.getId()==comic_Collec.getId()) {
+				find_comic = true;
+				if(etat>0) {
+					comic_Collec.setEtat(etat);
+				}
+				else {
+					comics.remove(comic_Collec);
+				}
+			}
+		}
+		//Nouvelle serie
 		
-		if (!find)
+		if (!find_serie)
 		{
+			System.out.println(etat);
 			if (etat>0) {
-				this.addComic(new Comic_Collec(c, etat));
 				api_connection apiConnection = new api_connection();
 				try {
 					User_serie new_serie=new User_serie(apiConnection.getSerie(c.getSerieId()));
@@ -64,6 +71,12 @@ public class Collec {
 				} catch (IOException e) {
 					System.out.println("Impossible d'ajouter la serie "+c.getSerieName());
 				}
+			}
+		}
+		//Nouveau comic
+		if (!find_comic) {
+			if (etat>0) {
+				addComic(new Comic_Collec(c, etat));
 			}
 		}
 	}
