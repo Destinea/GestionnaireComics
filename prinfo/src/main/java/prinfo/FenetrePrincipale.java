@@ -622,23 +622,30 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             panelAffichageMultiple.add(affichageResultsMultiple);
         }
         contentPage.updateUI();
-        panelAffichageMultiple.repaint();
+
         numPage.setText("1");
         Navbar.setVisible(true);
         btnPrecedent.setVisible(false);
     }//GEN-LAST:event_rechercheBtnActionPerformed
 
     private void rechercheBtnMouseClicked(java.awt.event.MouseEvent evt){
-    	rechercheBtnActionPerformed(null);
+        
     }
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
 
+    private void collecBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechercheBtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rechercheBtnMouseClicked
 
     private void btnPrecedentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrecedentActionPerformed
         int numPagePrecedente = Integer.parseInt(numPage.getText())-1;
-        clearAffichageMultiple();
+        if (ResultatsRecherche!=null) {
+            ResultatsRecherche.clear();
+            resultatsMultipleAffichage.clear();
+            panelAffichageMultiple.removeAll();
+        }
 
         try {
             ResultatsRecherche = test.GetResults(jTextField1.getText(), numPagePrecedente,dropListFiltre.getSelectedItem().toString());
@@ -657,7 +664,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             panelAffichageMultiple.add(affichageResultsMultiple);
         }
         contentPage.updateUI();
-        panelAffichageMultiple.repaint();
         numPage.setText(String.valueOf(numPagePrecedente));
         if(numPagePrecedente<=1){
             btnPrecedent.setVisible(false);
@@ -685,7 +691,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             panelAffichageMultiple.add(affichageResultsMultiple);
         }
         contentPage.updateUI();
-        panelAffichageMultiple.repaint();
         numPage.setText(String.valueOf(numPageSuivante));
         btnPrecedent.setVisible(true);
     }//GEN-LAST:event_btnSuivantActionPerformed
@@ -711,7 +716,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             this.switchestCo();
-            Comic_Collec.saveBdd(user);
         } catch (SQLException ex) {
             Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -732,6 +736,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void PanelCollectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelCollectionMouseClicked
         // TODO add your handling code here:
         // On supprime la liste précédemmant cherchée pour la set à nouveau
+        clearAffichageMultiple();
         //On prepare le layout
         boolean update_series=false;
         for (UserSeriePanel series_panel:series_panels) {
@@ -764,8 +769,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         contentPage.updateUI();
         panelAffichageMultiple.repaint();
     }//GEN-LAST:event_PanelCollectionMouseClicked
-    
-    
     public void deleteSeriePanel(int id) {
 		for (UserSeriePanel series_panel:series_panels) {
 			if (series_panel.getPanelSerie().getId()==id) {
