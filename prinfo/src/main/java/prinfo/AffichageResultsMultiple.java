@@ -42,6 +42,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
         if (("issue".equals(type.getText())) && (frame.getestCo())){
             jCheckBox1.setVisible(true);
             Comic test_possession= frame.getUser().getCollection().searchComic(res.getId());
+            
             if (test_possession!=null) {
 				jCheckBox1.setSelected(true);
 			}
@@ -209,7 +210,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
         	Comic comicSelected;
 			try {
 				comicSelected = conn.getComic(resultat.getId());
-				frame.getUser().addUserComic(comicSelected);
+				frame.getUser().changeUserComicStatus(comicSelected, 1);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
