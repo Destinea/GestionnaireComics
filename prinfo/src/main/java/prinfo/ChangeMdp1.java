@@ -46,7 +46,6 @@ public class ChangeMdp1 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        AncienMdp = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -55,6 +54,7 @@ public class ChangeMdp1 extends javax.swing.JFrame {
         Info = new javax.swing.JLabel();
         NewMDP = new javax.swing.JPasswordField();
         ConfMDP = new javax.swing.JPasswordField();
+        AncienMdp = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Changement de mot de passe");
@@ -107,8 +107,8 @@ public class ChangeMdp1 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(NewMDP)
                     .addComponent(soumettreButton, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                    .addComponent(AncienMdp)
-                    .addComponent(ConfMDP))
+                    .addComponent(ConfMDP)
+                    .addComponent(AncienMdp))
                 .addGap(45, 45, 45))
         );
         jPanel1Layout.setVerticalGroup(
@@ -118,8 +118,8 @@ public class ChangeMdp1 extends javax.swing.JFrame {
                 .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AncienMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(AncienMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -151,7 +151,7 @@ public class ChangeMdp1 extends javax.swing.JFrame {
 
     private void soumettreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_soumettreButtonActionPerformed
         // TODO add your handling code here:
-        String OldMDP = AncienMdp.getText();
+        char[] OldMDP = AncienMdp.getPassword();
         char[] newMDP = NewMDP.getPassword();
         char[] Conf = ConfMDP.getPassword();
         ConfMDP.setBackground(Color.white);
@@ -251,7 +251,7 @@ public class ChangeMdp1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AncienMdp;
+    private javax.swing.JPasswordField AncienMdp;
     private javax.swing.JPasswordField ConfMDP;
     private javax.swing.JLabel Info;
     private javax.swing.JPasswordField NewMDP;

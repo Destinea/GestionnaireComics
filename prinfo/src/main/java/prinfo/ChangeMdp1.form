@@ -60,8 +60,8 @@
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="NewMDP" max="32767" attributes="0"/>
                       <Component id="soumettreButton" pref="129" max="32767" attributes="0"/>
-                      <Component id="AncienMdp" alignment="1" max="32767" attributes="0"/>
                       <Component id="ConfMDP" max="32767" attributes="0"/>
+                      <Component id="AncienMdp" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
@@ -74,8 +74,8 @@
                   <Component id="Username" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="AncienMdp" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="AncienMdp" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -98,8 +98,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="AncienMdp">
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -153,6 +151,8 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConfMDPActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="AncienMdp">
         </Component>
       </SubComponents>
     </Container>
