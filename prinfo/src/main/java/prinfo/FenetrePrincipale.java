@@ -17,8 +17,8 @@ import java.awt.Color;
 import java.awt.Choice;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.print.DocFlavor.URL;
 import javax.swing.ImageIcon;
 
 import static Collec.Comic_Collec.saveBdd;
@@ -49,7 +48,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      * Creates new form FenetrePrincipale
      */
     public FenetrePrincipale() throws IOException, SQLException {
-    	
         initComponents();
         test = new api_connection();
         resultatsMultipleAffichage = new LinkedList<AffichageResultsMultiple>();
@@ -62,10 +60,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         droplistFiltre.setVisible(true);
         scrollPaneAffichageMultiple.setVisible(false);
         Navbar.setVisible(false);
-        //sugg = new Suggestion(this);
+        sugg = new Suggestion(this);
         panelAffichageMultiple.setLayout(new GridLayout(1, 1, 5, 5));
         scrollPaneAffichageMultiple.setVisible(true);
-        //panelAffichageMultiple.add(sugg);
+        panelAffichageMultiple.add(sugg);
         PanelUser.setVisible(false);
     }
     /**
@@ -118,15 +116,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
     	String sImageFileName = "icon.png";
-        java.net.URL urlImageFileName = getClass().getResource(sImageFileName);
-        
+        URL urlImageFileName = getClass().getResource(sImageFileName);
+
         if (urlImageFileName == null)
             System.out.println( "urlImageFileName: " + urlImageFileName + " Not Found." );
         else {
             ImageIcon oImageIcon = new ImageIcon(getClass().getResource(sImageFileName));
             setIconImage(oImageIcon.getImage());
-        }
-    	
+        }  // end else
         jPanel1 = new javax.swing.JPanel();
         entete = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();

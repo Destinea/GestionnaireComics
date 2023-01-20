@@ -24,15 +24,6 @@ public class AffichageDetailsSerie extends javax.swing.JFrame {
      * Creates new form AffichageDetailsSerie
      */
     public AffichageDetailsSerie(API.Serie s) throws IOException {
-    	String sImageFileName = "icon.png";
-        java.net.URL urlImageFileName = getClass().getResource(sImageFileName);
-        
-        if (urlImageFileName == null)
-            System.out.println( "urlImageFileName: " + urlImageFileName + " Not Found." );
-        else {
-            ImageIcon oImageIcon = new ImageIcon(getClass().getResource(sImageFileName));
-            setIconImage(oImageIcon.getImage());
-        }
         initComponents();
         if(s.getName()!="null"){
             Titre.setText(s.getName());
@@ -72,7 +63,15 @@ public class AffichageDetailsSerie extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+    	String sImageFileName = "icon.png";
+        URL urlImageFileName = getClass().getResource(sImageFileName);
 
+        if (urlImageFileName == null)
+            System.out.println( "urlImageFileName: " + urlImageFileName + " Not Found." );
+        else {
+            ImageIcon oImageIcon = new ImageIcon(getClass().getResource(sImageFileName));
+            setIconImage(oImageIcon.getImage());
+        }  // end else
         jPanel1 = new javax.swing.JPanel();
         Entete = new javax.swing.JSplitPane();
         Informations = new javax.swing.JSplitPane();

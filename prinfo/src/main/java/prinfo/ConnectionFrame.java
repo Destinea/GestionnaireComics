@@ -5,6 +5,7 @@
 package prinfo;
 
 import java.awt.Color;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -54,14 +55,14 @@ public class ConnectionFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
     	String sImageFileName = "icon.png";
-        java.net.URL urlImageFileName = getClass().getResource(sImageFileName);
-        
+        URL urlImageFileName = getClass().getResource(sImageFileName);
+
         if (urlImageFileName == null)
             System.out.println( "urlImageFileName: " + urlImageFileName + " Not Found." );
         else {
             ImageIcon oImageIcon = new ImageIcon(getClass().getResource(sImageFileName));
             setIconImage(oImageIcon.getImage());
-        }
+        }  // end else
         jPanel1 = new javax.swing.JPanel();
         ConnexionBouton = new javax.swing.JButton();
         CreationCompteBouton = new javax.swing.JButton();
