@@ -62,7 +62,7 @@ public class User {
 			}
 		}
 	}
-	public void changePassword(Statement stmt,String new_password) throws SQLException {
+	public void changePassword(Statement stmt,char[] new_password) throws SQLException {
 		//Appelle a la BDD pour modifier le password
                 Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
 		User_BDD.changerMotDePasse(stmt, this.username, new_password, argon2);
