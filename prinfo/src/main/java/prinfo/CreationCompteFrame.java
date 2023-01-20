@@ -12,6 +12,8 @@ import User.User_BDD;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import de.mkammerer.argon2.Argon2Factory.Argon2Types;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 /*
@@ -30,6 +32,15 @@ public class CreationCompteFrame extends javax.swing.JFrame {
      * Creates new form CreationCompteFrame1
      */
     public CreationCompteFrame() {
+    	String sImageFileName = "icon.png";
+        java.net.URL urlImageFileName = getClass().getResource(sImageFileName);
+        
+        if (urlImageFileName == null)
+            System.out.println( "urlImageFileName: " + urlImageFileName + " Not Found." );
+        else {
+            ImageIcon oImageIcon = new ImageIcon(getClass().getResource(sImageFileName));
+            setIconImage(oImageIcon.getImage());
+        }
         initComponents();
         //ImageIcon fermerFenetreImageIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("IconFermerFenetre.png")));
         //Image fermerFenetreImage = fermerFenetreImageIcon.getImage().getScaledInstance(fermeFenetreBouton.getWidth(), fermeFenetreBouton.getHeight(), WIDTH);

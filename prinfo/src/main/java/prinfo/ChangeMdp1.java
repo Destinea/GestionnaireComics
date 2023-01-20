@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -20,6 +22,7 @@ import javax.swing.JOptionPane;
  * @author nathb
  */
 public class ChangeMdp1 extends javax.swing.JFrame {
+	
     FenetrePrincipale main;
 
     /**
@@ -44,6 +47,15 @@ public class ChangeMdp1 extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+    	String sImageFileName = "icon.png";
+        java.net.URL urlImageFileName = getClass().getResource(sImageFileName);
+        
+        if (urlImageFileName == null)
+            System.out.println( "urlImageFileName: " + urlImageFileName + " Not Found." );
+        else {
+            ImageIcon oImageIcon = new ImageIcon(getClass().getResource(sImageFileName));
+            setIconImage(oImageIcon.getImage());
+        }
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
