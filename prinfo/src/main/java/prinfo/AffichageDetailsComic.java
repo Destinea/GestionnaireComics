@@ -24,6 +24,15 @@ public class AffichageDetailsComic extends javax.swing.JFrame {
      * Creates new form AffichageDetailsComic
      */
     public AffichageDetailsComic(API.Comic c) throws IOException {
+    	String sImageFileName = "icon.png";
+        java.net.URL urlImageFileName = getClass().getResource(sImageFileName);
+        
+        if (urlImageFileName == null)
+            System.out.println( "urlImageFileName: " + urlImageFileName + " Not Found." );
+        else {
+            ImageIcon oImageIcon = new ImageIcon(getClass().getResource(sImageFileName));
+            setIconImage(oImageIcon.getImage());
+        }
         initComponents();
         if(c.getName()!="null"){
             Titre.setText(c.getName());

@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
+import javax.swing.ImageIcon;
+
 import User.User;
 import User.User_BDD;
 import de.mkammerer.argon2.Argon2;
@@ -51,7 +53,15 @@ public class ConnectionFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+    	String sImageFileName = "icon.png";
+        java.net.URL urlImageFileName = getClass().getResource(sImageFileName);
+        
+        if (urlImageFileName == null)
+            System.out.println( "urlImageFileName: " + urlImageFileName + " Not Found." );
+        else {
+            ImageIcon oImageIcon = new ImageIcon(getClass().getResource(sImageFileName));
+            setIconImage(oImageIcon.getImage());
+        }
         jPanel1 = new javax.swing.JPanel();
         ConnexionBouton = new javax.swing.JButton();
         CreationCompteBouton = new javax.swing.JButton();
@@ -65,7 +75,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
         EtatConnection = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Connection");
+        setTitle("Connexion");
         setBackground(new java.awt.Color(255, 249, 176));
         setMinimumSize(new java.awt.Dimension(750, 380));
         setResizable(false);
