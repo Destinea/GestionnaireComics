@@ -8,6 +8,7 @@ import User.User_BDD;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import java.awt.Color;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -22,7 +23,6 @@ import javax.swing.JOptionPane;
  * @author nathb
  */
 public class ChangeMdp1 extends javax.swing.JFrame {
-	
     FenetrePrincipale main;
 
     /**
@@ -48,15 +48,14 @@ public class ChangeMdp1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
     	String sImageFileName = "icon.png";
-        java.net.URL urlImageFileName = getClass().getResource(sImageFileName);
-        
+        URL urlImageFileName = getClass().getResource(sImageFileName);
+
         if (urlImageFileName == null)
             System.out.println( "urlImageFileName: " + urlImageFileName + " Not Found." );
         else {
             ImageIcon oImageIcon = new ImageIcon(getClass().getResource(sImageFileName));
             setIconImage(oImageIcon.getImage());
-        }
-
+        }  // end else
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
