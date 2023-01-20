@@ -9,7 +9,7 @@ import de.mkammerer.argon2.Argon2;
 
 public class User_BDD {
 
-    public static boolean insertion(Statement stmt, String login, String psw, Argon2 argon2) {
+    public static boolean insertion(Statement stmt, String login, char[] psw, Argon2 argon2) {
         // Insertion du login et du mdp
         try {
             if (lectureMdp(stmt, login).isEmpty())
@@ -59,7 +59,7 @@ public class User_BDD {
         }
     }
 
-    public static boolean comparaison(String pwd, String attempt, Argon2 argon2)
+    public static boolean comparaison(String pwd, char[] attempt, Argon2 argon2)
     {
         try {
             return argon2.verify(pwd, attempt);
@@ -83,7 +83,7 @@ public class User_BDD {
         }
     }
 
-    public static void changerMotDePasse(Statement stmt, String login, String password, Argon2 argon2) throws SQLException {
+    public static void changerMotDePasse(Statement stmt, String login, char[] password, Argon2 argon2) throws SQLException {
         String hash_password = argon2.hash(4, 1024 * 1024, 8, password);
         String sql = "UPDATE user SET password = '" + hash_password + "' WHERE login = '" + login + "';";
         stmt.executeUpdate(sql);

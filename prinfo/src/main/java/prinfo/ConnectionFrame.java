@@ -256,7 +256,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
 
     private void ConnexionBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnexionBoutonActionPerformed
         String logintemp = jTextField1.getText();
-        String mdp = jPasswordField1.getText();
+        char[] mdp = jPasswordField1.getPassword();
         jPasswordField1.setBackground(new Color(51, 51, 51));
         
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
