@@ -6,8 +6,13 @@ package Suggestion;
 
 import API.Comic;
 import API.api_connection;
+import Collec.Comic_Collec;
 import java.awt.GridLayout;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import prinfo.FenetrePrincipale;
 
@@ -21,15 +26,16 @@ public class Suggestion extends javax.swing.JPanel {
      * Creates new form Suggestion
      * @param frame
      * @throws java.io.IOException
+     * @throws java.sql.SQLException
      */
-    public Suggestion(FenetrePrincipale frame) throws IOException {
+    public Suggestion(FenetrePrincipale frame) throws IOException, SQLException {
         test = new api_connection();
         initComponents();
         this.generateSuggestion(frame);
         
     }
     
-    private void generateSuggestion(FenetrePrincipale frame) throws IOException{
+    private void generateSuggestion(FenetrePrincipale frame) throws IOException, SQLException{
         contentSuggestion.setLayout(new GridLayout(3,1));
         List<Comic> firstCategorie = test.getLastComics();
         contentSuggestion.add(new Categorie(frame,firstCategorie.subList(0,3),"Derniers Ajouts"));
@@ -40,6 +46,10 @@ public class Suggestion extends javax.swing.JPanel {
         } else {
             contentSuggestion.add(new Categorie(frame,secondCategorie.subList(0,3),"Aléatoires"));
         }
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
+        Statement stmt = con.createStatement();
+        List<Comic> thirdCategotie = Comic_Collec.getPlusLu(stmt);
+        contentSuggestion.add(new Categorie(frame, thirdCategotie, "Les plus populaires"));
         
         contentSuggestion.setVisible(true);
     }
