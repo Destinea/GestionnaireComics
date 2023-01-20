@@ -88,25 +88,18 @@ public class UserSeriePanel extends javax.swing.JPanel {
 			afficherGauche.setVisible(false);
 		}
         //refresh
+        contentpageserie.revalidate();
         contentpageserie.repaint();
 	}
-    public void deleteComic(int id) {
-    	//Recup du Comicpanel a supp
-    	ComicPanelCollection cm=null;
-    	for (ComicPanelCollection comicPanelCollection : comic_panels) {
-    		if (comicPanelCollection.getPanelComic().getId()==id) {	
-				cm=comicPanelCollection;
-			}
-		}
+    public void deleteComic(ComicPanelCollection cm) {
     	//Supp dans la serie de Comic panel
     	comic_panels.remove(cm);
     	//Refresh du panel
     	refreshPanel();
 		//Delete panel serie si vide
 		if (comic_panels.size()<1) {
-			fp.deleteSeriePanel(serie.getId());
+			fp.deleteSeriePanel(this);
 		}
-		
 	}
     
     private void afficherGaucheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherGaucheActionPerformed

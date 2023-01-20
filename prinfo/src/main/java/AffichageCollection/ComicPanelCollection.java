@@ -180,9 +180,9 @@ public class ComicPanelCollection extends javax.swing.JPanel {
 
     private void deleteBtnActionPerformed(java.awt.event.MouseEvent evt) {//GEN-FIRST:deleteBtnActionPerformed
     	if (!deleteBtn.isEnabled()) {
-    		deleteBtn.setEnabled(true);
+    		deleteBtn.setEnabled(false);
     		user.changeUserComicStatus(comic, 0);
-    		usp.deleteComic(comic.getId());//Ask the parent panel to destroy this panel
+    		usp.deleteComic(this);//Ask the parent panel to destroy this panel   		
 		}
     	
     }//GEN-LAST:deleteBtnActionPerformed
