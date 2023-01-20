@@ -8,28 +8,22 @@ import API.Comic;
 import API.Results;
 import API.api_connection;
 import AffichageCollection.UserSeriePanel;
+import AffichageCollection.VerticalFlowLayout;
 import Collec.Comic_Collec;
 import Collec.User_serie;
 import Suggestion.Suggestion;
 import User.User;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Choice;
-import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  *
@@ -61,10 +55,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         droplistFiltre.setVisible(true);
         scrollPaneAffichageMultiple.setVisible(false);
         Navbar.setVisible(false);
-        sugg = new Suggestion(this);
+        //sugg = new Suggestion(this);
         panelAffichageMultiple.setLayout(new GridLayout(1, 1, 5, 5));
         scrollPaneAffichageMultiple.setVisible(true);
-        panelAffichageMultiple.add(sugg);
+        //panelAffichageMultiple.add(sugg);
         PanelUser.setVisible(false);
     }
     /**
@@ -755,13 +749,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 	            series_panels.add(new UserSeriePanel(user, user_serie,this));
 	        }    	
 		}
-        clearAffichageMultiple();
-        panelAffichageMultiple.setLayout(new GridLayout(series_panels.size(), 1, 10, 10));
+        
         //Ajout des panels au panel parent
         for (UserSeriePanel series_panel:series_panels) {
             panelAffichageMultiple.add(series_panel);
         }
-        
+        panelAffichageMultiple.setLayout(new VerticalFlowLayout(1,0));
+        panelAffichageMultiple.revalidate();
         //pas besoin de la navigation entre les pages de résultats
         Navbar.setVisible(false);
         scrollPaneAffichageMultiple.setVisible(true);
@@ -771,9 +765,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }//GEN-LAST:event_PanelCollectionMouseClicked
     public void deleteSeriePanel(int id) {
 		for (UserSeriePanel series_panel:series_panels) {
-			if (series_panel.getPanelSerie().getId()==id) {
-				series_panels.remove(series_panel);
+			if (series_panel.getPanelSerie().getId()==id) {			
 				panelAffichageMultiple.remove(series_panel);
+				series_panels.remove(series_panel);
+				panelAffichageMultiple.repaint();
 			}
 			
 		}

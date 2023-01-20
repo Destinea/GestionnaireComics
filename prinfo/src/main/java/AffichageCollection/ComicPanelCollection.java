@@ -25,6 +25,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.BoxLayout;
+import java.awt.Component;
 
 /**
  *
@@ -44,6 +46,12 @@ public class ComicPanelCollection extends javax.swing.JPanel {
         this.user=user;
         this.comic=c;
         this.usp=usp;
+        setLayout(null);
+        add(iconLink);
+        add(titre);
+        add(box_possede);
+        add(box_lu);
+        add(deleteBtn);
         InitComicPanelCollection();
     }
     
@@ -73,11 +81,19 @@ public class ComicPanelCollection extends javax.swing.JPanel {
     private void initComponents() {
 
         titre = new javax.swing.JLabel();
+        titre.setBounds(0, 0, 127, 13);
+        titre.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+        titre.setAlignmentX(Component.RIGHT_ALIGNMENT);
         iconLink = new javax.swing.JLabel();
+        iconLink.setBounds(0, 23, 127, 109);
         box_lu = new javax.swing.JCheckBox();
+        box_lu.setBounds(82, 135, 39, 23);
         box_lu.setHorizontalAlignment(SwingConstants.LEFT);
         box_lu.setFont(new Font("Dialog", Font.BOLD, 10));
         box_possede = new javax.swing.JCheckBox();
+        box_possede.setBounds(0, 135, 67, 23);
+        box_possede.setAlignmentX(Component.CENTER_ALIGNMENT);
+        box_possede.setAlignmentY(Component.TOP_ALIGNMENT);
         box_possede.setFont(new Font("Dialog", Font.BOLD, 10));
         box_possede.setHorizontalAlignment(SwingConstants.LEFT);
 
@@ -86,13 +102,13 @@ public class ComicPanelCollection extends javax.swing.JPanel {
 
         titre.setBackground(new java.awt.Color(51, 51, 51));
         titre.setForeground(new java.awt.Color(255, 255, 255));
-        titre.setHorizontalAlignment(SwingConstants.LEFT);
+        titre.setHorizontalAlignment(SwingConstants.CENTER);
         titre.setText("nom");
         titre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         iconLink.setBackground(new java.awt.Color(51, 51, 51));
-        iconLink.setHorizontalAlignment(SwingConstants.LEFT);
-        iconLink.setHorizontalTextPosition(SwingConstants.LEFT);
+        iconLink.setHorizontalAlignment(SwingConstants.CENTER);
+        iconLink.setHorizontalTextPosition(SwingConstants.CENTER);
         iconLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 iconLinkMouseClicked(evt);
@@ -117,6 +133,7 @@ public class ComicPanelCollection extends javax.swing.JPanel {
             }
         });
         deleteBtn= new javax.swing.JButton();
+        deleteBtn.setBounds(0, 160, 127, 33);
         deleteBtn.setText("Supprimer");
         deleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
         	public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -127,40 +144,6 @@ public class ComicPanelCollection extends javax.swing.JPanel {
         deleteBtn.setFont(new Font("Dialog", Font.BOLD, 10));
         deleteBtn.setBackground(new Color(51, 51, 51));
         deleteBtn.setForeground(new Color(51, 51, 51));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(iconLink, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-        				.addComponent(titre, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
-        			.addContainerGap())
-        		.addGroup(layout.createSequentialGroup()
-        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(layout.createSequentialGroup()
-        					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        					.addComponent(box_possede)
-        					.addPreferredGap(ComponentPlacement.UNRELATED)
-        					.addComponent(box_lu, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
-        				.addComponent(deleteBtn, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
-        			.addContainerGap())
-        );
-        layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addComponent(titre, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(iconLink, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(box_lu)
-        				.addComponent(box_possede))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(deleteBtn, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-        			.addGap(71))
-        );
-        this.setLayout(layout);
     }// </editor-fold>//GEN-END:initComponents
 
     private void iconLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconLinkMouseClicked
@@ -195,10 +178,13 @@ public class ComicPanelCollection extends javax.swing.JPanel {
         user.changeUserComicStatus(comic, state);
     }
 
-    private void deleteBtnActionPerformed(java.awt.event.MouseEvent evt) {//GEN-FIRST:deleteBtnActionPerformed	
-    	deleteBtn.setEnabled(true);
-		user.changeUserComicStatus(comic, 0);
-		usp.deleteComic(comic.getId());//Ask the parent panel to destroy this panel
+    private void deleteBtnActionPerformed(java.awt.event.MouseEvent evt) {//GEN-FIRST:deleteBtnActionPerformed
+    	if (!deleteBtn.isEnabled()) {
+    		deleteBtn.setEnabled(true);
+    		user.changeUserComicStatus(comic, 0);
+    		usp.deleteComic(comic.getId());//Ask the parent panel to destroy this panel
+		}
+    	
     }//GEN-LAST:deleteBtnActionPerformed
     public Comic_Collec getPanelComic() {
 		return this.comic;
