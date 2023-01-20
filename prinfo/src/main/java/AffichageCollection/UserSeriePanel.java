@@ -9,10 +9,15 @@ import User.User;
 import prinfo.FenetrePrincipale;
 import Collec.User_serie;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -23,8 +28,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class UserSeriePanel extends javax.swing.JPanel {
     private User user;
     private User_serie serie;
-    private HashSet<ComicPanelCollection> comic_panels; 
+    private ArrayList<ComicPanelCollection> comic_panels; 
     private FenetrePrincipale fp;
+    private int page=0;
     /**
      * Creates new form UserSeriePanel
      */
@@ -32,7 +38,12 @@ public class UserSeriePanel extends javax.swing.JPanel {
         initComponents();
         this.user=user;
         this.serie=serie;
-        this.comic_panels= new HashSet<>();
+        this.comic_panels= new ArrayList<>();
+        setLayout(null);
+        add(afficherGauche);
+        add(contentpageserie);
+        add(afficherDroite);
+        add(nomSerie);
         fp=f;
         InitUserSeriePanelCollection();
     }
@@ -42,33 +53,74 @@ public class UserSeriePanel extends javax.swing.JPanel {
     }
     public void InitUserSeriePanelCollection(){
         nomSerie.setText(serie.getName());
-        contentpageserie.setLayout(new GridLayout(1,6));
+        contentpageserie.setLayout(new FlowLayout(FlowLayout.LEADING));
         
-        
+        //Creation de tous les comic panel
         for (Comic_Collec comic : serie.getUserSerie()) {//MOdifier pour avoir la serie possédée
             comic_panels.add(new ComicPanelCollection(this.user,comic,this));
         }
-        Iterator<ComicPanelCollection> iterator = comic_panels.iterator();
-        
-        for (int i = 0; i < 6; i++) {
-            if (iterator.hasNext()) {
-                contentpageserie.add(iterator.next());
-            }      
-        }
+        //refresh du panel = initialisation
+        refreshPanel();
         
     }
+    public void refreshPanel() {
+    	//Supression de tout l'affichage
+    	contentpageserie.removeAll();
+    	//Ajout des Comic Panel souhaités
+    	int i=0;
+        for (ComicPanelCollection comicPanelCollection : comic_panels) {
+        	if (i>=page && i<page+7) {
+				contentpageserie.add(comicPanelCollection);
+			}
+        	i++;
+		}
+        //bouton de droite si il y a des comics après
+        if (i>=page+7) {
+            afficherDroite.setVisible(true);
+        }
+        else {
+        	afficherDroite.setVisible(false);
+        }
+        //bouton de gauche si on est pas a la premiere page
+        if (page>0) {
+        	afficherGauche.setVisible(true);
+		} else {
+			afficherGauche.setVisible(false);
+		}
+        //refresh
+        contentpageserie.repaint();
+	}
     public void deleteComic(int id) {
-		for (ComicPanelCollection comicPanelCollection : comic_panels) {
-			if (comicPanelCollection.getPanelComic().getId()==id) {
-				comic_panels.remove(comicPanelCollection);
-				contentpageserie.remove(comicPanelCollection);
+    	//Recup du Comicpanel a supp
+    	ComicPanelCollection cm=null;
+    	for (ComicPanelCollection comicPanelCollection : comic_panels) {
+    		if (comicPanelCollection.getPanelComic().getId()==id) {	
+				cm=comicPanelCollection;
 			}
 		}
-		contentpageserie.updateUI();
+    	//Supp dans la serie de Comic panel
+    	comic_panels.remove(cm);
+    	//Refresh du panel
+    	refreshPanel();
+		//Delete panel serie si vide
 		if (comic_panels.size()<1) {
 			fp.deleteSeriePanel(serie.getId());
 		}
+		
 	}
+    
+    private void afficherGaucheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherGaucheActionPerformed
+    	page-=7;
+    	refreshPanel();
+    	
+    }//GEN-LAST:event_afficherGaucheActionPerformed
+
+    private void afficherDroiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherDroiteActionPerformed
+    	page+=7;
+    	refreshPanel();
+    	
+    	
+    }//GEN-LAST:event_afficherDroiteActionPerformed
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,14 +132,17 @@ public class UserSeriePanel extends javax.swing.JPanel {
     private void initComponents() {
 
         afficherGauche = new javax.swing.JButton();
+        afficherGauche.setBounds(0, 19, 39, 204);
         afficherDroite = new javax.swing.JButton();
+        afficherDroite.setBounds(967, 19, 39, 204);
         nomSerie = new javax.swing.JLabel();
+        nomSerie.setBounds(0, 0, 132, 13);
         contentpageserie = new javax.swing.JPanel();
+        contentpageserie.setBounds(41, 19, 926, 204);
 
         setBackground(new Color(99, 99, 99));
-        setMaximumSize(new Dimension(977, 237));
-        setPreferredSize(new Dimension(977, 237));
-
+        setMaximumSize(new Dimension(977, 223));
+        setPreferredSize(new Dimension(1006, 233));
         afficherGauche.setBackground(new java.awt.Color(153, 153, 153));
         afficherGauche.setForeground(new Color(0, 0, 0));
         afficherGauche.setText("<");
@@ -122,43 +177,7 @@ public class UserSeriePanel extends javax.swing.JPanel {
             contentpageserieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(layout.createSequentialGroup()
-        					.addComponent(afficherGauche)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(contentpageserie, GroupLayout.PREFERRED_SIZE, 884, GroupLayout.PREFERRED_SIZE)
-        					.addGap(6)
-        					.addComponent(afficherDroite))
-        				.addComponent(nomSerie, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
-        			.addContainerGap())
-        );
-        layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
-        			.addComponent(nomSerie, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
-        				.addComponent(afficherDroite, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(afficherGauche, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(contentpageserie, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
-        			.addContainerGap(39, Short.MAX_VALUE))
-        );
-        this.setLayout(layout);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void afficherGaucheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherGaucheActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_afficherGaucheActionPerformed
-
-    private void afficherDroiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherDroiteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_afficherDroiteActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton afficherDroite;
