@@ -8,6 +8,7 @@ package Suggestion;
 import API.Comic;
 import API.Results;
 import API.api_connection;
+import User.User;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -27,16 +28,31 @@ import prinfo.FenetrePrincipale;
  * @author Sarah-Marie JULES
  */
 public class SuggestionPanel extends javax.swing.JPanel {
-
+    FenetrePrincipale frame;
     private Comic comic;
     /** Creates new form SuggestionPanel
      * @param frame
      * @param comic */
-    public SuggestionPanel(FenetrePrincipale frame, Comic com) {
+    public SuggestionPanel(FenetrePrincipale f, Comic com) {
+        this.frame = f;
         comic = com;
         initComponents();
-        jCheckBox1.setVisible(frame.getestCo());
+        //jCheckBox1.setVisible(frame.getestCo());
         RemplirChamps(comic);
+        if ((frame.getestCo())){
+            jCheckBox1.setVisible(true);
+            Comic test_possession= frame.getUser().getCollection().searchComic(comic.getId());
+            
+            if (test_possession!=null) {
+				jCheckBox1.setSelected(true);
+			}
+            else {
+				jCheckBox1.setSelected(false);
+			}
+        }
+        else{
+            jCheckBox1.setVisible(false);
+        }
     }
     
     private void RemplirChamps(Comic comic){
@@ -137,6 +153,22 @@ public class SuggestionPanel extends javax.swing.JPanel {
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
+        if (jCheckBox1.isSelected()){
+        	//Pas dans la collection, on doit l'ajouter
+            api_connection conn= new api_connection();   	
+            Comic comicSelected = null;
+            try {
+                comicSelected = conn.getComic(comic.getId());
+            } catch (IOException ex) {
+                Logger.getLogger(SuggestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            frame.getUser().changeUserComicStatus(comicSelected, 1);
+        }else {
+        	//Deja dans la collection, on doit le supprimer
+            User user=frame.getUser();
+            Comic comicSelected =user.getCollection().searchComic(comic.getId());//recup du comic
+            user.changeUserComicStatus(comicSelected, 0);
+	}
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void photoComicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_photoComicMouseClicked

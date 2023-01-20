@@ -46,10 +46,10 @@ public class Suggestion extends javax.swing.JPanel {
         } else {
             contentSuggestion.add(new Categorie(frame,secondCategorie.subList(0,3),"Aléatoires"));
         }
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
-        Statement stmt = con.createStatement();
-        List<Comic> thirdCategotie = Comic_Collec.getPlusLu(stmt);
-        contentSuggestion.add(new Categorie(frame, thirdCategotie, "Les plus populaires"));
+        //Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
+        //Statement stmt = con.createStatement();
+        //List<Comic> thirdCategotie = Comic_Collec.getPlusLu(stmt);
+        //contentSuggestion.add(new Categorie(frame, thirdCategotie, "Les plus populaires"));
         
         contentSuggestion.setVisible(true);
     }

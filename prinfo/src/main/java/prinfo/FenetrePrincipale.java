@@ -55,10 +55,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         droplistFiltre.setVisible(true);
         scrollPaneAffichageMultiple.setVisible(false);
         Navbar.setVisible(false);
-        //sugg = new Suggestion(this);
+        sugg = new Suggestion(this);
         panelAffichageMultiple.setLayout(new GridLayout(1, 1, 5, 5));
         scrollPaneAffichageMultiple.setVisible(true);
-        //panelAffichageMultiple.add(sugg);
+        panelAffichageMultiple.add(sugg);
         PanelUser.setVisible(false);
     }
     /**
