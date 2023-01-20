@@ -200,16 +200,31 @@ public class CreationCompteFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        String mdp1 = String.valueOf(jPasswordField1.getPassword());
-        String mdp2 = String.valueOf(jPasswordField2.getPassword());
+        char[] mdp1 = jPasswordField1.getPassword();
+        char[] mdp2 = jPasswordField2.getPassword();
         Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
         jPasswordField2.setBackground(new Color(51, 51, 51));
         infoMotDePasse.setForeground(Color.white);
         infoMotDePasse.setText("");
         jTextField1.setBackground(new Color(51, 51, 51));
         
+        System.out.println(mdp1);
+        System.out.println(mdp2);
+        boolean check_password=true;
+        if (mdp1.length==mdp2.length) {
+        	for (int i = 0; i < mdp2.length; i++) {
+        		char c1 = mdp1[i];
+    			char c2 = mdp2[i];
+    			if (c1!=c2) {
+					check_password=false;
+				}
+    		}
+		}
+        else {
+			check_password=false;
+		}
         
-        if (mdp1.equals(mdp2))
+        if (check_password)
         {
 
             try{

@@ -152,8 +152,8 @@ public class ChangeMdp1 extends javax.swing.JFrame {
     private void soumettreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_soumettreButtonActionPerformed
         // TODO add your handling code here:
         String OldMDP = AncienMdp.getText();
-        String newMDP = NewMDP.getText();
-        String Conf = ConfMDP.getText();
+        char[] newMDP = NewMDP.getPassword();
+        char[] Conf = ConfMDP.getPassword();
         ConfMDP.setBackground(Color.white);
         AncienMdp.setBackground(Color.white);
         Info.setText("");
@@ -162,7 +162,21 @@ public class ChangeMdp1 extends javax.swing.JFrame {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
         Statement stmt = con.createStatement();
         if(argon2.verify(User_BDD.lectureMdp(stmt, main.getUser().getUsername()), OldMDP)){
-            if(newMDP.equals(Conf)){
+        	boolean check_password=true;
+            if (newMDP.length==Conf.length) {
+            	for (int i = 0; i < Conf.length; i++) {
+            		char c1 = newMDP[i];
+        			char c2 = Conf[i];
+        			if (c1!=c2) {
+    					check_password=false;
+    				}
+        		}
+    		}
+            else {
+    			check_password=false;
+    		}
+        	
+            if(check_password){
                 System.out.println("Je CHANGE LE MDP");
                 
                 main.getUser().changePassword(stmt,newMDP);

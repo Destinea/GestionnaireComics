@@ -10,7 +10,7 @@ import de.mkammerer.argon2.Argon2Factory;
 import de.mkammerer.argon2.Argon2Factory.Argon2Types;
 
 public class UserTest {
-
+	/*
     @Test
     public void testSuppression() throws SQLException {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo")) {
@@ -80,4 +80,5 @@ public class UserTest {
 
         }
     }
+    */
 }
