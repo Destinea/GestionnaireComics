@@ -616,7 +616,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             panelAffichageMultiple.add(affichageResultsMultiple);
         }
         contentPage.updateUI();
-
+        panelAffichageMultiple.repaint();
         numPage.setText("1");
         Navbar.setVisible(true);
         btnPrecedent.setVisible(false);
@@ -751,28 +751,24 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 		}
         
         //Ajout des panels au panel parent
+        panelAffichageMultiple.setLayout(new VerticalFlowLayout(1,0));
         for (UserSeriePanel series_panel:series_panels) {
             panelAffichageMultiple.add(series_panel);
         }
-        panelAffichageMultiple.setLayout(new VerticalFlowLayout(1,0));
+        
         panelAffichageMultiple.revalidate();
         //pas besoin de la navigation entre les pages de résultats
         Navbar.setVisible(false);
         scrollPaneAffichageMultiple.setVisible(true);
         //Update du panel parent
-        contentPage.updateUI();
         panelAffichageMultiple.repaint();
     }//GEN-LAST:event_PanelCollectionMouseClicked
-    public void deleteSeriePanel(int id) {
-		for (UserSeriePanel series_panel:series_panels) {
-			if (series_panel.getPanelSerie().getId()==id) {			
-				panelAffichageMultiple.remove(series_panel);
-				series_panels.remove(series_panel);
-				panelAffichageMultiple.repaint();
-			}
-			
-		}
+    public void deleteSeriePanel(UserSeriePanel series_panel) {
+		panelAffichageMultiple.remove(series_panel);
+		series_panels.remove(series_panel);
+		panelAffichageMultiple.revalidate();
 		panelAffichageMultiple.repaint();
+		
 	}
     private void clearAffichageMultiple() {
     	panelAffichageMultiple.removeAll();

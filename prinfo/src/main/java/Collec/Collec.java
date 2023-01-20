@@ -30,39 +30,43 @@ public class Collec {
 		System.out.println("-------------");
 	}
 	public void changeComicStatus(Comic c,int etat) {
-		boolean find_serie = false;
+		User_serie find_serie = null;
 		boolean find_comic= false;
 		for (Iterator<User_serie> iterator = series.iterator(); iterator.hasNext();) {
 			User_serie serie = (User_serie) iterator.next();
 			if (serie.getId()==c.getSerieId()) {
-				find_serie=true;
+				find_serie=serie;
 				//modif series
 				serie.changeSerieComicStatus(c, etat);
 				
-				if (serie.getUserSerie().isEmpty()) {//supp serie vide
-					series.remove(serie);
-				}
+				
 			}
 		}
-		//modif comics
-		for (Iterator<Comic_Collec> it = comics.iterator(); it.hasNext();) {
-			Comic_Collec comic_Collec = (Comic_Collec) it.next();
-			if (c.getId()==comic_Collec.getId()) {
-				find_comic = true;
-				if(etat>0) {
+		//supp de la série
+		if (find_serie!=null && find_serie.getUserSerie().isEmpty()) {//supp serie vide
+			series.remove(find_serie);
+		}
+		if (etat==0) {//Supp du comic
+			try {
+				rmComic(c);
+			} catch (Exception e) {
+				System.out.println("Impossible de supprimer:"+c.getName());
+			}
+		}
+		else {
+			//modif comics
+			for (Iterator<Comic_Collec> it = comics.iterator(); it.hasNext();) {
+				Comic_Collec comic_Collec = (Comic_Collec) it.next();
+				if (c.getId()==comic_Collec.getId()) {
+					find_comic = true;
 					comic_Collec.setEtat(etat);
-				}
-				else {
-					comics.remove(comic_Collec);
+				
 				}
 			}
-		}
-		//Nouvelle serie
-		
-		if (!find_serie)
-		{
-			System.out.println(etat);
-			if (etat>0) {
+			//Nouvelle serie
+			
+			if (find_serie==null)
+			{
 				api_connection apiConnection = new api_connection();
 				try {
 					User_serie new_serie=new User_serie(apiConnection.getSerie(c.getSerieId()));
@@ -72,14 +76,13 @@ public class Collec {
 					System.out.println("Impossible d'ajouter la serie "+c.getSerieName());
 				}
 			}
-		}
-		//Nouveau comic
-		if (!find_comic) {
-			if (etat>0) {
+			//Nouveau comic
+			if (!find_comic) {
 				addComic(new Comic_Collec(c, etat));
 			}
 		}
-	}
+		}
+		
 	
 	public List<Integer> getlisteSupp()
 	{
@@ -109,7 +112,7 @@ public class Collec {
 		this.comics.add(comic);
 	}
 
-	public void rmComic(Comic_Collec rm_comic) {
+	public void rmComic(Comic rm_comic) {
 		this.comics.removeIf(comic -> comic.getId() == rm_comic.getId());
 	}
 	
