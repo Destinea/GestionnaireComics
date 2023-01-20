@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static Collec.Comic_Collec.saveBdd;
+
 /**
  *
  * @author nathb
@@ -339,6 +341,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         PanelDeconnexion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PanelDeconnexionMouseClicked(evt);
+
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 PanelDeconnexionMouseEntered(evt);
@@ -708,6 +711,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void PanelDeconnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelDeconnexionMouseClicked
         try {
+            saveBdd(user);
             // TODO add your handling code here:
             this.switchestCo();
         } catch (SQLException ex) {
@@ -795,7 +799,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {                                   
         if (estCo) {
             try {
-                Comic_Collec.saveBdd(user);
+                saveBdd(user);
             } catch (SQLException ex) {
                 Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
             }
