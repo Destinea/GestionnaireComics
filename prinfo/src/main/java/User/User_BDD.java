@@ -16,7 +16,7 @@ public class User_BDD {
             {
                 String hash_password = argon2.hash(4, 1024 * 1024, 8, psw);
                 String sql = "INSERT INTO user(login, password) VALUES ('" + login + "', '" + hash_password + "');";
-                System.out.print(sql);
+                //System.out.print(sql);
                 stmt.executeUpdate(sql);
                 return true;
             }

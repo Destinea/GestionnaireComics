@@ -40,16 +40,16 @@ public class Comic_Collec extends Comic {
             User old_user = new User(user.getUsername(), "");
             old_user.chargeCollection();
 
-            System.out.println("old");
+            //System.out.println("old");
             for (Comic_Collec comic : old_user.getCollection().getComics())
             {
-                System.out.println(comic.getName());
+                //System.out.println(comic.getName());
             }
 
-            System.out.println("new");
+            //System.out.println("new");
             for (Comic_Collec comic : user.getCollection().getComics())
             {
-                System.out.println(comic.getName());
+                //System.out.println(comic.getName());
             }
 
             compareCollection(user.getCollection(), old_user.getCollection());
@@ -117,24 +117,24 @@ public class Comic_Collec extends Comic {
     public static void supprimer_bdd(Statement stmt, Collec supp_collection, String login) throws SQLException {
         List<Integer> liste_suppression = supp_collection.getlisteSupp();
         int id_user = getUserId(stmt, login);
-        System.out.println("Liste a supprimer : " + liste_suppression);
+        //System.out.println("Liste a supprimer : " + liste_suppression);
         String sql = "DELETE FROM collection as c WHERE id_comic IN " + liste_suppression.toString().replace("[", "(").replace("]", ")") + " AND c.id_user = " + id_user;
         stmt.executeUpdate(sql);
         verificationCollection(stmt, liste_suppression);
     }
 
     public static void insertionComic(Statement stmt, Comic c) throws SQLException {
-        System.out.println("Insertion du comic : " + c.getName() );
+        //System.out.println("Insertion du comic : " + c.getName() );
         if (VerificationComic(stmt, c))
         {
-            System.out.println("Il faut insérer");
+            //System.out.println("Il faut insérer");
             String sql = "INSERT INTO comic(id_comic, nom, lien_image, id_serie, numero) VALUES (" + c.getId() + ",'" + c.getName() + "', '" + c.getIconLink() + "', " + c.getSerieId() + "," + c.getNumber() + ");";
             stmt.executeUpdate(sql);
         }
     }
 
     public static boolean VerificationComic(Statement stmt, Comic c) throws SQLException {
-        System.out.println("Vérification de l'existence du comic " + c.getId() + " dans la bdd");
+        //System.out.println("Vérification de l'existence du comic " + c.getId() + " dans la bdd");
         String sql = "SELECT * FROM comic WHERE id_comic = " + c.getId() + ";";
         stmt.executeQuery(sql);
         ResultSet rs = stmt.getResultSet();
@@ -142,16 +142,16 @@ public class Comic_Collec extends Comic {
     }
 
     public static void insertionSerie(Statement stmt, Comic c) throws SQLException {
-        System.out.println("Vérification de la nécessité d'inserer la série : " + c.getSerieName());
+        //System.out.println("Vérification de la nécessité d'inserer la série : " + c.getSerieName());
         if (VerificationSerie(stmt, c)) {
-            System.out.println("Il faut insérer");
+            //System.out.println("Il faut insérer");
             String sql_Serie = "INSERT INTO serie(id_serie, nom_serie) VALUES (" + c.getSerieId() + ", '" + c.getSerieName() + "');";
             stmt.executeUpdate(sql_Serie);
         }
     }
 
     public static boolean VerificationSerie(Statement stmt, Comic c) throws SQLException {
-        System.out.println("Vérification de l'existence de la série " + c.getSerieName() + " dans la bdd");
+        //System.out.println("Vérification de l'existence de la série " + c.getSerieName() + " dans la bdd");
         String sql = "SELECT * FROM serie WHERE id_serie = " + c.getSerieId() + ";";
         stmt.executeQuery(sql);
         ResultSet rs = stmt.getResultSet();
@@ -162,7 +162,7 @@ public class Comic_Collec extends Comic {
         int id_user = getUserId(stmt, login);
         if (id_user != -1)
         {
-            System.out.println("Liaison utilisateur " + id_user + " et comic " + id_comic);
+            //System.out.println("Liaison utilisateur " + id_user + " et comic " + id_comic);
             String sql_UserCollection = "INSERT INTO collection(id_user, id_comic, id_etat) VALUES ('" + id_user + "', '" + id_comic + "', 1);";
             stmt.executeUpdate(sql_UserCollection);
         }
@@ -180,7 +180,7 @@ public class Comic_Collec extends Comic {
     }
 
     public static void verificationCollection(Statement stmt, List<Integer> liste_suppression) throws SQLException {
-        System.out.println("On vérifie si des comics doivent être supprimés de la table comic");
+        //System.out.println("On vérifie si des comics doivent être supprimés de la table comic");
         for (int id_comic : liste_suppression) {
             String sql = "SELECT * FROM Collection WHERE id_comic = " + id_comic + ";";
             stmt.executeQuery(sql);
@@ -192,20 +192,20 @@ public class Comic_Collec extends Comic {
     }
 
     public static void nettoyageCollection(Statement stmt, int id_comic) throws SQLException {
-        System.out.println("Suppression du comic de la table comic : " + id_comic);
+        //System.out.println("Suppression du comic de la table comic : " + id_comic);
         String sql = "DELETE FROM Comic WHERE id_comic = " + id_comic + ";";
         stmt.executeUpdate(sql);
     }
 
     public static void verificationEtatLecture(Statement stmt, Collec collection, String login) throws SQLException {
-        System.out.println("Vérification changement etat lecture");
+        //System.out.println("Vérification changement etat lecture");
         int id_user = getUserId(stmt, login);
         for (Comic_Collec comic : collection.getComics()) {
             Integer int_etat = comic.getEtat();
             String sql = "SELECT id_etat FROM Collection WHERE id_comic = " + comic.getId() + " AND id_user = " + id_user + ";";
             stmt.executeQuery(sql);
             ResultSet rs = stmt.getResultSet();
-            System.out.println(rs);
+            //System.out.println(rs);
             Integer res = 0;
             while (rs.next()) {
                 res = rs.getInt(1);
@@ -217,7 +217,7 @@ public class Comic_Collec extends Comic {
         }
     }
     public static void majEtatLecture(Statement stmt, int id_user, int id_comic, int id_etat) throws SQLException {
-        System.out.println("Maj etat lecture : " + id_comic);
+        //System.out.println("Maj etat lecture : " + id_comic);
         String sql = "UPDATE collection SET id_etat = " + id_etat + " WHERE id_comic = " + id_comic + " AND id_user = '" + id_user + "';";
         stmt.executeUpdate(sql);
     }

@@ -57,7 +57,7 @@ public class User {
 			stmt.executeQuery(sql);
 			ResultSet rs = stmt.getResultSet();
 			while (rs.next()) {
-				System.out.println("Ajout de "+rs.getString("nom"));
+				//System.out.println("Ajout de "+rs.getString("nom"));
 				changeUserComicStatus(new Comic_Collec(rs.getString("nom"), rs.getInt("id_comic"), rs.getString("lien_image"), rs.getString("nom_serie"), rs.getInt("id_serie"), rs.getInt("numero"),rs.getInt("id_etat")), rs.getInt("id_etat"));
 			}
 		}

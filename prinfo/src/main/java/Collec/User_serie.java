@@ -15,26 +15,26 @@ public class User_serie extends Serie{
 	}
 	
 	public void changeSerieComicStatus(Comic c,int status) {
-		boolean find=false;
-		for (Comic_Collec comic_Collec : user_serie) {//Recherche dans les comics possédés
-			if (comic_Collec.getId()==c.getId()) {
-				find=true;
-				if (status>0) {
-				comic_Collec.setEtat(status);
-				}
-				else {
-					user_serie.remove(comic_Collec);//Supprimer le comic
+		if (status==0) {
+			try {
+				user_serie.remove(c);
+			} catch (Exception e) {
+				System.out.println("Impossible de supprimer:"+c.getName());
+			}
+			
+		}else {
+			boolean find=false;
+			for (Comic_Collec comic_Collec : user_serie) {//Recherche dans les comics possédés
+				if (comic_Collec.getId()==c.getId()) {
+					find=true;
+					comic_Collec.setEtat(status);
 				}
 			}
-		}
-		if (!find) {
-			if (status>0) {
+			if (!find) {
 				//Ajout à la série
 				user_serie.add(new Comic_Collec(c, status));
 			}
-		}
-		
-		
+		}	
 	}
 	
 	public HashSet<Comic_Collec> getUserSerie() {

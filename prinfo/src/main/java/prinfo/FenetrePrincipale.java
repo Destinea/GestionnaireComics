@@ -8,28 +8,22 @@ import API.Comic;
 import API.Results;
 import API.api_connection;
 import AffichageCollection.UserSeriePanel;
+import AffichageCollection.VerticalFlowLayout;
 import Collec.Comic_Collec;
 import Collec.User_serie;
 import Suggestion.Suggestion;
 import User.User;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Choice;
-import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  *
@@ -61,10 +55,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         droplistFiltre.setVisible(true);
         scrollPaneAffichageMultiple.setVisible(false);
         Navbar.setVisible(false);
-        sugg = new Suggestion(this);
+        //sugg = new Suggestion(this);
         panelAffichageMultiple.setLayout(new GridLayout(1, 1, 5, 5));
         scrollPaneAffichageMultiple.setVisible(true);
-        panelAffichageMultiple.add(sugg);
+        //panelAffichageMultiple.add(sugg);
         PanelUser.setVisible(false);
     }
     /**
@@ -357,7 +351,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         LabelDeconnexion.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         LabelDeconnexion.setForeground(new java.awt.Color(255, 255, 255));
         LabelDeconnexion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LabelDeconnexion.setText("Déconnecxion");
+        LabelDeconnexion.setText("Déconnexion");
 
         javax.swing.GroupLayout PanelDeconnexionLayout = new javax.swing.GroupLayout(PanelDeconnexion);
         PanelDeconnexion.setLayout(PanelDeconnexionLayout);
@@ -622,7 +616,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             panelAffichageMultiple.add(affichageResultsMultiple);
         }
         contentPage.updateUI();
-
+        panelAffichageMultiple.repaint();
         numPage.setText("1");
         Navbar.setVisible(true);
         btnPrecedent.setVisible(false);
@@ -738,47 +732,52 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         // On supprime la liste précédemmant cherchée pour la set à nouveau
         clearAffichageMultiple();
         //On prepare le layout
-        panelAffichageMultiple.setLayout(new GridLayout(user.getCollection().getSeries().size(), 1, 10, 10));
-        //on active la barre de scroll
-        scrollPaneAffichageMultiple.setVisible(true);
-        //stockage des panels pour ne pas avoir a les recharger
-        for (User_serie user_serie : user.getCollection().getSeries()) {
-            series_panels.add(new UserSeriePanel(user, user_serie,this));
+        boolean update_series=false;
+        for (UserSeriePanel series_panel:series_panels) {
+        	for (User_serie user_serie : user.getCollection().getSeries()) {
+	            if (series_panel.getPanelSerie().getUserSerie().size()!=user_serie.getUserSerie().size()) {
+					update_series=true;
+				}
+	        }
         }
+        
+        if (series_panels.size()!=user.getCollection().getSeries().size() || update_series || series_panels.isEmpty()) {
+        	series_panels.clear();
+	        //on active la barre de scroll
+	        //stockage des panels pour ne pas avoir a les recharger
+	        for (User_serie user_serie : user.getCollection().getSeries()) {
+	            series_panels.add(new UserSeriePanel(user, user_serie,this));
+	        }    	
+		}
+        
         //Ajout des panels au panel parent
+        panelAffichageMultiple.setLayout(new VerticalFlowLayout(1,0));
         for (UserSeriePanel series_panel:series_panels) {
             panelAffichageMultiple.add(series_panel);
         }
-        //Update du panel parent
-        contentPage.updateUI();
+        
+        panelAffichageMultiple.revalidate();
         //pas besoin de la navigation entre les pages de résultats
         Navbar.setVisible(false);
+        scrollPaneAffichageMultiple.setVisible(true);
+        //Update du panel parent
+        panelAffichageMultiple.repaint();
     }//GEN-LAST:event_PanelCollectionMouseClicked
-    public void deleteSeriePanel(int id) {
-		for (UserSeriePanel series_panel:series_panels) {
-			if (series_panel.getPanelSerie().getId()==id) {
-				series_panels.remove(series_panel);
-				panelAffichageMultiple.remove(series_panel);
-			}
-			
-		}
-		contentPage.updateUI();
+    public void deleteSeriePanel(UserSeriePanel series_panel) {
+		panelAffichageMultiple.remove(series_panel);
+		series_panels.remove(series_panel);
+		panelAffichageMultiple.revalidate();
+		panelAffichageMultiple.repaint();
+		
 	}
     private void clearAffichageMultiple() {
-    	sugg.setVisible(false);
+    	panelAffichageMultiple.removeAll();
+        panelAffichageMultiple.repaint();
         if (ResultatsRecherche!=null) {
             ResultatsRecherche.clear();
             resultatsMultipleAffichage.clear();
         }
-        if (series_panels!=null) {
-        	for (UserSeriePanel p : series_panels) {
-        		p.setVisible(false);
-				panelAffichageMultiple.remove(p);
-				series_panels.remove(p);
-			}
-        }
-        panelAffichageMultiple.removeAll();
-        contentPage.updateUI();
+        
     }
     private void PanelAccueilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelAccueilMouseClicked
         clearAffichageMultiple();
@@ -790,6 +789,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         sugg.setVisible(true);
         panelAffichageMultiple.add(sugg);
         contentPage.updateUI();
+        panelAffichageMultiple.repaint();
     }//GEN-LAST:event_PanelAccueilMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {                                   
