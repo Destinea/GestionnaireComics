@@ -219,25 +219,61 @@ public class api_connection {
         }
         return randomComics;
     }
+
+    public List<Serie> getSeries(List<Integer> listID) throws IOException {
+        List<Serie> serieList = new ArrayList<>();
+        StringBuilder requeteURL = new StringBuilder("https://comicvine.gamespot.com/api/volumes/?filter=id:");
+        for(int i = 0; i< listID.size()-1;i++){
+            requeteURL.append(listID.get(i)).append("|");
+        }
+        requeteURL.append(listID.get(listID.size()-1)).append("&format=json&api_key=").append(API_KEY);
+
+        String jsonString = sendRequest(requeteURL.toString());
+
+        JSONObject obj = new JSONObject(jsonString);
+        JSONArray JSONresults = obj.getJSONArray("results");
+        for(int i=0;i<JSONresults.length();i++) {
+            String name = JSONresults.getJSONObject(i).get("name").toString();
+            String shortDescription = JSONresults.getJSONObject(i).get("deck").toString();
+            int id = JSONresults.getJSONObject(i).getInt("id");
+            String iconLink = JSONresults.getJSONObject(i).getJSONObject("image").getString("icon_url");
+            String bigIconLink = JSONresults.getJSONObject(i).getJSONObject("image").getString("super_url");
+            String HTMLDescription = JSONresults.getJSONObject(i).get("description").toString();
+
+            int numberOfComics = JSONresults.getJSONObject(i).getInt("count_of_issues");
+            int startYear = JSONresults.getJSONObject(i).getInt("start_year");
+            int lastComicID = JSONresults.getJSONObject(i).getJSONObject("last_issue").getInt("id");
+            String lastComicName = JSONresults.getJSONObject(i).getJSONObject("last_issue").get("name").toString();
+            int firstComicID = JSONresults.getJSONObject(i).getJSONObject("first_issue").getInt("id");
+            String firstComicName = JSONresults.getJSONObject(i).getJSONObject("first_issue").get("name").toString();
+
+            serieList.add(new Serie(new Results(name, shortDescription,"volume",id,iconLink,bigIconLink,HTMLDescription)
+                    ,numberOfComics, startYear,lastComicID,firstComicID,lastComicName,firstComicName));
+        }
+        return serieList;
+    }
     
     //Exemple d'utilisation de la classe :
     /*
     public static void main(String[] args) throws IOException {
         api_connection test = new api_connection();
+        List<Integer> integerList = new ArrayList<>();
+        integerList.add(69993);
+        integerList.add(126840);
+        List<Serie> serieList = test.getSeries(integerList);
 
-        List<Comic> lastComics = test.getRandomComics();
-
-        for (Comic comics : lastComics) {
-            System.out.println(comics.getName());
-            System.out.println(comics.getId());
-            System.out.println(comics.getIconLink());
-            System.out.println(comics.getSerieName());
-            System.out.println(comics.getSerieId());
-            System.out.println(comics.getNumber());
+        for (Serie serie : serieList) {
+            System.out.println(serie.getName());
+            System.out.println(serie.getId());
+            System.out.println(serie.getIconLink());
+            System.out.println(serie.getNumberOfComics());
+            System.out.println(serie.getFirstComicName());
+            System.out.println(serie.getLastComicName());
             System.out.println("\n");
         }
     }
      */
+
 
 
 }
