@@ -22,6 +22,10 @@ import prinfo.FenetrePrincipale;
  */
 public class Suggestion extends javax.swing.JPanel {
     private api_connection test;
+    private FenetrePrincipale frame;
+    private List<Comic> firstCategorie;
+    private List<Comic> secondCategorie;
+    private List<Comic> thirdCategorie;
     /**
      * Creates new form Suggestion
      * @param frame
@@ -29,27 +33,44 @@ public class Suggestion extends javax.swing.JPanel {
      * @throws java.sql.SQLException
      */
     public Suggestion(FenetrePrincipale frame) throws IOException, SQLException {
+    	this.frame=frame;
         test = new api_connection();
         initComponents();
         this.generateSuggestion(frame);
         
     }
+    public void reloadSuggPanels() throws IOException {
+    	System.out.println(firstCategorie);
+    	System.out.println(secondCategorie);
+    	System.out.println(thirdCategorie);
+    	contentSuggestion.removeAll();
+    	contentSuggestion.add(new Categorie(frame,firstCategorie,"Derniers Ajouts"));
+    	if (frame.getestCo()){
+            //A modifier par la collection
+            contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
+        } else {
+            contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
+        }
+    	contentSuggestion.add(new Categorie(frame, thirdCategorie, "Les plus populaires"));
+    	contentSuggestion.repaint();
+    	contentSuggestion.setVisible(true);
+    }
     
     private void generateSuggestion(FenetrePrincipale frame) throws IOException, SQLException{
         contentSuggestion.setLayout(new GridLayout(3,1));
-        List<Comic> firstCategorie = test.getLastComics();
-        contentSuggestion.add(new Categorie(frame,firstCategorie.subList(0,3),"Derniers Ajouts"));
-        List<Comic> secondCategorie = test.getRandomComics();
+        this.firstCategorie = test.getLastComics().subList(0,3);
+        contentSuggestion.add(new Categorie(frame,firstCategorie,"Derniers Ajouts"));
+        this.secondCategorie = test.getRandomComics().subList(0,3);
         if (frame.getestCo()){
             //A modifier par la collection
-            contentSuggestion.add(new Categorie(frame,secondCategorie.subList(0,3),"Aléatoires"));
+            contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
         } else {
-            contentSuggestion.add(new Categorie(frame,secondCategorie.subList(0,3),"Aléatoires"));
+            contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
         }
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
         Statement stmt = con.createStatement();
-        List<Comic> thirdCategotie = Comic_Collec.getPlusLu(stmt);
-        contentSuggestion.add(new Categorie(frame, thirdCategotie, "Les plus populaires"));
+        this.thirdCategorie = Comic_Collec.getPlusLu(stmt);
+        contentSuggestion.add(new Categorie(frame, thirdCategorie, "Les plus populaires"));
         
         contentSuggestion.setVisible(true);
     }

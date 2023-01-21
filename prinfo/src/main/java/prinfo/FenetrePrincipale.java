@@ -75,9 +75,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      public boolean getestCo(){
          return estCo;
      }
-     public void switchestCo() throws SQLException {
+     public void switchestCo() throws SQLException, IOException {
          estCo = !estCo;
-         PanelCollection.setVisible(estCo);
+         PanelCollection.setVisible(estCo); 
          if (estCo) {
         	user=connectionFrame.getUser();
         	user.chargeCollection();
@@ -87,6 +87,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         else {
             jLabel4.setText("Se Connecter");
         }
+        clearAffichageMultiple();
+        sugg.reloadSuggPanels();
+        System.out.println(sugg);
+        panelAffichageMultiple.add(sugg);
+        panelAffichageMultiple.repaint();
     }
     public User getUser() {
         return user;
@@ -351,7 +356,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         PanelDeconnexion.setBackground(new java.awt.Color(0, 0, 0));
         PanelDeconnexion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PanelDeconnexionMouseClicked(evt);
+                try {
+					PanelDeconnexionMouseClicked(evt);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -720,7 +730,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         LabelChangeMdp.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_PanelChangeMDPMouseExited
 
-    private void PanelDeconnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelDeconnexionMouseClicked
+    private void PanelDeconnexionMouseClicked(java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_PanelDeconnexionMouseClicked
         try {
             saveBdd(user);
             // TODO add your handling code here:
