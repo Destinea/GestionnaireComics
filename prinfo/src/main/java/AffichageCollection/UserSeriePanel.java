@@ -76,7 +76,7 @@ public class UserSeriePanel extends javax.swing.JPanel {
         	i++;
 		}
         //bouton de droite si il y a des comics après
-        if (i>=page+7) {
+        if (i>page+7) {
             afficherDroite.setVisible(true);
         }
         else {
