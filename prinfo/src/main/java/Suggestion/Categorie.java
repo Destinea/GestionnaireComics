@@ -32,6 +32,7 @@ public class Categorie extends javax.swing.JPanel {
         contentCategorie1 .setLayout(new GridLayout(1,3));
         for (Comic comic : comics) {//MOdifier pour avoir la serie possédée	
             contentCategorie1.add(new SuggestionPanel(frame,comic));
+            System.out.println("add"+comic.getName());
         }
         contentCategorie1.setVisible(true);
     }

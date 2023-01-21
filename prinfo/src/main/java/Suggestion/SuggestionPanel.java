@@ -37,6 +37,7 @@ public class SuggestionPanel extends javax.swing.JPanel {
         initComponents();
         //jCheckBox1.setVisible(frame.getestCo());
         RemplirChamps(comic);
+        System.out.println(frame.getestCo());
         if ((frame.getestCo())){
             jCheckBox1.setVisible(true);
             Comic test_possession= frame.getUser().getCollection().searchComic(comic.getId());
@@ -50,6 +51,7 @@ public class SuggestionPanel extends javax.swing.JPanel {
         else{
             jCheckBox1.setVisible(false);
         }
+        System.out.println("ok2");
     }
     
     private void RemplirChamps(Comic comic){
