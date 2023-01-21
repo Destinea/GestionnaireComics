@@ -25,10 +25,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="contentCategorie1" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="categorieName" min="-2" pref="129" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="370" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="categorieName" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -68,7 +65,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="499" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
