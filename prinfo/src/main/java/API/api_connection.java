@@ -83,14 +83,13 @@ public class api_connection {
                 case "Séries":
                     type = "volume";
                     break;
-                case "Comics":
+                case "Comic":
                     type = "issue";
                     break;
                 default:
                     type = JSONresults.getJSONObject(i).getString("resource_type");
                     break;
             }
-
             if(type=="issue"&&name=="null"){
                 name = JSONresults.getJSONObject(i).getJSONObject("volume").getString("name").toString() +
                         " - n°"+JSONresults.getJSONObject(i).get("issue_number").toString();
@@ -253,7 +252,7 @@ public class api_connection {
         }
         return serieList;
     }
-    
+
     //Exemple d'utilisation de la classe :
     /*
     public static void main(String[] args) throws IOException {
@@ -278,3 +277,4 @@ public class api_connection {
 
 
 }
+

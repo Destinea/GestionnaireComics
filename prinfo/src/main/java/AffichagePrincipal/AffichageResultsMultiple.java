@@ -34,20 +34,20 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
      * Creates new form AffichageResultsMultiple
      */
     public AffichageResultsMultiple(Results res, FenetrePrincipale f) {
-    	this.frame=f;
+        this.frame=f;
         resultat=res;
         initComponents();
         RemplirChamps();
-        if (("Comic".equals(type.getText())) && (frame.getestCo())){
+        if (("issue".equals(type.getText())) && (frame.getestCo())){
             jCheckBox1.setVisible(true);
             Comic test_possession= frame.getUser().getCollection().searchComic(res.getId());
-            
+
             if (test_possession!=null) {
-				jCheckBox1.setSelected(true);
-			}
+                jCheckBox1.setSelected(true);
+            }
             else {
-				jCheckBox1.setSelected(false);
-			}
+                jCheckBox1.setSelected(false);
+            }
         }
         else{
             jCheckBox1.setVisible(false);
@@ -56,23 +56,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
 
     private void RemplirChamps(){
         titre.setText(resultat.getName());
-
-        switch (resultat.getType()){
-            case "issue":
-                type.setText("Comic");
-                break;
-            case "volume" :
-                type.setText("Série");
-                break;
-            case "character" :
-                type.setText("Personnage");
-                break;
-            default:
-                type.setText(resultat.getType());
-        }
-
-
-
+        type.setText(resultat.getType());
 
         ImageIcon img1=null;
         try{
@@ -146,46 +130,46 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titre)
-                    .addComponent(type)
-                    .addComponent(jCheckBox1))
-                .addContainerGap(14, Short.MAX_VALUE))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(titre)
+                                        .addComponent(type)
+                                        .addComponent(jCheckBox1))
+                                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(titre)
-                .addGap(3, 3, 3)
-                .addComponent(type)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jCheckBox1)
-                .addContainerGap())
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(titre)
+                                .addGap(3, 3, 3)
+                                .addComponent(type)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jCheckBox1)
+                                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(iconLink, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(iconLink, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(iconLink, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(iconLink, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -218,25 +202,25 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
-    	
+
         if (jCheckBox1.isSelected()){
-        	//Pas dans la collection, on doit l'ajouter
-        	api_connection conn= new api_connection();   	
-        	Comic comicSelected;
-			try {
-				comicSelected = conn.getComic(resultat.getId());
-				frame.getUser().changeUserComicStatus(comicSelected, 1);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}     	
+            //Pas dans la collection, on doit l'ajouter
+            api_connection conn= new api_connection();
+            Comic comicSelected;
+            try {
+                comicSelected = conn.getComic(resultat.getId());
+                frame.getUser().changeUserComicStatus(comicSelected, 1);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         else {
-        	//Deja dans la collection, on doit le supprimer
-        	User user=frame.getUser();
-        	Comic comicSelected =user.getCollection().searchComic(resultat.getId());//recup du comic
-			user.changeUserComicStatus(comicSelected, 0);
-		}
+            //Deja dans la collection, on doit le supprimer
+            User user=frame.getUser();
+            Comic comicSelected =user.getCollection().searchComic(resultat.getId());//recup du comic
+            user.changeUserComicStatus(comicSelected, 0);
+        }
         //TODO else remove comic non selected
 
     }//GEN-LAST:event_jCheckBox1ActionPerformed
