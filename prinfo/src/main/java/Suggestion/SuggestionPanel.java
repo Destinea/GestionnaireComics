@@ -26,7 +26,7 @@ import AffichagePrincipal.FenetrePrincipale;
  * @author Sarah-Marie JULES
  */
 public class SuggestionPanel extends javax.swing.JPanel {
-    FenetrePrincipale frame;
+    private FenetrePrincipale frame;
     private Comic comic;
     /** Creates new form SuggestionPanel
      * @param frame
@@ -40,7 +40,6 @@ public class SuggestionPanel extends javax.swing.JPanel {
         if ((frame.getestCo())){
             jCheckBox1.setVisible(true);
             Comic test_possession= frame.getUser().getCollection().searchComic(comic.getId());
-            
             if (test_possession!=null) {
 				jCheckBox1.setSelected(true);
 			}

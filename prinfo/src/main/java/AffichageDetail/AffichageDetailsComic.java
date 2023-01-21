@@ -62,7 +62,7 @@ public class AffichageDetailsComic extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	String sImageFileName = "icon.png";
+    	String sImageFileName = "../icon.png";
         URL urlImageFileName = getClass().getResource(sImageFileName);
 
         if (urlImageFileName == null)
