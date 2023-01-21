@@ -52,13 +52,14 @@ public class UserSeriePanel extends javax.swing.JPanel {
     	return this.serie;
     }
     public void InitUserSeriePanelCollection(){
-        nomSerie.setText(serie.getName());
+        
         contentpageserie.setLayout(new FlowLayout(FlowLayout.LEADING));
         
         //Creation de tous les comic panel
         for (Comic_Collec comic : serie.getUserSerie()) {//MOdifier pour avoir la serie possédée
             comic_panels.add(new ComicPanelCollection(this.user,comic,this));
         }
+        nomSerie.setText(serie.getName()+" : "+comic_panels.size()+" comics enregistrés");
         //refresh du panel = initialisation
         refreshPanel();
         
@@ -94,6 +95,7 @@ public class UserSeriePanel extends javax.swing.JPanel {
     public void deleteComic(ComicPanelCollection cm) {
     	//Supp dans la serie de Comic panel
     	comic_panels.remove(cm);
+    	nomSerie.setText(serie.getName()+" : "+comic_panels.size()+" comics enregistrés");
     	//Refresh du panel
     	refreshPanel();
 		//Delete panel serie si vide
@@ -129,7 +131,7 @@ public class UserSeriePanel extends javax.swing.JPanel {
         afficherDroite = new javax.swing.JButton();
         afficherDroite.setBounds(967, 19, 39, 204);
         nomSerie = new javax.swing.JLabel();
-        nomSerie.setBounds(0, 0, 132, 13);
+        nomSerie.setBounds(0, 0, 217, 18);
         contentpageserie = new javax.swing.JPanel();
         contentpageserie.setBounds(41, 19, 926, 204);
 
