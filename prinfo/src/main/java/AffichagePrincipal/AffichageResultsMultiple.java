@@ -56,7 +56,23 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
 
     private void RemplirChamps(){
         titre.setText(resultat.getName());
-        type.setText(resultat.getType());
+
+        switch (resultat.getType()){
+            case "issue":
+                type.setText("Comic");
+                break;
+            case "volume" :
+                type.setText("Série");
+                break;
+            case "character" :
+                type.setText("Personnage");
+                break;
+            default:
+                type.setText(resultat.getType());
+        }
+
+
+
 
         ImageIcon img1=null;
         try{
@@ -178,17 +194,17 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
             api_connection apiConnection = new api_connection();
             try {
                 switch (resultat.getType()){
-                    case "Personnage":
+                    case "character":
                         AffichageDetailPersonnage affichageDetailPersonnage=
                                 new AffichageDetailPersonnage(apiConnection.getCharacter(resultat.getId()));
                         affichageDetailPersonnage.setVisible(true);
                         break;
-                    case "Comic":
+                    case "issue":
                         AffichageDetailsComic affichageDetailsComic =
                                 new AffichageDetailsComic(apiConnection.getComic(resultat.getId()));
                         affichageDetailsComic.setVisible(true);
                         break;
-                    case "Série":
+                    case "volume":
                         AffichageDetailsSerie affichageDetailsSerie =
                                 new AffichageDetailsSerie(apiConnection.getSerie(resultat.getId()));
                         affichageDetailsSerie.setVisible(true);
