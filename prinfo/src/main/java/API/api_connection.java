@@ -76,21 +76,31 @@ public class api_connection {
             String shortDescription = JSONresults.getJSONObject(i).get("deck").toString();
 
             String type;
-            switch (filtre) {
-                case "Personnages":
-                    type = "character";
-                    break;
-                case "Séries":
-                    type = "volume";
-                    break;
-                case "Comic":
-                    type = "issue";
-                    break;
-                default:
-                    type = JSONresults.getJSONObject(i).getString("resource_type");
-                    break;
+            if (!filtre.equals("Tout"))
+            {
+                switch (filtre) {
+                    case "Personnages":
+                        type = "Personnage";
+                        break;
+                    case "Séries":
+                        type = "Volume";
+                        break;
+                    case "Comic":
+                        type = "Comic";
+                        break;
+                    default:
+                        type = JSONresults.getJSONObject(i).getString("resource_type");
+                        break;
+                }
             }
-            if(type=="issue"&&name=="null"){
+            else
+                type = switch (JSONresults.getJSONObject(i).getString("resource_type")) {
+                    case "character" -> "Personnage";
+                    case "volume" -> "Série";
+                    case "issue" -> "Comic";
+                    default -> (JSONresults.getJSONObject(i).getString("resource_type"));
+            };
+            if(type=="Comic"&&name=="null"){
                 name = JSONresults.getJSONObject(i).getJSONObject("volume").getString("name").toString() +
                         " - n°"+JSONresults.getJSONObject(i).get("issue_number").toString();
             }
@@ -125,7 +135,7 @@ public class api_connection {
             number = -1;
         }
         String HTMLDescription = obj.get("description").toString();
-        Results res= new Results(name, shortDescription, "issue", id, iconLink,HTMLDescription, bigIconLink);
+        Results res= new Results(name, shortDescription, "Comic", id, iconLink,HTMLDescription, bigIconLink);
         return new Comic( res,SerieName,SerieId,number);
     }
 
@@ -146,7 +156,7 @@ public class api_connection {
         String HTMLDescription = obj.get("description").toString();
 
 
-        return new Character(name,shortDescription,"character",id,iconLink,appearances,firstComicID,firstComicName,gender, realName,HTMLDescription,bigIconLink);
+        return new Character(name,shortDescription,"Personnage",id,iconLink,appearances,firstComicID,firstComicName,gender, realName,HTMLDescription,bigIconLink);
     }
 
     /**
@@ -174,7 +184,7 @@ public class api_connection {
                         " - n°"+JSONComics.getJSONObject(i).get("issue_number").toString();
             }
             String HTMLDescription = JSONComics.getJSONObject(i).get("description").toString();
-            Results res= new Results(name, shortDescription, "issue", id, iconLink,HTMLDescription, bigIconLink);
+            Results res= new Results(name, shortDescription, "Comic", id, iconLink,HTMLDescription, bigIconLink);
             Comic newComic = new Comic(res,SerieName,SerieId,number);
             lastComics.add(newComic);
         }

@@ -54,7 +54,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         PanelCollection.setVisible(estCo);
         Choice droplistFiltre=new Choice();
         droplistFiltre.add("Tout");
-        droplistFiltre.add("Character");
+        droplistFiltre.add("Personnages");
         droplistFiltre.add("Comics");
         droplistFiltre.setVisible(true);
         scrollPaneAffichageMultiple.setVisible(false);
@@ -309,7 +309,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        dropListFiltre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tout", "Personnages", "Séries", "Comic" }));
+        dropListFiltre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tout", "Personnages", "Séries", "Comics" }));
         dropListFiltre.setMinimumSize(new java.awt.Dimension(117, 22));
         dropListFiltre.setPreferredSize(new java.awt.Dimension(117, 27));
 
@@ -622,6 +622,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         scrollPaneAffichageMultiple.setVisible(true);
 
         for (Results results : ResultatsRecherche) {
+
             resultatsMultipleAffichage.add(new AffichageResultsMultiple(results,this));
         }
 
