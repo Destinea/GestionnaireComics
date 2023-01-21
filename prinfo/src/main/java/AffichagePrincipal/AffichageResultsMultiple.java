@@ -2,21 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package prinfo;
+package AffichagePrincipal;
 
 import API.Comic;
 import API.Results;
 import API.api_connection;
-import Collec.Comic_Collec;
-import User.User;
-
-import com.mysql.cj.xdevapi.Result;
+import AffichageDetail.AffichageDetailPersonnage;
+import AffichageDetail.AffichageDetailsComic;
+import AffichageDetail.AffichageDetailsSerie;
+import GestionUser.User;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +38,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
         resultat=res;
         initComponents();
         RemplirChamps();
-        if (("issue".equals(type.getText())) && (frame.getestCo())){
+        if (("Comic".equals(type.getText())) && (frame.getestCo())){
             jCheckBox1.setVisible(true);
             Comic test_possession= frame.getUser().getCollection().searchComic(res.getId());
             
@@ -64,7 +63,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
             BufferedImage img= ImageIO.read(new URL(resultat.getIconLink()));
             int newWidth=100;
             if(img.getWidth()==0){
-                img=ImageIO.read(new File("prinfo/src/main/resources/image_comic_default.png"));
+                img=ImageIO.read(new File("AffichagePrincipal/src/main/resources/image_comic_default.png"));
             }
             float aspectRatio=(float)img.getWidth(null)/img.getHeight(null);
             int newHeight=(int)(newWidth*aspectRatio);
@@ -179,17 +178,17 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
             api_connection apiConnection = new api_connection();
             try {
                 switch (resultat.getType()){
-                    case "character":
+                    case "Personnage":
                         AffichageDetailPersonnage affichageDetailPersonnage=
                                 new AffichageDetailPersonnage(apiConnection.getCharacter(resultat.getId()));
                         affichageDetailPersonnage.setVisible(true);
                         break;
-                    case "issue":
+                    case "Comic":
                         AffichageDetailsComic affichageDetailsComic =
                                 new AffichageDetailsComic(apiConnection.getComic(resultat.getId()));
                         affichageDetailsComic.setVisible(true);
                         break;
-                    case "volume":
+                    case "Série":
                         AffichageDetailsSerie affichageDetailsSerie =
                                 new AffichageDetailsSerie(apiConnection.getSerie(resultat.getId()));
                         affichageDetailsSerie.setVisible(true);

@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package prinfo;
+package AffichageDetail;
+
+import AffichagePrincipal.FenetrePrincipale;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -60,7 +62,7 @@ public class AffichageDetailsComic extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	String sImageFileName = "icon.png";
+    	String sImageFileName = "../icon.png";
         URL urlImageFileName = getClass().getResource(sImageFileName);
 
         if (urlImageFileName == null)

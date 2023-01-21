@@ -20,7 +20,7 @@ public class Comic extends Results{
     }
 
     public Comic(String name, int id, String iconLink, String serieName, int serieId,int number) {
-    	super(name,"NULL","issue",id,iconLink,"NULL", "NULL");
+    	super(name,"NULL","Comic",id,iconLink,"NULL", "NULL");
     	this.SerieName = serieName;
         this.SerieId = serieId;
         this.number = number;

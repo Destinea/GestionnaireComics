@@ -5,22 +5,15 @@
 package AffichageCollection;
 
 import Collec.Comic_Collec;
-import User.User;
-import prinfo.FenetrePrincipale;
+import GestionUser.User;
+import AffichagePrincipal.FenetrePrincipale;
 import Collec.User_serie;
-import java.awt.GridLayout;
+
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
 /**
  *
  * @author Alexi

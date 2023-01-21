@@ -2,20 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package prinfo;
+package AffichagePrincipal;
 
-import API.Comic;
 import API.Results;
 import API.api_connection;
 import AffichageCollection.UserSeriePanel;
 import AffichageCollection.VerticalFlowLayout;
-import Collec.Comic_Collec;
+import AffichageCompte.ChangeMdp1;
+import AffichageCompte.ConnectionFrame;
 import Collec.User_serie;
 import Suggestion.Suggestion;
-import User.User;
+import GestionUser.User;
 import java.awt.Color;
 import java.awt.Choice;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.URL;
@@ -55,7 +54,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         PanelCollection.setVisible(estCo);
         Choice droplistFiltre=new Choice();
         droplistFiltre.add("Tout");
-        droplistFiltre.add("Character");
+        droplistFiltre.add("Personnages");
         droplistFiltre.add("Comics");
         droplistFiltre.setVisible(true);
         scrollPaneAffichageMultiple.setVisible(false);
@@ -75,9 +74,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      public boolean getestCo(){
          return estCo;
      }
-     public void switchestCo() throws SQLException {
+     public void switchestCo() throws SQLException, IOException {
          estCo = !estCo;
-         PanelCollection.setVisible(estCo);
+         PanelCollection.setVisible(estCo); 
          if (estCo) {
         	user=connectionFrame.getUser();
         	user.chargeCollection();
@@ -87,6 +86,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         else {
             jLabel4.setText("Se Connecter");
         }
+        clearAffichageMultiple();
+        sugg.reloadSuggPanels();
+        panelAffichageMultiple.add(sugg);
+        panelAffichageMultiple.repaint();
     }
     public User getUser() {
         return user;
@@ -115,7 +118,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	String sImageFileName = "icon.png";
+    	String sImageFileName = "../icon.png";
         URL urlImageFileName = getClass().getResource(sImageFileName);
 
         if (urlImageFileName == null)
@@ -310,7 +313,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
-        dropListFiltre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tout", "Personnages", "Séries", "Comic" }));
+        dropListFiltre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tout", "Personnages", "Séries", "Comics" }));
         dropListFiltre.setMinimumSize(new java.awt.Dimension(117, 22));
         dropListFiltre.setPreferredSize(new java.awt.Dimension(117, 27));
 
@@ -351,7 +354,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         PanelDeconnexion.setBackground(new java.awt.Color(0, 0, 0));
         PanelDeconnexion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PanelDeconnexionMouseClicked(evt);
+                try {
+					PanelDeconnexionMouseClicked(evt);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -623,6 +631,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         scrollPaneAffichageMultiple.setVisible(true);
 
         for (Results results : ResultatsRecherche) {
+
             resultatsMultipleAffichage.add(new AffichageResultsMultiple(results,this));
         }
 
@@ -720,7 +729,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         LabelChangeMdp.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_PanelChangeMDPMouseExited
 
-    private void PanelDeconnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelDeconnexionMouseClicked
+    private void PanelDeconnexionMouseClicked(java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_PanelDeconnexionMouseClicked
         try {
             saveBdd(user);
             // TODO add your handling code here:

@@ -7,7 +7,7 @@ import API.Comic;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.util.List;
-import prinfo.FenetrePrincipale;
+import AffichagePrincipal.FenetrePrincipale;
 
 /**
  *
@@ -30,7 +30,7 @@ public class Categorie extends javax.swing.JPanel {
     public void initCategorie(FenetrePrincipale frame, List<Comic> comics, String name) throws IOException{
         categorieName.setText(name);
         contentCategorie1 .setLayout(new GridLayout(1,3));
-        for (Comic comic : comics) {//MOdifier pour avoir la serie possédée
+        for (Comic comic : comics) {//MOdifier pour avoir la serie possédée	
             contentCategorie1.add(new SuggestionPanel(frame,comic));
         }
         contentCategorie1.setVisible(true);

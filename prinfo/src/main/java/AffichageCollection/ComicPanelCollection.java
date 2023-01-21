@@ -4,28 +4,19 @@
  */
 package AffichageCollection;
 
-import API.Comic;
 import API.api_connection;
 import Collec.Comic_Collec;
-import User.User;
+import GestionUser.User;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import prinfo.AffichageDetailsComic;
+import AffichageDetail.AffichageDetailsComic;
 import javax.swing.SwingConstants;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Dimension;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.BoxLayout;
 import java.awt.Component;
 
 /**

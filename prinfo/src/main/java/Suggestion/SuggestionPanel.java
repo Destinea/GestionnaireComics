@@ -6,29 +6,27 @@
 package Suggestion;
 
 import API.Comic;
-import API.Results;
 import API.api_connection;
-import User.User;
+import GestionUser.User;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import prinfo.AffichageDetailsComic;
-import prinfo.FenetrePrincipale;
+import AffichageDetail.AffichageDetailsComic;
+import AffichagePrincipal.FenetrePrincipale;
 
 /**
  *
  * @author Sarah-Marie JULES
  */
 public class SuggestionPanel extends javax.swing.JPanel {
-    FenetrePrincipale frame;
+    private FenetrePrincipale frame;
     private Comic comic;
     /** Creates new form SuggestionPanel
      * @param frame
@@ -42,7 +40,6 @@ public class SuggestionPanel extends javax.swing.JPanel {
         if ((frame.getestCo())){
             jCheckBox1.setVisible(true);
             Comic test_possession= frame.getUser().getCollection().searchComic(comic.getId());
-            
             if (test_possession!=null) {
 				jCheckBox1.setSelected(true);
 			}
@@ -62,7 +59,7 @@ public class SuggestionPanel extends javax.swing.JPanel {
             BufferedImage img= ImageIO.read(new URL(comic.getIconLink()));
             int newWidth=100;
             if(img.getWidth()==0){
-                img=ImageIO.read(new File("prinfo/src/main/resources/image_comic_default.png"));
+                img=ImageIO.read(new File("AffichagePrincipal/src/main/resources/image_comic_default.png"));
             }
             float aspectRatio=(float)img.getWidth(null)/img.getHeight(null);
             int newHeight=(int)(newWidth*aspectRatio);
