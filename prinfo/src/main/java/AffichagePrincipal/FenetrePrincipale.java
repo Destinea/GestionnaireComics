@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -757,15 +758,22 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         clearAffichageMultiple();
         //On prepare le layout
         boolean update_series=false;
-        for (UserSeriePanel series_panel:series_panels) {
-        	for (User_serie user_serie : user.getCollection().getSeries()) {
-	            if (series_panel.getPanelSerie().getUserSerie().size()!=user_serie.getUserSerie().size()) {
-					update_series=true;
-				}
-	        }
-        }
-        
+        Iterator<UserSeriePanel> p_iteraror=series_panels.iterator();
+        while (!update_series && p_iteraror.hasNext()) {
+        	UserSeriePanel series_panel=p_iteraror.next();
+			Iterator<User_serie> u_iterator=user.getCollection().getSeries().iterator();
+			while (!update_series && u_iterator.hasNext()) {
+				User_serie u=u_iterator.next();
+				if (u.getName().equals(series_panel.getPanelSerie().getName())) {
+					if (series_panel.getPanelSerie().getUserSerie().size()!=u.getUserSerie().size()) {
+						update_series=true;
+					}
+				}	
+			}
+		}
+        System.out.println(update_series);
         if (series_panels.size()!=user.getCollection().getSeries().size() || update_series || series_panels.isEmpty()) {
+        	System.out.println("refresh");
         	series_panels.clear();
 	        //on active la barre de scroll
 	        //stockage des panels pour ne pas avoir a les recharger
@@ -785,7 +793,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         Navbar.setVisible(false);
         scrollPaneAffichageMultiple.setVisible(true);
         //Update du panel parent
-        panelAffichageMultiple.repaint();
+        //panelAffichageMultiple.repaint();
     }//GEN-LAST:event_PanelCollectionMouseClicked
     public void deleteSeriePanel(UserSeriePanel series_panel) {
 		panelAffichageMultiple.remove(series_panel);
