@@ -2,20 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package prinfo;
+package AffichagePrincipal;
 
-import API.Comic;
 import API.Results;
 import API.api_connection;
 import AffichageCollection.UserSeriePanel;
 import AffichageCollection.VerticalFlowLayout;
-import Collec.Comic_Collec;
+import AffichageCompte.ChangeMdp1;
+import AffichageCompte.ConnectionFrame;
 import Collec.User_serie;
 import Suggestion.Suggestion;
-import User.User;
+import GestionUser.User;
 import java.awt.Color;
 import java.awt.Choice;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.URL;

@@ -1,14 +1,11 @@
-package prinfo;
+package AffichageCompte;
 
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.Toolkit;
-import static java.awt.image.ImageObserver.WIDTH;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-import User.User_BDD;
+import GestionUser.User_BDD;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import de.mkammerer.argon2.Argon2Factory.Argon2Types;
