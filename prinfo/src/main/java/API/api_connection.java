@@ -76,6 +76,7 @@ public class api_connection {
             String shortDescription = JSONresults.getJSONObject(i).get("deck").toString();
 
             String type;
+            System.out.println(filtre);
             if (!filtre.equals("Tout"))
             {
                 switch (filtre) {
@@ -83,9 +84,9 @@ public class api_connection {
                         type = "Personnage";
                         break;
                     case "Séries":
-                        type = "Volume";
+                        type = "Série";
                         break;
-                    case "Comic":
+                    case "Comics":
                         type = "Comic";
                         break;
                     default:
@@ -100,6 +101,8 @@ public class api_connection {
                     case "issue" -> "Comic";
                     default -> (JSONresults.getJSONObject(i).getString("resource_type"));
             };
+            System.out.println(type);
+
             if(type=="Comic"&&name=="null"){
                 name = JSONresults.getJSONObject(i).getJSONObject("volume").getString("name").toString() +
                         " - n°"+JSONresults.getJSONObject(i).get("issue_number").toString();
