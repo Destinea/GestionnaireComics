@@ -112,7 +112,7 @@ public class api_connection {
         String shortDescription = obj.get("deck").toString();
         String iconLink = obj.getJSONObject("image").getString("icon_url");
         String bigIconLink = obj.getJSONObject("image").getString("super_url");
-        String SerieName = obj.getJSONObject("volume").getString("name");
+        String SerieName = obj.getJSONObject("volume").get("name").toString();
         int SerieId = obj.getJSONObject("volume").getInt("id");
         double number;
         if(name=="null"){
