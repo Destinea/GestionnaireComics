@@ -41,14 +41,20 @@ public class Suggestion extends javax.swing.JPanel {
     }
     public void reloadSuggPanels() throws IOException {
     	contentSuggestion.removeAll();
-    	contentSuggestion.add(new Categorie(frame,firstCategorie,"Derniers Ajouts"));
-    	if (frame.getestCo()){
-            //A modifier par la collection
-            contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
-        } else {
-            contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
+        if (firstCategorie.size()!=0) {
+            contentSuggestion.add(new Categorie(frame,firstCategorie,"Derniers Ajouts"));
         }
-    	contentSuggestion.add(new Categorie(frame, thirdCategorie, "Les plus populaires"));
+        if (secondCategorie.size()!=0) {
+            if (frame.getestCo()){
+                //A modifier par la collection
+                contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
+            } else {
+                contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
+            }
+        }
+        if (thirdCategorie.size()!=0) {
+            contentSuggestion.add(new Categorie(frame, thirdCategorie, "Les plus populaires"));
+        }
     	contentSuggestion.repaint();
     	contentSuggestion.setVisible(true);
     }
