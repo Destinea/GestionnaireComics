@@ -38,7 +38,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
         resultat=res;
         initComponents();
         RemplirChamps();
-        if (("issue".equals(type.getText())) && (frame.getestCo())){
+        if (("Comic".equals(type.getText())) && (frame.getestCo())){
             jCheckBox1.setVisible(true);
             Comic test_possession= frame.getUser().getCollection().searchComic(res.getId());
 
@@ -56,7 +56,22 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
 
     private void RemplirChamps(){
         titre.setText(resultat.getName());
-        type.setText(resultat.getType());
+
+        switch (resultat.getType())
+        {
+            case "issue" :
+                type.setText("Comic");
+                break;
+            case "volume" :
+                type.setText("Série");
+                break;
+            case "character" :
+                type.setText("Personnage");
+                break;
+            default :
+                type.setText(resultat.getType());
+        }
+
 
         ImageIcon img1=null;
         try{
