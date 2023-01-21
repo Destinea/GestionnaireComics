@@ -56,19 +56,24 @@ public class Suggestion extends javax.swing.JPanel {
     private void generateSuggestion(FenetrePrincipale frame) throws IOException, SQLException{
         contentSuggestion.setLayout(new GridLayout(3,1));
         this.firstCategorie = test.getLastComics().subList(0,3);
-        contentSuggestion.add(new Categorie(frame,firstCategorie,"Derniers Ajouts"));
+        if (firstCategorie.size()!=0) {
+            contentSuggestion.add(new Categorie(frame,firstCategorie,"Derniers Ajouts"));
+        }
         this.secondCategorie = test.getRandomComics().subList(0,3);
-        if (frame.getestCo()){
-            //A modifier par la collection
-            contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
-        } else {
-            contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
+        if (secondCategorie.size()!=0) {
+            if (frame.getestCo()){
+                //A modifier par la collection
+                contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
+            } else {
+                contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
+            }
         }
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
         Statement stmt = con.createStatement();
         this.thirdCategorie = Comic_Collec.getPlusLu(stmt);
-        contentSuggestion.add(new Categorie(frame, thirdCategorie, "Les plus populaires"));
-        
+        if (thirdCategorie.size()!=0) {
+            contentSuggestion.add(new Categorie(frame, thirdCategorie, "Les plus populaires"));
+        }
         contentSuggestion.setVisible(true);
     }
 
