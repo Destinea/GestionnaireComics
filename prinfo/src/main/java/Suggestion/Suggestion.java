@@ -40,9 +40,6 @@ public class Suggestion extends javax.swing.JPanel {
         
     }
     public void reloadSuggPanels() throws IOException {
-    	System.out.println(firstCategorie);
-    	System.out.println(secondCategorie);
-    	System.out.println(thirdCategorie);
     	contentSuggestion.removeAll();
     	contentSuggestion.add(new Categorie(frame,firstCategorie,"Derniers Ajouts"));
     	if (frame.getestCo()){
