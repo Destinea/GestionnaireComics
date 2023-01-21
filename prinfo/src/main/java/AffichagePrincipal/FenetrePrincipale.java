@@ -39,7 +39,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private List<Results> ResultatsRecherche;
     ConnectionFrame connectionFrame;
     Suggestion sugg;
-
+    /*
+     * 0 acceuil
+     * 1 collec
+     * 2 recherche
+     * */
+    private int mode=0;
 
     private final List<AffichageResultsMultiple> resultatsMultipleAffichage;
     private final HashSet<UserSeriePanel> series_panels;
@@ -619,7 +624,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void rechercheBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheBtnActionPerformed
         // On supprime la liste précédemmant cherchée pour la set à nouveau
-        
         clearAffichageMultiple();
 
         try {
@@ -644,6 +648,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         numPage.setText("1");
         Navbar.setVisible(true);
         btnPrecedent.setVisible(false);
+        mode=2;
     }//GEN-LAST:event_rechercheBtnActionPerformed
 
     private void rechercheBtnMouseClicked(java.awt.event.MouseEvent evt){
@@ -755,56 +760,58 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void PanelCollectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelCollectionMouseClicked
         // TODO add your handling code here:
         // On supprime la liste précédemmant cherchée pour la set à nouveau
-        clearAffichageMultiple();
-        //On prepare le layout
-        boolean update_series=false;
-        Iterator<UserSeriePanel> p_iteraror=series_panels.iterator();
-        while (!update_series && p_iteraror.hasNext()) {
-        	UserSeriePanel series_panel=p_iteraror.next();
-			Iterator<User_serie> u_iterator=user.getCollection().getSeries().iterator();
-			while (!update_series && u_iterator.hasNext()) {
-				User_serie u=u_iterator.next();
-				if (u.getName().equals(series_panel.getPanelSerie().getName())) {
-					if (series_panel.getPanelSerie().getUserSerie().size()!=u.getUserSerie().size()) {
-						update_series=true;
-					}
-				}	
-			}
-		}
-        System.out.println(update_series);
-        if (series_panels.size()!=user.getCollection().getSeries().size() || update_series || series_panels.isEmpty()) {
-        	System.out.println("refresh");
-        	series_panels.clear();
-	        //on active la barre de scroll
-	        //stockage des panels pour ne pas avoir a les recharger
-	        for (User_serie user_serie : user.getCollection().getSeries()) {
-	            series_panels.add(new UserSeriePanel(user, user_serie,this));
-	        }    	
-		}
         
-        //Ajout des panels au panel parent
-        panelAffichageMultiple.setLayout(new VerticalFlowLayout(1,0));
-        for (UserSeriePanel series_panel:series_panels) {
-            panelAffichageMultiple.add(series_panel);
-        }
-        
-        panelAffichageMultiple.revalidate();
-        //pas besoin de la navigation entre les pages de résultats
-        Navbar.setVisible(false);
-        scrollPaneAffichageMultiple.setVisible(true);
-        //Update du panel parent
-        panelAffichageMultiple.repaint();
+        if (this.mode!=1) {
+        	clearAffichageMultiple();
+            //On prepare le layout
+            boolean update_series=false;
+            Iterator<UserSeriePanel> p_iteraror=series_panels.iterator();
+            while (!update_series && p_iteraror.hasNext()) {
+            	UserSeriePanel series_panel=p_iteraror.next();
+    			Iterator<User_serie> u_iterator=user.getCollection().getSeries().iterator();
+    			while (!update_series && u_iterator.hasNext()) {
+    				User_serie u=u_iterator.next();
+    				if (u.getName().equals(series_panel.getPanelSerie().getName())) {
+    					if (series_panel.getPanelSerie().getUserSerie().size()!=u.getUserSerie().size()) {
+    						update_series=true;
+    					}
+    				}	
+    			}
+    		}
+            if (series_panels.size()!=user.getCollection().getSeries().size() || update_series || series_panels.isEmpty()) {
+            	series_panels.clear();
+    	        //on active la barre de scroll
+    	        //stockage des panels pour ne pas avoir a les recharger
+    	        for (User_serie user_serie : user.getCollection().getSeries()) {
+    	            series_panels.add(new UserSeriePanel(user, user_serie,this));
+    	        }    	
+    		}
+            
+            //Ajout des panels au panel parent
+            panelAffichageMultiple.setLayout(new VerticalFlowLayout(1,0));
+            for (UserSeriePanel series_panel:series_panels) {
+                panelAffichageMultiple.add(series_panel);
+            }
+            
+            panelAffichageMultiple.revalidate();
+            //pas besoin de la navigation entre les pages de résultats
+            Navbar.setVisible(false);
+            scrollPaneAffichageMultiple.setVisible(true);
+            mode=1;
+            //Update du panel parent
+            //panelAffichageMultiple.repaint();
+		}
+   
     }//GEN-LAST:event_PanelCollectionMouseClicked
     public void deleteSeriePanel(UserSeriePanel series_panel) {
         panelAffichageMultiple.remove(series_panel);
         series_panels.remove(series_panel);
         panelAffichageMultiple.revalidate();
-        panelAffichageMultiple.repaint();
+        //panelAffichageMultiple.repaint();
 
     }
     private void clearAffichageMultiple() {
     	panelAffichageMultiple.removeAll();
-        panelAffichageMultiple.repaint();
         if (ResultatsRecherche!=null) {
             ResultatsRecherche.clear();
             resultatsMultipleAffichage.clear();
@@ -812,7 +819,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         
     }
     private void PanelAccueilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelAccueilMouseClicked
-        clearAffichageMultiple();
+        
+    	clearAffichageMultiple();
         try {
             sugg = new Suggestion(this);
         } catch (IOException | SQLException ex) {
@@ -820,8 +828,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         sugg.setVisible(true);
         panelAffichageMultiple.add(sugg);
-        contentPage.updateUI();
+        //contentPage.updateUI();
         panelAffichageMultiple.repaint();
+        mode=0;
     }//GEN-LAST:event_PanelAccueilMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {                                   
