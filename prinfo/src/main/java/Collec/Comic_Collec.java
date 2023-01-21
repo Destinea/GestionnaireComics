@@ -224,7 +224,7 @@ public class Comic_Collec extends Comic {
 
 
     public static List<Comic> getPlusLu(Statement stmt) throws SQLException {
-        String sql = "SELECT nom, comic.id_comic, lien_image, nom_serie, comic.id_serie, numero, id_etat, count(*) as count FROM collection INNER JOIN comic ON comic.id_comic = collection.id_comic INNER JOIN serie s on comic.id_serie = s.id_serie GROUP BY collection.id_comic ORDER BY count DESC LIMIT 3";
+        String sql = "SELECT nom, comic.id_comic, lien_image, nom_serie, comic.id_serie, numero, count(*) as count FROM collection INNER JOIN comic ON comic.id_comic = collection.id_comic INNER JOIN serie s on comic.id_serie = s.id_serie GROUP BY collection.id_comic ORDER BY count DESC LIMIT 3";
         stmt.executeQuery(sql);
         ResultSet rs = stmt.getResultSet();
         List<Comic> liste_comic = new ArrayList<>();
