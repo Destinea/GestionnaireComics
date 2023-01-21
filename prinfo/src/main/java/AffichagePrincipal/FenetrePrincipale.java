@@ -828,8 +828,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         sugg.setVisible(true);
         panelAffichageMultiple.add(sugg);
-        //contentPage.updateUI();
-        panelAffichageMultiple.repaint();
+        contentPage.updateUI();
+        //panelAffichageMultiple.repaint();
         mode=0;
     }//GEN-LAST:event_PanelAccueilMouseClicked
 
