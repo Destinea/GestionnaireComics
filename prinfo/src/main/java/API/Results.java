@@ -26,17 +26,17 @@ public class Results {
         this.bigIconLink = bigIconLink;
     }
     public Results(Results res) {
-		this.name=res.getName();
-		this.shortDescription=res.getShortDescription();
-		this.type=res.getType();
-		this.id=res.getId();
-		this.iconLink=res.getIconLink();
-		this.HTMLDescription=res.getHTMLDescription();
+        this.name=res.getName();
+        this.shortDescription=res.getShortDescription();
+        this.type=res.getType();
+        this.id=res.getId();
+        this.iconLink=res.getIconLink();
+        this.HTMLDescription=res.getHTMLDescription();
         this.bigIconLink = res.getBigIconLink();
-		
+
     }
     public Results getResultVersion() {
-		return this; 	
+        return this;
     }
     public String getName() {
         return this.name;
