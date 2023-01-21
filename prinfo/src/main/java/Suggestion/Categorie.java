@@ -7,7 +7,7 @@ import API.Comic;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.util.List;
-import prinfo.FenetrePrincipale;
+import AffichagePrincipal.FenetrePrincipale;
 
 /**
  *

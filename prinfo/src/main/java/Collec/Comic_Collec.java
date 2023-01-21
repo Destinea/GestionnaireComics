@@ -1,7 +1,7 @@
 package Collec;
 
 import API.Comic;
-import User.User;
+import GestionUser.User;
 
 import java.sql.*;
 import java.util.*;

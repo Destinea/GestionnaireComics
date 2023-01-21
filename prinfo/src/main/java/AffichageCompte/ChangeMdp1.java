@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package prinfo;
+package AffichageCompte;
 
-import User.User_BDD;
+import AffichagePrincipal.FenetrePrincipale;
+import GestionUser.User_BDD;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import java.awt.Color;
