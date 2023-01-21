@@ -34,7 +34,7 @@ public class Collec {
 		boolean find_comic= false;
 		for (Iterator<User_serie> iterator = series.iterator(); iterator.hasNext();) {
 			User_serie serie = (User_serie) iterator.next();
-			if (serie.getId()==c.getSerieId()) {
+			if (serie.getName().equals(c.getSerieName())) {
 				find_serie=serie;
 				//modif series
 				serie.changeSerieComicStatus(c, etat);
