@@ -38,7 +38,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
         resultat=res;
         initComponents();
         RemplirChamps();
-        if (("issue".equals(type.getText())) && (frame.getestCo())){
+        if (("Comic".equals(type.getText())) && (frame.getestCo())){
             jCheckBox1.setVisible(true);
             Comic test_possession= frame.getUser().getCollection().searchComic(res.getId());
             
@@ -178,17 +178,17 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
             api_connection apiConnection = new api_connection();
             try {
                 switch (resultat.getType()){
-                    case "character":
+                    case "Personnage":
                         AffichageDetailPersonnage affichageDetailPersonnage=
                                 new AffichageDetailPersonnage(apiConnection.getCharacter(resultat.getId()));
                         affichageDetailPersonnage.setVisible(true);
                         break;
-                    case "issue":
+                    case "Comic":
                         AffichageDetailsComic affichageDetailsComic =
                                 new AffichageDetailsComic(apiConnection.getComic(resultat.getId()));
                         affichageDetailsComic.setVisible(true);
                         break;
-                    case "volume":
+                    case "Série":
                         AffichageDetailsSerie affichageDetailsSerie =
                                 new AffichageDetailsSerie(apiConnection.getSerie(resultat.getId()));
                         affichageDetailsSerie.setVisible(true);
