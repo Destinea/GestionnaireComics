@@ -10,16 +10,33 @@ import API.Comic;
 import API.api_connection;
 public class Collec {
 	
-	private final HashSet<Comic_Collec> comics;
-	private final HashSet<User_serie> series;
-	private final HashSet<Comic_Collec> listeAjout;
+	private final ArrayList<Comic_Collec> comics;
+	private final ArrayList<User_serie> series;
+	private final ArrayList<Comic_Collec> listeAjout;
 	private final ArrayList<Integer> listeSupp;
 	
 	public Collec() {
-		this.comics= new HashSet<Comic_Collec>();
-		this.series= new HashSet<User_serie>();
-		this.listeAjout = new HashSet<Comic_Collec>(); // Récupère les infos des comics à ajouter à la BDD
+		this.comics= new ArrayList<Comic_Collec>();
+		this.series= new ArrayList<User_serie>();
+		this.listeAjout = new ArrayList<Comic_Collec>(); // Récupère les infos des comics à ajouter à la BDD
 		this.listeSupp = new ArrayList<Integer>(); // Récupère les id des comics à supprimer de la BDD
+	}
+	
+	public ArrayList<Comic> getMissingComics() {
+		ArrayList<Comic> m_c= new ArrayList<>();
+		for (User_serie s : series) {
+			System.out.println("recherche de comics dans "+s.getName());
+			ArrayList<Comic> missing_com_serie= s.getSerieMissingComics();
+			//System.out.println("missing serie comis: "+missing_com_serie.size());
+			for (Comic missingComic : missing_com_serie) {
+				m_c.add(missingComic);
+			}
+			//Si 3 suggestions c'est ok
+			if (m_c.size()>2) {
+				return m_c;
+			}
+		}
+		return m_c;
 	}
 	
 	public void display() {
@@ -94,7 +111,7 @@ public class Collec {
 		this.listeSupp.add(id);
 	}
 
-	public HashSet<Comic_Collec> getlisteAjout()
+	public ArrayList<Comic_Collec> getlisteAjout()
 	{
 		return listeAjout;
 	}
@@ -104,7 +121,7 @@ public class Collec {
 		this.listeAjout.add(comic);
 	}
 
-	public Set<Comic_Collec> getComics() {
+	public ArrayList<Comic_Collec> getComics() {
 		return comics;
 	}
 	
@@ -116,7 +133,7 @@ public class Collec {
 		this.comics.removeIf(comic -> comic.getId() == rm_comic.getId());
 	}
 	
-	public HashSet<User_serie> getSeries() {
+	public ArrayList<User_serie> getSeries() {
 		return series;
 	}
 	public void addSerie(User_serie serie) {

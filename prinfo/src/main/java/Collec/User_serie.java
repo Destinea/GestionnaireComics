@@ -1,23 +1,65 @@
 package Collec;
 
 
-import java.util.HashSet;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 
 import API.Comic;
 import API.Serie;
+import API.api_connection;
 
 public class User_serie extends Serie{
-	private final HashSet<Comic_Collec> user_serie;
-	
+	private final ArrayList<Comic_Collec> user_serie;
+	private final ArrayList<Serie> series;
+	private int total;
 	public User_serie(Serie serie) {
 		super(serie);
-		this.user_serie = new HashSet<Comic_Collec>();		
+		this.total=serie.getNumberOfComics();
+		this.user_serie = new ArrayList<Comic_Collec>();
+		this.series= new ArrayList<Serie>();
+		series.add(serie);
 	}
 	
+	public void sort() {
+		Collections.sort(user_serie);
+	}
+	
+	public ArrayList<Comic> getSerieMissingComics() {
+		api_connection con=new api_connection();
+		ArrayList<Comic> m_c= new ArrayList<>();
+		for (int i = 0; i < series.size(); i++) {
+			for(int j = 0; j < series.get(i).getNumberOfComics(); j++) {
+				if (!searchComicNb(series.get(i).getId(), j)) {
+					try {
+						//System.out.println("essai de recuperation du numéro:"+j);
+						Comic c= con.getComic(j, series.get(i).getId());
+						m_c.add(c);
+						//System.out.println("Ajout de "+c.getName());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						System.out.println("Impossible d'ajouter le num "+j+" de la serie "+series.get(i).getName());
+					}
+					
+				}
+				//Si 3 suggestions c'est ok
+				if (m_c.size()==3) {
+					return m_c;
+				}
+			}
+		}
+		return m_c;
+	}
+	
+	public int getNumberOfComics() {
+		return total;
+	}
 	public void changeSerieComicStatus(Comic c,int status) {
 		if (status==0) {
 			try {
 				user_serie.remove(c);
+				this.sort();
 			} catch (Exception e) {
 				System.out.println("Impossible de supprimer:"+c.getName());
 			}
@@ -33,13 +75,43 @@ public class User_serie extends Serie{
 			if (!find) {
 				//Ajout à la série
 				user_serie.add(new Comic_Collec(c, status));
+				//Si l'id de la serie n'est pas déja ajouté alors on le met a jour
+				//et on modifie le nb total de comics dans la série
+				if (searchSerieID(c)==null) {
+					api_connection apiConnection = new api_connection();
+					try {
+						Serie s=apiConnection.getSerie(c.getSerieId());
+						this.total+=s.getNumberOfComics();
+						this.series.add(s);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}			
+				}
+				this.sort();
 			}
 		}	
 	}
-	
-	public HashSet<Comic_Collec> getUserSerie() {
-		return this.user_serie;
+	public Integer searchSerieID(Comic c) {
+		for (Iterator<Serie> iterator = series.iterator(); iterator.hasNext();) {
+			Integer integer = (Integer) iterator.next().getId();
+			if (c.getSerieId()==integer) {
+				return integer;
+			}
+		}
+		return null;
 	}
 	
+	public ArrayList<Comic_Collec> getUserSerie() {
+		return this.user_serie;
+	}
+	public boolean searchComicNb(int id_serie,int nb) {
+		for (Comic_Collec c : user_serie) {
+			if (c.getSerieId()==id_serie && nb==c.getNumber()) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 }
