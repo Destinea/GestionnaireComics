@@ -25,6 +25,7 @@ public class Suggestion extends javax.swing.JPanel {
     private FenetrePrincipale frame;
     private List<Comic> firstCategorie;
     private List<Comic> secondCategorie;
+    private List<Comic> secondCategorieBis;
     private List<Comic> thirdCategorie;
     /**
      * Creates new form Suggestion
@@ -37,6 +38,7 @@ public class Suggestion extends javax.swing.JPanel {
         test = new api_connection();
         initComponents();
         this.generateSuggestion(frame);
+
         
     }
     public void reloadSuggPanels() throws IOException {
@@ -44,14 +46,24 @@ public class Suggestion extends javax.swing.JPanel {
         if (firstCategorie.size()!=0) {
             contentSuggestion.add(new Categorie(frame,firstCategorie,"Derniers Ajouts"));
         }
-        if (secondCategorie.size()!=0) {
-            if (frame.getestCo()){
-                //A modifier par la collection
-                contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
-            } else {
-                contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
+        if (frame.getestCo()){
+            this.secondCategorieBis = frame.getUser().getCollection().getMissingComics();
+            if (secondCategorieBis.size()!=0) {
+                contentSuggestion.add(new Categorie(frame,secondCategorieBis,"Pour vous")); 
+            }else {
+                if (secondCategorie.size()!=0) {
+                    contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
+                }
             }
         }
+        else{
+            if (secondCategorie.size()!=0) {
+                    contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
+                }
+        }
+        
+        
+        
         if (thirdCategorie.size()!=0) {
             contentSuggestion.add(new Categorie(frame, thirdCategorie, "Les plus populaires"));
         }
@@ -61,19 +73,30 @@ public class Suggestion extends javax.swing.JPanel {
     
     private void generateSuggestion(FenetrePrincipale frame) throws IOException, SQLException{
         contentSuggestion.setLayout(new GridLayout(3,1));
+        
         this.firstCategorie = test.getLastComics().subList(0,3);
         if (firstCategorie.size()!=0) {
             contentSuggestion.add(new Categorie(frame,firstCategorie,"Derniers Ajouts"));
         }
-        this.secondCategorie = test.getRandomComics().subList(0,3);
-        if (secondCategorie.size()!=0) {
-            if (frame.getestCo()){
-                //A modifier par la collection
-                contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
-            } else {
+        
+        
+        this.secondCategorie = test.getRandomComics().subList(0,3);       
+        if (frame.getestCo()){
+            this.secondCategorieBis = frame.getUser().getCollection().getMissingComics();
+            if (secondCategorieBis.size()!=0) {
+                contentSuggestion.add(new Categorie(frame,secondCategorieBis,"Pour vous")); 
+            }else {
+                if (secondCategorie.size()!=0) {
+                    contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
+                }
+            }
+        }else{
+            if (secondCategorie.size()!=0) {
                 contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
             }
         }
+        
+        
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
         Statement stmt = con.createStatement();
         this.thirdCategorie = Comic_Collec.getPlusLu(stmt);
