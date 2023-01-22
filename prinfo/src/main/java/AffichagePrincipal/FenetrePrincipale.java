@@ -11,6 +11,7 @@ import AffichageCollection.VerticalFlowLayout;
 import AffichageCompte.ChangeMdp1;
 import AffichageCompte.ConnectionFrame;
 import Collec.User_serie;
+import FileManagner.FileManagner;
 import Suggestion.Suggestion;
 import GestionUser.User;
 import java.awt.Color;
@@ -48,7 +49,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private final List<AffichageResultsMultiple> resultatsMultipleAffichage;
     private final HashSet<UserSeriePanel> series_panels;
-
+    private User user;
+    private boolean estCo = false;
     /**
      * Creates new form FenetrePrincipale
      */
@@ -70,12 +72,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         scrollPaneAffichageMultiple.setVisible(true);
         panelAffichageMultiple.add(sugg);
         PanelUser.setVisible(false);
+        user= new User();
+        if (user.getUsername()==null || user.getUsername()=="") {
+        	System.out.println("null");
+        	user=null;
+        }
+        
     }
     /**
      * Boolean true si on est connecté, false sinon
      */
-    private User user;
-    private boolean estCo = false;
+    
 
      public boolean getestCo(){
          return estCo;
@@ -738,6 +745,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void PanelDeconnexionMouseClicked(java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_PanelDeconnexionMouseClicked
         try {
+        	FileManagner f= new FileManagner();
+        	f.delete();
             saveBdd(user);
             // TODO add your handling code here:
             this.switchestCo();
@@ -836,6 +845,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {                                   
         if (estCo) {
             try {
+            	user.save();
                 saveBdd(user);
             } catch (SQLException ex) {
                 Logger.getLogger(FenetrePrincipale.class.getName()).log(Level.SEVERE, null, ex);
@@ -883,6 +893,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 }
                 main.setLocationRelativeTo(null);
                 main.setVisible(true);
+
             }
         });
     }
