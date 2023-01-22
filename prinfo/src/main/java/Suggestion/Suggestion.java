@@ -7,6 +7,7 @@ package Suggestion;
 import API.Comic;
 import API.api_connection;
 import Collec.Comic_Collec;
+import Collec.Collec;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.sql.Connection;
@@ -15,6 +16,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import AffichagePrincipal.FenetrePrincipale;
+import Collec.User_serie;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,6 +28,7 @@ public class Suggestion extends javax.swing.JPanel {
     private FenetrePrincipale frame;
     private List<Comic> firstCategorie;
     private List<Comic> secondCategorie;
+    private List<Comic> secondCategorieBis;
     private List<Comic> thirdCategorie;
     /**
      * Creates new form Suggestion
@@ -37,6 +41,7 @@ public class Suggestion extends javax.swing.JPanel {
         test = new api_connection();
         initComponents();
         this.generateSuggestion(frame);
+
         
     }
     public void reloadSuggPanels() throws IOException {
@@ -69,7 +74,8 @@ public class Suggestion extends javax.swing.JPanel {
         if (secondCategorie.size()!=0) {
             if (frame.getestCo()){
                 //A modifier par la collection
-                contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
+                this.secondCategorieBis = frame.getUser().getCollection().getMissingComics();
+                contentSuggestion.add(new Categorie(frame,secondCategorieBis,"Pour vous"));   
             } else {
                 contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
             }
