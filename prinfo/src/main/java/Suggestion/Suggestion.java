@@ -7,7 +7,6 @@ package Suggestion;
 import API.Comic;
 import API.api_connection;
 import Collec.Comic_Collec;
-import Collec.Collec;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,8 +15,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import AffichagePrincipal.FenetrePrincipale;
-import Collec.User_serie;
-import java.util.ArrayList;
 
 /**
  *
