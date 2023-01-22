@@ -6,7 +6,7 @@ import GestionUser.User;
 import java.sql.*;
 import java.util.*;
 
-public class Comic_Collec extends Comic {
+public class Comic_Collec extends Comic implements Comparable<Object>{
 	
 	/*
 	 * 0 pas dans la collection
@@ -68,8 +68,8 @@ public class Comic_Collec extends Comic {
     // Comparaison avant après
     public static void compareCollection(Collec new_collection, Collec old_collection) {
         // Liste des comics
-        Set<Comic_Collec> old_liste = old_collection.getComics();
-        Set<Comic_Collec> new_liste = new_collection.getComics();
+    	ArrayList<Comic_Collec> old_liste = old_collection.getComics();
+    	ArrayList<Comic_Collec> new_liste = new_collection.getComics();
 
         // Liste des id
         List<Integer> old_liste_id = new ArrayList<>();
@@ -105,7 +105,7 @@ public class Comic_Collec extends Comic {
 
     // Ajout des nouveaux comics à la bdd
     public static void ajouter_bdd(Statement stmt, Collec add_collection, String login) throws SQLException {
-        HashSet<Comic_Collec> liste_ajout = add_collection.getlisteAjout();
+        ArrayList<Comic_Collec> liste_ajout = add_collection.getlisteAjout();
         for (Comic_Collec comic : liste_ajout) {
             insertionSerie(stmt, comic); // Si la série n'est pas dans la BDD, on l'ajoute
             insertionComic(stmt, comic); // On insère le comic
@@ -234,4 +234,9 @@ public class Comic_Collec extends Comic {
         }
         return liste_comic;
     }
+	@Override
+	public int compareTo(Object o) {
+		Comic_Collec c = (Comic_Collec) o; 
+        return this.getId()-c.getId();
+	}
 }

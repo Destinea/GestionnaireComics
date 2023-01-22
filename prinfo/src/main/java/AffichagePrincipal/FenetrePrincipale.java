@@ -20,7 +20,7 @@ import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -48,7 +48,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private int mode=0;
 
     private final List<AffichageResultsMultiple> resultatsMultipleAffichage;
-    private final HashSet<UserSeriePanel> series_panels;
+    private final ArrayList<UserSeriePanel> series_panels;
     private User user;
     private boolean estCo = false;
     /**
@@ -58,7 +58,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         initComponents();
         test = new api_connection();
         resultatsMultipleAffichage = new LinkedList<AffichageResultsMultiple>();
-        this.series_panels = new HashSet<UserSeriePanel>();
+        this.series_panels = new ArrayList<UserSeriePanel>();
         PanelCollection.setVisible(estCo);
         Choice droplistFiltre=new Choice();
         droplistFiltre.add("Tout");
