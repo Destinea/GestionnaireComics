@@ -29,6 +29,7 @@ public class Collec {
 			for (MissingComic missingComic : missing_com_serie) {
 				m_c.add(missingComic);
 			}
+			//Si 3 suggestions c'est ok
 			if (m_c.size()>2) {
 				return m_c;
 			}

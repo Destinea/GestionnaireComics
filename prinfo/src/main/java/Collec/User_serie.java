@@ -30,7 +30,11 @@ public class User_serie extends Serie{
 		ArrayList<MissingComic> m_c= new ArrayList<>();
 		for (int i = 0; i < series.size(); i++) {
 			for(int j = 0; j < series.get(i).getNumberOfComics(); i++) {
-				//try catch
+				if (!searchComicNb(series.get(i).getId(), j)) {
+					//try catch
+					
+				}
+				//Si 3 suggestions c'est ok
 				if (m_c.size()==3) {
 					return m_c;
 				}
@@ -92,6 +96,13 @@ public class User_serie extends Serie{
 	public ArrayList<Comic_Collec> getUserSerie() {
 		return this.user_serie;
 	}
-	
+	public boolean searchComicNb(int id_serie,int nb) {
+		for (Comic_Collec c : user_serie) {
+			if (c.getSerieId()==id_serie && nb==c.getNumber()) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 }
