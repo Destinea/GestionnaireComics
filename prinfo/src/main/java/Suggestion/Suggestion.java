@@ -49,7 +49,8 @@ public class Suggestion extends javax.swing.JPanel {
         if (secondCategorie.size()!=0) {
             if (frame.getestCo()){
                 //A modifier par la collection
-                contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
+                this.secondCategorieBis = frame.getUser().getCollection().getMissingComics();
+                contentSuggestion.add(new Categorie(frame,secondCategorieBis,"Pour vous")); 
             } else {
                 contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
             }
@@ -67,10 +68,9 @@ public class Suggestion extends javax.swing.JPanel {
         if (firstCategorie.size()!=0) {
             contentSuggestion.add(new Categorie(frame,firstCategorie,"Derniers Ajouts"));
         }
-        this.secondCategorie = test.getRandomComics().subList(0,3);
+        this.secondCategorie = test.getRandomComics().subList(0,3);       
         if (secondCategorie.size()!=0) {
             if (frame.getestCo()){
-                //A modifier par la collection
                 this.secondCategorieBis = frame.getUser().getCollection().getMissingComics();
                 contentSuggestion.add(new Categorie(frame,secondCategorieBis,"Pour vous"));   
             } else {
