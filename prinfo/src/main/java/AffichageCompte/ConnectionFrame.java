@@ -17,6 +17,8 @@ import GestionUser.User;
 import GestionUser.User_BDD;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -45,6 +47,13 @@ public class ConnectionFrame extends javax.swing.JFrame {
         //Image fermerFenetreImage = fermerFenetreImageIcon.getImage().getScaledInstance(fermeFenetreBouton.getWidth(), fermeFenetreBouton.getHeight(), WIDTH);
         //fermeFenetreBouton.setIcon(new ImageIcon(fermerFenetreImage));
         frame = f;
+        if (f.getUser()!=null) {
+			jTextField1.setText(f.getUser().getUsername());
+			jPasswordField1.requestFocus();
+		}
+        else {
+			jTextField1.requestFocus();
+		}
     }
 
     /**
@@ -74,6 +83,12 @@ public class ConnectionFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jTextField1 = new javax.swing.JTextField();
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        
         EtatConnection = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -300,7 +315,11 @@ public class ConnectionFrame extends javax.swing.JFrame {
         ConnexionBoutonActionPerformed(evt);
         
     }//GEN-LAST:event_jPasswordField1ActionPerformed
-
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+        jPasswordField1.requestFocus();
+        
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
     /**
      * @param args the command line arguments
      */

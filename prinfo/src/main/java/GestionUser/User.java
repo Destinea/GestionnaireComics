@@ -5,8 +5,10 @@ import java.sql.*;
 import API.Comic;
 import Collec.Collec;
 import Collec.Comic_Collec;
+import FileManagner.FileManagner;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
+import FileManagner.FileManagner;
 
 public class User {
 	private final String username;
@@ -19,6 +21,18 @@ public class User {
 		this.nametag= nametag;
 		this.collection= new Collec();
 		this.suggestions= new Collec();
+	}
+	public User() {
+		FileManagner f= new FileManagner();
+		this.username=f.read();
+		this.nametag=username;
+		this.collection= new Collec();
+		this.suggestions= new Collec();
+		f.delete();
+	}
+	public void save() {
+		FileManagner f= new FileManagner();
+		f.write(username);
 	}
 	
 	public Collec getCollection() {
