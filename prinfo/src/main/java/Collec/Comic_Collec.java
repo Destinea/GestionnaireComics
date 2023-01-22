@@ -237,6 +237,6 @@ public class Comic_Collec extends Comic implements Comparable<Object>{
 	@Override
 	public int compareTo(Object o) {
 		Comic_Collec c = (Comic_Collec) o; 
-        return this.getId()-c.getId();
+        return (int) ( this.getNumber()-c.getNumber());
 	}
 }
