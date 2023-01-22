@@ -26,12 +26,21 @@ public class User_serie extends Serie{
 		Collections.sort(user_serie);
 	}
 	
-	public ArrayList<MissingComic> getSerieMissingComics() {
-		ArrayList<MissingComic> m_c= new ArrayList<>();
+	public ArrayList<Comic> getSerieMissingComics() {
+		api_connection con=new api_connection();
+		ArrayList<Comic> m_c= new ArrayList<>();
 		for (int i = 0; i < series.size(); i++) {
-			for(int j = 0; j < series.get(i).getNumberOfComics(); i++) {
+			for(int j = 0; j < series.get(i).getNumberOfComics(); j++) {
 				if (!searchComicNb(series.get(i).getId(), j)) {
-					//try catch
+					try {
+						//System.out.println("essai de recuperation du numéro:"+j);
+						Comic c= con.getComic(j, series.get(i).getId());
+						m_c.add(c);
+						//System.out.println("Ajout de "+c.getName());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						System.out.println("Impossible d'ajouter le num "+j+" de la serie "+series.get(i).getName());
+					}
 					
 				}
 				//Si 3 suggestions c'est ok

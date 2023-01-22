@@ -22,11 +22,13 @@ public class Collec {
 		this.listeSupp = new ArrayList<Integer>(); // Récupère les id des comics à supprimer de la BDD
 	}
 	
-	public ArrayList<MissingComic> getMissingComics() {
-		ArrayList<MissingComic> m_c= new ArrayList<>();
+	public ArrayList<Comic> getMissingComics() {
+		ArrayList<Comic> m_c= new ArrayList<>();
 		for (User_serie s : series) {
-			ArrayList<MissingComic> missing_com_serie= s.getSerieMissingComics();
-			for (MissingComic missingComic : missing_com_serie) {
+			System.out.println("recherche de comics dans "+s.getName());
+			ArrayList<Comic> missing_com_serie= s.getSerieMissingComics();
+			//System.out.println("missing serie comis: "+missing_com_serie.size());
+			for (Comic missingComic : missing_com_serie) {
 				m_c.add(missingComic);
 			}
 			//Si 3 suggestions c'est ok

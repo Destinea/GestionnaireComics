@@ -4,6 +4,7 @@
  */
 package AffichagePrincipal;
 
+import API.Comic;
 import API.Results;
 import API.api_connection;
 import AffichageCollection.UserSeriePanel;
@@ -770,7 +771,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void PanelCollectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelCollectionMouseClicked
         // TODO add your handling code here:
         // On supprime la liste précédemmant cherchée pour la set à nouveau
-        
         if (this.mode!=1) {
         	clearAffichageMultiple();
             //On prepare le layout
