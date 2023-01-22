@@ -83,7 +83,7 @@ public class api_connection {
                 case "Séries":
                     type = "volume";
                     break;
-                case "Comic":
+                case "Comics":
                     type = "issue";
                     break;
                 default:
