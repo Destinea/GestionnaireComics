@@ -773,7 +773,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         // On supprime la liste précédemmant cherchée pour la set à nouveau
         if (this.mode!=1) {
         	clearAffichageMultiple();
-            //On prepare le layout
             boolean update_series=false;
             Iterator<UserSeriePanel> p_iteraror=series_panels.iterator();
             while (!update_series && p_iteraror.hasNext()) {
@@ -781,7 +780,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     			Iterator<User_serie> u_iterator=user.getCollection().getSeries().iterator();
     			while (!update_series && u_iterator.hasNext()) {
     				User_serie u=u_iterator.next();
+    				System.out.println("Serie collec "+u.getName());
+    				System.out.println("serie panel "+series_panel.getPanelSerie().getName());
     				if (u.getName().equals(series_panel.getPanelSerie().getName())) {
+    					System.out.println("serie size "+u.getUserSerie().size());
+    					System.out.println("panel size "+series_panel.getPanelSerie().getUserSerie().size());
     					if (series_panel.getPanelSerie().getUserSerie().size()!=u.getUserSerie().size()) {
     						update_series=true;
     					}
@@ -790,25 +793,28 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     		}
             if (series_panels.size()!=user.getCollection().getSeries().size() || update_series || series_panels.isEmpty()) {
             	series_panels.clear();
-    	        //on active la barre de scroll
     	        //stockage des panels pour ne pas avoir a les recharger
     	        for (User_serie user_serie : user.getCollection().getSeries()) {
-    	            series_panels.add(new UserSeriePanel(user, user_serie,this));
+    	        	UserSeriePanel u=new UserSeriePanel(user, user_serie,this);
+    	        	u.getPanelSerie().sort();
+    	            series_panels.add(u);
     	        }    	
     		}
             
             //Ajout des panels au panel parent
+            //On prepare le layout
             panelAffichageMultiple.setLayout(new VerticalFlowLayout(1,0));
             for (UserSeriePanel series_panel:series_panels) {
                 panelAffichageMultiple.add(series_panel);
             }
-            
+            //Update du panel parent
             panelAffichageMultiple.revalidate();
             //pas besoin de la navigation entre les pages de résultats
             Navbar.setVisible(false);
+            //on active la barre de scroll
             scrollPaneAffichageMultiple.setVisible(true);
             mode=1;
-            //Update du panel parent
+            
             //panelAffichageMultiple.repaint();
 		}
    
