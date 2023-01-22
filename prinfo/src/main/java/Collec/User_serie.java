@@ -23,9 +23,11 @@ public class User_serie extends Serie{
 	}
 	
 	public void sort() {
-		Collections.sort(user_serie);
+		Collections.sort(this.user_serie);
 	}
-	
+	public void rmSerieComic(Comic rm_comic) {
+		this.user_serie.removeIf(comic -> comic.getId() == rm_comic.getId());
+	}
 	public ArrayList<Comic> getSerieMissingComics() {
 		api_connection con=new api_connection();
 		ArrayList<Comic> m_c= new ArrayList<>();
@@ -58,8 +60,9 @@ public class User_serie extends Serie{
 	public void changeSerieComicStatus(Comic c,int status) {
 		if (status==0) {
 			try {
-				user_serie.remove(c);
-				this.sort();
+				System.out.println("Suppression "+c.getName());
+				rmSerieComic(c);
+				//System.out.println("Suppression de "+c.getName());
 			} catch (Exception e) {
 				System.out.println("Impossible de supprimer:"+c.getName());
 			}
@@ -88,7 +91,6 @@ public class User_serie extends Serie{
 						e.printStackTrace();
 					}			
 				}
-				this.sort();
 			}
 		}	
 	}
