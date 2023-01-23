@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for macos12 (x86_64)
 --
 -- Host: 127.0.0.1    Database: prinfo7
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.31
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,9 +27,20 @@ CREATE TABLE `user` (
   `login` varchar(20) NOT NULL,
   `nametag` varchar(255) DEFAULT NULL,
   `password` varchar(100) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (30,'juju',NULL,'$argon2id$v=19$m=1048576,t=4,p=8$Mwvc5Trq18qPmVDTmneBKw$JqwLI9+2UrGnauTPuk5KRlVG9oXfVYIg6HHPm0b3DxQ',NULL),(31,'jujubaca',NULL,'$argon2id$v=19$m=1048576,t=4,p=8$lFxsa8Aoa5u2g09BaH8Ibg$MCp2Xp93iV7jqvhOfwS+kBju+U0mds4LRZGUTEF9Bgg','jujubaca2001@gmail.com');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -40,4 +51,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-11 15:40:30
+-- Dump completed on 2023-01-23 22:21:44
