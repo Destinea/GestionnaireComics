@@ -84,7 +84,7 @@
                                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="45" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -219,6 +219,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Mot de passe oubli&#xe9; ?"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel1MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
