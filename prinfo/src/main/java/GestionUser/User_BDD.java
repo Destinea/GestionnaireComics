@@ -7,6 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Random;
 
+/**
+ * @author Valentine
+ * Gère les comptes utilisateur sur la BDD
+ */
 
 public class User_BDD {
 
@@ -107,25 +111,34 @@ public class User_BDD {
     }
     
     public static String recuperationMotDePasse(Statement stmt, String email, Argon2 argon2) throws SQLException {
-        String sql = "SELECT login from user WHERE email = \"" + email + "\";";
+        /**
+         Permet de générer un mot de passe aléatoire pour un utilisateur en utilisant son adresse email.
+         Elle insère le nouveau mdp dans la base de données et utilise l'algorithme Argon2 pour le crypter.
+         Elle renvoi le nouveau mot de passe (non crypté).
+         @param stmt : Objet Statement qui permet d'exécuter des requêtes SQL
+         @param email : Adresse email de l'utilisateur dont on veut récupérer le mot de passe
+         @param argon2 : Objet Argon2 qui contient les paramètres pour utiliser l'algorithme de chiffrement
+         @return : Le nouveau mot de passe généré pour l'utilisateur (non crypté), ou null si aucun utilisateur n'a été trouvé avec cette adresse email
+         */
+        String sql = "SELECT login from user WHERE email = \"" + email + "\";"; // Récupère le login de l'utilisateur grâce à son email
         stmt.executeQuery(sql);
         ResultSet rs = stmt.getResultSet();
         String password;
-        if (rs.next()) {
+        if (rs.next()) { // Si on trouve l'email dans la bdd, on gènère un mdp aléatoire
             String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
             Random rnd = new Random();
             StringBuilder sb = new StringBuilder(5);
             for (int i = 0; i < 5; i++)
-                sb.append(AB.charAt(rnd.nextInt(AB.length())));
+                sb.append(AB.charAt(rnd.nextInt(AB.length()))); // Création d'une chaine de caractère aléatoire de 5 caractères
             password = sb.toString();
 
-            String hash_password = argon2.hash(4, 1024 * 1024, 8, password);
-            String sql_ch = "UPDATE user SET password = \"" + hash_password + "\" WHERE email = \"" + email + "\";";
+            String hash_password = argon2.hash(4, 1024 * 1024, 8, password); // Cryptage du mdp
+            String sql_ch = "UPDATE user SET password = \"" + hash_password + "\" WHERE email = \"" + email + "\";"; // Insertion du nouveau mdp dans la base de données
             stmt.executeUpdate(sql_ch);
         }
         else
         {
-            password = null;
+            password = null; // null si l'email n'a pas été trouvé (n'existe pas)
         }
         return password;
     }
