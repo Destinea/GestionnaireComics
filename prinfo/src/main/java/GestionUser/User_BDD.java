@@ -5,6 +5,7 @@ import de.mkammerer.argon2.Argon2;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
 
 public class User_BDD {
@@ -87,6 +88,30 @@ public class User_BDD {
         String hash_password = argon2.hash(4, 1024 * 1024, 8, password);
         String sql = "UPDATE user SET password = '" + hash_password + "' WHERE login = '" + login + "';";
         stmt.executeUpdate(sql);
+    }
+    
+    public static String recuperationMotDePasse(Statement stmt, String email, Argon2 argon2) throws SQLException {
+        String sql = "SELECT login from user WHERE email = \"" + email + "\";";
+        stmt.executeQuery(sql);
+        ResultSet rs = stmt.getResultSet();
+        String password;
+        if (rs.next()) {
+            String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            Random rnd = new Random();
+            StringBuilder sb = new StringBuilder(5);
+            for (int i = 0; i < 5; i++)
+                sb.append(AB.charAt(rnd.nextInt(AB.length())));
+            password = sb.toString();
+
+            String hash_password = argon2.hash(4, 1024 * 1024, 8, password);
+            String sql_ch = "UPDATE user SET password = \"" + hash_password + "\" WHERE email = \"" + email + "\";";
+            stmt.executeUpdate(sql_ch);
+        }
+        else
+        {
+            password = null;
+        }
+        return password;
     }
 }
 
