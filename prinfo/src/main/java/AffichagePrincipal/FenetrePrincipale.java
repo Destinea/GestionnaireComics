@@ -694,9 +694,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         for (AffichageResultsMultiple affichageResultsMultiple : resultatsMultipleAffichage) {
             panelAffichageMultiple.add(affichageResultsMultiple);
         }
-        contentPage.updateUI();
         numPage.setText(String.valueOf(numPagePrecedente));
-        btnPrecedent.setVisible(numPagePrecedente<=1);
+        btnPrecedent.setVisible(numPagePrecedente>1);
+        contentPage.updateUI();
+        
         
     }//GEN-LAST:event_btnPrecedentActionPerformed
 
@@ -720,9 +721,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         for (AffichageResultsMultiple affichageResultsMultiple : resultatsMultipleAffichage) {
             panelAffichageMultiple.add(affichageResultsMultiple);
         }
-        contentPage.updateUI();
         numPage.setText(String.valueOf(numPageSuivante));
         btnPrecedent.setVisible(true);
+        btnSuivant.setVisible(true);
+        contentPage.updateUI();
+        
     }//GEN-LAST:event_btnSuivantActionPerformed
 
     private void PanelChangeMDPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelChangeMDPMouseClicked
