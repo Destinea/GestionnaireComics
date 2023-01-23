@@ -236,6 +236,7 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
             Comic comicSelected =user.getCollection().searchComic(resultat.getId());//recup du comic
             user.changeUserComicStatus(comicSelected, 0);
         }
+        frame.update_collection();
         //TODO else remove comic non selected
 
     }//GEN-LAST:event_jCheckBox1ActionPerformed

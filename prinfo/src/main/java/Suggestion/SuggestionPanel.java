@@ -168,6 +168,7 @@ public class SuggestionPanel extends javax.swing.JPanel {
             Comic comicSelected =user.getCollection().searchComic(comic.getId());//recup du comic
             user.changeUserComicStatus(comicSelected, 0);
 	}
+        frame.update_collection();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void photoComicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_photoComicMouseClicked
