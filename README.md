@@ -47,7 +47,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'prinfo'@'localhost';
 
 On appuie sur le + et on rempli les champs de la manière suivante :
 
-![alt text](https://cdn.discordapp.com/attachments/912037524053049354/1065295172411330620/image.png)
+![alt Capture d'ecran du remplissage](https://i.ibb.co/njbDYGB/Capture-d-cran.png)
 
 4) Importation :
 
@@ -55,7 +55,7 @@ Dans la partie "Navigator" on clique sur "DataImport".
 On ecrit le chemin jusqu'à l'endroit ou se situe le projet on va ensuite dans BDD, on clique sur "Load Folder Contents" et on coche "prinfo".
 Enfin on clique sur "Start Import" et c'est tout !
 
-![alt text](https://cdn.discordapp.com/attachments/912037524053049354/1065295172411330620/image.png)
+![alt Capture fenetre](https://i.ibb.co/Gxyc947/Capture2.png)
 
 L'application est maintenant fonctionnelle
 
