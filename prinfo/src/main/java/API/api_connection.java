@@ -195,7 +195,15 @@ public class api_connection {
             String bigIconLink = JSONComics.getJSONObject(i).getJSONObject("image").getString("super_url");
             String SerieName = JSONComics.getJSONObject(i).getJSONObject("volume").getString("name");
             int SerieId = JSONComics.getJSONObject(i).getJSONObject("volume").getInt("id");
-            double number = JSONComics.getJSONObject(i).getDouble("issue_number");
+            double number;
+            try
+            {
+                number = JSONComics.getJSONObject(i).getDouble("issue_number");
+            }
+            catch(Exception e){
+                number = -1;
+            }
+
             if(name=="null"){
                 name = JSONComics.getJSONObject(i).getJSONObject("volume").getString("name").toString() +
                         " - n°"+JSONComics.getJSONObject(i).get("issue_number").toString();
