@@ -5,6 +5,7 @@
 package AffichageCompte;
 
 import AffichagePrincipal.FenetrePrincipale;
+import FileManagner.DBconfig;
 import GestionUser.User_BDD;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
@@ -170,8 +171,7 @@ public class ChangeMdp1 extends javax.swing.JFrame {
         AncienMdp.setBackground(Color.white);
         Info.setText("");
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-        try{
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
+        try (Connection con = DriverManager.getConnection(DBconfig.getUrl(), DBconfig.getUsername(), DBconfig.getPassword())){
         Statement stmt = con.createStatement();
         if(argon2.verify(User_BDD.lectureMdp(stmt, main.getUser().getUsername()), OldMDP)){
         	boolean check_password=true;
