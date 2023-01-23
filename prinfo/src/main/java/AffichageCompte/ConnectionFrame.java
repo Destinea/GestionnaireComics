@@ -4,21 +4,19 @@
  */
 package AffichageCompte;
 
-import java.awt.Color;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-
-import javax.swing.ImageIcon;
-
 import AffichagePrincipal.FenetrePrincipale;
+import FileManagner.DBconfig;
 import GestionUser.User;
 import GestionUser.User_BDD;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+
+import javax.swing.*;
+import java.awt.*;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 /**
  *
@@ -287,8 +285,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
         jPasswordField1.setBackground(new Color(51, 51, 51));
         
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-        try{
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
+        try (Connection con = DriverManager.getConnection(DBconfig.getUrl(), DBconfig.getUsername(), DBconfig.getPassword())){
         Statement stmt = con.createStatement();
         if(argon2.verify(User_BDD.lectureMdp(stmt, logintemp), mdp)){
             user = new User(logintemp,logintemp);

@@ -6,15 +6,17 @@ package Suggestion;
 
 import API.Comic;
 import API.api_connection;
+import AffichagePrincipal.FenetrePrincipale;
 import Collec.Comic_Collec;
-import java.awt.GridLayout;
+import FileManagner.DBconfig;
+
+import java.awt.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
-import AffichagePrincipal.FenetrePrincipale;
 
 /**
  *
@@ -95,15 +97,17 @@ public class Suggestion extends javax.swing.JPanel {
                 contentSuggestion.add(new Categorie(frame,secondCategorie,"Aléatoires"));
             }
         }
-        
-        
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
-        Statement stmt = con.createStatement();
-        this.thirdCategorie = Comic_Collec.getPlusLu(stmt);
-        if (thirdCategorie.size()!=0) {
-            contentSuggestion.add(new Categorie(frame, thirdCategorie, "Les plus populaires"));
+
+
+        try(Connection con = DriverManager.getConnection(DBconfig.getUrl(), DBconfig.getUsername(), DBconfig.getPassword())) {
+            Statement stmt = con.createStatement();
+            this.thirdCategorie = Comic_Collec.getPlusLu(stmt);
+            if (thirdCategorie.size() != 0) {
+                contentSuggestion.add(new Categorie(frame, thirdCategorie, "Les plus populaires"));
+            }
         }
-        contentSuggestion.setVisible(true);
+            contentSuggestion.setVisible(true);
+
     }
 
     

@@ -1,19 +1,17 @@
 package AffichageCompte;
 
-import java.awt.Color;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-
+import FileManagner.DBconfig;
 import GestionUser.User_BDD;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import de.mkammerer.argon2.Argon2Factory.Argon2Types;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.*;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -235,8 +233,7 @@ public class CreationCompteFrame extends javax.swing.JFrame {
         if (check_password)
         {
 
-            try{
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo");
+            try (Connection con = DriverManager.getConnection(DBconfig.getUrl(), DBconfig.getUsername(), DBconfig.getPassword())){
                 Statement stmt = con.createStatement();
                 if(!User_BDD.insertion(stmt, jTextField1.getText(), mdp2, argon2)){
                     infoMotDePasse.setForeground(Color.red);

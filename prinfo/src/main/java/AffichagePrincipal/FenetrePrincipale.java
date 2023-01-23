@@ -4,7 +4,6 @@
  */
 package AffichagePrincipal;
 
-import API.Comic;
 import API.Results;
 import API.api_connection;
 import AffichageCollection.UserSeriePanel;
@@ -13,22 +12,19 @@ import AffichageCompte.ChangeMdp1;
 import AffichageCompte.ConnectionFrame;
 import Collec.User_serie;
 import FileManagner.FileManagner;
-import Suggestion.Suggestion;
 import GestionUser.User;
-import java.awt.Color;
-import java.awt.Choice;
-import java.awt.GridLayout;
+import Suggestion.Suggestion;
+
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.swing.ImageIcon;
 
 import static Collec.Comic_Collec.saveBdd;
 

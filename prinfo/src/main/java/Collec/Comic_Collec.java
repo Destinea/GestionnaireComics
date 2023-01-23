@@ -1,10 +1,13 @@
 package Collec;
 
 import API.Comic;
+import FileManagner.DBconfig;
 import GestionUser.User;
 
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Comic_Collec extends Comic implements Comparable<Object>{
 	
@@ -34,23 +37,10 @@ public class Comic_Collec extends Comic implements Comparable<Object>{
     // Lecture et Enregistrement
 
     public static void saveBdd(User user) throws SQLException {
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo")) {
-            Statement stmt;
-            stmt = con.createStatement();
+        try (Connection con = DriverManager.getConnection(DBconfig.getUrl(), DBconfig.getUsername(), DBconfig.getPassword())) {
+            Statement stmt= con.createStatement();
             User old_user = new User(user.getUsername(), "");
             old_user.chargeCollection();
-
-            //System.out.println("old");
-            for (Comic_Collec comic : old_user.getCollection().getComics())
-            {
-                //System.out.println(comic.getName());
-            }
-
-            //System.out.println("new");
-            for (Comic_Collec comic : user.getCollection().getComics())
-            {
-                //System.out.println(comic.getName());
-            }
 
             compareCollection(user.getCollection(), old_user.getCollection());
             if (!user.getCollection().getlisteAjout().isEmpty()) {
@@ -128,7 +118,7 @@ public class Comic_Collec extends Comic implements Comparable<Object>{
         if (VerificationComic(stmt, c))
         {
             //System.out.println("Il faut insérer");
-            String sql = "INSERT INTO comic(id_comic, nom, lien_image, id_serie, numero) VALUES (" + c.getId() + ",'" + c.getName() + "', '" + c.getIconLink() + "', " + c.getSerieId() + "," + c.getNumber() + ");";
+            String sql = "INSERT INTO comic(id_comic, nom, lien_image, id_serie, numero) VALUES (" + c.getId() + ",\"" + c.getName() + "\", \"" + c.getIconLink() + "\", " + c.getSerieId() + "," + c.getNumber() + ");";
             stmt.executeUpdate(sql);
         }
     }
@@ -145,7 +135,7 @@ public class Comic_Collec extends Comic implements Comparable<Object>{
         //System.out.println("Vérification de la nécessité d'inserer la série : " + c.getSerieName());
         if (VerificationSerie(stmt, c)) {
             //System.out.println("Il faut insérer");
-            String sql_Serie = "INSERT INTO serie(id_serie, nom_serie) VALUES (" + c.getSerieId() + ", '" + c.getSerieName() + "');";
+            String sql_Serie = "INSERT INTO serie(id_serie, nom_serie) VALUES (" + c.getSerieId() + ", \"" + c.getSerieName() + "\");";
             stmt.executeUpdate(sql_Serie);
         }
     }
@@ -163,13 +153,13 @@ public class Comic_Collec extends Comic implements Comparable<Object>{
         if (id_user != -1)
         {
             //System.out.println("Liaison utilisateur " + id_user + " et comic " + id_comic);
-            String sql_UserCollection = "INSERT INTO collection(id_user, id_comic, id_etat) VALUES ('" + id_user + "', '" + id_comic + "', 1);";
+            String sql_UserCollection = "INSERT INTO collection(id_user, id_comic, id_etat) VALUES (\"" + id_user + "\", \"" + id_comic + "\", 1);";
             stmt.executeUpdate(sql_UserCollection);
         }
     }
 
     public static int getUserId(Statement stmt, String login) throws SQLException {
-        String sql_getLogin = "SELECT id_user FROM user WHERE login = '" + login + "';";
+        String sql_getLogin = "SELECT id_user FROM user WHERE login = \"" + login + "\";";
         stmt.executeQuery(sql_getLogin);
         ResultSet rs_idUser = stmt.getResultSet();
         int id_user = -1;
@@ -218,7 +208,7 @@ public class Comic_Collec extends Comic implements Comparable<Object>{
     }
     public static void majEtatLecture(Statement stmt, int id_user, int id_comic, int id_etat) throws SQLException {
         //System.out.println("Maj etat lecture : " + id_comic);
-        String sql = "UPDATE collection SET id_etat = " + id_etat + " WHERE id_comic = " + id_comic + " AND id_user = '" + id_user + "';";
+        String sql = "UPDATE collection SET id_etat = " + id_etat + " WHERE id_comic = " + id_comic + " AND id_user = \"" + id_user + "\";";
         stmt.executeUpdate(sql);
     }
 

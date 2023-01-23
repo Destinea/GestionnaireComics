@@ -1,10 +1,10 @@
 package GestionUser;
 
-import java.sql.*;
-
-// recommandée par l'Organisation de normalisation de l'Internet
-// meilleure fonction de hachage de mot de passe disponible
 import de.mkammerer.argon2.Argon2;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 
 public class User_BDD {
@@ -15,7 +15,7 @@ public class User_BDD {
             if (lectureMdp(stmt, login).isEmpty())
             {
                 String hash_password = argon2.hash(4, 1024 * 1024, 8, psw);
-                String sql = "INSERT INTO user(login, password) VALUES ('" + login + "', '" + hash_password + "');";
+                String sql = "INSERT INTO user(login, password) VALUES (\"" + login + "\", \"" + hash_password + "\");";
                 //System.out.print(sql);
                 stmt.executeUpdate(sql);
                 return true;
@@ -50,7 +50,7 @@ public class User_BDD {
     public static boolean suppression(Statement stmt, String login) throws SQLException {
         //Deletion à partir du nom d'utilisateur
         try {
-            String sql = "DELETE FROM user WHERE login = '" + login + "';";
+            String sql = "DELETE FROM user WHERE login = \"" + login + "\";";
             stmt.executeUpdate(sql);
             return lectureMdp(stmt, login).isEmpty();
         } catch (SQLException e) {
