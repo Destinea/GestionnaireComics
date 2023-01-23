@@ -1,14 +1,14 @@
 package Collec;
 
 
+import API.Comic;
+import API.Serie;
+import API.api_connection;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-
-import API.Comic;
-import API.Serie;
-import API.api_connection;
 
 public class User_serie extends Serie{
 	private final ArrayList<Comic_Collec> user_serie;

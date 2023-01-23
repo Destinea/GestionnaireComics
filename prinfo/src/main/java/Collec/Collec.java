@@ -1,13 +1,12 @@
 package Collec;
 
-import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.*;
-
 import API.Comic;
 import API.api_connection;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 public class Collec {
 	
 	private final ArrayList<Comic_Collec> comics;

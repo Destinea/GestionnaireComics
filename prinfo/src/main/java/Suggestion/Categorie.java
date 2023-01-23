@@ -3,11 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Suggestion;
+
 import API.Comic;
-import java.awt.GridLayout;
+import AffichagePrincipal.FenetrePrincipale;
+
+import java.awt.*;
 import java.io.IOException;
 import java.util.List;
-import AffichagePrincipal.FenetrePrincipale;
 
 /**
  *

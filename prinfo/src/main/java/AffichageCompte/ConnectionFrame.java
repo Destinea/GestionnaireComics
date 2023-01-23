@@ -4,22 +4,19 @@
  */
 package AffichageCompte;
 
-import java.awt.Color;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-
-import javax.swing.ImageIcon;
-
 import AffichagePrincipal.FenetrePrincipale;
 import FileManagner.DBconfig;
 import GestionUser.User;
 import GestionUser.User_BDD;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+
+import javax.swing.*;
+import java.awt.*;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 /**
  *
