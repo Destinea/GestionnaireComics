@@ -146,7 +146,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Mot de passe oublié ?");
+        jLabel1.setText("");
 
         jLabel4.setBackground(new java.awt.Color(51, 51, 51));
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
