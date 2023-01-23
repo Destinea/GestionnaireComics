@@ -24,7 +24,8 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Jujubaca
+ * @author Justine
+ * @author alexi
  */
 public class AffichageResultsMultiple extends javax.swing.JPanel {
 
@@ -215,6 +216,10 @@ public class AffichageResultsMultiple extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_iconLinkMouseClicked
 
+    /**
+	 * ajoute ou supprime le comic a la collection de l'utilisateur
+	 * en fonction de l'etat de la checkbox
+	 */
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
 

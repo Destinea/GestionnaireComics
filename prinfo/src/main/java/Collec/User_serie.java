@@ -10,6 +10,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
+/**
+ * @author alexi
+ * classe implementant les comics d'une meme serie possédes
+ * par l'utilisateur
+ * 
+ */
 public class User_serie extends Serie{
 	private final ArrayList<Comic_Collec> user_serie;
 	private final ArrayList<Serie> series;
@@ -21,13 +27,24 @@ public class User_serie extends Serie{
 		this.series= new ArrayList<Serie>();
 		series.add(serie);
 	}
-	
+	/**
+	 * tri de la serie par numero de comic
+	 * */
 	public void sort() {
 		Collections.sort(this.user_serie);
 	}
+	
+	/**
+	 * Supprime le comic de la serie
+	 * @param comic
+	 */
 	public void rmSerieComic(Comic rm_comic) {
 		this.user_serie.removeIf(comic -> comic.getId() == rm_comic.getId());
 	}
+	
+	/**
+	 * @return maximum 3 comics manquants a la serie
+	 */
 	public ArrayList<Comic> getSerieMissingComics() {
 		api_connection con=new api_connection();
 		ArrayList<Comic> m_c= new ArrayList<>();
@@ -60,9 +77,17 @@ public class User_serie extends Serie{
 		return m_c;
 	}
 	
+	/**
+	 * @return champ total (nb total de comics avec ce nom de serie)
+	 */
 	public int getNumberOfComics() {
 		return total;
 	}
+	
+	/**
+	 * change l'etat du comic dans la serie
+	 * @param comic, status
+	 */
 	public void changeSerieComicStatus(Comic c,int status) {
 		if (status==0) {
 			try {
@@ -102,6 +127,11 @@ public class User_serie extends Serie{
 			}
 		}	
 	}
+	
+	/**
+	 * @param comic
+	 * @return id de la serie du comic (possiblement null si non trouvé)
+	 */
 	public Integer searchSerieID(Comic c) {
 		for (Iterator<Serie> iterator = series.iterator(); iterator.hasNext();) {
 			Integer integer = (Integer) iterator.next().getId();
@@ -112,9 +142,17 @@ public class User_serie extends Serie{
 		return null;
 	}
 	
+	/**
+	 * @return champ user_serie
+	 */
 	public ArrayList<Comic_Collec> getUserSerie() {
 		return this.user_serie;
 	}
+	
+	/**
+	 * @param id de la serie,numero comic
+	 * @return true or false si le numero du comic est dans la serie
+	 */
 	public boolean searchComicNb(int id_serie,int nb) {
 		for (Comic_Collec c : user_serie) {
 			if (c.getSerieId()==id_serie && nb==c.getNumber()) {

@@ -6,8 +6,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static java.nio.file.StandardOpenOption.CREATE;
-
+/**
+*
+* @author Alexi
+* Gere la lecture, l'ecriture et la suppression d'un fichier
+*/
 public class FileManagner {
+	/**
+     * @param String a ecrire dans le fichier temp_loging
+     */
 	public void write(String s) {
 		Path chemin = Paths.get("temp_loging");
         // convertit String en un tableau d'octets
@@ -29,6 +36,10 @@ public class FileManagner {
             System.out.println("Message " + e);
         }
 	}
+	
+	/**
+     * @return contenu du fichier temp_loging sous format String
+     */
 	public String read() {
 		Path chemin = Paths.get("temp_loging");
         InputStream input = null;
@@ -45,6 +56,9 @@ public class FileManagner {
             return null;
         }
 	}
+	/**
+     * Supprime le fichier temp_loging
+     */
 	public void delete() {
 		File myObj = new File("temp_loging"); 
 	    if (myObj.delete()) { 

@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author Sarah-Marie JULES
+ * @author alexi
  */
 public class SuggestionPanel extends javax.swing.JPanel {
     private FenetrePrincipale frame;
@@ -149,7 +150,11 @@ public class SuggestionPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+	 * ajoute ou supprime le comic a la collection de l'utilisateur
+	 * en fonction de l'etat de la checkbox
+	 */
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
         if (jCheckBox1.isSelected()){

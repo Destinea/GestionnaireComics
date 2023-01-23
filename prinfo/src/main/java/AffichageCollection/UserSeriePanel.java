@@ -14,7 +14,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Alexi
+ * @author alexi
+ * Panel Contenant des panels de comics associés a une User serie
  */
 public class UserSeriePanel extends javax.swing.JPanel {
     private User user;
@@ -39,6 +40,9 @@ public class UserSeriePanel extends javax.swing.JPanel {
         InitUserSeriePanelCollection();
     }
     
+    /**
+     * @return User_serie associée au panel
+     */
     public User_serie getPanelSerie() {
     	return this.serie;
     }
@@ -55,6 +59,10 @@ public class UserSeriePanel extends javax.swing.JPanel {
         refreshPanel();
         
     }
+    
+    /**
+     * Refresh du panel après modification de celui çi
+     */
     public void refreshPanel() {
     	//Supression de tout l'affichage
     	contentpageserie.removeAll();
@@ -83,6 +91,10 @@ public class UserSeriePanel extends javax.swing.JPanel {
         contentpageserie.revalidate();
         contentpageserie.repaint();
 	}
+    
+    /**
+     * Supression d'un comic de la collection et du panel
+     */
     public void deleteComic(ComicPanelCollection cm) {
     	//Supp dans la serie de Comic panel
     	comic_panels.remove(cm);
@@ -95,12 +107,18 @@ public class UserSeriePanel extends javax.swing.JPanel {
 		}
 	}
     
+    /**
+     * Affiche les comics suivants dans la User_serie
+     */
     private void afficherGaucheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherGaucheActionPerformed
     	page-=7;
     	refreshPanel();
     	
     }//GEN-LAST:event_afficherGaucheActionPerformed
 
+    /**
+     * Affiche les comics precedents dans la User_serie
+     */
     private void afficherDroiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherDroiteActionPerformed
     	page+=7;
     	refreshPanel();

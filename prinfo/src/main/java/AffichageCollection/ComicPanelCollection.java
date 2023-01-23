@@ -18,7 +18,8 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Alexi
+ * @author alexi
+ * Panel contenant les information d'un Comic_Collec dans la collection de l'utilisateur
  */
 public class ComicPanelCollection extends javax.swing.JPanel {
     private  User user;
@@ -146,7 +147,11 @@ public class ComicPanelCollection extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_iconLinkMouseClicked
+    
 
+    /**
+     * Change l'etat du comic dans la collection si un checkbox est cochée
+     * */
     private void boxActionPerformed(java.awt.event.ActionEvent evt) {
         int state;
     	if (box_lu.isSelected()) {
@@ -156,6 +161,8 @@ public class ComicPanelCollection extends javax.swing.JPanel {
 				state=2;
 			}
 		}
+    	
+    	
     	else {
     		if (box_possede.isSelected()) {
 				state=3;
@@ -166,6 +173,9 @@ public class ComicPanelCollection extends javax.swing.JPanel {
         user.changeUserComicStatus(comic, state);
     }
 
+    /**
+     * Supprime le comic de l'affichage et de la collection si on appuie sur supprimer
+     * */
     private void deleteBtnActionPerformed(java.awt.event.MouseEvent evt) {//GEN-FIRST:deleteBtnActionPerformed
     	if (!deleteBtn.isEnabled()) {
     		deleteBtn.setEnabled(false);
@@ -174,6 +184,10 @@ public class ComicPanelCollection extends javax.swing.JPanel {
 		}
     	
     }//GEN-LAST:deleteBtnActionPerformed
+    
+    /**
+     * Recupere le comic associé au panel
+     * */
     public Comic_Collec getPanelComic() {
 		return this.comic;
 	}
