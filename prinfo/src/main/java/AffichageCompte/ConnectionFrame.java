@@ -20,7 +20,9 @@ import java.sql.Statement;
 
 /**
  *
- * @author Jujubaca
+ * @author Justine
+ * @author Nathan
+ * @author alexi
  */
 public class ConnectionFrame extends javax.swing.JFrame {
     FenetrePrincipale frame;

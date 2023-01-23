@@ -9,9 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author Valentine
+ * @author alexi
+ * Implemente un Comic possédé par l'utilisateur 
+ */
 public class Comic_Collec extends Comic implements Comparable<Object>{
 	
-	/*
+	/**
 	 * 0 pas dans la collection
 	 * 1 favori (=présent dans la collection)
 	 * 2 lu
@@ -224,7 +229,13 @@ public class Comic_Collec extends Comic implements Comparable<Object>{
         }
         return liste_comic;
     }
+    
+    
 	@Override
+	/**
+	 * @param comic a comparer
+	 * @return entier correspondant a la comparaison du numero de tome des 2 comics
+	 */
 	public int compareTo(Object o) {
 		Comic_Collec c = (Comic_Collec) o; 
         return (int) ( this.getNumber()-c.getNumber());

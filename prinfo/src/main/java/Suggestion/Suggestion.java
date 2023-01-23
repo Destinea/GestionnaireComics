@@ -21,6 +21,7 @@ import java.util.List;
 /**
  *
  * @author Sarah-Marie JULES
+ * @author alexi
  */
 public class Suggestion extends javax.swing.JPanel {
     private api_connection test;
@@ -43,6 +44,9 @@ public class Suggestion extends javax.swing.JPanel {
 
         
     }
+    /**
+	 * Recharche les panels de suggestion apres une connexion/ deconnexion
+	 */
     public void reloadSuggPanels() throws IOException {
     	contentSuggestion.removeAll();
         if (firstCategorie.size()!=0) {

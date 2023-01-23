@@ -20,7 +20,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author nathb
+ * @author Nathan
  */
 public class ChangeMdp1 extends javax.swing.JFrame {
     FenetrePrincipale main;

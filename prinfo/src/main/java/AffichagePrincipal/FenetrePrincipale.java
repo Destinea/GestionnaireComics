@@ -30,7 +30,9 @@ import static Collec.Comic_Collec.saveBdd;
 
 /**
  *
- * @author nathb
+ * @author Nathan
+ * @author Justine
+ * @author alexi
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
     private final api_connection test;
