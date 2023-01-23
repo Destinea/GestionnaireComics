@@ -1,15 +1,14 @@
 package GestionUser;
 
-import java.sql.*;
-
 import API.Comic;
 import Collec.Collec;
 import Collec.Comic_Collec;
+import FileManagner.DBconfig;
 import FileManagner.FileManagner;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
-import FileManagner.DBconfig;
-import FileManagner.FileManagner;
+
+import java.sql.*;
 
 public class User {
 	private final String username;

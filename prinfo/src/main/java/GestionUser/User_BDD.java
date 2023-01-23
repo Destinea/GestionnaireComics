@@ -1,10 +1,10 @@
 package GestionUser;
 
-import java.sql.*;
-
-// recommandée par l'Organisation de normalisation de l'Internet
-// meilleure fonction de hachage de mot de passe disponible
 import de.mkammerer.argon2.Argon2;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 
 public class User_BDD {

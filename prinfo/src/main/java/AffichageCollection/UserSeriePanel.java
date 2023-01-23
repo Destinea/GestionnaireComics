@@ -4,15 +4,13 @@
  */
 package AffichageCollection;
 
-import Collec.Comic_Collec;
-import GestionUser.User;
 import AffichagePrincipal.FenetrePrincipale;
+import Collec.Comic_Collec;
 import Collec.User_serie;
+import GestionUser.User;
 
+import java.awt.*;
 import java.util.ArrayList;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 
 /**
  *

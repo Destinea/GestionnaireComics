@@ -6,6 +6,8 @@ package AffichageDetail;
 
 import AffichagePrincipal.FenetrePrincipale;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -13,8 +15,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.*;
 
 /**
  *

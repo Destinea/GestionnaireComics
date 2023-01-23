@@ -5,19 +5,16 @@
 package AffichageCollection;
 
 import API.api_connection;
+import AffichageDetail.AffichageDetailsComic;
 import Collec.Comic_Collec;
 import GestionUser.User;
+
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import AffichageDetail.AffichageDetailsComic;
-import javax.swing.SwingConstants;
-import java.awt.Dimension;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Component;
 
 /**
  *

@@ -6,16 +6,17 @@ package Suggestion;
 
 import API.Comic;
 import API.api_connection;
+import AffichagePrincipal.FenetrePrincipale;
 import Collec.Comic_Collec;
-import java.awt.GridLayout;
+import FileManagner.DBconfig;
+
+import java.awt.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
-import AffichagePrincipal.FenetrePrincipale;
-import FileManagner.DBconfig;
 
 /**
  *
