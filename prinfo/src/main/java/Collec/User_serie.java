@@ -31,6 +31,7 @@ public class User_serie extends Serie{
 	public ArrayList<Comic> getSerieMissingComics() {
 		api_connection con=new api_connection();
 		ArrayList<Comic> m_c= new ArrayList<>();
+		int echecs=0;
 		for (int i = 0; i < series.size(); i++) {
 			for(int j = 0; j < series.get(i).getNumberOfComics(); j++) {
 				if (!searchComicNb(series.get(i).getId(), j)) {
@@ -41,6 +42,11 @@ public class User_serie extends Serie{
 						//System.out.println("Ajout de "+c.getName());
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
+						if (echecs>4) {
+							return m_c;
+						} else {
+							echecs++;
+						}
 						System.out.println("Impossible d'ajouter le num "+j+" de la serie "+series.get(i).getName());
 					}
 					
@@ -60,7 +66,7 @@ public class User_serie extends Serie{
 	public void changeSerieComicStatus(Comic c,int status) {
 		if (status==0) {
 			try {
-				System.out.println("Suppression "+c.getName());
+				//System.out.println("Suppression "+c.getName());
 				rmSerieComic(c);
 				//System.out.println("Suppression de "+c.getName());
 			} catch (Exception e) {
@@ -77,7 +83,9 @@ public class User_serie extends Serie{
 			}
 			if (!find) {
 				//Ajout à la série
-				user_serie.add(new Comic_Collec(c, status));
+				//System.out.println("Ajout de "+c.getName());
+				this.user_serie.add(new Comic_Collec(c, status));
+				//System.out.println(searchComicNb(c.getSerieId(), (int) c.getNumber()));
 				//Si l'id de la serie n'est pas déja ajouté alors on le met a jour
 				//et on modifie le nb total de comics dans la série
 				if (searchSerieID(c)==null) {
