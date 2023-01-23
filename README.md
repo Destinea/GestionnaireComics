@@ -28,6 +28,36 @@ Si il est connecté les suggestions et que sa collection n'est pas vide, il aura
 
 
 # Installation de la Base de données :
+Après avoir téléchargé notre projet vous constaterez qu'il ne fonctionne pas. 
+En effet, pour mener à bien l'accomplissement de ce projet nous avons du utilisé une base de données locale.
+Il faut donc l'installer la BDD afin de pouvoir faire fonctionner l'application.
+Voici le tuto d'installation :
+
+1) Installation de MySQL Workbench :
+ https://dev.mysql.com/downloads/installer/ 
+
+2) Commande :
+
+CREATE DATABASE prinfo7;
+USE prinfo7;
+CREATE USER 'prinfo'@'localhost' IDENTIFIED BY 'prinfo';
+GRANT ALL PRIVILEGES ON *.* TO 'prinfo'@'localhost';
+
+3) Configuration :
+
+On appuie sur le + et on rempli les champs de la manière suivante :
+
+![alt text](https://cdn.discordapp.com/attachments/912037524053049354/1065295172411330620/image.png)
+
+4) Importation :
+
+Dans la partie "Navigator" on clique sur "DataImport".
+On ecrit le chemin jusqu'à l'endroit ou se situe le projet on va ensuite dans BDD, on clique sur "Load Folder Contents" et on coche "prinfo".
+Enfin on clique sur "Start Import" et c'est tout !
+
+![alt text](https://cdn.discordapp.com/attachments/912037524053049354/1065295172411330620/image.png)
+
+L'application est maintenant fonctionnelle
 
 # Contributors:
 - Valentine GILLES
