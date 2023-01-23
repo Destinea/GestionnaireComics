@@ -8,6 +8,7 @@ import Collec.Comic_Collec;
 import FileManagner.FileManagner;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
+import FileManagner.DBconfig;
 import FileManagner.FileManagner;
 
 public class User {
@@ -64,9 +65,8 @@ public class User {
 	}
 
 	public void chargeCollection() throws SQLException {
-		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prinfo7", "prinfo", "prinfo")) {
-			Statement stmt;
-			stmt = con.createStatement();
+		try (Connection con = DriverManager.getConnection(DBconfig.getUrl(), DBconfig.getUsername(), DBconfig.getPassword())) {
+			Statement stmt = con.createStatement();
 			String sql = "SELECT * FROM comic INNER JOIN serie on comic.id_serie = serie.id_serie INNER JOIN collection c on comic.id_comic = c.id_comic INNER JOIN user u ON u.id_user = c.id_user WHERE u.login ='" + this.username + "';";
 			stmt.executeQuery(sql);
 			ResultSet rs = stmt.getResultSet();
