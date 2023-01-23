@@ -18,6 +18,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.Properties;
+
 /**
  *
  * @author Justine
@@ -64,15 +68,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	String sImageFileName = "../icon.png";
-        URL urlImageFileName = getClass().getResource(sImageFileName);
 
-        if (urlImageFileName == null)
-            System.out.println( "urlImageFileName: " + urlImageFileName + " Not Found." );
-        else {
-            ImageIcon oImageIcon = new ImageIcon(getClass().getResource(sImageFileName));
-            setIconImage(oImageIcon.getImage());
-        }  // end else
         jPanel1 = new javax.swing.JPanel();
         ConnexionBouton = new javax.swing.JButton();
         CreationCompteBouton = new javax.swing.JButton();
@@ -83,16 +79,10 @@ public class ConnectionFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jTextField1 = new javax.swing.JTextField();
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        
         EtatConnection = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Connexion");
+        setTitle("Connection");
         setBackground(new java.awt.Color(255, 249, 176));
         setMinimumSize(new java.awt.Dimension(750, 380));
         setResizable(false);
@@ -148,7 +138,12 @@ public class ConnectionFrame extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("");
+        jLabel1.setText("Mot de passe oublié ?");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jLabel4.setBackground(new java.awt.Color(51, 51, 51));
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -199,7 +194,7 @@ public class ConnectionFrame extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(31, 31, 31)
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 45, Short.MAX_VALUE))))
+                                .addGap(0, 42, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(122, 122, 122)
                         .addComponent(EtatConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -309,16 +304,51 @@ public class ConnectionFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_ConnexionBoutonActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
         ConnexionBoutonActionPerformed(evt);
         
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }                                               
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
         jPasswordField1.requestFocus();
         
     }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        sendMail("justine.barranger.candas@etu.univ-st-etienne.fr");
+    }//GEN-LAST:event_jLabel1MouseClicked
+    
+    public static void sendMail(String recipientEmail) {
+    Properties properties = new Properties();
+    properties.put("mail.smtp.auth", "true");
+    properties.put("mail.smtp.starttls.enable", "true");
+    properties.put("mail.smtp.host", "smtp.gmail.com");
+    properties.put("mail.smtp.port", "587");
+
+    String myAccountEmail = "netcomicstse@gmail.com";
+    String password = "cjkxmfeojnmsqopm";
+
+    Session session = Session.getInstance(properties, new Authenticator() {
+      @Override
+      protected PasswordAuthentication getPasswordAuthentication() {
+        return new PasswordAuthentication(myAccountEmail, password);
+      }
+    });
+
+    try {
+      Message message = new MimeMessage(session);
+      message.setFrom(new InternetAddress(myAccountEmail));
+      message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));
+      message.setSubject("Test Email");
+      message.setText("Hello, this is a test email.");
+
+      Transport.send(message);
+      System.out.println("Email sent successfully to " + recipientEmail);
+    } catch (MessagingException e) {
+      e.printStackTrace();
+    }
+  }
     /**
      * @param args the command line arguments
      */

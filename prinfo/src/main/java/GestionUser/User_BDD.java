@@ -9,13 +9,13 @@ import java.sql.Statement;
 
 public class User_BDD {
 
-    public static boolean insertion(Statement stmt, String login, char[] psw, Argon2 argon2) {
+    public static boolean insertion(Statement stmt, String login, char[] psw, String email, Argon2 argon2) {
         // Insertion du login et du mdp
         try {
             if (lectureMdp(stmt, login).isEmpty())
             {
                 String hash_password = argon2.hash(4, 1024 * 1024, 8, psw);
-                String sql = "INSERT INTO user(login, password) VALUES (\"" + login + "\", \"" + hash_password + "\");";
+                String sql = "INSERT INTO user(login, password, email) VALUES (\"" + login + "\", \"" + hash_password + "\", \"" + email + "\");";
                 //System.out.print(sql);
                 stmt.executeUpdate(sql);
                 return true;

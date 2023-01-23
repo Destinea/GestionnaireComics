@@ -13,7 +13,7 @@ public class DBconfig {
 
     static {
         try {
-            config = mapper.readTree(new File("src\\main\\java\\FileManagner\\config.json"));
+            config = mapper.readTree(new File("src/main/java/FileManagner/config.json"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
