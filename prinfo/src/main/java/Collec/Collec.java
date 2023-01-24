@@ -37,7 +37,12 @@ public class Collec {
 			ArrayList<Comic> missing_com_serie= s.getSerieMissingComics();
 			//System.out.println("missing serie comis: "+missing_com_serie.size());
 			for (Comic missingComic : missing_com_serie) {
-				m_c.add(missingComic);
+				if (m_c.size()>2) {
+					return m_c;
+				}
+				else {
+					m_c.add(missingComic);
+				}
 			}
 			//Si 3 suggestions c'est ok
 			if (m_c.size()>2) {

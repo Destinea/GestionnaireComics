@@ -90,6 +90,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      }
      public void switchestCo() throws SQLException, IOException {
          estCo = !estCo;
+         update_collection();
          PanelCollection.setVisible(estCo); 
          if (estCo) {
         	user=connectionFrame.getUser();
@@ -748,7 +749,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }//GEN-LAST:event_PanelChangeMDPMouseExited
 
     private void PanelDeconnexionMouseClicked(java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_PanelDeconnexionMouseClicked
-        try {   	
+        
+    	try {   	
             saveBdd(user);
             FileManagner f= new FileManagner();
         	f.delete();
