@@ -91,6 +91,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      public void switchestCo() throws SQLException, IOException {
          estCo = !estCo;
          update_collection();
+         mode=0;
          PanelCollection.setVisible(estCo); 
          if (estCo) {
         	user=connectionFrame.getUser();
